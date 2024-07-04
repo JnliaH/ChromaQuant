@@ -18,6 +18,20 @@ from datetime import datetime
 import logging
 import scipy
 
+""" PARAMETERS """
+#Default third order fit arguments for gas FID and MS peak matching
+#a (x^3)
+a_tof = 0.0252
+#b (x^2)
+b_tof = -0.5274
+#c (x)
+c_tof = 4.8067
+#d
+d_tof = -3.0243
+#Combine into a list
+fit_const = [a_tof,b_tof,c_tof,d_tof]
+
+
 """ PROCESSING SYSTEM ARGUMENTS """
 #Get list of system arguments
 argList = sys.argv
@@ -30,6 +44,9 @@ sphase = argList[2]
 
 #Write whether or not to perform speculative labeling
 splab_TF = argList[3]
+
+#Get which model to use in matching
+model = argList[4]
 
 #Specify the allowable error for both linear and speculative peak matching
 peakError = 0.05
@@ -45,12 +62,13 @@ exec_start = datetime.now()
 
 """ DIRECTORIES """
 #Main directory
-cwd = "/Users/connards/Desktop/University/Rorrer Lab/Scripts/Quantification/"
+cwd = "/Users/connards/Desktop/University/Rorrer Lab/Scripts/AutoQuant/"
 
 #Set up dictionary containing all relevant directories
-direcDict = {'cwd':"/Users/connards/Desktop/University/Rorrer Lab/Scripts/Quantification/",  #Main directory
+direcDict = {'cwd':cwd,                                  #Main directory
              'resources':cwd+'resources/',               #Resources directory
              'DF_Dir':cwd+"data/"+sname+"/",             #Data files directory
+             'DF_raw':cwd+"data/"+sname+"/raw data/",             #Raw data files directory
              'DFlog_Dir':cwd+"data/"+sname+"/log/"}      #Data file log directory
 
 #Dictionary of substrings to add to sample name to create file names
@@ -195,7 +213,33 @@ def checkFile(fpmDir,fDir):
             #Create a log entry
             logger.info('FIDpMS file exists but contains no labelled peaks')
             return fpmDF, False
+
+#Function describing a third order fit for gas analysis
+def defaultGas(FIDRT,fpmDF,fit_const=[a_tof,b_tof,c_tof,d_tof]):
+    """
+    A function used to describe the default fit for gas analysis peak matching
+
+    Parameters
+    ----------
+    FIDRT : Float
+        A float describing the FID retention time requiring a corresponding MS retention time.
+    fpmDF : DataFrame
+        A dataframe containing FID and MS peak info.
+    fit_const : List, optional
+        A list of floats describing a third order fit. The default is [a_tof,b_tof,c_tof,d_tof].
+
+    Returns
+    -------
+    MSRT : Float
+        A float describing the calculated MS RT using the third order fit and the FID RT
+    """
     
+    MSRT = fit_const[0]*FIDRT**3+fit_const[1]*FIDRT**2+fit_const[2]*FIDRT+fit_const[3]
+    
+    return MSRT
+
+#TODO: Function for creating a third order fit using manually matched peaks
+
 #Function for creating a linear fit using manually matched peaks
 def RTlinfit(fpmDF):
     
@@ -270,8 +314,8 @@ def RTlinfit(fpmDF):
         
     return fpmDF_mb, [peakDrift,peakOffset,r2], counts
 
-#Function that estimates unknown MS RT's and matches FID and MS peaks 
-def matchPeaks(fpmDF,mDF,linfits,peakError=0.01):
+#Function that estimates unknown MS RT's and matches FID and MS peaks using a provided linear fit 
+def matchPeaksLinear(fpmDF,mDF,linfits,peakError=0.01):
     """
     Parameters
     ----------
@@ -290,7 +334,7 @@ def matchPeaks(fpmDF,mDF,linfits,peakError=0.01):
         Dataframe containing FID and MS peak info
     """
     
-    def matchOne(fpmDF,fpmiter,peakError):
+    def matchOne(fpmDF,fpmiter,linfits,peakError):
         """
         Parameters
         ----------
@@ -298,6 +342,8 @@ def matchPeaks(fpmDF,mDF,linfits,peakError=0.01):
             Dataframe containing FID and MS peak info
         fpmiter : List
             List containing current index and row in fpmDF of interest in form [i,row]
+        linfits : List
+            List containing info about a linear fit for estimated MS RT's in the form [m,b,r2]
         peakError : float
             Allowable error between estimated MS RT's and actual MS RT's
 
@@ -358,14 +404,111 @@ def matchPeaks(fpmDF,mDF,linfits,peakError=0.01):
             #Otherwise..
             else:
                 #Match one FID peak
-                fpmDF = matchOne(fpmDF, [i,row], peakError)
+                fpmDF = matchOne(fpmDF, [i,row], linfits, peakError)
         #Otherwise, if the row's compound name is blank..
         else:
             #Match one FID peak
-            fpmDF = matchOne(fpmDF, [i,row], peakError)
+            fpmDF = matchOne(fpmDF, [i,row], linfits, peakError)
     
     return fpmDF
 
+#Function that estimates unknown MS RT's and matches FID and MS peaks using a provided third order fit
+def matchPeaksThird(fpmDF,mDF,fit_const,peakError=0.06):
+    """
+    Parameters
+    ----------
+    fpmDF : DataFrame
+        Dataframe containing FID and MS peak info
+    mDF : DataFrame
+        Dataframe containing MS info about identified compounds (UA_UPP)
+    fit_const : List
+        A list of floats describing a third order fit.
+    peakError : Float, optional
+        Allowable error between estimated MS RT's and actual MS RT's. The default is 0.01.
+
+    Returns
+    -------
+    fpmDF : DataFrame
+        Dataframe containing FID and MS peak info
+    """
+    
+    def matchOne(fpmDF,fpmiter,fit_const,peakError):
+        """
+        Parameters
+        ----------
+        fpmDF : DataFrame
+            Dataframe containing FID and MS peak info
+        fpmiter : List
+            List containing current index and row in fpmDF of interest in form [i,row]
+        fit_const : List
+            A list of floats describing a third order fit.
+        peakError : float
+            Allowable error between estimated MS RT's and actual MS RT's
+
+        Returns
+        -------
+        fpmDF : DataFrame
+            Dataframe containing FID and MS peak info
+        """
+        
+        #Unpack fpmDF iterating info
+        fpmi = int(fpmiter[0])
+        fpmrow = fpmiter[1]
+        
+        #Define x as fpmrow['FID RT] for convenience
+        x = fpmrow['FID RT']
+        #Estimate an MS RT for the row's FID RT using the third order fit
+        est_MSRT = fit_const[0]*x**3 + fit_const[1]*x**2 + fit_const[2]*x + fit_const[3]
+        #Compare the estimated MS RT to all real MS RT's, seeing if there is a match within error
+        mDF_match = mDF.loc[(mDF['Component RT'] >= est_MSRT-peakError) & (mDF['Component RT'] <= est_MSRT+peakError)].copy()
+        #If there is more than one match, select the entry with the smallest error
+        if len(mDF_match) > 1:
+            #Add an RT error to all mDF_match entries
+            for i, row in mDF_match.iterrows():
+                mDF_match.at[i,'RT Error'] = abs(fpmrow['FID RT']-est_MSRT)
+            
+            #Set mDF_match to the row with minimum RT Error
+            mDF_match = mDF_match.nsmallest(1,'RT Error')
+            
+        #Reset the mDF_match index
+        mDF_match = mDF_match.reset_index().copy()
+        
+        #If the length of mDF_match is greater than zero..
+        if len(mDF_match) > 0:
+            
+            #Add the MS info to the FIDpMS dataframe
+            fpmDF.at[fpmi,'MS RT'] = mDF_match.at[0,'Component RT']
+            fpmDF.at[fpmi,'Compound Name'] = mDF_match.at[0,'Compound Name']
+            fpmDF.at[fpmi,'Formula'] = mDF_match.at[0,'Formula']
+            fpmDF.at[fpmi,'Match Factor'] = mDF_match.at[0,'Match Factor']
+            fpmDF.at[fpmi,'Compound Source'] = 'Automatically assigned using a predetermined third-order fit'
+            
+        #Otherwise, pass
+        else:
+            pass
+        
+        return fpmDF
+    
+    #Loop through every row in the dataframe
+    for i, row in fpmDF.iterrows():
+        #If the row's compound name is not blank
+        if not pd.isna(row['Compound Name']):
+            #If the row's compound source is either manual or blank, skip it
+            if row['Compound Source'] == 'Manual' or pd.isna(row['Compound Source']):
+                pass
+            #Otherwise..
+            else:
+                #Match one FID peak
+                fpmDF = matchOne(fpmDF, [i,row], fit_const, peakError)
+        #Otherwise, if the row's compound name is blank..
+        else:
+            #Match one FID peak
+            fpmDF = matchOne(fpmDF, [i,row], fit_const, peakError)
+    
+    return fpmDF
+    
+    
+    
 #Function that performs speculative labeling to label FID peaks which do not have a match
 def specLab(fpmDF,kc_rsc,sinfo,counts,peakError,restrictList):
     
@@ -466,7 +609,7 @@ sinfo['End Time'] = datetime.fromisoformat(sinfo['End Time'])
 sinfo['Reaction Time (hr)'] = abs(sinfo['End Time']-sinfo['Start Time']).total_seconds()/3600 - sinfo['Heat Time']
 
 #Run the file naming function
-paths = fileNamer(sname,sphase,sub_Dict,direcDict['DF_Dir'])
+paths = fileNamer(sname,sphase,sub_Dict,direcDict['DF_raw'])
 
 #Import MS UPP data
 mDF = pd.read_csv(paths[1])
@@ -485,16 +628,26 @@ kc_rsc = kc_rsc.loc[(kc_rsc['Catalyst']==sinfo['Catalyst Type'])&(kc_rsc['Sample
 #Run the file checking function
 fpmDF, tf = checkFile(paths[2],paths[0])
 
-#If the file contains manually matched peaks..
-if tf:
-    #Run the linear fit function
-    fpmDF_mb, linfits, counts = RTlinfit(fpmDF)
+#If the specified model is linear...
+if model == "L":
+    #If the file contains manually matched peaks..
+    if tf:
+        #Run the linear fit function
+        fpmDF_mb, linfits, counts = RTlinfit(fpmDF)
+        #Run the peak matching function
+        fpmDF = matchPeaksLinear(fpmDF,mDF,linfits,peakError)
+        
+    else:
+        pass
+
+#Otherwise, if the specified model is third order...
+elif model == "T":
     #Run the peak matching function
-    fpmDF = matchPeaks(fpmDF,mDF,linfits,peakError)
-    
+    fpmDF = matchPeaksLinear(fpmDF,mDF,fit_const,peakError)  
+
+#Otherwise, pass
 else:
     pass
-
 #Run the speculative labeling function
 if splab_TF == "True":
     print("Running speculative labelling...")
