@@ -49,7 +49,7 @@ splab_TF = argList[3]
 model = argList[4]
 
 #Specify the allowable error for both linear and speculative peak matching
-peakError = 0.05
+peakError = 0.1
 
 #Specify the restrictions and preferences to be implemented in speculative labeling
 #The first list contains properties which must match in order for something to be labelled
@@ -315,7 +315,7 @@ def RTlinfit(fpmDF):
     return fpmDF_mb, [peakDrift,peakOffset,r2], counts
 
 #Function that estimates unknown MS RT's and matches FID and MS peaks using a provided linear fit 
-def matchPeaksLinear(fpmDF,mDF,linfits,peakError=0.01):
+def matchPeaksLinear(fpmDF,mDF,linfits,peakError=0.06):
     """
     Parameters
     ----------
@@ -465,7 +465,7 @@ def matchPeaksThird(fpmDF,mDF,fit_const,peakError=0.06):
         if len(mDF_match) > 1:
             #Add an RT error to all mDF_match entries
             for i, row in mDF_match.iterrows():
-                mDF_match.at[i,'RT Error'] = abs(fpmrow['FID RT']-est_MSRT)
+                mDF_match.at[i,'RT Error'] = abs(mDF_match.at[i,'Component RT']-est_MSRT)
             
             #Set mDF_match to the row with minimum RT Error
             mDF_match = mDF_match.nsmallest(1,'RT Error')
@@ -493,8 +493,8 @@ def matchPeaksThird(fpmDF,mDF,fit_const,peakError=0.06):
     for i, row in fpmDF.iterrows():
         #If the row's compound name is not blank
         if not pd.isna(row['Compound Name']):
-            #If the row's compound source is either manual or blank, skip it
-            if row['Compound Source'] == 'Manual' or pd.isna(row['Compound Source']):
+            #If the row's compound source is either manual or a gasPeaks known peak match or blank, skip it
+            if row['Compound Source'] == 'Manual' or row['Compound Source'] == 'Automatically assigned using gas pairs provided in resources' or pd.isna(row['Compound Source']):
                 pass
             #Otherwise..
             else:
@@ -507,8 +507,80 @@ def matchPeaksThird(fpmDF,mDF,fit_const,peakError=0.06):
     
     return fpmDF
     
+#Function that performs a subset of speculative labeling, using known peaks hard-coded in a file gasPairs_FIDpMS.csv 
+def matchKnownPeaks(fpmDF,mDF,gp_rsc):
+    def matchOne(fpmDF,fpmiter,gp_rsc):
+        """
+        Parameters
+        ----------
+        fpmDF : DataFrame
+            Dataframe containing FID and MS peak info
+        fpmiter : List
+            List containing current index and row in fpmDF of interest in form [i,row]
+        gp_rsc : DataFrame
+            Dataframe containing opened gasPairs resource.
+        peakError : float
+            Allowable error between estimated MS RT's and actual MS RT's
+
+        Returns
+        -------
+        fpmDF : DataFrame
+            Dataframe containing FID and MS peak info
+        """
+        
+        #Unpack fpmDF iterating info
+        fpmi = int(fpmiter[0])
+        fpmrow = fpmiter[1]
+        
+        #Search the gasPairs resource to see if any known peaks/RT's match the FID peak list
+        for i, row in gp_rsc.iterrows():
+            #Set gp_match to empty string
+            gp_match = pd.Series()
+            #Define error as two times the standard deviation for the FID RT in the gasPeaks resource
+            gp_error = row['Stdev FID RT']*2
+            #Extract the FID RT from the resource
+            gp_FIDRT = row['Average FID RT']
+            #If the current fpmrow FID RT is within the error bounds of an entry in the resource, match it
+            #NOTE: prefers the first match, even if the next match is closer. Most resourceRT's are more than 
+            #2*error away from each other
+            if (fpmrow['FID RT'] >= gp_FIDRT - gp_error) and (fpmrow['FID RT'] <= gp_FIDRT + gp_error):
+                gp_match = row
+                break
+            #Otherwise, pass
+            else:
+                pass
+        
+        #If gp_match is empty, pass
+        if gp_match.empty:
+            pass
+        #Otherwise, add the match info
+        else:
+            #Add the resource match info to the FIDpMS dataframe
+            fpmDF.at[fpmi,'Compound Name'] = gp_match['Species']
+            fpmDF.at[fpmi,'Formula'] = gp_match['Formula']
+            fpmDF.at[fpmi,'Compound Source'] = 'Automatically assigned using gas pairs provided in resources'
+        
+        return fpmDF
     
+    #Loop through every row in the dataframe
+    for i, row in fpmDF.iterrows():
+        #If the row's compound name is not blank
+        if not pd.isna(row['Compound Name']):
+            #If the row's compound source is either manual or blank, skip it
+            if row['Compound Source'] == 'Manual' or pd.isna(row['Compound Source']):
+                pass
+            #Otherwise..
+            else:
+                #Match one FID peak
+                fpmDF = matchOne(fpmDF, [i,row], gp_rsc)
+        #Otherwise, if the row's compound name is blank..
+        else:
+            #Match one FID peak
+            fpmDF = matchOne(fpmDF, [i,row], gp_rsc)
     
+    return fpmDF
+
+
 #Function that performs speculative labeling to label FID peaks which do not have a match
 def specLab(fpmDF,kc_rsc,sinfo,counts,peakError,restrictList):
     
@@ -623,6 +695,8 @@ kc_rsc = pd.read_csv(direcDict['resources']+'known_compounds.csv')
 #AND compounds which were not identified by the current sample
 kc_rsc = kc_rsc.loc[(kc_rsc['Catalyst']==sinfo['Catalyst Type'])&(kc_rsc['Sample Name']!=sinfo['Sample Name'])]
 
+#Import gasPairs_FIDpMS.csv resource
+gp_rsc = pd.read_csv(direcDict['resources']+'gasPairs_FIDpMS.csv')
 
 """ CODE """
 #Run the file checking function
@@ -642,8 +716,10 @@ if model == "L":
 
 #Otherwise, if the specified model is third order...
 elif model == "T":
-    #Run the peak matching function
-    fpmDF = matchPeaksLinear(fpmDF,mDF,fit_const,peakError)  
+    #Run the gasPeaks_FIDpMS resource matching function
+    fpmDF = matchKnownPeaks(fpmDF,mDF,gp_rsc)
+    #Run the third order peak matching function
+    fpmDF = matchPeaksThird(fpmDF,mDF,fit_const,peakError)  
 
 #Otherwise, pass
 else:
@@ -663,6 +739,7 @@ exec_end = datetime.now()
 #Execution time
 exec_time = (exec_end-exec_start).total_seconds()*10**3
 print("Time to execute: {:.03f}ms".format(exec_time))
+
 
 
 
