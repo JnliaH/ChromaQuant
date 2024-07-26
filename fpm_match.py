@@ -57,6 +57,46 @@ restrictList = [['Gas'],{'Reaction Temperature (C)':5}]
 #Start time for execution time
 exec_start = datetime.now()
 
+""" COMPOUND TYPE ASSIGNMENT VARIABLES """
+#This dictionary contain lists of substrings to be checked against compound name strings to
+#assign a compound type
+
+#Six compound types exist: linear alkanes (L), branched alkanes (B), aromatics (A), cycloalkanes (C),
+#alkenes/alkynes (E), and other (O)
+
+#Each compound type abbreviation will have an entry in the dictionary corresponding to a list of
+#substrings to be checked against a compound name string
+
+contains = {'L':['methane','ethane','propane','butane','pentane','hexane','heptane','octane','nonane',\
+                 'decane','undecane','hendecane','dodecane','tridecane','tetradecane','pentadecane','hexadecane','heptadecane','octadecane','nonadecane',\
+                 'icosane','eicosane','heneicosane','henicosane','docosane','tricosane','tetracosane','pentacosane','hexacosane','cerane','heptacosane','octacosane','nonacosane',\
+                 'triacontane','hentriacontane','untriacontane','dotriacontane','dicetyl','tritriacontane','tetratriacontane','pentatriacontane','hexatriacontane','heptatriacontane','octatriacontane','nonatriacontane',\
+                 'tetracontane','hentetracontane','dotetracontane','tritetracontane','tetratetracontane','pentatetracontane','hexatetracontane','heptatetracontane','octatetracontane','nonatetracontane','pentacontane'],\
+            
+            'B':['iso','methyl','ethyl','propyl','butyl','pentyl','hexyl','heptyl','octyl','nonyl',\
+                 'decyl','undecyl','dodecyl','tridecyl','tetradecyl','pentadecyl','hexadecyl','heptadecyl','octadecyl','nonadecyl',\
+                 'icosyl','eicosyl','heneicosyl','henicosyl','docosyl','tricosyl','tetracosyl','pentacosyl','hexacosyl','heptacosyl','octacosyl','nonacosyl',\
+                 'triacontyl','hentriacontyl','untriacontyl','dotriacontyl','tritriacontyl','tetratriacontyl','pentatriacontyl','hexatriacontyl','heptatriacontyl','octatriacontyl','nonatriacontyl',\
+                 'tetracontyl','hentetracontyl','dotetracontyl','tritetracontyl','tetratetracontyl','pentatetracontyl','hexatetracontyl','heptatetracontyl','octatetracontyl','nonatetracontyl','pentacontyl'],
+            
+            'A':['benzyl','benzo','phenyl','benzene','toluene','xylene','mesitylene','durene','naphthalene','fluorene','anthracene','phenanthrene','phenalene',\
+                 'tetracene','chrysene','triphenylene','pyrene','pentacene','perylene','corannulene','coronene','ovalene','indan','indene','tetralin'],\
+            
+            'C':['cyclo','menthane'],\
+            
+            'E':['ene','yne'],\
+            
+            'O':[]}
+
+#Tuple of contains keys in order of priority
+keyLoop = ('A','C','E','B','L')
+
+#Tuple of elements to be excluded and automatically labelled as 'O'
+elementExclude = ('He','Li','Be','B','N','O','F','Ne','Na','Mg','Al','Si','P',\
+                  'S','Cl','Ar','K','Ca','Sc','Ti','V','Cr','Mn','Fe','Co',\
+                  'Ni','Cu','Zn')
+
+
 """ DIRECTORIES """
 #Main directory
 cwd = "/Users/connards/Desktop/University/Rorrer Lab/Scripts/AutoQuant/"

@@ -48,8 +48,11 @@ splab_TF = argList[3]
 #Get which model to use in matching
 model = argList[4]
 
-#Specify the allowable error for both linear and speculative peak matching
-peakError = 0.1
+#Specify the allowable error for linear, third order, and speculative peak matching
+peakError = 0.06
+
+#Specify the allowable error for direct FID-MS RT matching
+peakErrorRT = 0.05
 
 #Specify the restrictions and preferences to be implemented in speculative labeling
 #The first list contains properties which must match in order for something to be labelled
@@ -60,16 +63,57 @@ restrictList = [['Gas'],{'Reaction Temperature (C)':5}]
 #Start time for execution time
 exec_start = datetime.now()
 
+
+""" COMPOUND TYPE ASSIGNMENT VARIABLES """
+#This dictionary contain lists of substrings to be checked against compound name strings to
+#assign a compound type
+
+#Six compound types exist: linear alkanes (L), branched alkanes (B), aromatics (A), cycloalkanes (C),
+#alkenes/alkynes (E), and other (O)
+
+#Each compound type abbreviation will have an entry in the dictionary corresponding to a list of
+#substrings to be checked against a compound name string
+
+contains = {'L':['methane','ethane','propane','butane','pentane','hexane','heptane','octane','nonane',\
+                 'decane','undecane','hendecane','dodecane','tridecane','tetradecane','pentadecane','hexadecane','heptadecane','octadecane','nonadecane',\
+                 'icosane','eicosane','heneicosane','henicosane','docosane','tricosane','tetracosane','pentacosane','hexacosane','cerane','heptacosane','octacosane','nonacosane',\
+                 'triacontane','hentriacontane','untriacontane','dotriacontane','dicetyl','tritriacontane','tetratriacontane','pentatriacontane','hexatriacontane','heptatriacontane','octatriacontane','nonatriacontane',\
+                 'tetracontane','hentetracontane','dotetracontane','tritetracontane','tetratetracontane','pentatetracontane','hexatetracontane','heptatetracontane','octatetracontane','nonatetracontane','pentacontane'],\
+            
+            'B':['iso','neo','methyl','ethyl','propyl','butyl','pentyl','hexyl','heptyl','octyl','nonyl',\
+                 'decyl','undecyl','dodecyl','tridecyl','tetradecyl','pentadecyl','hexadecyl','heptadecyl','octadecyl','nonadecyl',\
+                 'icosyl','eicosyl','heneicosyl','henicosyl','docosyl','tricosyl','tetracosyl','pentacosyl','hexacosyl','heptacosyl','octacosyl','nonacosyl',\
+                 'triacontyl','hentriacontyl','untriacontyl','dotriacontyl','tritriacontyl','tetratriacontyl','pentatriacontyl','hexatriacontyl','heptatriacontyl','octatriacontyl','nonatriacontyl',\
+                 'tetracontyl','hentetracontyl','dotetracontyl','tritetracontyl','tetratetracontyl','pentatetracontyl','hexatetracontyl','heptatetracontyl','octatetracontyl','nonatetracontyl','pentacontyl'],
+            
+            'A':['benzyl','benzo','phenyl','benzene','toluene','xylene','mesitylene','durene','naphthalene','fluorene','anthracene','phenanthrene','phenalene',\
+                 'tetracene','chrysene','triphenylene','pyrene','pentacene','perylene','corannulene','coronene','ovalene','indan','indene','tetralin'],\
+            
+            'C':['cyclo','menthane'],\
+            
+            'E':['ene','yne'],\
+            
+            'O':[]}
+
+#Tuple of contains keys in order of priority
+keyLoop = ('A','C','E','B','L')
+
+#Tuple of elements to be excluded and automatically labelled as 'O'
+elementExclude = ('He','Li','Be','B','N','O','F','Ne','Na','Mg','Al','Si','P',\
+                  'S','Cl','Ar','K','Ca','Sc','Ti','V','Cr','Mn','Fe','Co',\
+                  'Ni','Cu','Zn')
+
+
 """ DIRECTORIES """
 #Main directory
-cwd = "/Users/connards/Desktop/University/Rorrer Lab/Scripts/AutoQuant/"
+cwd = os.getcwd()
 
 #Set up dictionary containing all relevant directories
-direcDict = {'cwd':cwd,                                  #Main directory
-             'resources':cwd+'resources/',               #Resources directory
-             'DF_Dir':cwd+"data/"+sname+"/",             #Data files directory
-             'DF_raw':cwd+"data/"+sname+"/raw data/",             #Raw data files directory
-             'DFlog_Dir':cwd+"data/"+sname+"/log/"}      #Data file log directory
+direcDict = {'cwd':cwd,                                   #Main directory
+             'resources':cwd+'/resources/',               #Resources directory
+             'DF_Dir':cwd+"/data/"+sname+"/",             #Data files directory
+             'DF_raw':cwd+"/data/"+sname+"/raw data/",    #Raw data files directory
+             'DFlog_Dir':cwd+"/data/"+sname+"/log/"}      #Data file log directory
 
 #Dictionary of substrings to add to sample name to create file names
 sub_Dict = {'Gas TCD+FID':['_GS2_TCD_CSO.csv'],
@@ -580,7 +624,6 @@ def matchKnownPeaks(fpmDF,mDF,gp_rsc):
     
     return fpmDF
 
-
 #Function that performs speculative labeling to label FID peaks which do not have a match
 def specLab(fpmDF,kc_rsc,sinfo,counts,peakError,restrictList):
     
@@ -667,6 +710,186 @@ def specLab(fpmDF,kc_rsc,sinfo,counts,peakError,restrictList):
         
     return fpmDF
 
+#Function that matches FID and MS peaks by their retention time
+def matchRT(fpmDF,mDF,peakError=0.06):
+    """
+    Parameters
+    ----------
+    fpmDF : DataFrame
+        Dataframe containing FID and MS peak info
+    mDF : DataFrame
+        Dataframe containing MS info about identified compounds (UA_UPP)
+    peakError : Float, optional
+        Allowable error between estimated MS RT's and actual MS RT's. The default is 0.01.
+
+    Returns
+    -------
+    fpmDF : DataFrame
+        Dataframe containing FID and MS peak info
+    """
+    
+    def matchOne(fpmDF,fpmiter,peakError):
+        """
+        Parameters
+        ----------
+        fpmDF : DataFrame
+            Dataframe containing FID and MS peak info
+        fpmiter : List
+            List containing current index and row in fpmDF of interest in form [i,row]
+        peakError : float
+            Allowable error between estimated MS RT's and actual MS RT's
+
+        Returns
+        -------
+        fpmDF : DataFrame
+            Dataframe containing FID and MS peak info
+        """
+        
+        #Unpack fpmDF iterating info
+        fpmi = int(fpmiter[0])
+        fpmrow = fpmiter[1]
+        
+        #Compare the FID RT to the MS RT, collecting all matches within the specified peak error
+        mDF_match = mDF.loc[(mDF['Component RT'] >= fpmrow['FID RT']-peakError) & (mDF['Component RT'] <= fpmrow['FID RT']+peakError)].copy()
+        #If there is more than one MS RT match, select the entry with the smallest error from the FID RT
+        if len(mDF_match) > 1:
+            #Add an RT error to all mDF_match entries
+            for i, row in mDF_match.iterrows():
+                mDF_match.at[i,'RT Error'] = abs(fpmrow['FID RT']-row['Component RT'])
+            
+            #Set mDF_match to the row with minimum RT Error
+            mDF_match = mDF_match.nsmallest(1,'RT Error')
+            
+        #Reset the mDF_match index
+        mDF_match = mDF_match.reset_index().copy()
+        
+        #If the length of mDF_match is greater than zero..
+        if len(mDF_match) > 0:
+            
+            #Add the MS info to the FIDpMS dataframe
+            fpmDF.at[fpmi,'MS RT'] = mDF_match.at[0,'Component RT']
+            fpmDF.at[fpmi,'Compound Name'] = mDF_match.at[0,'Compound Name']
+            fpmDF.at[fpmi,'Formula'] = mDF_match.at[0,'Formula']
+            fpmDF.at[fpmi,'Match Factor'] = mDF_match.at[0,'Match Factor']
+            fpmDF.at[fpmi,'Compound Source'] = 'Automatically assigned by comparing FID and MS retention times'
+            
+        #Otherwise, pass
+        else:
+            pass
+        
+        return fpmDF
+    
+    #Loop through every row in the dataframe
+    for i, row in fpmDF.iterrows():
+        #If the row's compound name is not blank
+        if not pd.isna(row['Compound Name']):
+            #If the row's compound source is either manual or blank, skip it
+            if row['Compound Source'] == 'Manual' or pd.isna(row['Compound Source']):
+                pass
+            #Otherwise..
+            else:
+                #Match one FID peak
+                fpmDF = matchOne(fpmDF, [i,row], peakError)
+        #Otherwise, if the row's compound name is blank..
+        else:
+            #Match one FID peak
+            fpmDF = matchOne(fpmDF, [i,row], peakError)
+    
+    return fpmDF
+
+#Function that performs compound type abbreviation assignment
+def ctaAssign(importDF, contains, keyLoop, elementExclude):
+
+    #Function that returns a compound type abbreviation corresponding to a compound
+    def assignType(compoundName,contains,keyLoop):
+        
+        #Define default compound type abbreviation as 'O'
+        CTA = 'O'
+        
+        #Function that accepts a list of substrings to check against a string and returns a boolean
+        def stringSearch(string,subList):
+            #Define export boolean default value
+            checkTF = False
+            #For every substring in subList...
+            for i in range(len(subList)):
+                
+                #If the substring can be found in the string...
+                if subList[i] in string:
+                    #Assign boolean to True and break
+                    checkTF = True
+                    break
+                #Otherwise, pass
+                else:
+                    pass
+            
+            return checkTF
+        
+        #Loop through every key (compound type abbreviation) in contains
+        for i in keyLoop:
+            
+            #If at least one substring in the key's list is found in compoundName...
+            if stringSearch(compoundName,contains[i]):
+                #Assign the compound type abbreviation to the current key and break the loop
+                CTA = i
+                break
+            #Otherwise, pass
+            else:
+                pass
+        
+        return CTA
+
+    #Function that checks if formula string contains any of a list of elements
+    def checkElements(compoundFormula,elementList):
+        #Assign default export boolean to False
+        checkTF = False
+        
+        #For every substring in elementList...
+        for i in range(len(elementList)):
+            #If the substring can be found in the compound formula...
+            if elementList[i] in compoundFormula:
+                #Set boolean to True and break
+                checkTF = True
+                break
+            #Otherwise, pass
+            else:
+                pass
+        
+        return checkTF
+
+    #For every entry in the csv, assign a compound type abbreviation
+    for i, row in importDF.iterrows():
+        
+        #Retrieve compound name and formula from row entry
+        compoundName = row['Compound Name']
+        compoundFormula = row['Formula']
+        
+        #If the compound formula is a string...
+        if isinstance(compoundFormula,str):
+            
+            #If the formula contains excluded elements...
+            if checkElements(compoundFormula,elementExclude):
+                
+                #Assign 'O' to the row's compound type abbreviation entry
+                importDF.at[i,'Compound Type Abbreviation'] = 'O'
+            
+            #Otherwise...
+            else:
+                
+                #If the compound name is a string...
+                if isinstance(compoundName,str):
+                
+                    #Change compound name to lowercase
+                    compoundName = compoundName.lower()
+                    #Get a corresponding compound type abbreviation
+                    CTA = assignType(compoundName, contains, keyLoop)
+                    #Assign this CTA to the row's compound type abbreviation entry
+                    importDF.at[i,'Compound Type Abbreviation'] = CTA
+                
+                #Otherwise, pass
+                else:
+                    pass
+    
+    return importDF
 
 """ DATA IMPORTS """
 #Import sample information from json file
@@ -721,18 +944,27 @@ elif model == "T":
     #Run the third order peak matching function
     fpmDF = matchPeaksThird(fpmDF,mDF,fit_const,peakError)  
 
+#Otherwise, if the specified model is retention time match...
+elif model == "R":
+    #Run the liquid retention time matching function
+    fpmDF = matchRT(fpmDF,mDF,peakErrorRT)
+
 #Otherwise, pass
 else:
     pass
+
 #Run the speculative labeling function
 if splab_TF == "True":
     print("Running speculative labelling...")
     fpmDF = specLab(fpmDF, kc_rsc, sinfo, counts, peakError, restrictList)
 else:
     pass
+
+#Run the compound type abbreviation assignment function
+fpmDF = ctaAssign(fpmDF, contains, keyLoop, elementExclude)
     
 #Save the FIDpMS data
-fpmDF.to_csv(paths[2])
+fpmDF.to_csv(paths[2],index=False)
 
 #End time for execution time
 exec_end = datetime.now()

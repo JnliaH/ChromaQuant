@@ -5,10 +5,9 @@ SCRIPT TO QUANTIFY COMPOUNDS IN SAMPLE USING DEFINED RESPONSE FACTORS
 
 Julia Hancock
 Started 12/14/2023
+Updated 7/24/2024
 
 """
-""" NEXT STEPS """
-#1. Verify that response factors are being read and assigned correctly according to intended logic
 
 """ PACKAGES """
 import sys
@@ -23,30 +22,11 @@ from datetime import datetime
 import logging
 
 """ SAMPLE INFO """
-#Get list of system arguments
-argList = sys.argv
+#Write sample name
+sname = "example2"
 
-#Get sample name
-sname = argList[1]
-
-#Get sample phase ("L" or "G")
-quantphases = argList[2]
-
-#Write whether or not to run liquid and gas analysis based on system argument
-if quantphases == "Liquid":
-    #Format is [Liquid Bool, Gas Bool]
-    lgTF = [True,False]
-elif quantphases == "Gas":
-    lgTF = [False,True]
-elif quantphases == "Liquid and Gas":
-    lgTF = [True,True]
-else:
-    print("No phases selected, terminating script")
-    #Terminate script
-    sys.exit()
-
-#Start time for execution time
-exec_start = datetime.now()
+#Write whether or not to run liquid and gas analysis
+lgTF = [True,True]
 
 #Define retention time error within which TCD peaks may be assigned
 peak_error = 0.5
@@ -1274,9 +1254,39 @@ writer.close()
 #Log that a new Excel breakdown has been saved
 logger.info("New breakdown created: " + bfn)
 
-#End time for execution time
-exec_end = datetime.now()
-#Execution time
-exec_time = (exec_end-exec_start).total_seconds()*10**3
-print("Time to execute: {:.03f}ms".format(exec_time))
+
+""" SAMPLE INFO SAVING"""
+
+"""
+x = {'Sample Name':sname,
+     'Reactor Name':'MB01',
+     'Catalyst Type':'Ru/C+BEA',
+     'Catalyst Amount (mg)':59.9,
+     'Plastic Type':'PE4k Sigma-Aldrich',
+     'Plastic Amount (mg)':299.7,
+     'Reaction Temperature (C)':256,
+     'Quench Temperature (C)':26,
+     'Reaction Pressure (psi)':269,
+     'Initial Pressure (psi)':122,
+     'Quench Pressure (psi)':27,
+     'Start Time':'2023-12-01 13:29:00.000',
+     'End Time':'2023-12-04 12:43:00.000',
+     'Heat Time':1+17/60,
+     'Internal Standard Name':'TTBB',
+     'Internal Standard Mass (mg)':13.5}
+
+#Write to JSON
+with open(cwd+sname+'_INFO.json','w',encoding='utf-8') as f:
+    json.dump(x,f,ensure_ascii=False, indent=4)
+"""
+
+
+
+
+
+
+
+
+
+
 

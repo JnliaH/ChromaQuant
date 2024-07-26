@@ -18,6 +18,7 @@ import tkinter.font as tkFont
 import os
 import subprocess
 import sys
+from PIL import Image, ImageTk
 
 """ PARAMETERS """
 
@@ -34,6 +35,8 @@ RF_Dir = cwd+"response-factors/"
 RE_Dir = cwd+"resources/"
 #Theme directory
 theme_Dir = RE_Dir+"forest/forest-light.tcl"
+#Image directory
+img_Dir = cwd+"images/"
 
 """ DATA SEARCH """
 
@@ -235,12 +238,9 @@ def uiSetup(theme_Dir):
     #Set up labelframe font
     style.configure('QuantLabelframe.TLabelframe.Label',font=('TKDefaultFont',16))
 
-    root.geometry("1024x980")
+    root.geometry("1090x550")
     root.title("AutoQuantUI – Quantification Made Easy")
     root.resizable(0,0)
-
-    #Create font objects
-    title_font = tkFont.Font(size=18)   #Title font
 
     #style.theme_use('forest')
     #Configure the grid
@@ -252,9 +252,6 @@ def uiSetup(theme_Dir):
     #Create a main frame
     mainframe = ttk.Frame(root)
     mainframe.grid(column=0,row=0)
-
-    #Add title text
-    tk.Label(mainframe,text="AutoQuant v"+version,font=title_font).grid(column=0,row=0,columnspan=4,pady=5)
     
     return root, mainframe
 #Function for sample selection combobox
@@ -331,7 +328,7 @@ def runFIDpMS(sname,specLabTF,sphase,model):
         var_initial : STRING, BOOLEAN
             The initial variable to be reformatted.
         ifTF_list : LIST
-            A list containing two lists, the first containing the boolean statements and the second containing reformatted values.
+            A list containing two lists, the first containing the variable options and the second containing reformatted values.
 
         Returns
         -------
@@ -339,25 +336,28 @@ def runFIDpMS(sname,specLabTF,sphase,model):
             The final, reformatted variable.
 
         """
-
-        #If the initial variable is equal to the first boolean statement...
-        if var_initial == ifTF_list[0][0]:
-            #Assign the variable to the first reformatted value
-            var_final = ifTF_list[1][0]
-            
-        #If the initial variable is equal to the second boolean statement...
-        elif var_initial == ifTF_list[0][1]:
-            #Assign the variable to the second reformatted value
-            var_final = ifTF_list[1][1]
-            
-        #Otherwise, set var_final equal to "N/A"
-        else:
-            var_final = "N/A"
         
+        #Set default value of reformatted value
+        var_final = "N/A"
+        
+        #Get the length of the variable option list
+        listLength = len(ifTF_list[0])
+        
+        #For every entry in the variable option list...
+        for i in range(listLength):
+            
+            #If the variable is equal to the ith variable option...
+            if var_initial == ifTF_list[0][i]:
+                #Assign the variable to the first reformatted value
+                var_final = ifTF_list[1][i]
+            #Otherwise, pass
+            else:
+                pass
+
         return var_final
     
     #A dictionary containing the ifTF_lists for every passed variable
-    ifTF_Dict = {'specLabTF':[[1,0],['True','False']],'sphase':[['Gas','Liquid'],['G','L']],'model':[['First order (linear)','Third order'],['F','T']]}
+    ifTF_Dict = {'specLabTF':[[1,0],['True','False']],'sphase':[['Gas','Liquid'],['G','L']],'model':[['First order (linear)','Third order','Retention time'],['F','T','R']]}
     
     #A dictionary of all passed variables excluding sname
     passed_dict = {'specLabTF':specLabTF,'sphase':sphase,'model':model}
@@ -388,7 +388,7 @@ def runFIDpMS(sname,specLabTF,sphase,model):
             reformatBool_dict[i] = True
     
     #If any of the required fields are empty, pass
-    if False in list(reformatBool_dict.values()):
+    if False in list(reformatBool_dict.values()) or sname == "":
         print("Cannot run FIDpMS script, one or more variables are not defined")
         pass
     
@@ -408,8 +408,7 @@ def runFIDpMS(sname,specLabTF,sphase,model):
     return None
 
 #Function for running quant script
-def runQuant(event):
-    
+def runQuant(sname,quantphases):
 
     print("User selected sample name {0} with phase(s) {1}".format(sname,quantphases))
     #If any of the required fields are empty, pass
@@ -428,13 +427,43 @@ def runQuant(event):
     
     return None
 """ CODE """
-
 #Run the UI setup
 root, mainframe = uiSetup(RE_Dir+"forest/forest-light.tcl")
 
+#Create font objects
+title_font = tkFont.Font(size=18)   #Title font
+    
+#IMAGE AND TITLE
+#Add a frame for the logo and title/sample info
+topFrame = ttk.Frame(mainframe)
+topFrame.grid(column=0,row=0,sticky='w',padx=(350,0))
+
+#Add a frame for the AutoQuant logo
+logoFrame = ttk.Frame(topFrame)
+logoFrame.grid(column=0,row=0)
+
+#Add a frame for the title text and sample selection
+tsFrame = ttk.Frame(topFrame)
+tsFrame.grid(column=1,row=0)
+
+#Add title text
+tk.Label(tsFrame,text="AutoQuant v"+version,font=title_font).grid(column=0,row=0,pady=10,padx=10)
+
+#Add an image for the AutoQuant logo
+#Load the image
+#image = tk.PhotoImage(file=img_Dir+'AutoQuantIcon.png')
+image_i = Image.open(img_Dir+'AutoQuantIcon.png')
+#Resize the image
+resize_image = image_i.resize((100,100))
+#Redefine the image
+image = ImageTk.PhotoImage(resize_image)
+#Add the image to a label
+image_label = tk.Label(logoFrame, image=image)
+image_label.grid(column=0,row=0,pady=10,padx=10)
+
 #SAMPLE SELECTION
 #Add a frame for selecting the sample
-sampleFrame = ttk.Frame(mainframe)
+sampleFrame = ttk.Frame(tsFrame)
 sampleFrame.grid(column=0,row=1,pady=10,padx=10)
 
 #Add text to the top of the sample frame
@@ -448,27 +477,18 @@ sampleBox.grid(column=0,row=1)
 #Bind the sampleBox to a function
 sampleBox.bind("<<ComboboxSelected>>",on_select)
 
+#WIDGET FRAME
+#Add a frame for the fidpms and quantification widgets
+widgetFrame = ttk.Frame(mainframe)
+widgetFrame.grid(column=0,row=1)
+
 #FIDPMS WIDGET
 #Add a frame
-fidpms_content = ttk.LabelFrame(mainframe,text='Peak Matching',style='QuantLabelframe.TLabelframe')
-fidpms_content.grid(column=0,row=2,pady=10,padx=10)
-fidpms_content.columnconfigure(0,weight=1)
+fidpms_content = ttk.LabelFrame(widgetFrame,text='Peak Matching',style='QuantLabelframe.TLabelframe')
+fidpms_content.grid(column=0,row=0,pady=10,padx=10)
 
 #Add text to the top of the frame
 tk.Label(fidpms_content,text='Please enter all information').grid(column=0,row=0,columnspan=4,padx=20)
-
-"""
-#Set up a combobox for selecting liquid or gas
-tk.Label(fidpms_content,text='Please select the sample type').grid(column=0,row=1,padx=10,pady=20)
-fpmVar = tk.StringVar()
-fpmBox = ttk.Combobox(fidpms_content,textvariable=fpmVar)
-fpmBox['values'] = ['Liquid','Gas']
-fpmBox.state(["readonly"])
-fpmBox.grid(column=1,row=1,padx=10)
-
-#Bind the combobox to a function
-fpmBox.bind("<<ComboboxSelected>>",fidpms_select)
-"""
 
 #Set up a radiobutton for selecting liquid or gas
 tk.Label(fidpms_content,text='Please select the sample type:').grid(column=0,row=1,padx=10,pady=20,sticky='e')
@@ -481,44 +501,19 @@ Gas.grid(column=2,row=1,padx=1,sticky='w')
 #Initially start with liquid selected
 fpmVar.set('Liquid')
 
-"""
-#Set up a combobox for selecting the fit model
-tk.Label(fidpms_content,text='Please select the desired matching fit model:').grid(column=0,row=2,padx=0,pady=20)
-fpmMVar = tk.StringVar()
-fpmMBox = ttk.Combobox(fidpms_content,textvariable=fpmMVar)
-fpmMBox['values'] = ['First order (linear)','Third order']
-fpmMBox.state(["readonly"])
-fpmMBox.grid(column=1,row=2,padx=1)
-
-#Bind the combobox to a function
-fpmMBox.bind("<<ComboboxSelected>>",fidpms_select_model)
-"""
-
 #Set up a radiobutton for selecting the model type
 tk.Label(fidpms_content,text='Please select the desired matching fit model:').grid(column=0,row=2,padx=10,pady=20,sticky='e')
 fpmMVar = tk.StringVar()
-third = ttk.Radiobutton(fidpms_content,text='Third order',variable=fpmMVar,value="Third order",command=fidpms_select_model)
-first = ttk.Radiobutton(fidpms_content,text='First order (linear)',variable=fpmMVar,value="First order (linear)",command=fidpms_select_model)
+third = ttk.Radiobutton(fidpms_content,text='Third order',variable=fpmMVar,value='Third order',command=fidpms_select_model)
+first = ttk.Radiobutton(fidpms_content,text='First order (linear)',variable=fpmMVar,value='First order (linear)',command=fidpms_select_model)
+rt = ttk.Radiobutton(fidpms_content,text='Retention time',variable=fpmMVar,value='Retention time',command=fidpms_select_model)
 third.grid(column=1,row=2,padx=1,sticky='w')
 first.grid(column=2,row=2,padx=1,sticky='w')
+rt.grid(column=3,row=2,padx=1,sticky='w')
 
 #Initially start with first order selected and third order disabled
-
 fpmMVar.set('First order (linear')
 third.config(state=tk.DISABLED)
-
-"""
-#Set up a combobox for selecting whether or not to perform speculative labeling
-tk.Label(fidpms_content,text='Perform speculative labeling?').grid(column=0,row=3,padx=0,pady=20)
-fpm2Var = tk.StringVar()
-fpm2Box = ttk.Combobox(fidpms_content,textvariable=fpm2Var)
-fpm2Box['values'] = ['Yes','No']
-fpm2Box.state(["readonly"])
-fpm2Box.grid(column=1,row=3,padx=1)
-
-#Bind the combobox to a function
-fpm2Box.bind("<<ComboboxSelected>>",fidpms_select2)
-"""
 
 #Set up a checkbox for selecting whether or not to perform speculative labeling
 tk.Label(fidpms_content,text='Perform speculative labeling?').grid(column=0,row=3,padx=10,pady=20,sticky='e')
@@ -536,12 +531,10 @@ fpm2Box.config(state=tk.DISABLED)
 #Bind the button to a function to run the appropriate script
 #fidpms_sbutton.bind("<Button-1>",runFIDpMS)
 
-
 #QUANT WIDGET
 #Add a frame
-quant_content = ttk.LabelFrame(mainframe,text='Quantification',style='QuantLabelframe.TLabelframe')
-quant_content.grid(column=1,row=2,pady=10,padx=10,sticky="n")
-quant_content.columnconfigure(0,weight=1)
+quant_content = ttk.LabelFrame(widgetFrame,text='Quantification',style='QuantLabelframe.TLabelframe')
+quant_content.grid(column=1,row=0,pady=10,padx=10,sticky="n")
 
 #Add text to the top of the frame
 tk.Label(quant_content,text='Please enter all information').grid(column=0,row=0,columnspan=2,padx=20)
@@ -557,11 +550,11 @@ logBox.grid(column=1,row=1,padx=10)
 logBox.bind("<<ComboboxSelected>>",quant_select)
 
 #Add a start button 
-quant_sbutton = ttk.Button(quant_content,text="\n\n\nRun Script\n\n\n",width=20,style='Accent.TButton')
+quant_sbutton = ttk.Button(quant_content,text="\n\n\nRun Script\n\n\n",width=20,style='Accent.TButton',command=lambda: runQuant(sampleVar.get(),logVar.get()))
 quant_sbutton.grid(column=0,row=2,pady=20,padx=20,columnspan=2)
 
 #Bind the start button to a function
-quant_sbutton.bind("<Button-1>",runQuant)
+#quant_sbutton.bind("<Button-1>",runQuant)
 
 #var = ""
 #togglebutton = ttk.Checkbutton(root, text='Switch', style='Switch',variable=var)
@@ -595,3 +588,44 @@ uaUPP_sbutton = ttk.Button(uaUPP_content,text="\n\n\nStart Widget\n\n\n",width=2
 uaUPP_sbutton.grid(column=0,row=2,pady=40,padx=20)
 """
 
+"""
+LIQUID/GAS WIDGET
+#Set up a combobox for selecting liquid or gas
+tk.Label(fidpms_content,text='Please select the sample type').grid(column=0,row=1,padx=10,pady=20)
+fpmVar = tk.StringVar()
+fpmBox = ttk.Combobox(fidpms_content,textvariable=fpmVar)
+fpmBox['values'] = ['Liquid','Gas']
+fpmBox.state(["readonly"])
+fpmBox.grid(column=1,row=1,padx=10)
+
+#Bind the combobox to a function
+fpmBox.bind("<<ComboboxSelected>>",fidpms_select)
+"""
+
+"""
+SPECULATIVE LABELING WIDGET
+#Set up a combobox for selecting whether or not to perform speculative labeling
+tk.Label(fidpms_content,text='Perform speculative labeling?').grid(column=0,row=3,padx=0,pady=20)
+fpm2Var = tk.StringVar()
+fpm2Box = ttk.Combobox(fidpms_content,textvariable=fpm2Var)
+fpm2Box['values'] = ['Yes','No']
+fpm2Box.state(["readonly"])
+fpm2Box.grid(column=1,row=3,padx=1)
+
+#Bind the combobox to a function
+fpm2Box.bind("<<ComboboxSelected>>",fidpms_select2)
+"""
+
+"""
+FIT MODEL WIDGET
+#Set up a combobox for selecting the fit model
+tk.Label(fidpms_content,text='Please select the desired matching fit model:').grid(column=0,row=2,padx=0,pady=20)
+fpmMVar = tk.StringVar()
+fpmMBox = ttk.Combobox(fidpms_content,textvariable=fpmMVar)
+fpmMBox['values'] = ['First order (linear)','Third order']
+fpmMBox.state(["readonly"])
+fpmMBox.grid(column=1,row=2,padx=1)
+
+#Bind the combobox to a function
+fpmMBox.bind("<<ComboboxSelected>>",fidpms_select_model)
+"""
