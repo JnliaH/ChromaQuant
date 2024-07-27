@@ -330,3 +330,33 @@ Retene,CC1=C2C=CC3=C(C2=CC=C1)C=CC(=C3)C(C)C
 "1,2-Benzenedicarboxylic acid, 4-methyl-, dimethyl ester",CC1=CC(=C(C=C1)C(=O)OC)C(=O)OC
 "Terephthalic acid, isobutyl 2-methoxyethyl ester",CC(C)COC(=O)C1=CC=C(C=C1)C(=O)OCCOC
 "2,6-Dimethoxy-9-methyl-anthracene",CC1=C2C=C(C=CC2=CC3=C1C=CC(=C3)OC)OC
+Ketene,C=C=O
+"1-Pentene, 3-methyl-",CCC(C)C=C
+"2-Pentene, 3-methyl-",CCC(=CC)C
+"2-Butene, 2,3-dimethyl-",CC(=C(C)C)C
+"3,5-Dimethyldihydropyran-2,6-dione",CC1CC(C(=O)OC1=O)C
+"Cyclopentene, 1-methyl-",CC1=CCCC1
+"Hexane, 2,2,4-trimethyl-",CCC(C)CC(C)(C)C
+"1,3-Benzenediol, o-cyclopropanecarbonyl-o'-(3-methylbut-2-enoyl)-",CC(=CC(=O)OC1=CC(=CC=C1)OC(=O)C2CC2)C
+"3-Heptanone, 2,4-dimethyl-",CCCC(C)C(=O)C(C)C
+"Cyclobutane, 2-ethyl-1-methyl-3-propyl-",CCCC1CC(C1CC)C
+"Cyclopentene, 1,5-dimethyl-",CC1CCC=C1C
+"1-Hexene, 2-methyl-",CCCCC(=C)C
+"Heptane, 2,2,6,6-tetramethyl-4-methylene-",CC(C)(C)CC(=C)CC(C)(C)C
+"1-Pentanone, 1-(2-furanyl)-",CCCCC(=O)C1=CC=CO1
+"4-Hexen-3-one, 5-methyl-",CCC(=O)C=C(C)C
+"6,6-Dimethylhepta-2,4-diene",C/C=C/C=C/C(C)(C)C
+"2,2'-Bifuran, 2,2',5,5'-tetrahydro-",C1C=CC(O1)C2C=CCO2
+"1,2,4,4-Tetramethylcyclopentene",CC1=C(CC(C1)(C)C)C
+"1-Pentanone, 1-(2-furanyl)-",CCCCC(=O)C1=CC=CO1
+"2,3-Dimethyl-3-heptene",CCC/C=C(\C)/C(C)C
+p-Hydroxyphenyl methyl carbinol,CC(C1=CC=C(C=C1)O)O
+"Benzene, (1-methylethyl)-",CC(C)C1=CC=CC=C1
+"3-Acetyl-2,5-dimethyl furan",CC1=CC(=C(O1)C)C(=O)C
+5-Methyl-4-hexene-1-yl acetate,CC(=CCCCOC(=O)C)C
+"Benzene, (2-methylpropyl)-",CC(C)CC1=CC=CC=C1
+"Benzene, 1,2,3,5-tetramethyl-",CC1=CC(=C(C(=C1)C)C)C
+"2,4,4,6-Tetramethyl-6-phenylheptane",CC(C)CC(C)(C)CC(C)(C)C1=CC=CC=C1
+"Succinic acid, di(3-phenylprop-2-en-1-yl) ester",C1=CC=C(C=C1)/C=C/COC(=O)CCC(=O)OC/C=C/C2=CC=CC=C2
+"Succinic acid, di(3-phenylprop-2-en-1-yl) ester",C1=CC=C(C=C1)/C=C/COC(=O)CCC(=O)OC/C=C/C2=CC=CC=C2
+"2,2-Dimethylindene, 2,3-dihydro-",CC1(CC2=CC=CC=C2C1)C
