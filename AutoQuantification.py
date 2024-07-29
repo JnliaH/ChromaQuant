@@ -1058,6 +1058,20 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,sinfo,gasBag_cond,total_volume,cutoff=
     
     return BreakdownDF, CT_DF, CN_DF, CTCN_DF, mass_DF
 
+#Define function that inserts a column to a CTCN Dataframe labeling the carbon number
+def insertCN(CTCN_DF):
+    
+    #Get the length of the dataframe, take this to be the maximum carbon number
+    CN_max = len(CTCN_DF)
+    
+    #Get a list of carbon numbers for each row
+    CN_list = [i for i in range(1,CN_max+1)]
+    
+    #Insert this list as a new column at the beginning of the dataframe
+    CTCN_DF.insert(loc=0, column='Carbon Number', value=CN_list)
+
+    return CTCN_DF
+    
 """ DATA IMPORTS """
 #Import sample information from json file
 with open(DF_Dir+sname+'_INFO.json') as sinfo_f:
@@ -1144,9 +1158,10 @@ else:
 if lgTF[0]:
     #Get liquid FID breakdown and miscellaneous dataframes
     LQ_FID_BreakdownDF, LQCT_DF, LQCN_DF, LQCTCN_DF, LQmass_DF = liquidFID(LQ_FID_BreakdownDF, LQRF, [CL_Dict, CT_Dict], sinfo)
-else:
-    pass
-
+    
+    #Insert the carbon number column to LQCTCN_DF
+    LQCTCN_DF = insertCN(LQCTCN_DF)
+    
 #If the run gas analysis Boolean is True..
 if lgTF[1]:
     #If the external standard Boolean is True..
@@ -1163,8 +1178,9 @@ if lgTF[1]:
         
         #Get gas FID breakdown and miscellaneous dataframes
         GS_FID_BreakdownDF, GSCT_DF, GSCN_DF, GSCTCN_DF, GSmass_DF = gasFID(GS_FID_BreakdownDF,GSRF,[CL_Dict, CT_Dict], sinfo)
-else:
-    pass
+    
+    #Insert the carbon number column to GSCTCN_DF
+    GSCTCN_DF = insertCN(GSCTCN_DF)
 
 #If both the gas and liquid analysis Booleans are True..
 if lgTF[0] and lgTF[1]:
@@ -1224,7 +1240,13 @@ if lgTF[0] and lgTF[1]:
         #Otherwise, pass
         else:
             pass
-
+    
+    #Insert the carbon number column to total_CTCN_DF
+    total_CTCN_DF = insertCN(total_CTCN_DF)
+    
+#Otherwise, pass
+else:
+    pass
 
 """ BREAKDOWN SAVING """
 
