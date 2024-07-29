@@ -107,7 +107,7 @@ elementExclude = ('He','Li','Be','B','N','O','F','Ne','Na','Mg','Al','Si','P',\
 
 """ DIRECTORIES """
 #Main directory
-cwd = os.getcwd()
+cwd = os.path.dirname(__file__)
 
 #Set up dictionary containing all relevant directories
 direcDict = {'cwd':cwd,                                   #Main directory

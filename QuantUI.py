@@ -26,7 +26,7 @@ version = "1.1"
 
 """ DIRECTORIES """
 #Main directory
-cwd = os.getcwd()+"/"
+cwd = os.path.dirname(__file__)+"/"
 #Data directory
 DF_Dir = cwd+"data/"
 #Response factors directory

@@ -70,7 +70,7 @@ GRFT_file = "TCDRF_7-24-24.csv"
 """ DIRECTORIES """
 
 #Main directory
-cwd = "/Users/connards/Desktop/University/Rorrer Lab/Scripts/AutoQuant/"
+cwd = os.path.dirname(__file__)+"/"
 #Data files directory
 DF_Dir = cwd+"data/"+sname+"/"
 #Raw data files directory
@@ -1166,64 +1166,66 @@ if lgTF[1]:
 else:
     pass
 
-#Get dataframe for sample info
-sinfo_DF = pd.DataFrame(sinfo,index=[0])
+#If both the gas and liquid analysis Booleans are True..
+if lgTF[0] and lgTF[1]:
+    
+    #Get maximum carbon number between breakdown dataframes
+    CN_max = max([int(GS_FID_BreakdownDF['Carbon Number'].max()),int(LQ_FID_BreakdownDF['Carbon Number'].max())])
+    
+    #Sum the liquid and gas breakdown carbon number and compound type dataframes
+    #Initiate an empty CTCN dataframe
+    total_CTCN_DF = pd.DataFrame({'Aromatics': pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Linear Alkanes': pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Branched Alkanes':pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Cycloalkanes':pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Alkenes/Alkynes':pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Other':pd.Series(np.empty(CN_max),index=range(CN_max))})
 
-#Get maximum carbon number in breakdown dataframe
-CN_max = max([int(GS_FID_BreakdownDF['Carbon Number'].max()),int(LQ_FID_BreakdownDF['Carbon Number'].max())])
 
-#Sum the liquid and gas breakdown carbon number and compound type dataframes
-#Initiate an empty CTCN dataframe
-total_CTCN_DF = pd.DataFrame({'Aromatics': pd.Series(np.empty(CN_max),index=range(CN_max)),
-                        'Linear Alkanes': pd.Series(np.empty(CN_max),index=range(CN_max)),
-                        'Branched Alkanes':pd.Series(np.empty(CN_max),index=range(CN_max)),
-                        'Cycloalkanes':pd.Series(np.empty(CN_max),index=range(CN_max)),
-                        'Alkenes/Alkynes':pd.Series(np.empty(CN_max),index=range(CN_max)),
-                        'Other':pd.Series(np.empty(CN_max),index=range(CN_max))})
+    #For every row in this sum dataframe...
+    for i, row in total_CTCN_DF.iterrows():
+        #For every entry in this row...
+        for j, value in row.items():
+            #If the current index is below the carbon number limit of both the gas and liquid dataframes...
+            if i <= len(LQCTCN_DF.index)-1 and i <= len(GSCTCN_DF.index)-1:
+                total_CTCN_DF.at[i,j] = LQCTCN_DF.at[i,j] + GSCTCN_DF.at[i,j]
+            #Otherwise, if the current index is below the carbon number limit of only the liquid dataframe...
+            elif i <= len(LQCTCN_DF.index)-1:
+                total_CTCN_DF.at[i,j] = LQCTCN_DF.at[i,j]
+            #Otherwise, if the current index is below the carbon number limit of only the gas dataframe...
+            elif i <= len(GSCTCN_DF.index)-1:
+                total_CTCN_DF.at[i,j] = GSCTCN_DF.at[i,j]
+            #Otherwise, pass
+            else:
+                pass
 
-#For every row in this sum dataframe...
-for i, row in total_CTCN_DF.iterrows():
-    #For every entry in this row...
-    for j, value in row.items():
-        #If the current index is below the carbon number limit of both the gas and liquid dataframes...
-        if i <= len(LQCTCN_DF.index)-1 and i <= len(GSCTCN_DF.index)-1:
-            total_CTCN_DF.at[i,j] = LQCTCN_DF.at[i,j] + GSCTCN_DF.at[i,j]
-        #Otherwise, if the current index is below the carbon number limit of only the liquid dataframe...
-        elif i <= len(LQCTCN_DF.index)-1:
-            total_CTCN_DF.at[i,j] = LQCTCN_DF.at[i,j]
-        #Otherwise, if the current index is below the carbon number limit of only the gas dataframe...
-        elif i <= len(GSCTCN_DF.index)-1:
-            total_CTCN_DF.at[i,j] = GSCTCN_DF.at[i,j]
+    #Add the TCD data afterwards
+    #Filter the TCD breakdown dataframe to only include entries with non-nan formulas
+    GS_TCD_BreakdownDF_filter = GS_TCD_BreakdownDF[GS_TCD_BreakdownDF['Formula'].notnull()]
+    #Filter the TCD breakdown dataframe to only include formulas with carbon in them
+    GS_TCD_BreakdownDF_filter = GS_TCD_BreakdownDF_filter[(GS_TCD_BreakdownDF_filter['Formula'].str.contains('C')) & (GS_TCD_BreakdownDF_filter['Formula'].str.contains('H'))]
+    
+    #For every row in this filtered TCD dataframe
+    for i, row in GS_TCD_BreakdownDF_filter.iterrows():
+        #Get a chemical formula dictionary for the row's formula
+        chemFormDict = ChemFormula(row['Formula']).element
+        #If the carbon number is less than four...
+        if chemFormDict['C'] < 4:
+            #Assign the mass value to the linear entry for the given carbon number in the total dataframe
+            total_CTCN_DF.at[chemFormDict['C']-1,'Linear Alkanes'] = row['Mass (mg)']
+        #Otherwise, if the compound is isobutane...
+        elif row['Compound Name'] == 'Isobutane':
+            #Add the mass value to the branched entry for carbon number 4 in the total dataframe
+            total_CTCN_DF.at[3,'Branched Alkanes'] = row['Mass (mg)']
+        #Otherwise, if the compound is butane...
+        elif row['Compound Name'] == 'n-Butane':
+            #Add the mass value to the linear entry for carbon number 4 in the total dataframe
+            total_CTCN_DF.at[3,'Linear Alkanes'] = row['Mass (mg)']
         #Otherwise, pass
         else:
             pass
 
-#Add the TCD data afterwards
-#Filter the TCD breakdown dataframe to only include entries with non-nan formulas
-GS_TCD_BreakdownDF_filter = GS_TCD_BreakdownDF[GS_TCD_BreakdownDF['Formula'].notnull()]
-#Filter the TCD breakdown dataframe to only include formulas with carbon in them
-GS_TCD_BreakdownDF_filter = GS_TCD_BreakdownDF_filter[(GS_TCD_BreakdownDF_filter['Formula'].str.contains('C')) & (GS_TCD_BreakdownDF_filter['Formula'].str.contains('H'))]
 
-#For every row in this filtered TCD dataframe
-for i, row in GS_TCD_BreakdownDF_filter.iterrows():
-    #Get a chemical formula dictionary for the row's formula
-    chemFormDict = ChemFormula(row['Formula']).element
-    #If the carbon number is less than four...
-    if chemFormDict['C'] < 4:
-        #Assign the mass value to the linear entry for the given carbon number in the total dataframe
-        total_CTCN_DF.at[chemFormDict['C']-1,'Linear Alkanes'] = row['Mass (mg)']
-    #Otherwise, if the compound is isobutane...
-    elif row['Compound Name'] == 'Isobutane':
-        #Add the mass value to the branched entry for carbon number 4 in the total dataframe
-        total_CTCN_DF.at[3,'Branched Alkanes'] = row['Mass (mg)']
-    #Otherwise, if the compound is butane...
-    elif row['Compound Name'] == 'n-Butane':
-        #Add the mass value to the linear entry for carbon number 4 in the total dataframe
-        total_CTCN_DF.at[3,'Linear Alkanes'] = row['Mass (mg)']
-    #Otherwise, pass
-    else:
-        pass
-    
 """ BREAKDOWN SAVING """
 
 #If breakdown directory does not exist within sample folder, create it
@@ -1233,9 +1235,12 @@ if not os.path.exists(DFbreak_Dir):
 #Define breakdown file name
 bfn = sname+"_Breakdown_"+nows+".xlsx"
 
-#Create pandas Excel writer
+#Create pandas Excel writers
 writer = pd.ExcelWriter(fileCheck(DFbreak_Dir+bfn), engine="xlsxwriter")
 
+#Get dataframe for sample info
+sinfo_DF = pd.DataFrame(sinfo,index=[0])
+    
 #If the run liquid analysis Boolean is True..
 if lgTF[0]:
     #Position the liquid FID dataframes in the worksheet.
@@ -1267,6 +1272,11 @@ if lgTF[1]:
     sinfo_DF.to_excel(writer, sheet_name="Gas TCD",startcol=1, startrow=1, index=False) 
 else:
     pass
+
+#If both the gas and liquid analysis Booleans are True..
+if lgTF[0] and lgTF[1]:
+    #Position the total product dataframe in the worksheet
+    total_CTCN_DF.to_excel(writer, sheet_name = "Total",startcol=1, startrow=1,index=False)
 
 #Close the Excel writer
 writer.close()
