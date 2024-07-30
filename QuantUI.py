@@ -19,24 +19,35 @@ import os
 import subprocess
 import sys
 from PIL import Image, ImageTk
+import handleDirectories as hd
 
 """ PARAMETERS """
 
 version = "1.1"
 
 """ DIRECTORIES """
-#Main directory
-cwd = os.path.dirname(__file__)+"/"
-#Data directory
-DF_Dir = cwd+"data/"
-#Response factors directory
-RF_Dir = cwd+"response-factors/"
+#Get directories from handling script
+directories = hd.handle(os.path.dirname(os.path.abspath(__file__)))
+
+#Unpack directories
+#Primary files directory
+files = directories['files']
 #Resources directory
-RE_Dir = cwd+"resources/"
+RE_Dir = directories['resources']
 #Theme directory
-theme_Dir = RE_Dir+"forest/forest-light.tcl"
-#Image directory
-img_Dir = cwd+"images/"
+theme_Dir = directories['theme']
+#Response factor directory
+RF_Dir = directories['rf']
+#Data directory
+DF_Dir = directories['data']
+#Images directory
+img_Dir = directories['images']
+
+#AutoFpmMatch directory + file
+afm_Dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),'AutoFpmMatch.py')
+
+#AutoQuantification directory + file
+aq_Dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),'AutoQuantification.py')
 
 """ DATA SEARCH """
 
@@ -400,7 +411,7 @@ def runFIDpMS(sname,specLabTF,sphase,model):
             #Get list of reformatVar_dict values
             reformatVar_list = list(reformatVar_dict.values())
             #Run the subprocess
-            subprocess.run(['python','AutoFPMMatch.py',sname,reformatVar_list[1],reformatVar_list[0],reformatVar_list[2]], text=True, check=True)
+            subprocess.run(['python',afm_Dir,sname,reformatVar_list[1],reformatVar_list[0],reformatVar_list[2]], text=True, check=True)
             print("Program complete")
         except subprocess.CalledProcessError as e:
             print(f'Command {e.cmd} failed with error {e.returncode}')
@@ -420,7 +431,7 @@ def runQuant(sname,quantphases):
         print("Running Quantification script...")
         
         try:
-            subprocess.run(['python','AutoQuantification.py',sname,quantphases], text=True, check=True)
+            subprocess.run(['python',aq_Dir,sname,quantphases], text=True, check=True)
             print("Program complete")
         except subprocess.CalledProcessError as e:
             print(f'Command {e.cmd} failed with error {e.returncode}')
@@ -428,7 +439,7 @@ def runQuant(sname,quantphases):
     return None
 """ CODE """
 #Run the UI setup
-root, mainframe = uiSetup(RE_Dir+"forest/forest-light.tcl")
+root, mainframe = uiSetup(theme_Dir)
 
 #Create font objects
 title_font = tkFont.Font(size=18)   #Title font
@@ -452,7 +463,7 @@ tk.Label(tsFrame,text="AutoQuant v"+version,font=title_font).grid(column=0,row=0
 #Add an image for the AutoQuant logo
 #Load the image
 #image = tk.PhotoImage(file=img_Dir+'AutoQuantIcon.png')
-image_i = Image.open(img_Dir+'AutoQuantIcon.png')
+image_i = Image.open(os.path.join(img_Dir,'AutoQuantIcon.png'))
 #Resize the image
 resize_image = image_i.resize((100,100))
 #Redefine the image
