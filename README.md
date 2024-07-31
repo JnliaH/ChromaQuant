@@ -12,6 +12,14 @@ following setup:
 </ul>
 The GC's mentioned in the second and third bullets are assumed to be the same GC. This project also assumes that external software can be used to obtain spectra and integration/identification results.
 
+<h4>Installation</h4>
+To install on a MacOSX system, simply download the dist directory from the remote repository alongside the resources, response-factors, and images folders. Copy the AutoQuant directory from the dist directory and paste it in the desired location. Locate the "AutoQuant/_internal/properties.json" file in this pasted directory and edit the "app-directory" value to read the absolute path to the AutoQuant UNIX executable and the "file-directory" value to read the desired path to AutoQuant data files. Finally, create a folder named AutoQuant at the location of the file-directory path.<br><br>
+
+It is recommended that the AutoQuant folder be placed in the Applications folder and the file directory (a.k.a. the AutoQuant documents folder) to be created in the "Users/[User]/Documents" folder. 
+
+Create an empty folder inside the documents folder named data. Paste the resources, response-factors, and images folder into the documents folder. Note that the resources and response-factors folder contain data relevant to the Rorrer Lab – response factors and known compounds depend highly on reaction conditions and GC analysis methodology.
+
+Finally, test that the AutoQuant executable runs by navigating to the app directory and double clicking the executable. If it does, you can (optionally) set the executable's icon to the AutoQuantIcon.icns found in the images directory and make aliases as desired.
 
 <h4>The workflow</h4>
 <p align="center">
