@@ -102,7 +102,7 @@ if not os.path.exists(DFlog_Dir):
 #Instantiate a logger
 logger = logging.getLogger(__name__)
 #Initialize logging file using current datetime
-fh = logging.FileHandler(DFlog_Dir+'quantlog_'+nows+'.log')
+fh = logging.FileHandler(os.path.join(DFlog_Dir,'quantlog_'+nows+'.log'))
 logger.addHandler(fh)
 logger.propagate = False
 #Set logging level
