@@ -17,7 +17,7 @@ def handle(fileDir):
     #fileDir is the passed absolute directory of the currently running file
     
     #Import sample information from json file
-    with open(os.path.join(fileDir,'properties.json')) as props_f:
+    with open(os.path.join(fileDir,'properties.json'),'r') as props_f:
         props = json.load(props_f)
         
     #Define file directory

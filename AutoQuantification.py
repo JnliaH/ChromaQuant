@@ -46,9 +46,6 @@ else:
     #Terminate script
     sys.exit()
 
-#Start time for execution time
-exec_start = datetime.now()
-
 #Define retention time error within which TCD peaks may be assigned
 peak_error = 0.5
 
@@ -1316,10 +1313,4 @@ writer.close()
 
 #Log that a new Excel breakdown has been saved
 logger.info("New breakdown created: " + bfn)
-
-#End time for execution time
-exec_end = datetime.now()
-#Execution time
-exec_time = (exec_end-exec_start).total_seconds()*10**3
-print("Time to execute: {:.03f}ms".format(exec_time))
 

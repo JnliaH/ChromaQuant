@@ -35,6 +35,7 @@ fit_const = [a_tof,b_tof,c_tof,d_tof]
 
 
 """ PROCESSING SYSTEM ARGUMENTS """
+
 #Get list of system arguments
 argList = sys.argv
 
@@ -62,9 +63,6 @@ peakErrorRT = 0.05
 #The dictionary should have key:value pairs of the form "kc_rsc":"allowable error between speculative entry and sample value"
 #The preferences listed are applied in order such that the first preference is more valued than the last
 restrictList = [['Gas'],{'Reaction Temperature (C)':5}]
-#Start time for execution time
-exec_start = datetime.now()
-
 
 """ COMPOUND TYPE ASSIGNMENT VARIABLES """
 #This dictionary contain lists of substrings to be checked against compound name strings to
@@ -1117,12 +1115,6 @@ fpmDF = duplicateHandle(fpmDF)
 
 #Save the FIDpMS data
 fpmDF.to_csv(paths[2],index=False)
-
-#End time for execution time
-exec_end = datetime.now()
-#Execution time
-exec_time = (exec_end-exec_start).total_seconds()*10**3
-print("Time to execute: {:.03f}ms".format(exec_time))
 
 
 
