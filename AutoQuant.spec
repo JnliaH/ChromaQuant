@@ -5,7 +5,7 @@ a = Analysis(
     ['QuantUI.py'],
     pathex=[],
     binaries=[],
-    datas=[('properties.json', '.')],
+    datas=[],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -32,7 +32,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['AutoQuantIcon.png'],
 )
 coll = COLLECT(
     exe,
