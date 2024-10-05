@@ -1,4 +1,4 @@
-<h1>AutoQuant</h1>
+<h1>ChromaQuant</h1>
 A solution for automated gas chromatographic peak assignment and quantification
 <h4>Introduction</h4>
 This project aims to simplify the workflow for combining gas chromatographic (GC) data collected from multiple sources. More
@@ -13,25 +13,25 @@ following setup:
 The GC's mentioned in the second and third bullets are assumed to be the same GC. This project also assumes that external software can be used to obtain spectra and integration/identification results.
 
 <h4>Installation</h4>
-To install on a MacOSX system, simply download the dist directory from the remote repository alongside the resources, response-factors, and images folders. Copy the AutoQuant directory from the dist directory and paste it in the desired location. Locate the "AutoQuant/_internal/properties.json" file in this pasted directory and edit the "app-directory" value to read the absolute path to the AutoQuant UNIX executable and the "file-directory" value to read the desired path to AutoQuant data files. Finally, create a folder named AutoQuant at the location of the file-directory path.<br><br>
+To install on a MacOSX system, simply download the dist directory from the remote repository alongside the resources, response-factors, and images folders. Copy the ChromaQuant directory from the dist directory and paste it in the desired location. Locate the "ChromaQuant/_internal/properties.json" file in this pasted directory and edit the "app-directory" value to read the absolute path to the ChromaQuant UNIX executable and the "file-directory" value to read the desired path to ChromaQuant data files. Finally, create a folder named ChromaQuant at the location of the file-directory path.<br><br>
 
-It is recommended that the AutoQuant folder be placed in the Applications folder and the file directory (a.k.a. the AutoQuant documents folder) to be created in the "Users/[User]/Documents" folder. 
+It is recommended that the ChromaQuant folder be placed in the Applications folder and the file directory (a.k.a. the ChromaQuant documents folder) to be created in the "Users/[User]/Documents" folder. 
 
 Create an empty folder inside the documents folder named data. Paste the resources, response-factors, and images folder into the documents folder. Note that the resources and response-factors folder contain data relevant to the Rorrer Lab – response factors and known compounds depend highly on reaction conditions and GC analysis methodology.
 
-Finally, test that the AutoQuant executable runs by navigating to the app directory and double clicking the executable. If it does, you can (optionally) set the executable's icon to the AutoQuantIcon.icns found in the images directory and make aliases as desired.
+Finally, test that the ChromaQuant executable runs by navigating to the app directory and double clicking the executable. If it does, you can (optionally) set the executable's icon to the ChromaQuantIcon.icns found in the images directory and make aliases as desired.
 
 <h4>The workflow</h4>
 <p align="center">
-  <img width="498" alt="Analytical workflow diagram demonstrating which files are necessary and which processes they are used in." src="https://github.com/JnliaH/AutoQuant/assets/173843508/c5849b00-1c46-4140-9bea-0b75af8d36af"><br>
-  <b>Figure 1</b>: AutoQuant's analytical workflow
+  <img width="498" alt="Analytical workflow diagram demonstrating which files are necessary and which processes they are used in." src="https://github.com/JnliaH/ChromaQuant/assets/173843508/c5849b00-1c46-4140-9bea-0b75af8d36af"><br>
+  <b>Figure 1</b>: ChromaQuant's analytical workflow
 </p>
 
 <h4>Prerequisites</h4>
 As mentioned previously, this workflow assumes you have access to software that can take raw acquisition data files and produce spectra, integration values, and peak labels. Also, since there are duplicate FID signals for gas injections it is assumed you use the signal from the GC-FID/TCD. The files required to fully process analyzed samples are given in <b>Table 1</b>.<br><br>
 
 <div align="center">
-  <b>Table 1</b>: Files required for AutoQuant<br><br>
+  <b>Table 1</b>: Files required for ChromaQuant<br><br>
   
   |           File Name             |                             Description                               |
   | :-----------------------------: | :-------------------------------------------------------------------: |
@@ -80,7 +80,7 @@ The INFO file must be a .json file containing the following information in the f
 ```
 
 <h4>Data Structure</h4>
-Inside of the AutoQuant documents folder are a few folders: data, resources, response-factors, and images. The data folder contains directories representing individual samples or reaction products to be analyzed. This is the most frequently used folder in AutoQuant. The resources folder contains a .csv file with known gas FID compounds used in third order assignment alongside some legacy files describing compound structure. This folder also contains the theme used in the AutoQuant UI. The response-factors folder contains several files with response factors listed by compound type and carbon number split by detector. These response factors are highly dependant on the conditions and methods used in GC analysis and therefore it is critical these are kept updated with lab-specific values for the most accurate results. Finally, the images folder contains the logo in several formats and the workflow image. <br><br>
+Inside of the ChromaQuant documents folder are a few folders: data, resources, response-factors, and images. The data folder contains directories representing individual samples or reaction products to be analyzed. This is the most frequently used folder in ChromaQuant The resources folder contains a .csv file with known gas FID compounds used in third order assignment alongside some legacy files describing compound structure. This folder also contains the theme used in the ChromaQuant UI. The response-factors folder contains several files with response factors listed by compound type and carbon number split by detector. These response factors are highly dependant on the conditions and methods used in GC analysis and therefore it is critical these are kept updated with lab-specific values for the most accurate results. Finally, the images folder contains the logo in several formats and the workflow image. <br><br>
 
 ```bash
 .
@@ -107,9 +107,9 @@ Inside of the AutoQuant documents folder are a few folders: data, resources, res
 │           ├── example2_LQ1_MS_SPEC.csv
 │           └── example2_LQ1_UA_Comp_UPP.csv
 ├── images
-│   ├── AutoQuantIcon.icns
-│   ├── AutoQuantIcon.png
-│   ├── AutoQuantIcon.svg
+│   ├── ChromaQuantIcon.icns
+│   ├── ChromaQuantIcon.png
+│   ├── ChromaQuantIcon.svg
 │   └── workflow.png
 ├── resources
 │   ├── KnownCompoundsAuto.xlsx
