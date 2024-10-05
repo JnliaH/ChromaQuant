@@ -1056,7 +1056,7 @@ paths = fileNamer(sname,sphase,sub_Dict,Raw_Dir)
 #Import MS UPP data
 mDF = pd.read_csv(paths[1])
 
-#Get only relevant rows of MS UPP data
+#Get only relevant columns of MS UPP data
 mDF = mDF.loc[:,['Component RT','Compound Name','Formula','Match Factor']]
 
 #Import known compounds resource
