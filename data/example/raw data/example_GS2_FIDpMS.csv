@@ -1,0 +1,209 @@
+,FID RT,FID Area,MS RT,Compound Name,Formula,Match Factor,Compound Source,Compound Type Abbreviation
+0,0.016,0.0722,,,,,,
+1,0.515,0.0415,,,,,,
+2,1.251,6578.6919,,Isobutane,C4H10,,Automatically assigned using gas pairs provided in resources,B
+3,1.281,33475.5352,,Isobutane,C4H10,,Automatically assigned using gas pairs provided in resources,B
+4,1.409,16414.8477,,"Butane, 2-methyl-",C5H12,,Automatically assigned using gas pairs provided in resources,B
+5,1.465,2778.811,,Pentane,C5H12,,Automatically assigned using gas pairs provided in resources,L
+6,1.526,654.5588,,"Cyclopropane, 1,2-dimethyl-",C5H10,,Automatically assigned using gas pairs provided in resources,C
+7,1.564,47.5799,,"Butane, 2,2-dimethyl-",,,Automatically assigned using gas pairs provided in resources,
+8,1.696,5663.479,,"Pentane, 2-methyl-",C6H14,,Automatically assigned using gas pairs provided in resources,B
+9,1.764,1359.7252,,"Pentane, 3-methyl-",C6H14,,Automatically assigned using gas pairs provided in resources,B
+10,1.803,62.4602,,"1-Pentene, 2-methyl-",C6H12,,Automatically assigned using gas pairs provided in resources,E
+11,1.855,780.5869,,n-Hexane,C6H14,,Automatically assigned using gas pairs provided in resources,L
+12,1.912,310.6178,,"1-Butene, 2,3-dimethyl-",C6H12,,Automatically assigned using gas pairs provided in resources,E
+13,2.0,170.7601,,"2-Pentene, 3-methyl-",C6H12,,Automatically assigned using gas pairs provided in resources,E
+14,2.042,632.5518,,"Pentane, 2,4-dimethyl-",C7H16,,Automatically assigned using gas pairs provided in resources,B
+15,2.074,100.0327,4.8348,"Pentane, 2,2-dimethyl-",C7H16,83.3439242411892,Automatically assigned using a predetermined third-order fit,B
+16,2.149,1.5299,5.1213,"4-Octene-2,7-diol, 2,7-dimethyl-, Z-",C10H20O2,52.9496615756305,Automatically assigned using a predetermined third-order fit,O
+17,2.186,14.2391,5.1724,"1-Pentene, 2,4-dimethyl-",C7H14,96.1368490654446,Automatically assigned using a predetermined third-order fit,E
+18,2.253,57.7069,,"2-Pentene, 2,4-dimethyl-",C7H14,,Automatically assigned using gas pairs provided in resources,E
+19,2.316,63.49,,Cyclohexane,C6H12,,Automatically assigned using gas pairs provided in resources,C
+20,2.35,2282.5452,,"Hexane, 2-methyl-",C7H16,,Automatically assigned using gas pairs provided in resources,B
+21,2.43,713.0547,,"Hexane, 3-methyl-",C7H16,,Automatically assigned using gas pairs provided in resources,B
+22,2.513,75.8058,,"Cyclopentane, 1,3-dimethyl-, cis or trans",C7H14,,Automatically assigned using gas pairs provided in resources,C
+23,2.541,78.9313,,"Cyclopentane, 1,3-dimethyl-, cis or trans",C7H14,,Automatically assigned using gas pairs provided in resources,C
+24,2.571,54.7907,6.2962,"1-Hexene, 2-methyl-",C7H14,79.8342043420111,Automatically assigned using a predetermined third-order fit,E
+25,2.677,305.1026,,Heptane,C7H16,,Automatically assigned using gas pairs provided in resources,L
+26,2.727,155.1641,6.6845,"3,5-Dimethylcyclopentene",C7H12,54.6773438816711,Automatically assigned using a predetermined third-order fit,C
+27,2.811,48.3807,6.8725,"4-Methyl-2-hexene,c&t",C7H14,87.635388393366,Automatically assigned using a predetermined third-order fit,E
+28,2.857,42.8139,,"2-Pentene, 3,4-dimethyl-, Z&E",C7H14,,Automatically assigned using gas pairs provided in resources,E
+29,2.937,222.4395,,"Cyclohexane, methyl-",C7H14,,Automatically assigned using gas pairs provided in resources,C
+30,3.032,391.8564,,"Hexane, 2,5-dimethyl-",C8H18,,Automatically assigned using gas pairs provided in resources,B
+31,3.056,254.1773,,"Hexane, 2,4-dimethyl-",C8H18,,Automatically assigned using gas pairs provided in resources,B
+32,3.147,36.2776,,"Cyclopentane, 1,2,4-trimethyl-",C8H16,,Automatically assigned using gas pairs provided in resources,C
+33,3.237,33.0906,7.9306,"2-Pentene, 3-ethyl-2-methyl-",C8H16,96.5121367968802,Automatically assigned using a predetermined third-order fit,E
+34,3.267,12.8758,,"Pentane, 2,3,4-trimethyl-",C8H18,,Automatically assigned using gas pairs provided in resources,B
+35,3.311,11.7402,8.0014,"Cyclopentene, 1,2,3-trimethyl-",C8H14,80.4099468977539,Automatically assigned using a predetermined third-order fit,C
+36,3.346,27.7282,8.0887,"Pentane, 2,2,3,4-tetramethyl-",C9H20,84.3787353350028,Automatically assigned using a predetermined third-order fit,B
+37,3.406,97.9094,,"Hexane, 2,3-dimethyl-",C8H18,,Automatically assigned using gas pairs provided in resources,B
+38,3.485,799.1979,,"Heptane, 2-methyl-",C8H18,,Automatically assigned using gas pairs provided in resources,B
+39,3.59,284.6342,,"Heptane, 3-methyl-",C8H18,,Automatically assigned using gas pairs provided in resources,B
+40,3.649,69.0704,8.7433,"Cyclohexane, 1,4-dimethyl-",C8H16,97.059515664069,Automatically assigned using a predetermined third-order fit,C
+41,3.669,58.0842,8.7433,"Cyclohexane, 1,4-dimethyl-",C8H16,97.059515664069,Automatically assigned using a predetermined third-order fit,C
+42,3.715,29.2946,,"Hexane, 2,2,5-trimethyl-",C9H20,,Automatically assigned using gas pairs provided in resources,B
+43,3.761,7.403,,"Cyclohexane, 1,1-dimethyl-",C8H16,,Automatically assigned using gas pairs provided in resources,C
+44,3.792,33.5287,9.0142,"Cyclopentane, 1-ethyl-3-methyl-",C8H16,96.8513618297352,Automatically assigned using a predetermined third-order fit,C
+45,3.825,21.7384,9.073,"Cyclopentane, 1-ethyl-1-methyl-",C8H16,93.618626927556,Automatically assigned using a predetermined third-order fit,C
+46,3.855,6.9716,9.1345,"4-Hexen-3-one, 5-methyl-",C7H12O,80.9728613941734,Automatically assigned using a predetermined third-order fit,O
+47,3.885,11.2308,9.1827,"3-Heptene, 4-methyl-",C8H16,95.5356327278559,Automatically assigned using a predetermined third-order fit,E
+48,3.926,39.1502,,"Cyclohexane, 1,2-dimethyl-",C8H16,,Automatically assigned using gas pairs provided in resources,C
+49,3.972,101.0378,,Octane,C8H18,,Automatically assigned using gas pairs provided in resources,L
+50,4.036,96.4665,,"Cyclohexane, 1,4-dimethyl-",C8H16,,Automatically assigned using gas pairs provided in resources,C
+51,4.121,38.5441,9.588,"Cyclopentene, 1,2,3-trimethyl-",C8H14,89.0506026572085,Automatically assigned using a predetermined third-order fit,C
+52,4.19,20.6177,9.6976,"Heptane, 2,3-dimethyl-",C9H20,95.7971049282494,Automatically assigned using a predetermined third-order fit,B
+53,4.241,6.8101,,"Hexane, 2,2,5-trimethyl-",C9H20,,Automatically assigned using gas pairs provided in resources,B
+54,4.303,47.2404,,"Heptane, 2,4-dimethyl-",C9H20,,Automatically assigned using gas pairs provided in resources,B
+55,4.344,12.0447,9.9536,"1,3-Dimethyl-1-cyclohexene",C8H14,91.5446830529453,Automatically assigned using a predetermined third-order fit,C
+56,4.402,123.4971,,"Octane, 2-methyl-",C9H20,,Automatically assigned using gas pairs provided in resources,B
+57,4.466,22.6333,,"Cyclohexane, ethyl-",C8H16,,Automatically assigned using gas pairs provided in resources,C
+58,4.505,156.9071,,"Heptane, 2,5-dimethyl-",C9H20,,Automatically assigned using gas pairs provided in resources,B
+59,4.544,27.6744,,"1,1,4-Trimethylcyclohexane",C9H18,,Automatically assigned using gas pairs provided in resources,C
+60,4.608,15.6928,,"6,6-Dimethylhepta-2,4-diene",C9H16,,Automatically assigned using gas pairs provided in resources,E
+61,4.678,11.2637,10.508,No Match,,,Automatically assigned using a predetermined third-order fit,
+62,4.71,2.9009,10.5671,"Cyclohexane, 1,3,5-trimethyl-",C9H18,90.3638021703176,Automatically assigned using a predetermined third-order fit,C
+63,4.746,32.4391,10.5777,"3-Butene-1,2-diol, 1-(2-furanyl)-",C8H10O3,59.0195016481219,Automatically assigned using a predetermined third-order fit,O
+64,4.83,44.5654,10.7328,"Heptane, 3,4-dimethyl-",C9H20,80.0635022555375,Automatically assigned using a predetermined third-order fit,B
+65,4.908,20.5949,10.8506,No Match,,,Automatically assigned using a predetermined third-order fit,
+66,4.968,175.0874,,"Octane, 2-methyl-",C9H20,,Automatically assigned using gas pairs provided in resources,B
+67,5.036,97.3807,,"Benzene, 1,3-dimethyl-",C8H10,,Automatically assigned using gas pairs provided in resources,A
+68,5.075,64.5672,,"Octane, 3-methyl-",C9H20,,Automatically assigned using gas pairs provided in resources,B
+69,5.11,6.2254,11.1286,"Cyclohexane, 1,2,4-trimethyl-",C9H18,91.2828081053166,Automatically assigned using a predetermined third-order fit,C
+70,5.134,16.0184,11.152,"Octane, 2,2-dimethyl-",C10H22,83.5883480868543,Automatically assigned using a predetermined third-order fit,B
+71,5.178,22.1857,11.1993,"Cyclohexane, 1,2,4-trimethyl-",C9H18,92.0399218259384,Automatically assigned using a predetermined third-order fit,C
+72,5.227,13.3102,11.3016,"Octane, 2,2-dimethyl-",C10H22,79.4935983277437,Automatically assigned using a predetermined third-order fit,B
+73,5.281,7.2744,11.3758,1-Ethyl-4-methylcyclohexane,C9H18,91.2172816009999,Automatically assigned using a predetermined third-order fit,C
+74,5.316,15.489,11.4034,2-Acetyl-5-methylfuran,C7H8O2,63.1642027482551,Automatically assigned using a predetermined third-order fit,O
+75,5.346,15.929,11.4567,4-Ethylcatechol,C8H10O2,61.2220216310323,Automatically assigned using a predetermined third-order fit,O
+76,5.409,24.1723,11.5555,4-Octen-3-one,C8H14O,57.6562936619333,Automatically assigned using a predetermined third-order fit,O
+77,5.48,10.8763,11.6203,Nonane,C9H20,94.5127446971612,Automatically assigned using a predetermined third-order fit,L
+78,5.526,22.2169,,Nonane,C9H20,,Automatically assigned using gas pairs provided in resources,L
+79,5.562,6.1763,11.7402,"Cyclooctane, 1-methyl-3-propyl-",C12H24,63.8546994279816,Automatically assigned using a predetermined third-order fit,C
+80,5.626,10.7081,11.7866,1-Ethyl-4-methylcyclohexane,C9H18,94.0094662454339,Automatically assigned using a predetermined third-order fit,C
+81,5.675,7.2458,11.8527,1-Ethyl-4-methylcyclohexane,C9H18,83.112717077421,Automatically assigned using a predetermined third-order fit,C
+82,5.709,3.791,11.9474,"Heptane, 3,5-dimethyl-",C9H20,58.8208246528885,Automatically assigned using a predetermined third-order fit,B
+83,5.775,9.7012,11.9814,"Nonane, 5-methyl-",C10H22,92.5754060401885,Automatically assigned using a predetermined third-order fit,B
+84,5.808,16.674,12.0529,"Cyclopentene, 1,2,3,4,5-pentamethyl-",C10H18,71.4858253126476,Automatically assigned using a predetermined third-order fit,C
+85,5.925,27.6022,,"Octane, 2,5-dimethyl-",C10H22,,Automatically assigned using gas pairs provided in resources,B
+86,5.993,23.4714,,"Octane, 2,7-dimethyl-",C10H22,,Automatically assigned using gas pairs provided in resources,B
+87,6.067,27.1259,,"Octane, 3,6-dimethyl-",C10H22,,Automatically assigned using gas pairs provided in resources,B
+88,6.157,13.8823,12.4685,"3-Acetyl-2,5-dimethyl furan",C8H10O2,68.3204804704366,Automatically assigned using a predetermined third-order fit,O
+89,6.266,7.3614,12.6008,"Cyclohexane, 1,1,3,5-tetramethyl-, cis-",C10H20,68.8777024297209,Automatically assigned using a predetermined third-order fit,C
+90,6.34,4.8287,12.6694,"3,3,5,5-tetramethylcyclohexene",C10H18,66.2483298231896,Automatically assigned using a predetermined third-order fit,C
+91,6.397,10.2995,12.7411,"Benzene, propyl-",C9H12,87.4825957297898,Automatically assigned using a predetermined third-order fit,A
+92,6.517,28.9036,12.8883,"Benzene, 1-ethyl-2-methyl-",C9H12,92.6162708776112,Automatically assigned using a predetermined third-order fit,A
+93,6.557,22.3973,12.9551,"Cyclooctane, tetradecyl-",C22H44,63.1238886513469,Automatically assigned using a predetermined third-order fit,C
+94,6.625,10.3485,13.014,"Nonane, 3-methyl-",C10H22,91.3629731777802,Automatically assigned using a predetermined third-order fit,B
+95,6.664,11.7505,13.014,"Nonane, 3-methyl-",C10H22,91.3629731777802,Automatically assigned using a predetermined third-order fit,B
+96,6.725,4.4335,13.12,"Undecane, 4,6-dimethyl-",C13H28,71.8988123393737,Automatically assigned using a predetermined third-order fit,B
+97,6.754,4.3038,13.1292,"Cyclooctane, tetradecyl-",C22H44,61.9505998812402,Automatically assigned using a predetermined third-order fit,C
+98,6.81,2.13,13.2051,"Decane, 3,8-dimethyl-",C12H26,65.0402561778021,Automatically assigned using a predetermined third-order fit,B
+99,6.835,4.113,13.2389,"Benzene, 1-ethyl-4-methyl-",C9H12,90.6369135716539,Automatically assigned using a predetermined third-order fit,A
+100,6.894,3.0617,13.3269,"m-Menthane, (1S,3S)-(+)-",C10H20,61.1979707816044,Automatically assigned using a predetermined third-order fit,C
+101,6.927,1.7785,13.3269,"m-Menthane, (1S,3S)-(+)-",C10H20,61.1979707816044,Automatically assigned using a predetermined third-order fit,C
+102,6.966,1.1233,13.3816,Flamenol,C7H8O3,67.7992230953287,Automatically assigned using a predetermined third-order fit,O
+103,7.022,25.9627,13.4853,"Benzene, 1,2,4-trimethyl-",C9H12,98.1993476842878,Automatically assigned using a predetermined third-order fit,A
+104,7.122,5.2213,13.5324,"Decane, 2,3,7-trimethyl-",C13H28,74.5278061664524,Automatically assigned using a predetermined third-order fit,B
+105,7.199,2.0142,13.5969,Flamenol,C7H8O3,59.7213091415059,Automatically assigned using a predetermined third-order fit,O
+106,7.247,0.7598,13.7833,"4,4-Dimethyl octane",C10H22,79.2726865187073,Automatically assigned using a predetermined third-order fit,B
+107,7.296,0.7173,13.7833,"4,4-Dimethyl octane",C10H22,79.2726865187073,Automatically assigned using a predetermined third-order fit,B
+108,7.342,4.4313,13.8192,No Match,,,Automatically assigned using a predetermined third-order fit,
+109,7.434,3.7597,13.9317,"Heptane, 3,3,5-trimethyl-",C10H22,82.403622934347,Automatically assigned using a predetermined third-order fit,B
+110,7.479,7.2786,13.9839,"Benzene, 1-methyl-3-(1-methylethyl)-",C10H14,70.5773079573554,Automatically assigned using a predetermined third-order fit,A
+111,7.561,3.6831,14.0175,"Benzene, 1-ethyl-2-methyl-",C9H12,85.3900525463417,Automatically assigned using a predetermined third-order fit,A
+112,7.664,4.1191,14.1383,"Nonane, 5-methyl-5-propyl-",C13H28,82.0666891029551,Automatically assigned using a predetermined third-order fit,B
+113,7.731,2.2797,,,,,,
+114,7.839,0.5364,,,,,,
+115,7.934,4.1429,14.4909,"Benzene, 1-methyl-4-propyl-",C10H14,87.1385711418078,Automatically assigned using a predetermined third-order fit,A
+116,7.983,0.6962,14.5633,Dioctyl malonate,C19H36O4,55.6222792350748,Automatically assigned using a predetermined third-order fit,O
+117,8.016,1.278,14.6066,"Benzene, 1,2,4,5-tetramethyl-",C10H14,88.9385441996032,Automatically assigned using a predetermined third-order fit,A
+118,8.046,2.8189,14.6282,"3-Ethyl-2,6,10-trimethylundecane",C16H34,80.3160758407637,Automatically assigned using a predetermined third-order fit,B
+119,8.119,2.3693,14.7381,"Nonane, 5-butyl-",C13H28,71.7904858868367,Automatically assigned using a predetermined third-order fit,B
+120,8.172,0.4439,14.7381,"Nonane, 5-butyl-",C13H28,71.7904858868367,Automatically assigned using a predetermined third-order fit,B
+121,8.219,1.5488,14.9279,"Benzene, 1-methyl-3-(1-methylethyl)-",C10H14,88.8682230441565,Automatically assigned using a predetermined third-order fit,A
+122,8.268,0.6938,14.9279,"Benzene, 1-methyl-3-(1-methylethyl)-",C10H14,88.8682230441565,Automatically assigned using a predetermined third-order fit,A
+123,8.333,2.6763,14.9279,"Benzene, 1-methyl-3-(1-methylethyl)-",C10H14,88.8682230441565,Automatically assigned using a predetermined third-order fit,A
+124,8.455,2.3686,15.0651,"Benzene, 1,2,4,5-tetramethyl-",C10H14,87.8959803817419,Automatically assigned using a predetermined third-order fit,A
+125,8.552,0.2802,,,,,,
+126,8.583,0.1493,,,,,,
+127,8.663,0.712,,,,,,
+128,8.695,0.3572,,,,,,
+129,8.747,0.273,15.5702,"Benzene, 1,2,4,5-tetramethyl-",C10H14,86.8804678008183,Automatically assigned using a predetermined third-order fit,A
+130,8.778,0.3265,15.5702,"Benzene, 1,2,4,5-tetramethyl-",C10H14,86.8804678008183,Automatically assigned using a predetermined third-order fit,A
+131,8.833,0.4294,15.6399177065457,"Benzene, 1,2,4,5-tetramethyl-",C10H14,89.4688211590674,Automatically assigned using a predetermined third-order fit,A
+132,8.917,1.9805,,,,,,
+133,8.982,1.6397,,,,,,
+134,9.074,0.3067,,,,,,
+135,9.168,0.2701,,,,,,
+136,9.258,0.3185,,,,,,
+137,9.337,0.4247,,,,,,
+138,9.461,0.7233,,,,,,
+139,9.538,0.1452,,,,,,
+140,9.607,0.2828,,,,,,
+141,9.648,0.1345,,,,,,
+142,9.704,0.1753,,,,,,
+143,9.786,0.1782,,,,,,
+144,9.912,0.0845,,,,,,
+145,9.976,0.334,,,,,,
+146,10.054,0.0723,,,,,,
+147,10.123,0.4365,,,,,,
+148,10.207,0.2789,,,,,,
+149,10.288,0.0881,,,,,,
+150,10.324,0.0516,,,,,,
+151,10.431,0.0685,,,,,,
+152,10.516,0.1069,,,,,,
+153,10.69,0.0707,,,,,,
+154,10.727,2.0136,,,,,,
+155,10.787,1.2203,,,,,,
+156,10.958,0.0836,,,,,,
+157,11.067,0.0439,,,,,,
+158,11.223,0.0339,,,,,,
+159,11.278,0.056,,,,,,
+160,11.318,0.6217,,,,,,
+161,11.456,0.3314,,,,,,
+162,11.733,0.1694,,,,,,
+163,12.082,0.1548,,,,,,
+164,12.165,2.1185,,,,,,
+165,12.355,0.0433,,,,,,
+166,12.496,0.0368,,,,,,
+167,12.844,0.5129,,,,,,
+168,12.992,0.0547,,,,,,
+169,13.261,0.0447,,,,,,
+170,13.334,0.0506,,,,,,
+171,13.513,0.1604,,,,,,
+172,13.677,0.2897,,,,,,
+173,13.942,0.3172,,,,,,
+174,14.027,0.5207,,,,,,
+175,14.08,0.1848,,,,,,
+176,14.143,0.1679,,,,,,
+177,14.307,0.0595,,,,,,
+178,14.356,0.0526,,,,,,
+179,14.42,0.0711,,,,,,
+180,14.464,0.0387,,,,,,
+181,14.509,0.048,,,,,,
+182,14.642,0.3142,,,,,,
+183,14.684,0.1137,,,,,,
+184,14.862,0.9474,,,,,,
+185,14.935,0.5675,,,,,,
+186,15.023,0.3182,,,,,,
+187,15.083,0.6937,,,,,,
+188,15.265,0.6991,,,,,,
+189,15.353,0.2649,,,,,,
+190,15.633,1.4376,,,,,,
+191,15.766,1.7173,,,,,,
+192,15.901,1.0737,,,,,,
+193,15.978,1.1439,,,,,,
+194,16.044,1.3387,,,,,,
+195,16.097,1.6165,,,,,,
+196,16.235,1.7599,,,,,,
+197,16.288,0.7484,,,,,,
+198,16.385,2.4817,,,,,,
+199,16.49,1.8325,,,,,,
+200,16.636,3.3528,,,,,,
+201,16.738,2.3041,,,,,,
+202,16.901,1.8638,,,,,,
+203,16.981,1.9948,,,,,,
+204,17.038,2.1451,,,,,,
+205,17.152,2.7892,,,,,,
+206,17.279,2.2414,,,,,,
+207,18.424,0.0526,,,,,,

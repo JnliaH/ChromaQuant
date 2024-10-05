@@ -1,0 +1,99 @@
+FID RT,FID Area,MS RT,Compound Name,Formula,Match Factor,Compound Source,Compound Type Abbreviation
+1.251,6607.3271,2.4822,Acetaldehyde,C2H4O,79.40559927,Manual,O
+1.282,17944.959,2.5583,Isobutane,C4H10,99.4620358,Manual,B
+1.409,3636.7185,2.8838,"Butane, 2-methyl-",C5H12,97.87533762,Manual,B
+1.463,738.7589,3.0271,Pentane,C5H12,94.61592711,Manual,L
+1.49,147.7936,3.0965,"Cyclopropane, 1,2-dimethyl-, cis-",C5H10,98.09818411,Manual,C
+1.525,1136.6975,3.1898,"Cyclopropane, 1,2-dimethyl-, cis-",C5H10,98.82215381,Manual,C
+1.695,1005.27,3.6519,"Pentane, 2-methyl-",C6H14,96.08446997,Manual,B
+1.764,221.273,3.8495,"Pentane, 3-methyl-",C6H14,99.39046486,Manual,B
+1.804,106.8642,3.9665,"1-Pentene, 2-methyl-",C6H12,97.43444932,Manual,E
+1.855,178.9344,4.1171,n-Hexane,C6H14,97.83997667,Manual,L
+1.912,417.2267,4.2926,"1-Butene, 2,3-dimethyl-",C6H12,93.78471443,Manual,E
+1.999,168.6139,4.5622,"2-Pentene, 3-methyl-",C6H12,97.51980861,Manual,E
+2.041,133.1059,4.6907,"Pentane, 2,4-dimethyl-",C7H16,97.86385609,Manual,B
+2.073,86.9176,4.797,"2-Pentene, 4-methyl-",C6H12,97.527523,Manual,E
+2.151,2.0776,,,,,,
+2.185,19.3664,5.1645,"1-Pentene, 2,4-dimethyl-",C7H14,97.20774918,Manual,E
+2.254,55.3382,5.3917,"2-Pentene, 2,4-dimethyl-",C7H14,94.1761806,Manual,E
+2.31,47.1308,5.4815,"1-Pentene, 3,3-dimethyl-",C7H14,95.7030705,Manual,E
+2.347,392.5847,5.6669,"Hexane, 2-methyl-",C7H16,96.63881145,Manual,B
+2.429,112.5028,5.9096,"Hexane, 3-methyl-",C7H16,98.61477157,Manual,B
+2.487,15.3523,6.0762,"2-Pentene, 3,4-dimethyl-, (Z)-",C7H14,94.20258572,Manual,E
+2.512,9.3407,6.1372,Isopropylcyclobutane,C7H14,89.42990057,Manual,C
+2.572,62.8484,6.2871,"1-Hexene, 2-methyl-",C7H14,81.46191871,Manual,E
+2.649,15.1801,6.5272,3-Methyl-3-hexene,C7H14,96.62154021,Manual,E
+2.677,62.0196,6.5978,Heptane,C7H16,94.94867325,Manual,L
+2.727,113.566,6.7325,"4-Methyl-2-hexene,c&t",C7H14,95.33187786,Manual,E
+2.778,11.4079,6.8637,(Z)-4-Methyl-2-hexene,C7H14,89.26331654,Manual,E
+2.811,37.7993,6.9434,"4-Methyl-2-hexene,c&t",C7H14,95.75421544,Manual,E
+2.856,34.3118,7.054,"2-Pentene, 3,4-dimethyl-, (Z)-",C7H14,96.73851239,Manual,E
+2.937,28.3442,7.2298,"Cyclohexane, methyl-",C7H14,97.00869446,Manual,C
+3.031,41.3559,7.4669,"Hexane, 2,5-dimethyl-",C8H18,98.70600095,Manual,B
+3.055,30.4287,7.5206,"Hexane, 2,4-dimethyl-",C8H18,97.16723613,Manual,B
+3.111,1.4132,7.6507,"3,4-Dimethyl-2-hexene",C8H16,82.0700511,Manual,E
+3.165,12.8954,7.7188,"Pentane, 2,3,3-trimethyl-",C8H18,72.4777197,Manual,B
+3.235,19.5938,7.9222,3-Ethyl-3-hexene,C8H16,96.50073289,Manual,E
+3.267,5.495,7.9877,"2,3-Dimethyl-1-hexene",C8H16,78.07692381,Manual,E
+3.31,6.3485,8.0798,"1-Hexene, 2,5-dimethyl-",C8H16,88.4361317,Manual,E
+3.353,13.5279,8.1396,"3,5-Dimethylcyclopentene",C7H12,84.52222716,Manual,C
+3.404,13.0627,8.2673,"Hexane, 2,3-dimethyl-",C8H18,94.22363924,Manual,B
+3.482,89.2732,8.423,"Heptane, 2-methyl-",C8H18,96.51345664,Manual,B
+3.59,29.5294,8.6296,"Heptane, 3-methyl-",C8H18,95.63076592,Manual,B
+3.647,10.6884,8.7386,"Cyclohexane, 1,3-dimethyl-, trans-",C8H16,94.78277877,Manual,C
+3.715,3.5081,8.8746,"2-Hexene, 5,5-dimethyl-, (Z)-",C8H16,81.7158509,Manual,E
+3.789,9.4584,9.0041,3-Ethyl-2-hexene,C8H16,92.49265025,Manual,E
+3.856,3.0608,9.1285,3-Ethyl-3-hexene,C8H16,79.17834046,Manual,E
+3.885,3.7613,9.1758,"3-Hexene, 2,3-dimethyl-",C8H16,92.00410734,Manual,E
+3.926,7.4075,9.2534,"Cyclopentene, 1,2,3-trimethyl-",C8H14,85.26451494,Manual,C
+3.97,12.4542,9.3218,"4-Octene, (E)-",C8H16,90.08185826,Manual,E
+4.03,12.2265,9.4023,3-Ethyl-4-methyl-2-pentene,C8H16,93.71069402,Manual,E
+4.12,7.0716,9.5801,"1,4-Pentadiene, 2,3,3-trimethyl-",C8H14,87.34852484,Manual,E
+4.187,1.9607,9.6824,"6,6-Dimethylhepta-2,4-diene",C9H16,83.76526204,Manual,E
+4.24,0.4858,9.6936,"2-Undecene, 4-methyl-",C12H24,83.1270036,Manual,E
+4.304,2.1446,9.876,"Hexane, 2,3,5-trimethyl-",C9H20,92.9247077,Manual,B
+4.343,1.2638,9.9449,"Cyclohexene, 3,5-dimethyl-",C8H14,91.65873886,Manual,C
+4.399,4.1027,10.0292,"Octane, 2-methyl-",C9H20,83.81242101,Manual,B
+4.469,1.8669,10.1405,"Cyclohexane, propyl-",C9H18,82.69632368,Manual,C
+4.506,4.9904,10.1874,"Heptane, 2,5-dimethyl-",C9H20,90.58053036,Manual,B
+4.543,1.1671,10.2606,"Cyclopentane, 1,1,3-trimethyl-3-(2-methyl-2-propenyl)-",C12H22,72.10118602,Manual,C
+4.607,1.5056,10.3529,"6,6-Dimethylhepta-2,4-diene",C9H16,83.01632396,Manual,E
+4.665,1.2699,10.4283,"2,3-Dimethyl-3-heptene, (Z)-",C9H18,89.35385895,Manual,E
+4.712,0.4512,,,,,,
+4.747,2.3072,10.5583,"1,3-Heptadiene, 2,3-dimethyl-",C9H16,86.7257506,Manual,E
+4.829,1.8184,10.6794,"Hexane, 3-ethyl-",C8H18,67.25626813,Manual,B
+4.898,1.0895,10.7749,"6,6-Dimethylhepta-2,4-diene",C9H16,87.31042589,Manual,E
+4.966,2.4187,10.8616,"Octane, 2-methyl-",C9H20,89.80392363,Manual,B
+5.004,0.1443,,,,,,
+5.037,1.1616,10.9875,Ethylbenzene,C8H10,87.92665167,Manual,A
+5.074,0.9401,11.0133,"Octane, 3-methyl-",C9H20,91.16502515,Manual,B
+5.106,0.536,,,,,,
+5.134,0.4794,,,,,,
+5.226,0.8473,11.6119,"Heptane, 2-methyl-3-methylene-",C9H18,79.60356934,Manual,B
+5.314,0.4897,,,,,,
+5.344,0.2444,,,,,,
+5.391,0.3027,,,,,,
+5.485,0.3315,,,,,,
+5.524,0.2787,,,,,,
+5.561,0.0915,,,,,,
+5.673,0.044,,,,,,
+5.777,0.074,,,,,,
+5.804,0.0582,,,,,,
+5.925,0.1295,,,,,,
+5.993,0.1235,,,,,,
+6.066,0.0849,,,,,,
+6.142,0.1088,,,,,,
+6.405,0.0397,,,,,,
+6.517,0.0467,,,,,,
+6.554,0.0357,,,,,,
+6.622,0.0406,,,,,,
+6.666,0.0346,,,,,,
+10.119,0.0414,,,,,,
+10.731,0.0756,,,,,,
+10.793,0.0393,,,,,,
+12.015,0.0323,,,,,,
+12.164,0.0499,,,,,,
+15.166,0.4198,,,,,,
+16.092,1.3249,,,,,,
+17.062,1.3952,,,,,,
+18.422,0.0386,,,,,,

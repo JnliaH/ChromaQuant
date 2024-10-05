@@ -1,0 +1,416 @@
+FID RT,FID Area,MS RT,Compound Name,Formula,Match Factor,Compound Source,Compound Type Abbreviation
+2.357,0.1603,,No match,,,Manual assignment based on HydroUI,
+2.447,0.8804,2.4442,Isobutane,C4H10,94.97128226,Manual assignment based on HydroUI,B
+2.497,0.5842,2.4945,Acetone,C3H6O,84.43878175,Manual assignment based on HydroUI,O
+2.675,12.3903,2.6723,"Butane, 2-methyl-",C5H12,98.24359495,Manual assignment based on HydroUI,B
+2.771,4.3784,2.7682,Pentane,C5H12,97.87652606,Manual assignment based on HydroUI,L
+2.875,0.4999,2.8725,"Cyclopropane, 1,2-dimethyl-, cis-",C5H10,92.63639095,Manual assignment based on HydroUI,C
+2.946,0.3041,,No match,,,Manual assignment based on HydroUI,
+3.164,23.4097,3.1611,"Pentane, 2-methyl-",C6H14,98.68576605,Manual assignment based on HydroUI,B
+3.284,8.2376,3.2818,"Pentane, 3-methyl-",C6H14,98.48696143,Manual assignment based on HydroUI,B
+3.348,0.1242,,No match,,,Manual assignment based on HydroUI,
+3.436,7.981,3.4334,n-Hexane,C6H14,96.99918962,Manual assignment based on HydroUI,L
+3.53,0.7726,3.5297,"1-Butene, 2,3-dimethyl-",C6H12,86.34968268,Manual assignment based on HydroUI,E
+3.687,1.1724,3.6848,"Hexane, 3,4-dimethyl-",C8H18,91.89543939,Manual assignment based on HydroUI,B
+3.771,7.7483,3.7676,"Cyclopentane, methyl-",C6H12,90.96622641,Manual assignment based on HydroUI,C
+4.136,0.3772,4.1346,"Furan, 2-butyltetrahydro-",C8H16O,54.03547448,Manual assignment based on HydroUI,O
+4.391,91051.5859,,No match,,,Manual assignment based on HydroUI,
+4.46,18.8555,4.4569,"Hexane, 3-methyl-",C7H16,97.83491917,Manual assignment based on HydroUI,B
+4.605,1.6235,4.6064,"Pentane, 2,3,4-trimethyl-",C8H18,81.23570803,Manual assignment based on HydroUI,B
+4.649,0.6395,4.6464,"Cyclopentane, 1,2-dimethyl-",C7H14,87.95574337,Manual assignment based on HydroUI,C
+4.693,0.8485,4.6896,"Cyclopentane, 1,2-dimethyl-, trans-",C7H14,81.33054686,Manual assignment based on HydroUI,C
+4.847,6.9711,4.8446,Heptane,C7H16,97.52821855,Manual assignment based on HydroUI,L
+4.936,0.8191,4.9351,(Z)-4-Methyl-2-hexene,C7H14,90.58497627,Manual assignment based on HydroUI,E
+5.033,0.0335,,No match,,,Manual assignment based on HydroUI,
+5.084,0.2304,5.0812,(Z)-4-Methyl-2-hexene,C7H14,79.90740396,Manual assignment based on HydroUI,E
+5.165,0.2656,5.1632,"2-Pentene, 3,4-dimethyl-, (E)-",C7H14,69.57294275,Manual assignment based on HydroUI,E
+5.257,0.483,5.2548,"Hexane, 2,2-dimethyl-",C8H18,86.59444305,Manual assignment based on HydroUI,B
+5.34,4.097,5.337,"Cyclohexane, methyl-",C7H14,96.46626313,Manual assignment based on HydroUI,C
+5.463,6.7202,5.4598,"Hexane, 2,5-dimethyl-",C8H18,98.59649868,Manual assignment based on HydroUI,B
+5.51,4.7001,5.5073,"Hexane, 2,4-dimethyl-",C8H18,92.94607704,Manual assignment based on HydroUI,B
+5.572,0.2799,5.569,"Cyclopentane, ethyl-",C7H14,79.95987516,Manual assignment based on HydroUI,C
+5.691,1.0304,5.6887,"Cyclopentane, 1,2,4-trimethyl-",C8H16,94.14911132,Manual assignment based on HydroUI,C
+5.824,0.2052,5.817,3-Ethyl-3-hexene,C8H16,77.00509379,Manual assignment based on HydroUI,E
+5.868,0.3475,5.8685,"Cyclopentane, 1,2,3-trimethyl-, (1.alpha.,2.alpha.,3.alpha.)-",C8H16,68.89589343,Manual assignment based on HydroUI,C
+5.966,0.048,,No match,,,Manual assignment based on HydroUI,
+6.04,0.262,6.0318,"1,3-Pentadiene, 2,4-dimethyl-",C7H12,63.62571448,Manual assignment based on HydroUI,E
+6.137,2.3202,6.134,"Hexane, 2,3-dimethyl-",C8H18,95.42128733,Manual assignment based on HydroUI,B
+6.259,19.4026,6.2567,"Heptane, 2-methyl-",C8H18,98.39845815,Manual assignment based on HydroUI,B
+6.347,1.7685,6.3426,Toluene,C7H8,96.18115118,Manual assignment based on HydroUI,A
+6.447,9.7464,6.4446,"Heptane, 3-methyl-",C8H18,97.19550687,Manual assignment based on HydroUI,B
+6.591,2.1661,6.5891,"Cyclohexane, 1,4-dimethyl-",C8H16,91.89463085,Manual assignment based on HydroUI,C
+6.627,2.2069,,No match,,,Manual assignment based on HydroUI,
+6.824,1.1412,6.8223,"Cyclopentane, 1-ethyl-1-methyl-",C8H16,89.21939382,Manual assignment based on HydroUI,C
+6.882,0.8095,6.8808,"Cyclohexane, ethyl-",C8H16,84.16671685,Manual assignment based on HydroUI,C
+7.083,5.4504,7.0809,Octane,C8H18,96.27730924,Manual assignment based on HydroUI,L
+7.152,0.3209,,No match,,,Manual assignment based on HydroUI,
+7.24,2.0017,7.2366,"Cyclohexane, 1,4-dimethyl-, cis-",C8H16,94.8928325,Manual assignment based on HydroUI,C
+7.346,0.7244,7.3476,"Cyclopentene, 1,2,3-trimethyl-",C8H14,81.19756016,Manual assignment based on HydroUI,C
+7.447,0.5901,7.4445,"Pentane, 2,3,3,4-tetramethyl-",C9H20,77.53978088,Manual assignment based on HydroUI,B
+7.52,0.3122,7.5177,"Propanoic acid, anhydride",C6H10O3,73.34350926,Manual assignment based on HydroUI,O
+7.616,2.1603,7.6121,"Heptane, 2,4-dimethyl-",C9H20,96.16105758,Manual assignment based on HydroUI,B
+7.767,4.679,7.7639,"Octane, 2-methyl-",C9H20,91.89969147,Manual assignment based on HydroUI,B
+7.927,7.7355,7.9249,"Heptane, 2,5-dimethyl-",C9H20,96.99070585,Manual assignment based on HydroUI,B
+7.989,0.7266,7.9888,"Cyclohexane, 1,1,3-trimethyl-",C9H18,60.93902754,Manual assignment based on HydroUI,C
+8.041,0.8595,8.0375,"1,1,4-Trimethylcyclohexane",C9H18,87.08031066,Manual assignment based on HydroUI,C
+8.119,0.5048,8.1147,"Cyclohexane, 1-ethyl-1-methyl-",C9H18,78.52054175,Manual assignment based on HydroUI,C
+8.208,0.125,,No match,,,Manual assignment based on HydroUI,
+8.26,0.0515,,No match,,,Manual assignment based on HydroUI,
+8.334,1.2323,8.3307,"Cyclohexane, 1,3,5-trimethyl-",C9H18,91.46608403,Manual assignment based on HydroUI,C
+8.423,1.9852,8.419,"Heptane, 2,3-dimethyl-",C9H20,86.89669649,Manual assignment based on HydroUI,B
+8.478,0.3294,,No match,,,Manual assignment based on HydroUI,
+8.521,0.3734,8.518,"Heptane, 4-ethyl-",C9H20,71.45174289,Manual assignment based on HydroUI,B
+8.606,12.9289,8.6023,"Octane, 2-methyl-",C9H20,96.83368655,Manual assignment based on HydroUI,B
+8.762,11.5977,8.7611,"Octane, 3-methyl-",C9H20,96.287714,Manual assignment based on HydroUI,B
+8.901,1.4829,8.8981,"Cyclohexane, 1,2,4-trimethyl-",C9H18,87.25685836,Manual assignment based on HydroUI,C
+8.973,0.5127,8.9717,"Cyclohexane, 1,3,5-trimethyl-",C9H18,85.32885902,Manual assignment based on HydroUI,C
+9.039,0.6557,9.034,"Cyclohexane, 1,3,5-trimethyl-",C9H18,81.03638529,Manual assignment based on HydroUI,C
+9.088,0.2979,9.084,(E)-But-2-enyl (E)-2-methylbut-2-enoate,C9H14O2,71.00831354,Manual assignment based on HydroUI,O
+9.15,1.1605,9.1474,"1-Ethyl-3-methylcyclohexane (c,t)",C9H18,87.7890406,Manual assignment based on HydroUI,C
+9.196,0.7334,9.1917,"1-Ethyl-3-methylcyclohexane (c,t)",C9H18,80.92632462,Manual assignment based on HydroUI,C
+9.289,1.6658,9.287,"Benzene, 1,3-dimethyl-",C8H10,96.70519528,Manual assignment based on HydroUI,A
+9.342,0.05,,No match,,,Manual assignment based on HydroUI,
+9.386,3.0855,9.3831,Nonane,C9H20,95.42867816,Manual assignment based on HydroUI,L
+9.51,0.2055,9.5132,"Cyclohexane, 1-ethyl-2-propyl-",C11H22,59.30016735,Manual assignment based on HydroUI,C
+9.576,0.7289,9.5732,"1-Ethyl-3-methylcyclohexane (c,t)",C9H18,89.81576122,Manual assignment based on HydroUI,C
+9.643,0.7144,9.6397,"2-Pentene, 2,4,4-trimethyl-",C8H16,74.76169036,Manual assignment based on HydroUI,E
+9.765,2.5765,9.7617,"Hexane, 2,2,3,3-tetramethyl-",C10H22,91.44565635,Manual assignment based on HydroUI,B
+9.917,3.5242,9.9132,"Octane, 2,5-dimethyl-",C10H22,95.63954745,Manual assignment based on HydroUI,B
+10.003,3.0107,10.0005,"Octane, 2,7-dimethyl-",C10H22,91.92842945,Manual assignment based on HydroUI,B
+10.104,4.0603,10.1012,"Octane, 3,6-dimethyl-",C10H22,96.56863336,Manual assignment based on HydroUI,B
+10.225,1.4638,10.2214,"Octane, 3,6-dimethyl-",C10H22,92.47143739,Manual assignment based on HydroUI,B
+10.305,0.103,10.3036,"(1,2,4-Trimethylcyclohexyl)methanol, acetate (isomer 2)",C12H22O2,60.22207783,Manual assignment based on HydroUI,O
+10.37,0.1774,,No match,,,Manual assignment based on HydroUI,
+10.422,0.4619,10.421,"(1,2,4-Trimethylcyclohexyl)methanol (isomer 3)",C10H20O,66.40336007,Manual assignment based on HydroUI,O
+10.534,2.0198,10.5289,"Heptane, 3-ethyl-2-methyl-",C10H22,94.49960072,Manual assignment based on HydroUI,B
+10.666,3.4822,10.5668,"Benzene, propyl-",C9H12,86.45594737,Manual assignment based on HydroUI,A
+10.718,6.6941,10.7135,"Nonane, 2-methyl-",C10H22,92.64616023,Manual assignment based on HydroUI,B
+10.789,0.114,10.7871,"Octane, 3-ethyl-",C10H22,67.10621958,Manual assignment based on HydroUI,B
+10.851,5,10.8493,"Benzene, 1,2,4-trimethyl-",C9H12,95.5767432,Manual assignment based on HydroUI,A
+10.961,1.6532,10.9565,"Undecane, 4,6-dimethyl-",C13H28,86.15165281,Manual assignment based on HydroUI,B
+11.054,0.5034,11.0503,"Pentane, 2,2,3-trimethyl-",C8H18,64.45142719,Manual assignment based on HydroUI,B
+11.088,0.3683,11.0864,"Benzene, 1-ethyl-4-methyl-",C9H12,88.8572506,Manual assignment based on HydroUI,A
+11.125,0.4077,11.1214,"m-Menthane, (1S,3S)-(+)-",C10H20,78.63807628,Manual assignment based on HydroUI,C
+11.181,0.2579,11.1775,"Cyclohexane, 1-methyl-4-(1-methylethyl)-, trans-",C10H20,79.49415079,Manual assignment based on HydroUI,C
+11.243,0.147,11.2354,"Trans-1,4-diethylcyclohexane",C10H20,71.29877027,Manual assignment based on HydroUI,C
+11.295,0.0832,11.2932,"Octane, 2,6,6-trimethyl-",C11H24,50.2671679,Manual assignment based on HydroUI,B
+11.347,6.3257,11.3443,"Benzene, 1,2,4-trimethyl-",C9H12,98.15641772,Manual assignment based on HydroUI,B
+11.396,1.5723,11.3933,Decane,C10H22,89.66206369,Manual assignment based on HydroUI,L
+11.463,0.2934,11.4601,"m-Menthane, (1S,3S)-(+)-",C10H20,77.98226069,Manual assignment based on HydroUI,C
+11.546,0.0532,,No match,,,Manual assignment based on HydroUI,
+11.614,0.1238,,No match,,,Manual assignment based on HydroUI,
+11.659,1.0018,11.6568,Undecane,C11H24,89.4351595,Manual assignment based on HydroUI,L
+11.701,0.29,,No match,,,Manual assignment based on HydroUI,
+11.763,1.4033,11.7597,"Nonane, 2,5-dimethyl-",C11H24,94.99604552,Manual assignment based on HydroUI,B
+11.815,1.0509,11.8114,"Decane, 4-methyl-",C11H24,93.09181559,Manual assignment based on HydroUI,B
+11.907,3.2084,11.9081,"Undecane, 4,6-dimethyl-",C13H28,89.2042996,Manual assignment based on HydroUI,B
+12.031,2.3012,12.0273,"Dodecane, 2,7,10-trimethyl-",C15H32,91.61592218,Manual assignment based on HydroUI,B
+12.111,1.1166,12.107,"Nonane, 3,7-dimethyl-",C11H24,89.1608036,Manual assignment based on HydroUI,B
+12.173,0.232,12.172,"Pimelic acid, di(3-phenylpropyl) ester",C25H32O4,65.54386132,Manual assignment based on HydroUI,O
+12.285,0.1587,,No match,,,Manual assignment based on HydroUI,
+12.335,0.1286,12.3332,"2H-Pyran-2-one, 4-hydroxy-6-methyl-",C6H6O3,70.6515263,Manual assignment based on HydroUI,O
+12.394,0.8957,12.3913,"Benzene, 1-methyl-4-propyl-",C10H14,87.24527963,Manual assignment based on HydroUI,A
+12.425,0.9921,12.4229,"Decane, 5-methyl-",C11H24,90.52603481,Manual assignment based on HydroUI,B
+12.48,1.3438,12.4767,"Nonane, 4-methyl-5-propyl-",C13H28,88.40843491,Manual assignment based on HydroUI,B
+12.54,3.2805,12.538,"Decane, 2-methyl-",C11H24,95.25808995,Manual assignment based on HydroUI,B
+12.594,0.1739,12.5963,"2-Cyclopenten-1-one, 3-methoxy-5-methyl-",C7H10O2,58.75508597,Manual assignment based on HydroUI,O
+12.656,1.9244,12.6516,"Nonane, 5-butyl-",C13H28,93.77714428,Manual assignment based on HydroUI,B
+12.711,0.4387,12.7083,3-Ethyl-3-methylheptane,C10H22,75.07195952,Manual assignment based on HydroUI,B
+12.801,0.5626,12.7925,"Undecane, 3,5-dimethyl-",C13H28,89.54705587,Manual assignment based on HydroUI,B
+12.847,0.544,12.8461,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,79.76118518,Manual assignment based on HydroUI,A
+12.88,0.6371,12.8753,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,93.96721984,Manual assignment based on HydroUI,A
+12.938,0.2371,12.9369,"Cyclohexanone, 3-butyl-",C10H18O,60.46145536,Manual assignment based on HydroUI,O
+12.988,1.692,12.985,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,95.0536119,Manual assignment based on HydroUI,A
+13.043,0.4006,13.0388,"Benzene, 4-ethenyl-1,2-dimethyl-",C10H12,63.11135594,Manual assignment based on HydroUI,A
+13.14,1.1496,13.1365,"Undecane, 4,8-dimethyl-",C13H28,92.03181795,Manual assignment based on HydroUI,B
+13.238,0.2446,13.241,"Benzene, (1-methylbutyl)-",C11H16,75.71394954,Manual assignment based on HydroUI,A
+13.349,1.1109,13.3537,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,83.57686533,Manual assignment based on HydroUI,A
+13.418,2.3003,13.4139,Dodecane,C12H26,93.3322214,Manual assignment based on HydroUI,L
+13.461,0.24,13.4593,"Benzene, pentamethyl-",C11H16,63.95943471,Manual assignment based on HydroUI,A
+13.51,3.5484,13.5045,"Benzene, 1,2,4,5-tetramethyl-",C10H14,96.78800533,Manual assignment based on HydroUI,A
+13.582,3.8363,13.5853,"Nonane, 5-methyl-5-propyl-",C13H28,89.53521353,Manual assignment based on HydroUI,B
+13.691,1.2164,13.6872,"Undecane, 3-methyl-",C12H26,91.50220251,Manual assignment based on HydroUI,B
+13.801,0.4844,13.795,"Decane, 3,8-dimethyl-",C12H26,89.3975994,Manual assignment based on HydroUI,B
+13.94,1.2706,13.9371,"Benzene, 1,3-diethyl-5-methyl-",C11H16,91.98080689,Manual assignment based on HydroUI,A
+14.024,1.1081,14.0218,Dodecane,C12H26,90.11716733,Manual assignment based on HydroUI,L
+14.09,1.6679,14.0861,"Undecane, 4-methyl-",C12H26,76.24155936,Manual assignment based on HydroUI,B
+14.152,1.2681,14.1496,"Nonane, 5-(2-methylpropyl)-",C13H28,79.63899893,Manual assignment based on HydroUI,B
+14.197,0.344,,No match,,,Manual assignment based on HydroUI,
+14.261,1.1606,14.2569,"Undecane, 3-methyl-",C12H26,94.13244127,Manual assignment based on HydroUI,B
+14.335,0.7385,14.3294,"Benzene, 1,3-diethyl-5-methyl-",C11H16,62.77451596,Manual assignment based on HydroUI,A
+14.425,1.2582,14.4217,"Benzene, 1-methyl-4-(1-methylpropyl)-",C11H16,89.1158415,Manual assignment based on HydroUI,A
+14.581,0.3574,14.5776,"1H-Indene, 2,3-dihydro-4,7-dimethyl-",C11H14,67.75731747,Manual assignment based on HydroUI,A
+14.653,1.0529,14.6538,"1H-Indene, 2,3-dihydro-1,1-dimethyl-",C11H14,82.79995755,Manual assignment based on HydroUI,A
+14.696,1.9315,14.6951,Dodecane,C12H26,94.07605801,Manual assignment based on HydroUI,L
+14.784,1.1726,14.7809,"Benzene, 1,3-dimethyl-5-(1-methylethyl)-",C11H16,84.59355237,Manual assignment based on HydroUI,A
+14.823,0.9811,14.8227,"1H-Indene, 2,3-dihydro-1,1-dimethyl-",C11H14,84.19630826,Manual assignment based on HydroUI,E
+14.866,0.1092,14.8574,"Dodecane, 5-methyl-",C13H28,59.55793963,Manual assignment based on HydroUI,B
+14.91,0.6626,14.9062,"Undecane, 2,5-dimethyl-",C13H28,90.42097505,Manual assignment based on HydroUI,B
+14.965,1.102,14.9626,"Benzene, 2,4-dimethyl-1-(1-methylethyl)-",C11H16,85.72274635,Manual assignment based on HydroUI,A
+15.029,0.9498,15.0242,"Undecane, 4,7-dimethyl-",C13H28,89.05424803,Manual assignment based on HydroUI,B
+15.125,0.8428,15.1217,"Undecane, 3,8-dimethyl-",C13H28,84.28684428,Manual assignment based on HydroUI,B
+15.199,1.292,15.2012,"Dodecane, 3-methyl-",C13H28,71.9677403,Manual assignment based on HydroUI,B
+15.303,0.1779,15.2979,"Dodecane, 3-methyl-",C13H28,65.56940318,Manual assignment based on HydroUI,B
+15.357,0.1311,15.3544,"Benzene, pentamethyl-",C11H16,72.41381884,Manual assignment based on HydroUI,A
+15.395,0.3503,15.392,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,80.23400029,Manual assignment based on HydroUI,A
+15.459,0.67,15.4568,"Heptane, 4-propyl-",C10H22,57.76925529,Manual assignment based on HydroUI,B
+15.493,0.7036,15.4986,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,80.7540693,Manual assignment based on HydroUI,A
+15.554,0.524,15.5528,"Dodecane, 4-methyl-",C13H28,72.21679827,Manual assignment based on HydroUI,B
+15.622,1.2156,15.6179,"Decane, 3,8-dimethyl-",C12H26,74.70166038,Manual assignment based on HydroUI,B
+15.722,0.6794,15.7182,"Dodecane, 3-methyl-",C13H28,74.87979873,Manual assignment based on HydroUI,B
+15.754,0.5554,15.7547,"Benzene, 1,4-bis(1-methylethyl)-",C12H18,54.91091998,Manual assignment based on HydroUI,A
+15.799,0.5519,15.8005,"1H-Indene, 2,3-dihydro-4,7-dimethyl-",C11H14,64.17329353,Manual assignment based on HydroUI,A
+15.846,0.7403,15.8397,"Undecane, 4,6-dimethyl-",C13H28,74.01469089,Manual assignment based on HydroUI,B
+15.919,0.885,15.9157,"Benzene, 1,4-dimethyl-2-(2-methylpropyl)-",C12H18,85.00718971,Manual assignment based on HydroUI,A
+16.027,2.1452,16.0234,"Benzene, pentamethyl-",C11H16,89.0673559,Manual assignment based on HydroUI,A
+16.075,0.055,,No match,,,Manual assignment based on HydroUI,
+16.12,0.394,16.1249,"Octane, 3,3-dimethyl-",C10H22,82.9537743,Manual assignment based on HydroUI,B
+16.211,0.942,16.2107,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,84.10281703,Manual assignment based on HydroUI,A
+16.28,1.1408,16.2744,"Naphthalene, 2-methyl-",C11H10,84.66101977,Manual assignment based on HydroUI,A
+16.353,1.1568,16.3523,"4-Methyl-1,6-heptadien-4-ol",C8H14O,50.49530686,Manual assignment based on HydroUI,O
+16.451,0.3795,16.4416,"Pentane, 2,3,3,4-tetramethyl-",C9H20,72.92314511,Manual assignment based on HydroUI,B
+16.522,0.8246,16.5226,"Naphthalene, 2-methyl-",C11H10,89.71762985,Manual assignment based on HydroUI,A
+16.583,0.8513,16.5789,"Phenol, 2-(3-hydroxy-3-methyl-1-butenyl)-, (Z)-",C11H14O2,72.1385454,Manual assignment based on HydroUI,O
+16.694,0.4565,16.6939,"Benzene, 1,3,5-trimethyl-2-(1-methylethenyl)-",C12H16,71.91893163,Manual assignment based on HydroUI,A
+16.812,0.991,16.8118,"Naphthalene, 1,2,3,4-tetrahydro-1,6,8-trimethyl-",C13H18,71.94417182,Manual assignment based on HydroUI,A
+16.852,0.3808,16.8483,"Pentane, 3-ethyl-3-methyl-",C8H18,61.47082462,Manual assignment based on HydroUI,B
+16.908,0.8169,16.9091,"Hexane, 3,3-dimethyl-",C8H18,80.02078063,Manual assignment based on HydroUI,B
+16.974,0.5149,16.9771,"Hexane, 3,3-dimethyl-",C8H18,78.23117544,Manual assignment based on HydroUI,B
+17.018,0.2067,17.0254,"Benzene, 1,1'-(1,1,10,10-tetramethyl-1,10-decanediyl)bis[3,4-dimethyl-",C30H46,62.44118344,Manual assignment based on HydroUI,A
+17.088,0.8294,17.0883,"Benzene, 1,2-diethyl-3,4-dimethyl-",C12H18,70.47069449,Manual assignment based on HydroUI,A
+17.158,0.4193,17.1497,4-pentylphenyl 4-propylbenzoate,C21H26O2,62.32970694,Manual assignment based on HydroUI,O
+17.255,0.1843,,No match,,,Manual assignment based on HydroUI,
+17.326,0.9545,17.321,"Benzene, 2-(2-butenyl)-1,3,5-trimethyl-",C13H18,74.02929781,Manual assignment based on HydroUI,A
+17.457,0.6353,17.4543,"Hexane, 3,3-dimethyl-",C8H18,74.36495496,Manual assignment based on HydroUI,B
+17.576,1.4143,17.5795,"Nonane, 5-methyl-5-propyl-",C13H28,53.21525683,Manual assignment based on HydroUI,B
+17.66,0.468,17.6575,3-Ethyl-3-methylheptane,C10H22,79.02010069,Manual assignment based on HydroUI,B
+17.752,1.6211,17.7523,"Naphthalene, 2,6-dimethyl-",C12H12,97.30694988,Manual assignment based on HydroUI,A
+17.924,91.1828,17.9226,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,97.35049649,Manual assignment based on HydroUI,A
+17.997,0.8055,17.9958,"Naphthalene, 1,2-dimethyl-",C12H12,82.33270328,Manual assignment based on HydroUI,A
+18.043,0.4657,18.0391,"1,3,5-Trimethyl-2-cyclopentylbenzene",C14H20,67.33784591,Manual assignment based on HydroUI,C
+18.119,0.1291,18.1178,"Diglycolic acid, di(2-ethylbutyl) ester",C16H30O5,56.76764128,Manual assignment based on HydroUI,O
+18.163,0.2157,18.1562,"Benzene, 1-tert-butyl-4-cyclopropylmethyl-",C14H20,57.4891563,Manual assignment based on HydroUI,A
+18.204,0.5348,18.2119,"Naphthalene, 1,6-dimethyl-",C12H12,83.97056315,Manual assignment based on HydroUI,A
+18.258,0.585,18.2628,"1,3-Pentanedione, 4-methyl-1-phenyl-",C12H14O2,61.3460572,Manual assignment based on HydroUI,O
+18.35,0.3694,,No match,,,Manual assignment based on HydroUI,
+18.422,0.6066,18.4197,"Naphthalene, 1,2-dimethyl-",C12H12,69.69373546,Manual assignment based on HydroUI,A
+18.548,0.5931,18.5434,"Benzene, 1-isopentyl-2,4,5-trimethyl-",C14H22,72.2124203,Manual assignment based on HydroUI,A
+18.65,0.2082,,No match,,,Manual assignment based on HydroUI,
+18.705,0.3789,,No match,,,Manual assignment based on HydroUI,
+18.816,1.2697,18.8169,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,72.31709837,Manual assignment based on HydroUI,A
+18.894,0.9541,18.8885,"Naphthalene, 1,2,3,4-tetrahydro-5,6,7,8-tetramethyl-",C14H20,71.04365148,Manual assignment based on HydroUI,A
+18.997,1.2682,18.994,"Naphthalene, 2-(1-methylethyl)-",C13H14,92.78654456,Manual assignment based on HydroUI,A
+19.055,0.3381,,No match,,,Manual assignment based on HydroUI,
+19.143,0.3943,19.1367,"Naphthalene, 1,6,7-trimethyl-",C13H14,79.98874949,Manual assignment based on HydroUI,A
+19.262,1.5735,19.2593,"Naphthalene, 1,6,7-trimethyl-",C13H14,94.38467665,Manual assignment based on HydroUI,A
+19.326,1.673,19.3235,"Naphthalene, 1,6,7-trimethyl-",C13H14,93.18942735,Manual assignment based on HydroUI,A
+19.399,0.0478,,No match,,,Manual assignment based on HydroUI,
+19.435,0.0713,,No match,,,Manual assignment based on HydroUI,
+19.527,0.5335,,No match,,,Manual assignment based on HydroUI,
+19.561,0.9046,19.5583,"Naphthalene, 1,6,7-trimethyl-",C13H14,94.195715,Manual assignment based on HydroUI,A
+19.614,0.0825,,No match,,,Manual assignment based on HydroUI,
+19.729,1.3687,19.7233,"Naphthalene, 2,3,6-trimethyl-",C13H14,88.70189281,Manual assignment based on HydroUI,A
+19.763,0.7714,19.7588,"Naphthalene, 2,3,6-trimethyl-",C13H14,85.18504359,Manual assignment based on HydroUI,A
+19.863,0.2256,,No match,,,Manual assignment based on HydroUI,
+19.95,0.6165,19.9463,"Naphthalene, 1,6,7-trimethyl-",C13H14,76.49403433,Manual assignment based on HydroUI,A
+20.043,0.6014,20.0403,"Naphthalene, 1,4,6-trimethyl-",C13H14,67.57350881,Manual assignment based on HydroUI,A
+20.114,0.5916,20.1107,"Naphthalene, 2-methyl-1-propyl-",C14H16,83.07846641,Manual assignment based on HydroUI,A
+20.228,0.374,20.2245,Chamazulene,C14H16,76.89571835,Manual assignment based on HydroUI,A
+20.322,0.3084,20.3164,"1,4,5,8-Tetramethylnaphthalene",C14H16,78.45676869,Manual assignment based on HydroUI,A
+20.38,0.4545,20.3755,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,73.71263337,Manual assignment based on HydroUI,A
+20.423,0.4667,20.4208,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,78.44113577,Manual assignment based on HydroUI,A
+20.466,0.5571,20.4619,"1,4,5,8-Tetramethylnaphthalene",C14H16,65.34165222,Manual assignment based on HydroUI,A
+20.556,0.1675,,No match,,,Manual assignment based on HydroUI,
+20.597,0.3377,20.6019,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,71.36774237,Manual assignment based on HydroUI,A
+20.695,1.2155,20.6931,3-Biphenylmethanol,C13H12O,73.24807963,Manual assignment based on HydroUI,O
+20.832,0.0923,20.8242,"1,4,5,8-Tetramethylnaphthalene",C14H16,72.14771637,Manual assignment based on HydroUI,A
+20.909,0.3551,,No match,,,Manual assignment based on HydroUI,
+20.949,1.3494,20.9466,"1,4,5,8-Tetramethylnaphthalene",C14H16,93.26652445,Manual assignment based on HydroUI,A
+21.067,0.1065,,No match,,,Manual assignment based on HydroUI,
+21.14,1.5333,21.1364,"Naphthalene, 1,2,3,4-tetramethyl-",C14H16,93.5510294,Manual assignment based on HydroUI,A
+21.189,0.6136,21.1859,"1,4,5,8-Tetramethylnaphthalene",C14H16,76.07896851,Manual assignment based on HydroUI,A
+21.255,0.2495,21.2508,"1,1'-Biphenyl, 4-methoxy-",C13H12O,78.23664371,Manual assignment based on HydroUI,O
+21.319,0.4479,21.317,"1,2,3,3a,8,9,9a,9b-Octahydrocyclopenta[def]phenanthrene",C15H18,63.88693546,Manual assignment based on HydroUI,A
+21.378,0.8867,21.3748,"1,4,5,8-Tetramethylnaphthalene",C14H16,82.38051118,Manual assignment based on HydroUI,A
+21.424,0.5018,21.4216,"1,4,5,8-Tetramethylnaphthalene",C14H16,57.70058504,Manual assignment based on HydroUI,A
+21.492,0.7736,21.4901,"Naphthalene, 1,2,3,4-tetramethyl-",C14H16,78.59404788,Manual assignment based on HydroUI,A
+21.55,0.38,21.6195,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,81.66497534,Manual assignment based on HydroUI,A
+21.62,0.2925,21.6785,"Naphthalene, 1,6-dimethyl-4-(1-methylethyl)-",C15H18,80.68673237,Manual assignment based on HydroUI,A
+21.681,0.7055,,No match,,,Manual assignment based on HydroUI,
+21.752,0.2248,,No match,,,Manual assignment based on HydroUI,
+21.801,0.2438,21.7959,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,76.97912323,Manual assignment based on HydroUI,A
+21.853,0.0329,,No match,,,Manual assignment based on HydroUI,
+21.895,0.3266,21.8921,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,64.30910676,Manual assignment based on HydroUI,A
+21.969,1.23,21.9661,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,84.38826743,Manual assignment based on HydroUI,A
+22.099,0.822,22.0948,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,86.01872491,Manual assignment based on HydroUI,A
+22.205,0.4914,22.2035,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,73.78072919,Manual assignment based on HydroUI,A
+22.267,0.1542,,No match,,,Manual assignment based on HydroUI,
+22.335,0.2602,22.332,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,72.48832929,Manual assignment based on HydroUI,A
+22.386,0.1461,,No match,,,Manual assignment based on HydroUI,
+22.438,0.4183,,No match,,,Manual assignment based on HydroUI,
+22.542,0.6752,22.5434,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,72.96867879,Manual assignment based on HydroUI,A
+22.632,1.6661,22.629,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,89.91286913,Manual assignment based on HydroUI,A
+22.727,0.4182,22.7246,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,76.72732041,Manual assignment based on HydroUI,A
+22.772,0.2808,22.7677,1-Ethoxy-2-phenylmethylbenzene,C15H16O,75.03110075,Manual assignment based on HydroUI,O
+22.84,0.3131,22.8341,"4,5-Dimethoxy-2-hydroxyacetophenone",C10H12O4,67.54030109,Manual assignment based on HydroUI,O
+22.898,0.4178,22.8981,1-Ethoxy-2-phenylmethylbenzene,C15H16O,62.65031845,Manual assignment based on HydroUI,O
+22.992,1.295,22.9918,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,82.21194098,Manual assignment based on HydroUI,A
+23.069,0.5288,,No match,,,Manual assignment based on HydroUI,
+23.209,1.0058,23.2088,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,86.67111358,Manual assignment based on HydroUI,A
+23.245,0.2895,,No match,,,Manual assignment based on HydroUI,
+23.386,1.1229,,No match,,,Manual assignment based on HydroUI,
+23.467,0.2391,23.46,"Benzo[a]fluorene, 1,2,3,4,6b,7,8,9,10,10a-decahydro-",C17H22,50.79563097,Manual assignment based on HydroUI,A
+23.503,0.2197,,No match,,,Manual assignment based on HydroUI,
+23.569,0.4599,,No match,,,Manual assignment based on HydroUI,
+23.662,0.3717,,No match,,,Manual assignment based on HydroUI,
+23.717,0.2594,23.694,"1,2,5,6-Tetramethylacenaphthylene",C16H16,52.47321106,Manual assignment based on HydroUI,A
+23.755,0.2212,23.75,"Benzo[d,E]isocoumarin, 3,3-dimethyl-",C14H12O2,68.06485409,Manual assignment based on HydroUI,O
+23.824,0.3021,23.8264,"Sebacic acid, nonyl 4-(2-phenylpropyl-2)-phenyl ester",C34H50O4,72.56514204,Manual assignment based on HydroUI,O
+23.866,0.1187,23.8732,"1,3-Dimethyl-5-(adamantyl-1)benzene",C18H24,56.13483275,Manual assignment based on HydroUI,A
+23.961,0.3909,23.9597,"9H-Xanthen-9-one, 4-methoxy-",C14H10O3,68.27931098,Manual assignment based on HydroUI,O
+24.021,0.2263,24.0214,"1-(2,3,4-Trimethoxyphenyl)ethanol",C11H16O4,64.03852795,Manual assignment based on HydroUI,O
+24.08,0.2553,24.0631,"Benzo[a]fluorene, 1,2,3,4,6b,7,8,9,10,10a-decahydro-",C17H22,50.24252319,Manual assignment based on HydroUI,A
+24.119,0.321,,No match,,,Manual assignment based on HydroUI,
+24.231,0.3924,,No match,,,Manual assignment based on HydroUI,
+24.352,0.2984,24.3495,"Naphtho[2,1-b:7,8-b']difuran, 1,2,9,10-tetrahydro-2,9-dimethyl-",C16H16O2,55.39666104,Manual assignment based on HydroUI,O
+24.398,0.0471,,No match,,,Manual assignment based on HydroUI,
+24.463,0.1915,,No match,,,Manual assignment based on HydroUI,
+24.52,0.1793,,No match,,,Manual assignment based on HydroUI,
+24.558,0.3362,24.5579,"Phenanthrene, 2,7-dimethyl-",C16H14,57.98864708,Manual assignment based on HydroUI,A
+24.641,1.1871,24.6334,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,79.92528,Manual assignment based on HydroUI,O
+24.745,0.4384,24.7442,di-p-Tolylacetylene,C16H14,64.99667895,Manual assignment based on HydroUI,A
+24.808,0.21,24.8059,"Phenanthrene, 3,6-dimethyl-",C16H14,67.6696334,Manual assignment based on HydroUI,A
+24.906,0.5818,24.9003,"Benzene, 1-(1,1-dimethylethyl)-4-phenoxy-",C16H18O,62.53937053,Manual assignment based on HydroUI,O
+24.969,0.169,,No match,,,Manual assignment based on HydroUI,
+25.094,0.4857,25.0861,"Naphtho[1,2-b]furan-4,5-dione, 2-isopropyl-",C15H12O3,63.97736988,Manual assignment based on HydroUI,O
+25.185,0.2738,,No match,,,Manual assignment based on HydroUI,
+25.249,0.1547,,No match,,,Manual assignment based on HydroUI,
+25.301,0.2821,25.3001,"9H-Xanthen-9-one, 4-methoxy-",C14H10O3,57.88233833,Manual assignment based on HydroUI,O
+25.375,0.1823,25.3655,"1,1'-Biphenyl, 3,3',4,4',5,5'-hexamethyl-",C18H22,51.83874637,Manual assignment based on HydroUI,A
+25.424,0.063,25.4174,1-Ethyl-2-methylphenanthrene,C17H16,54.68759308,Manual assignment based on HydroUI,A
+25.468,0.1866,,No match,,,Manual assignment based on HydroUI,
+25.526,0.193,,No match,,,Manual assignment based on HydroUI,
+25.604,0.5903,,No match,,,Manual assignment based on HydroUI,
+25.755,0.4619,25.7551,"Phenanthrene, 2,3,5-trimethyl-",C17H16,79.27204731,Manual assignment based on HydroUI,A
+25.836,0.77,25.8341,"Phenanthrene, 2,3,5-trimethyl-",C17H16,72.09572344,Manual assignment based on HydroUI,A
+25.979,0.8334,25.9747,4-Propylbiphenyl-4'-carboxylic acid,C16H16O2,52.33922886,Manual assignment based on HydroUI,O
+26.063,0.0838,26.1032,Butylated Hydroxytoluene,C15H24O,66.95056693,Manual assignment based on HydroUI,O
+26.116,0.1641,26.1119,"2-Propenoic acid, 3-(3,4,5-trimethoxyphenyl)-",C12H14O5,68.534879,Manual assignment based on HydroUI,O
+26.197,0.2067,,No match,,,Manual assignment based on HydroUI,
+26.249,0.319,26.2572,Butylated Hydroxytoluene,C15H24O,68.21189611,Manual assignment based on HydroUI,O
+26.33,0.1864,,No match,,,Manual assignment based on HydroUI,
+26.368,0.075,,No match,,,Manual assignment based on HydroUI,
+26.431,0.2528,26.438,"2H-1-Benzopyran, 6,7-dimethoxy-2,2-dimethyl-",C13H16O3,68.13740364,Manual assignment based on HydroUI,O
+26.483,0.1964,,No match,,,Manual assignment based on HydroUI,
+26.54,0.0642,,No match,,,Manual assignment based on HydroUI,
+26.591,0.259,,No match,,,Manual assignment based on HydroUI,
+26.727,0.6092,26.7271,"3,5-Di-tert-butyl-2-hydroxybenzaldehyde",C15H22O2,76.83898048,Manual assignment based on HydroUI,O
+26.779,0.0723,,No match,,,Manual assignment based on HydroUI,
+26.856,0.4436,,No match,,,Manual assignment based on HydroUI,
+26.914,0.2444,26.9122,"Ethanone, 1-(4,6-dihydroxy-2,3,5-trimethyl-7-benzofuranyl)-",C13H14O4,68.18656489,Manual assignment based on HydroUI,O
+27.041,0.638,,No match,,,Manual assignment based on HydroUI,
+27.139,0.7836,27.1394,"Phenanthrene, 2,4,5,7-tetramethyl-",C18H18,75.40343736,Manual assignment based on HydroUI,A
+27.317,6.2724,27.3003,"1,3,6,8-Tetramethylanthracene",C18H18,58.52621828,Manual assignment based on HydroUI,A
+27.5,0.3637,,No match,,,Manual assignment based on HydroUI,
+27.582,0.2762,27.5867,Pentacene,C22H14,57.09924085,Manual assignment based on HydroUI,A
+27.67,0.4827,27.6734,2-Isopropyl-10-methylphenanthrene,C18H18,71.67161729,Manual assignment based on HydroUI,A
+27.723,0.2991,,No match,,,Manual assignment based on HydroUI,
+27.765,0.3418,27.764,"1,4-Naphthoquinone, 6-acetyl-2,5,7-trihydroxy-",C12H8O6,55.36152774,Manual assignment based on HydroUI,O
+27.826,0.2145,,No match,,,Manual assignment based on HydroUI,
+27.93,0.5651,,No match,,,Manual assignment based on HydroUI,
+27.989,0.1642,,No match,,,Manual assignment based on HydroUI,
+28.05,0.2446,,No match,,,Manual assignment based on HydroUI,
+28.124,0.9203,28.1193,"8-Isopropyl-1,3-dimethylphenanthrene",C19H20,63.77555115,Manual assignment based on HydroUI,A
+28.196,0.1256,,No match,,,Manual assignment based on HydroUI,
+28.362,0.9126,28.3597,"Ethanone, 1-(7-hydroxy-5-methoxy-2,2-dimethyl-2H-1-benzopyran-8-yl)-",C14H16O4,51.51165631,Manual assignment based on HydroUI,O
+28.432,0.2672,,No match,,,Manual assignment based on HydroUI,
+28.479,0.0866,,No match,,,Manual assignment based on HydroUI,
+28.528,0.4298,,No match,,,Manual assignment based on HydroUI,
+28.624,0.6976,28.626,"8-Isopropyl-1,3-dimethylphenanthrene",C19H20,78.11253438,Manual assignment based on HydroUI,A
+28.659,0.2942,,No match,,,Manual assignment based on HydroUI,
+28.74,0.243,,No match,,,Manual assignment based on HydroUI,
+28.895,0.7801,28.8978,"2-Naphthoic acid, 6-hydroxy-5,7-dimethoxy-, acetate",C15H14O6,64.1671875,Manual assignment based on HydroUI,O
+29.214,1.4281,,No match,,,Manual assignment based on HydroUI,
+29.465,0.2866,,No match,,,Manual assignment based on HydroUI,
+29.691,0.2116,,No match,,,Manual assignment based on HydroUI,
+29.799,0.7406,,No match,,,Manual assignment based on HydroUI,
+30.036,0.5097,,No match,,,Manual assignment based on HydroUI,
+30.164,0.1831,,No match,,,Manual assignment based on HydroUI,
+30.324,1.4771,,No match,,,Manual assignment based on HydroUI,
+30.45,0.7603,,No match,,,Manual assignment based on HydroUI,
+30.564,1.259,,No match,,,Manual assignment based on HydroUI,
+30.891,2.9651,,No match,,,Manual assignment based on HydroUI,
+30.964,0.6918,,No match,,,Manual assignment based on HydroUI,
+31.052,0.1536,,No match,,,Manual assignment based on HydroUI,
+31.117,0.142,,No match,,,Manual assignment based on HydroUI,
+31.329,0.8387,,No match,,,Manual assignment based on HydroUI,
+31.437,0.1155,,No match,,,Manual assignment based on HydroUI,
+31.457,0.0332,,No match,,,Manual assignment based on HydroUI,
+31.475,0.0773,,No match,,,Manual assignment based on HydroUI,
+31.505,0.1468,,No match,,,Manual assignment based on HydroUI,
+31.591,1.0623,,No match,,,Manual assignment based on HydroUI,
+31.705,0.7595,,No match,,,Manual assignment based on HydroUI,
+31.857,0.1038,,No match,,,Manual assignment based on HydroUI,
+31.891,0.1565,,No match,,,Manual assignment based on HydroUI,
+31.91,0.1022,,No match,,,Manual assignment based on HydroUI,
+31.933,0.113,,No match,,,Manual assignment based on HydroUI,
+31.959,0.1559,,No match,,,Manual assignment based on HydroUI,
+31.999,0.2943,31.9806,"Benzene, 1,1'-(1,1,10,10-tetramethyl-1,10-decanediyl)bis[3,4-dimethyl-",C30H46,54.77945569,Manual assignment based on HydroUI,A
+32.379,0.0729,,No match,,,Manual assignment based on HydroUI,
+32.433,0.0934,,No match,,,Manual assignment based on HydroUI,
+32.471,0.3099,,No match,,,Manual assignment based on HydroUI,
+32.531,0.1051,,No match,,,Manual assignment based on HydroUI,
+32.696,0.3072,,No match,,,Manual assignment based on HydroUI,
+32.789,0.269,,No match,,,Manual assignment based on HydroUI,
+32.856,0.2555,,No match,,,Manual assignment based on HydroUI,
+32.931,0.1001,,No match,,,Manual assignment based on HydroUI,
+33.118,0.2487,,No match,,,Manual assignment based on HydroUI,
+33.162,0.2519,,No match,,,Manual assignment based on HydroUI,
+33.238,0.6487,,No match,,,Manual assignment based on HydroUI,
+33.404,0.143,,No match,,,Manual assignment based on HydroUI,
+33.442,0.0756,,No match,,,Manual assignment based on HydroUI,
+33.497,0.2396,,No match,,,Manual assignment based on HydroUI,
+33.551,0.107,,No match,,,Manual assignment based on HydroUI,
+33.71,0.2814,,No match,,,Manual assignment based on HydroUI,
+33.754,0.1812,,No match,,,Manual assignment based on HydroUI,
+34.011,0.2261,,No match,,,Manual assignment based on HydroUI,
+34.046,0.1014,,No match,,,Manual assignment based on HydroUI,
+34.134,0.4432,,No match,,,Manual assignment based on HydroUI,
+34.201,0.2121,,No match,,,Manual assignment based on HydroUI,
+34.233,0.2816,,No match,,,Manual assignment based on HydroUI,
+34.324,0.2961,,No match,,,Manual assignment based on HydroUI,
+34.375,0.275,,No match,,,Manual assignment based on HydroUI,
+34.41,0.0634,,No match,,,Manual assignment based on HydroUI,
+34.596,0.0642,,No match,,,Manual assignment based on HydroUI,
+34.691,0.099,,No match,,,Manual assignment based on HydroUI,
+34.758,0.2453,,No match,,,Manual assignment based on HydroUI,
+34.932,0.4528,,No match,,,Manual assignment based on HydroUI,
+34.973,0.0652,,No match,,,Manual assignment based on HydroUI,
+35.049,0.1699,,No match,,,Manual assignment based on HydroUI,
+35.132,0.1843,,No match,,,Manual assignment based on HydroUI,
+35.205,0.4412,,No match,,,Manual assignment based on HydroUI,
+35.337,0.5519,,No match,,,Manual assignment based on HydroUI,
+35.437,0.0655,,No match,,,Manual assignment based on HydroUI,
+36.014,0.0671,,No match,,,Manual assignment based on HydroUI,
+36.061,0.316,,No match,,,Manual assignment based on HydroUI,
+36.223,0.0987,,No match,,,Manual assignment based on HydroUI,
+36.357,0.3539,,No match,,,Manual assignment based on HydroUI,
+36.404,0.2247,,No match,,,Manual assignment based on HydroUI,
+36.649,0.3296,,No match,,,Manual assignment based on HydroUI,
+36.697,0.1911,,No match,,,Manual assignment based on HydroUI,
+36.785,0.1285,,No match,,,Manual assignment based on HydroUI,
+36.916,0.848,,No match,,,Manual assignment based on HydroUI,
+37.107,0.3361,,No match,,,Manual assignment based on HydroUI,
+37.262,0.5588,,No match,,,Manual assignment based on HydroUI,
+37.364,0.1452,,No match,,,Manual assignment based on HydroUI,
+37.409,0.2491,,No match,,,Manual assignment based on HydroUI,
+37.864,0.4393,,No match,,,Manual assignment based on HydroUI,
+37.975,0.0728,,No match,,,Manual assignment based on HydroUI,
+37.995,0.2264,,No match,,,Manual assignment based on HydroUI,
+38.195,0.1002,,No match,,,Manual assignment based on HydroUI,
+38.532,0.1293,,No match,,,Manual assignment based on HydroUI,
+39.235,0.063,,No match,,,Manual assignment based on HydroUI,
+39.271,0.1543,,No match,,,Manual assignment based on HydroUI,
+39.442,1.6111,,No match,,,Manual assignment based on HydroUI,
+39.528,0.4266,,No match,,,Manual assignment based on HydroUI,
+39.64,0.5633,,No match,,,Manual assignment based on HydroUI,

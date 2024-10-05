@@ -1,0 +1,84 @@
+,Component RT,Compound Name,Formula,Match Factor,Previous Best Compound Name,Previous Best Formula,Previous Best Match Factor,Previous Worst Compound Name,Previous Worst Formula,Previous Worst Match Factor
+0,0.160344857588325,No Match,,,4-Nitrophenyl chloroacetate,C8H6ClNO4,52.9280525790549,Oxiniacic acid,C6H5NO3,51.0210027189243
+1,0.16035290091095,No Match,,,4-Nitrophenyl chloroacetate,C8H6ClNO4,54.6425535931234,Isonicotinic acid N-oxide,C6H5NO3,52.3211521985371
+2,0.2121,No Match,,,Oxiniacic acid,C6H5NO3,53.4749612154561,Oxiniacic acid,C6H5NO3,53.4749612154561
+3,1.2769,"3,5-Hexadiyn-2-one",C6H4O,52.8708179094619,Trimethylphosphine oxide,C3H9OP,63.9561087512819,"3,5-Hexadiyn-2-one",C6H4O,52.8708179094619
+4,1.5433,No Match,,,"Acetamide, oxime",C2H6N2O,65.0221334698773,N-Nitrosodimethylamine,C2H6N2O,52.6287853553101
+5,2.0647,No Match,,,N-Benzyl-2-methylaziridine,C10H13N,74.5621133113906,N-methyliminopropylbenzene,C10H13N,54.4875860732264
+6,2.1153,"Furan, 2,2'-[oxybis(methylene)]bis-",C10H10O3,52.0702209849702,"4-Imidazolacetic acid, butyl ester",C9H14N2O2,55.2832616499637,"1H-Imidazole, 4-methyl-",C4H6N2,50.1053405000682
+7,2.2683,No Match,,,"Benzeneacetamide, N-[2,2,2-trifluoro-1-(3-pyridinylamino)-1-(trifluoromethyl)ethyl]-",C16H13F6N3O,50.5469534517831,"Benzeneacetamide, N-[2,2,2-trifluoro-1-(3-pyridinylamino)-1-(trifluoromethyl)ethyl]-",C16H13F6N3O,50.546650452619
+8,2.4312,No Match,,,Nitrous oxide,N2O,85.8833357235126,1-(2-Aminopropoxy)-2-methoxyethane,C6H15NO2,56.9410255389689
+9,2.4391,No Match,,,Methylamine,CH5N,68.7697120915497,"2-Propanol, 1-amino-, (S)-",C3H9NO,51.527135917887
+10,2.483,Acetaldehyde,C2H4O,80.4317219543021,"Propane, 2-nitro-",C3H7NO2,81.0595224143137,Ethylene oxide,C2H4O,74.6679282195229
+11,2.559,Isobutane,C4H10,99.4395357699871,Isobutane,C4H10,99.4395357699871,Isobutane,C4H10,97.8440234971741
+12,2.6139,2-Propenal,C3H4O,87.6860068204132,2-Propenal,C3H4O,87.6860068204132,Succinic anhydride,C4H4O3,69.7177020816915
+13,2.6289,Butane,C4H10,99.0001862037764,Butane,C4H10,99.0001862037764,Butane,C4H10,93.8825206186657
+14,2.6605,2-Propenal,C3H4O,88.1246571968998,2-Propenal,C3H4O,88.1246571968998,2-Propenal,C3H4O,72.1090031204379
+15,2.7029,"2-Butene, (E)-",C4H8,97.3521502168554,"2-Butene, (E)-",C4H8,97.3521502168554,"2-Butene, (E)-",C4H8,96.8316204481114
+16,2.8153,2-Methyl-1-butene,C5H10,95.2642732268369,2-Methyl-1-butene,C5H10,95.2642732268369,"Cyclopropane, 1,1-dimethyl-",C5H10,77.3367412924665
+17,2.8838,"Butane, 2-methyl-",C5H12,97.6967401061777,"Butane, 2-methyl-",C5H12,97.6967401061777,Pentane,C5H12,94.0013117330586
+18,2.9742,"Cyclobutane, 1,1,2,3,3-pentamethyl-",C9H18,71.2939842845856,"Cyclobutane, 1,1,2,3,3-pentamethyl-",C9H18,71.2939842845856,1-Hepten-3-one,C7H12O,62.8026102145254
+19,3.0236,"Cyclobutane, 1,1,2,3,3-pentamethyl-",C9H18,68.0840174369668,"Cyclobutane, 1,1,2,3,3-pentamethyl-",C9H18,68.0840174369668,"1H,1H-Pentafluoropropyl acrylate",C6H5F5O2,54.0407303053431
+20,3.0295,Pentane,C5H12,98.9395038961843,Pentane,C5H12,98.9395038961843,Pentane,C5H12,94.7509383949147
+21,3.098,2-Methyl-1-butene,C5H10,97.5756600775657,2-Methyl-1-butene,C5H10,97.5756600775657,2-Pentene,C5H10,93.6812822951039
+22,3.1916,"Cyclopropane, 1,2-dimethyl-, cis-",C5H10,98.8176773533145,"Cyclopropane, 1,2-dimethyl-, cis-",C5H10,98.8176773533145,"2-Butene, 2-methyl-",C5H10,96.699238477012
+23,3.26,Hydroxymethyl 2-hydroxy-2-methylpropionate,C6H12O4,82.3325371147692,Hydroxymethyl 2-hydroxy-2-methylpropionate,C6H12O4,82.3325371147692,"Propanoic acid, 2-methoxy-",C4H8O3,67.3241526583473
+24,3.2951,"Butane, 2,2-dimethyl-",C6H14,98.8299534912445,"Butane, 2,2-dimethyl-",C6H14,98.8299534912445,"Butane, 2,2-dimethyl-",C6H14,95.5625542705292
+25,3.34972276878145,No Match,,,N-(2-Furylcarbonyl)tyrosine,C14H13NO5,50.8533218619417,N-(2-Furylcarbonyl)tyrosine,C14H13NO5,50.8533218619417
+26,3.5333,"2-Pentene, 3-methyl-, (Z)-",C6H12,92.2006430220262,"2-Pentene, 3-methyl-, (Z)-",C6H12,92.2006430220262,"2-Pentene, 3-methyl-, (E)-",C6H12,91.8109893651505
+27,3.6078,"Butane, 2,3-dimethyl-",C6H14,96.5160637733979,"Butane, 2,3-dimethyl-",C6H14,96.5160637733979,"Butane, 2,3-dimethyl-",C6H14,95.2557079128165
+28,3.653,"Pentane, 2-methyl-",C6H14,98.6204254677,"Pentane, 2-methyl-",C6H14,98.6204254677,"Pentane, 2-methyl-",C6H14,96.7465044958288
+29,3.8494,"Pentane, 3-methyl-",C6H14,99.280894121892,"Pentane, 3-methyl-",C6H14,99.280894121892,"Hexane, 2,2,3-trimethyl-",C9H20,92.8562814427863
+30,3.9681,"1-Pentene, 2-methyl-",C6H12,93.6246997079935,"1-Pentene, 2-methyl-",C6H12,93.6246997079935,"Cyclopentane, methyl-",C6H12,77.1228152785819
+31,4.1177,n-Hexane,C6H14,97.4324830359743,2-Ethyl-oxetane,C5H10O,98.3571166208775,n-Hexane,C6H14,96.6789035620468
+32,4.2073,"Cyclopropanecarboxylic acid, but-3-yn-2-yl ester",C8H10O2,63.816133031084,Chlorine dioxide,ClO2,67.2726801229864,"Cyclopentane, bromo-",C5H9Br,60.5260052438148
+33,4.2516,"2-Propenoic acid, ethenyl ester",C5H6O2,74.4412547169596,"1-[(1-Oxo-2-propenyl)oxy]-2,5-pyrrolidinedione",C7H7NO4,78.1570863790355,"Butanenitrile, 2-methyl-",C5H9N,70.2462046286986
+34,4.296,"1-Butene, 2,3-dimethyl-",C6H12,92.3463265951197,"1-Butene, 2,3-dimethyl-",C6H12,92.3463265951197,"2,2'-Bifuran, 2,2',5,5'-tetrahydro-",C8H10O2,66.8598706353806
+35,4.3547,"2-Pentene, 3-methyl-",C6H12,94.2368713423922,"2-Pentene, 3-methyl-",C6H12,94.2368713423922,"Cyclopropane, 1,1,2-trimethyl-",C6H12,78.178061605264
+36,4.5659,Cyclohexane,C6H12,87.7537261157834,Cyclohexane,C6H12,87.7537261157834,"Pentane, 3-methylene-",C6H12,80.1734846997917
+37,4.6924,"Pentane, 2,4-dimethyl-",C7H16,97.8879019395869,"Pentane, 2,4-dimethyl-",C7H16,97.8879019395869,1H-Tetrazol-5-amine,CH3N5,84.5743164121774
+38,4.705,3-Methylnon-1-yn-3-ol,C10H18O,61.0108337071664,Tetrafluoromethane,CF4,61.2666808457104,"Cyclopentanecarboxylic acid, 1-amino-, ethyl ester",C8H15NO2,50.4030183493234
+39,4.8012,"1-Butene, 3,3-dimethyl-",C6H12,92.8750749836379,"1-Butene, 3,3-dimethyl-",C6H12,92.8750749836379,"1,5-Heptadiene, 3,4-dimethyl-",C9H16,79.6622363061857
+40,4.8344,"Pentane, 2,2-dimethyl-",C7H16,80.9104932252202,"Pentane, 2,2-dimethyl-",C7H16,80.9104932252202,"Butane, 2,2,3-trimethyl-",C7H16,75.2281517047466
+41,5.1681,"1-Pentene, 2,4-dimethyl-",C7H14,82.9549378035045,"1-Pentene, 2,4-dimethyl-",C7H14,82.9549378035045,"1-Pentene, 2,4-dimethyl-",C7H14,80.0143671668991
+42,5.3344,"Pentane, 3,3-dimethyl-",C7H16,92.0121399644309,"Pentane, 3,3-dimethyl-",C7H16,92.0121399644309,Ethyl (E)-hex-3-enyl carbonate,C9H16O3,66.4793863203202
+43,5.3944,"2-Pentene, 4,4-dimethyl-, (E)-",C7H14,89.5636131734551,"2-Pentene, 4,4-dimethyl-, (E)-",C7H14,89.5636131734551,"2-Pentene, 3,4-dimethyl-, (E)-",C7H14,78.5685205857409
+44,5.5558,Cyclohexane,C6H12,92.2382971318738,Cyclohexane,C6H12,92.2382971318738,"1,3-Benzodioxol-2-one, hexahydro-, trans-",C7H10O3,58.8106105174062
+45,5.5724,Benzene,C6H6,98.0574277605151,Benzene,C6H6,98.0574277605151,Benzene,C6H6,92.7988734447652
+46,5.6672,"Hexane, 2-methyl-",C7H16,97.3168410262314,"Hexane, 2-methyl-",C7H16,97.3168410262314,"Pentane, 2,2-dimethyl-",C7H16,87.4491838123603
+47,5.7227,"Hexane, 2,2,4-trimethyl-",C9H20,80.1971114637617,"Hexane, 2,2,4-trimethyl-",C9H20,80.1971114637617,"Pentane, 3-methyl-",C6H14,72.1212801082532
+48,5.9113,"Hexane, 3-methyl-",C7H16,98.3731646920943,"Hexane, 3-methyl-",C7H16,98.3731646920943,"Hexane, 3-methyl-",C7H16,89.4820879054198
+49,6.1397,"Cyclopentane, 1,3-dimethyl-, cis-",C7H14,91.0511154270388,"Cyclopentane, 1,3-dimethyl-, cis-",C7H14,91.0511154270388,"2,2-Dimethylglutaric anhydride",C7H10O3,77.0658107663657
+50,6.2178,"Cyclopentane, 1,3-dimethyl-",C7H14,89.0642638678461,"Cyclopentane, 1,3-dimethyl-",C7H14,89.0642638678461,"L-Proline, ethyl ester",C7H13NO2,69.001607431583
+51,6.2952,"Cyclohexane, methyl-",C7H14,83.1195286874629,"Cyclohexane, methyl-",C7H14,83.1195286874629,"3,5-Dimethyldihydropyran-2,6-dione",C7H10O3,73.86257691389
+52,6.3305,"Furan, 2-methoxy-",C5H6O2,84.867399836688,"Furan, 2-methoxy-",C5H6O2,84.867399836688,"3-Penten-2-one, 4-methyl-",C6H10O,80.8452527294513
+53,6.5124,"4-Methyl-2-hexene,c&t",C7H14,76.2998513380646,"4-Methyl-2-hexene,c&t",C7H14,76.2998513380646,"2-Hexene, 4-methyl-, (E)-",C7H14,72.9423034135532
+54,6.5515,1-Methylene-2-benzyloxy-cyclopropane,C11H12O,73.9615082721984,1-Methylene-2-benzyloxy-cyclopropane,C11H12O,73.9615082721984,"l-Alanine, 3-chloro-N-[(phenylmethoxy)carbonyl]-, phenylmethyl ester",C18H18ClNO4,66.9659670377759
+55,6.5996,Heptane,C7H16,97.4383347200452,Heptane,C7H16,97.4383347200452,Heptane,C7H16,92.1307669986222
+56,6.7371,"4-Methyl-2-hexene,c&t",C7H14,93.8591118912152,"4-Methyl-2-hexene,c&t",C7H14,93.8591118912152,"1-Penten-3-one, 2-methyl-",C6H10O,73.9157330530826
+57,6.9502,(Z)-4-Methyl-2-hexene,C7H14,88.3051944967543,(Z)-4-Methyl-2-hexene,C7H14,88.3051944967543,"Cyclopropane, 1,1-diethyl-",C7H14,82.852462855912
+58,6.9609,"4-Methyl-2-hexene,c&t",C7H14,83.5694898611566,"4-Methyl-2-hexene,c&t",C7H14,83.5694898611566,"2-Hexene, 4-methyl-, (E)-",C7H14,82.1149656322345
+59,7.0583,"2-Pentene, 3,4-dimethyl-, (Z)-",C7H14,93.4076875618638,"2-Pentene, 3,4-dimethyl-, (Z)-",C7H14,93.4076875618638,"2-Pentene, 3,4-dimethyl-, (E)-",C7H14,86.3341771753152
+60,7.1863,"Pentane, 2,2,4-trimethyl-",C8H18,71.4747568028109,"Methane, isocyanato-",C2H3NO,84.1584967968506,"Butane, 2,2,3,3-tetramethyl-",C8H18,71.0646936181773
+61,7.232,"Cyclohexane, methyl-",C7H14,95.12124996549,"Cyclohexane, methyl-",C7H14,95.12124996549,"Pyrrolidine-2-carboxamide, N-ethyl-N'-(2'-formylphenyl)-",C14H18N2O2,64.1003268716675
+62,7.4685,"Hexane, 2,5-dimethyl-",C8H18,98.6987507443796,"Hexane, 2,5-dimethyl-",C8H18,98.6987507443796,"Heptane, 2-methyl-",C8H18,90.0012732537829
+63,7.5215,"Hexane, 2,4-dimethyl-",C8H18,95.9684562223435,"Hexane, 2,4-dimethyl-",C8H18,95.9684562223435,"Pentane, 2,2-dimethyl-",C7H16,86.0024256549758
+64,7.7177,"Cyclopentane, 1,2,4-trimethyl-",C8H16,89.6896161384901,"Cyclopentane, 1,2,4-trimethyl-",C8H16,89.6896161384901,"Cyclopentane, 1,2,4-trimethyl-",C8H16,72.7467004732897
+65,7.7437,"Cyclopentane, 1,2,4-trimethyl-",C8H16,84.4271568618945,"Cyclopentane, 1,2,4-trimethyl-",C8H16,84.4271568618945,"1-Butanol, 2-ethyl-",C6H14O,78.0242640306892
+66,7.9271,3-Ethyl-3-hexene,C8H16,90.3104753835216,3-Ethyl-3-hexene,C8H16,90.3104753835216,3-Ethyl-3-hexene,C8H16,87.3099923053623
+67,8.2727,"Hexane, 2,3-dimethyl-",C8H18,95.3284461262963,"Hexane, 2,3-dimethyl-",C8H18,95.3284461262963,"Pentane, 2,3,4-trimethyl-",C8H18,80.9792897085929
+68,8.4263,"Heptane, 2-methyl-",C8H18,98.0238688063083,"Heptane, 2-methyl-",C8H18,98.0238688063083,"Hexane, 2,5-dimethyl-",C8H18,89.9681965134136
+69,8.4716,Toluene,C7H8,75.2191888972109,Toluene,C7H8,75.2191888972109,Toluene,C7H8,71.3526346810238
+70,8.6322,"Heptane, 3-methyl-",C8H18,98.3645063951446,"Heptane, 3-methyl-",C8H18,98.3645063951446,"Heptane, 4,4-dimethyl-",C9H20,84.8866922952803
+71,8.7416,No Match,,,"Cycloheptane, bromo-",C7H13Br,87.1768190186605,"Cyclohexane, 1-bromo-4-methyl-",C7H13Br,81.4814506195001
+72,8.7839,"2-Pentene, 2,4,4-trimethyl-",C8H16,79.6270884022828,"2-Pentene, 2,4,4-trimethyl-",C8H16,79.6270884022828,"Cyclopentanecarboxylic acid, 2-fluorophenyl ester",C12H13FO2,72.7049727415784
+73,9.2464,"Cyclohexane, 1,3-dimethyl-, cis-",C8H16,85.0541502030029,"Cyclohexane, 1,3-dimethyl-, cis-",C8H16,85.0541502030029,"Cyclohexane, 1,3-dimethyl-, cis-",C8H16,84.130928878514
+74,9.3263,Octane,C8H18,94.370427615762,Octane,C8H18,94.370427615762,"Hexane, 2,3,4-trimethyl-",C9H20,87.9498613242405
+75,9.4418,"Cyclohexane, 1,4-dimethyl-, cis-",C8H16,91.7020795549333,"Cyclohexane, 1,4-dimethyl-, cis-",C8H16,91.7020795549333,"Cyclohexane, 1,4-dimethyl-, trans-",C8H16,81.4790414802614
+76,10.0308,"Octane, 2,3,3-trimethyl-",C11H24,89.6648188135233,"Octane, 2,3,3-trimethyl-",C11H24,89.6648188135233,"Octane, 2,3,7-trimethyl-",C11H24,88.0520065973976
+77,10.1907,"Heptane, 3,5-dimethyl-",C9H20,92.5784308319201,"Heptane, 3,5-dimethyl-",C9H20,92.5784308319201,"Octane, 3-methyl-",C9H20,85.1900019013037
+78,10.8618,"Decane, 5,6-dimethyl-",C12H26,89.607748953923,"Decane, 5,6-dimethyl-",C12H26,89.607748953923,"Heptane, 2,4-dimethyl-",C9H20,82.2222526715001
+79,11.0137,"Ether, 2-phenylpropyl tert.butyl",C13H20O,59.5128442195254,"Hexanoyl chloride, 2-ethyl-",C8H15ClO,64.7528504130182,"Acethydrazide, 2-benzyloxycarbonylamino-N2-tert-butoxycarbonyl-",C15H21N3O5,57.2624749257732
+80,15.1143,"Indan, 1-methyl-",C10H12,84.7669023645407,"Indan, 1-methyl-",C10H12,84.7669023645407,"Benzene, 1-ethenyl-4-ethyl-",C10H12,78.4259655794998
+81,16.3302,"Naphthalene, 1,2,3,4-tetrahydro-",C10H12,93.8881537283328,"Naphthalene, 1,2,3,4-tetrahydro-",C10H12,93.8881537283328,Cyclopropylphenylmethane,C10H12,66.7962425722439
+82,16.7182,"Nonane, 3,7-dimethyl-",C11H24,88.639905411919,"Nonane, 3,7-dimethyl-",C11H24,88.639905411919,"Decane, 3-methyl-",C11H24,82.7520188406517

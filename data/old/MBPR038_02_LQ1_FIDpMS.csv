@@ -1,0 +1,289 @@
+﻿Signal Name,FID RT,FID Area,Height,MS RT,Compound Name,Formula,Match Factor,Compound Source,Compound Type Abbreviation
+FID1A,2.353,0.1485,0.0522,,,,,Manual assignment based on HydroUI,
+FID1A,2.446,0.5569,0.3616,2.4437,Isobutane,C4H10,91.99326082,Manual assignment based on HydroUI,B
+FID1A,2.497,0.3135,0.1841,,,,,Manual assignment based on HydroUI,
+FID1A,2.674,4.1642,2.6588,2.6721,"Butane, 2-methyl-",C5H12,97.79077345,Manual assignment based on HydroUI,B
+FID1A,2.77,1.1554,0.6962,2.7678,Pentane,C5H12,95.65148458,Manual assignment based on HydroUI,L
+FID1A,2.875,0.1,0.0469,,,,,Manual assignment based on HydroUI,
+FID1A,2.945,0.0855,0.04,,,,,Manual assignment based on HydroUI,
+FID1A,3.163,6.1125,2.9054,3.1608,"Pentane, 2-methyl-",C6H14,98.28322598,Manual assignment based on HydroUI,B
+FID1A,3.284,2.2362,1.1403,3.2823,"Pentane, 3-methyl-",C6H14,98.12103669,Manual assignment based on HydroUI,B
+FID1A,3.435,1.9201,0.9241,3.4337,n-Hexane,C6H14,96.40028321,Manual assignment based on HydroUI,L
+FID1A,3.687,0.4388,0.1766,3.686,"2,2-Dimethylpropanoic anhydride",C10H18O3,82.82570359,Manual assignment based on HydroUI,O
+FID1A,3.777,2.9801,0.8141,3.7757,"Cyclopentane, methyl-",C6H12,92.16124009,Manual assignment based on HydroUI,C
+FID1A,4.388,88445.0547,15335.9707,,,,,Manual assignment based on HydroUI,
+FID1A,4.458,2.2848,1.8029,,,,,Manual assignment based on HydroUI,
+FID1A,4.604,0.5307,0.2812,4.6078,"Hexane, 2,3-dimethyl-",C8H18,88.21472782,Manual assignment based on HydroUI,B
+FID1A,4.647,0.0786,0.0945,,,,,Manual assignment based on HydroUI,
+FID1A,4.692,0.6738,0.4433,4.6884,"Cyclopentane, 1,2-dimethyl-",C7H14,88.91866099,Manual assignment based on HydroUI,C
+FID1A,4.847,1.0362,0.6064,4.8448,Heptane,C7H16,96.97634853,Manual assignment based on HydroUI,L
+FID1A,4.932,0.0599,0.0234,,,,,Manual assignment based on HydroUI,
+FID1A,5.095,0.0421,0.0364,,,,,Manual assignment based on HydroUI,
+FID1A,5.259,0.0872,0.0527,,,,,Manual assignment based on HydroUI,
+FID1A,5.34,0.6728,0.3151,5.3385,"Cyclohexane, methyl-",C7H14,92.08984168,Manual assignment based on HydroUI,C
+FID1A,5.464,1.073,0.5605,5.4613,"Hexane, 2,5-dimethyl-",C8H18,89.39816437,Manual assignment based on HydroUI,B
+FID1A,5.511,0.8052,0.4037,5.5094,"Heptane, 3,4,5-trimethyl-",C10H22,89.29676287,Manual assignment based on HydroUI,B
+FID1A,5.569,0.0841,0.0324,,,,,Manual assignment based on HydroUI,
+FID1A,5.69,0.1651,0.073,,,,,Manual assignment based on HydroUI,
+FID1A,6.138,0.3591,0.1578,6.1357,"Hexane, 2,3-dimethyl-",C8H18,94.122828,Manual assignment based on HydroUI,B
+FID1A,6.261,2.7202,1.1542,6.2589,"Heptane, 2-methyl-",C8H18,94.8441475,Manual assignment based on HydroUI,B
+FID1A,6.349,0.2863,0.1311,6.3446,Toluene,C7H8,88.53720626,Manual assignment based on HydroUI,A
+FID1A,6.449,1.3649,0.6009,6.4464,"Heptane, 3-methyl-",C8H18,96.26548842,Manual assignment based on HydroUI,B
+FID1A,6.592,0.3267,0.1521,6.5897,"Cyclohexane, 1,3-dimethyl-, trans-",C8H16,88.85597219,Manual assignment based on HydroUI,C
+FID1A,6.628,0.3223,0.1137,,,,,Manual assignment based on HydroUI,
+FID1A,6.823,0.1536,0.0507,,,,,Manual assignment based on HydroUI,
+FID1A,6.882,0.1206,0.0458,,,,,Manual assignment based on HydroUI,
+FID1A,7.085,0.6988,0.2742,7.0826,Octane,C8H18,93.04401804,Manual assignment based on HydroUI,L
+FID1A,7.241,0.3061,0.1294,7.2383,"Cyclohexane, 1,4-dimethyl-, cis-",C8H16,83.37098485,Manual assignment based on HydroUI,C
+FID1A,7.45,0.087,0.0379,,,,,Manual assignment based on HydroUI,
+FID1A,7.522,0.0629,0.029,,,,,Manual assignment based on HydroUI,
+FID1A,7.617,0.3239,0.1493,7.6133,"Hexane, 3-ethyl-",C8H18,91.0257119,Manual assignment based on HydroUI,B
+FID1A,7.769,0.613,0.2827,7.7658,"Heptane, 2,6-dimethyl-",C9H20,89.99022069,Manual assignment based on HydroUI,B
+FID1A,7.928,1.0505,0.4822,7.9269,"Heptane, 3,5-dimethyl-",C9H20,94.44469017,Manual assignment based on HydroUI,B
+FID1A,7.99,0.0343,0.026,,,,,Manual assignment based on HydroUI,
+FID1A,8.044,0.1039,0.0465,,,,,Manual assignment based on HydroUI,
+FID1A,8.117,0.0756,0.0285,,,,,Manual assignment based on HydroUI,
+FID1A,8.335,0.155,0.0663,,,,,Manual assignment based on HydroUI,
+FID1A,8.424,0.3312,0.125,8.4212,"Hexane, 3-ethyl-",C8H18,84.36704366,Manual assignment based on HydroUI,B
+FID1A,8.519,0.0502,0.0291,,,,,Manual assignment based on HydroUI,
+FID1A,8.607,1.5994,0.6795,8.6049,"Octane, 2-methyl-",C9H20,94.00894884,Manual assignment based on HydroUI,B
+FID1A,8.763,1.5376,0.6486,8.7601,"Benzene, 1,3-dimethyl-",C8H10,81.3931911,Manual assignment based on HydroUI,A
+FID1A,8.902,0.1609,0.088,8.8999,"1,1,4-Trimethylcyclohexane",C9H18,75.22105688,Manual assignment based on HydroUI,C
+FID1A,8.974,0.0557,0.0332,,,,,Manual assignment based on HydroUI,
+FID1A,9.04,0.0992,0.0352,,,,,Manual assignment based on HydroUI,
+FID1A,9.15,0.1134,0.0623,9.1497,"Cyclohexane, 1-isopropyl-1-methyl-",C10H20,82.77193391,Manual assignment based on HydroUI,C
+FID1A,9.199,0.0717,0.0397,,,,,Manual assignment based on HydroUI,
+FID1A,9.29,0.2753,0.1046,9.2882,Ethylbenzene,C8H10,82.0012023,Manual assignment based on HydroUI,A
+FID1A,9.389,0.3503,0.1881,9.3845,"Hexane, 3,3-dimethyl-",C8H18,90.24844475,Manual assignment based on HydroUI,B
+FID1A,9.577,0.0894,0.0444,,,,,Manual assignment based on HydroUI,
+FID1A,9.643,0.0981,0.0512,,,,,Manual assignment based on HydroUI,
+FID1A,9.766,0.3237,0.1167,9.7605,"Heptane, 3,4,5-trimethyl-",C10H22,91.0793468,Manual assignment based on HydroUI,B
+FID1A,9.917,0.4237,0.1836,9.9133,"Heptane, 2,3,4-trimethyl-",C10H22,90.20544229,Manual assignment based on HydroUI,B
+FID1A,10.004,0.3498,0.1275,10.0018,"Octane, 2,7-dimethyl-",C10H22,83.40310818,Manual assignment based on HydroUI,B
+FID1A,10.105,0.5023,0.2391,10.1024,"Undecane, 6,6-dimethyl-",C13H28,90.93739698,Manual assignment based on HydroUI,B
+FID1A,10.226,0.2321,0.0732,10.2222,"Undecane, 6,6-dimethyl-",C13H28,84.72778,Manual assignment based on HydroUI,B
+FID1A,10.425,0.1043,0.0262,,,,,Manual assignment based on HydroUI,
+FID1A,10.534,0.2489,0.0954,10.5303,"Undecane, 5,6-dimethyl-",C13H28,85.87338071,Manual assignment based on HydroUI,B
+FID1A,10.666,0.4387,0.1667,10.6639,"Nonane, 4-methyl-",C10H22,78.6429391,Manual assignment based on HydroUI,B
+FID1A,10.719,0.8881,0.4031,10.7148,"Nonane, 2-methyl-",C10H22,87.82985786,Manual assignment based on HydroUI,B
+FID1A,10.853,0.7212,0.3584,10.856,"Benzene, 1,2,3-trimethyl-",C9H12,80.4587503,Manual assignment based on HydroUI,A
+FID1A,10.961,0.1522,0.0529,,,,,Manual assignment based on HydroUI,
+FID1A,11.055,0.0751,0.0333,,,,,Manual assignment based on HydroUI,
+FID1A,11.194,0.0433,0.0193,,,,,Manual assignment based on HydroUI,
+FID1A,11.35,0.8543,0.4224,11.3468,"Benzene, 1,2,4-trimethyl-",C9H12,94.9392378,Manual assignment based on HydroUI,A
+FID1A,11.395,0.2867,0.1103,11.3941,"Pentane, 2,3,3-trimethyl-",C8H18,87.32714734,Manual assignment based on HydroUI,B
+FID1A,11.66,0.1629,0.0765,11.6563,"3,4-Hexanedione, 2,2,5-trimethyl-",C9H16O2,82.10937314,Manual assignment based on HydroUI,O
+FID1A,11.701,0.0537,0.0343,,,,,Manual assignment based on HydroUI,
+FID1A,11.763,0.1845,0.0989,11.7615,3-Ethyl-3-methylheptane,C10H22,84.1356644,Manual assignment based on HydroUI,B
+FID1A,11.816,0.1375,0.0826,,,,,Manual assignment based on HydroUI,
+FID1A,11.909,0.4249,0.1861,11.9048,"Benzene, 1,2,3-trimethyl-",C9H12,77.69319354,Manual assignment based on HydroUI,A
+FID1A,12.032,0.2662,0.1348,12.0275,"Nonane, 3,7-dimethyl-",C11H24,89.14862931,Manual assignment based on HydroUI,B
+FID1A,12.112,0.1467,0.0686,,,,,Manual assignment based on HydroUI,
+FID1A,12.425,0.3649,0.0947,12.3934,"Benzene, 1-methyl-4-propyl-",C10H14,75.06267948,Manual assignment based on HydroUI,A
+FID1A,12.482,0.1707,0.1033,,,,,Manual assignment based on HydroUI,
+FID1A,12.539,0.4894,0.1627,12.5398,"Undecane, 6,6-dimethyl-",C13H28,85.69221113,Manual assignment based on HydroUI,B
+FID1A,12.657,0.2562,0.1423,12.6523,"Decane, 3-methyl-",C11H24,87.24516418,Manual assignment based on HydroUI,B
+FID1A,12.708,0.0763,0.034,,,,,Manual assignment based on HydroUI,
+FID1A,12.798,0.072,0.0274,,,,,Manual assignment based on HydroUI,
+FID1A,12.849,0.0736,0.0454,,,,,Manual assignment based on HydroUI,
+FID1A,12.88,0.0853,0.0602,12.8767,"Benzene, 1-methyl-3-(1-methylethyl)-",C10H14,85.55723345,Manual assignment based on HydroUI,B
+FID1A,12.991,0.2107,0.1078,12.9871,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,87.01927473,Manual assignment based on HydroUI,B
+FID1A,13.043,0.0675,0.0306,,,,,Manual assignment based on HydroUI,
+FID1A,13.141,0.1636,0.0759,13.1399,"Hexane, 3,3-dimethyl-",C8H18,85.59777348,Manual assignment based on HydroUI,B
+FID1A,13.235,0.0332,0.0171,,,,,Manual assignment based on HydroUI,
+FID1A,13.352,0.1544,0.0557,,,,,Manual assignment based on HydroUI,
+FID1A,13.419,0.3254,0.1076,13.4153,"Undecane, 4,7-dimethyl-",C13H28,86.85848476,Manual assignment based on HydroUI,B
+FID1A,13.512,0.5421,0.2415,13.5077,"Benzene, 1-methyl-3-(1-methylethyl)-",C10H14,88.23708282,Manual assignment based on HydroUI,A
+FID1A,13.584,0.6113,0.2931,13.5802,"Benzene, 1,2,4,5-tetramethyl-",C10H14,93.12732455,Manual assignment based on HydroUI,A
+FID1A,13.692,0.1598,0.0708,13.6899,"Decane, 2,3,5-trimethyl-",C13H28,76.9014912,Manual assignment based on HydroUI,B
+FID1A,13.805,0.077,0.0277,,,,,Manual assignment based on HydroUI,
+FID1A,13.941,0.1793,0.072,13.9363,"Benzene, 1,3-diethyl-5-methyl-",C11H16,81.34449726,Manual assignment based on HydroUI,A
+FID1A,14.023,0.1307,0.0525,14.0172,"Heptane, 2,3,5-trimethyl-",C10H22,76.56637838,Manual assignment based on HydroUI,B
+FID1A,14.093,0.1964,0.081,14.0859,"Benzene, (1-methylnonadecyl)-",C26H46,53.09768324,Manual assignment based on HydroUI,A
+FID1A,14.153,0.1272,0.0747,14.1517,"Decane, 2,4-dimethyl-",C12H26,64.77289189,Manual assignment based on HydroUI,B
+FID1A,14.197,0.0533,0.0328,,,,,Manual assignment based on HydroUI,
+FID1A,14.263,0.1614,0.0768,14.2616,"Undecane, 3-methyl-",C12H26,66.10217694,Manual assignment based on HydroUI,B
+FID1A,14.336,0.0931,0.0486,,,,,Manual assignment based on HydroUI,
+FID1A,14.426,0.1968,0.0674,14.423,"Benzene, 1-methyl-4-(1-methylpropyl)-",C11H16,74.88276339,Manual assignment based on HydroUI,A
+FID1A,14.584,0.0817,0.022,,,,,Manual assignment based on HydroUI,
+FID1A,14.654,0.1754,0.0781,14.6519,"1H-Indene, 2,3-dihydro-5,6-dimethyl-",C11H14,67.17794269,Manual assignment based on HydroUI,A
+FID1A,14.695,0.2411,0.0965,14.6969,"Hexane, 3,3-dimethyl-",C8H18,66.02451817,Manual assignment based on HydroUI,B
+FID1A,14.786,0.229,0.1289,14.7831,"Benzene, pentamethyl-",C11H16,78.414589,Manual assignment based on HydroUI,A
+FID1A,14.824,0.2151,0.1142,14.8234,"Benzene, (2-methyl-1-butenyl)-",C11H14,62.49458711,Manual assignment based on HydroUI,A
+FID1A,14.912,0.0995,0.052,14.908,"Heptane, 2,3,5-trimethyl-",C10H22,83.06108787,Manual assignment based on HydroUI,B
+FID1A,14.967,0.2031,0.0985,14.964,"Benzene, pentamethyl-",C11H16,81.21323566,Manual assignment based on HydroUI,A
+FID1A,15.03,0.1562,0.0709,,,,,Manual assignment based on HydroUI,
+FID1A,15.126,0.1357,0.0574,,,,,Manual assignment based on HydroUI,
+FID1A,15.195,0.2292,0.0684,,,,,Manual assignment based on HydroUI,
+FID1A,15.302,0.0374,0.0223,,,,,Manual assignment based on HydroUI,
+FID1A,15.396,0.1067,0.0407,,,,,Manual assignment based on HydroUI,
+FID1A,15.459,0.1336,0.0645,,,,,Manual assignment based on HydroUI,
+FID1A,15.494,0.1261,0.0711,15.4955,"1H-Indene, 2,3-dihydro-1,1,6-trimethyl-",C12H16,65.83354495,Manual assignment based on HydroUI,A
+FID1A,15.556,0.0908,0.0586,15.5512,"Benzene, (1,3,3-trimethylnonyl)-",C18H30,55.58197277,Manual assignment based on HydroUI,A
+FID1A,15.622,0.1994,0.052,,,,,Manual assignment based on HydroUI,
+FID1A,15.724,0.1017,0.0652,15.7191,"Dodecane, 3-methyl-",C13H28,62.05290314,Manual assignment based on HydroUI,B
+FID1A,15.755,0.0868,0.0463,,,,,Manual assignment based on HydroUI,
+FID1A,15.848,0.1324,0.0331,,,,,Manual assignment based on HydroUI,
+FID1A,15.921,0.0793,0.0375,,,,,Manual assignment based on HydroUI,
+FID1A,16.027,0.5189,0.1797,16.0242,"Benzene, pentamethyl-",C11H16,87.26255223,Manual assignment based on HydroUI,A
+FID1A,16.111,0.0728,0.0301,,,,,Manual assignment based on HydroUI,
+FID1A,16.212,0.29,0.1126,16.2119,"1H-Indene, 2,3-dihydro-1,5,7-trimethyl-",C12H16,62.97900179,Manual assignment based on HydroUI,A
+FID1A,16.287,0.1597,0.073,16.2839,"Naphthalene, 2-methyl-",C11H10,71.66005198,Manual assignment based on HydroUI,A
+FID1A,16.356,0.2551,0.086,,,,,Manual assignment based on HydroUI,
+FID1A,16.446,0.0491,0.022,,,,,Manual assignment based on HydroUI,
+FID1A,16.525,0.1657,0.0601,,,,,Manual assignment based on HydroUI,
+FID1A,16.584,0.1556,0.0503,,,,,Manual assignment based on HydroUI,
+FID1A,16.693,0.1095,0.048,,,,,Manual assignment based on HydroUI,
+FID1A,16.815,0.3006,0.1152,16.8154,"Naphthalene, 1,2,3,4-tetrahydro-1,6,8-trimethyl-",C13H18,65.89672203,Manual assignment based on HydroUI,A
+FID1A,16.907,0.3116,0.0693,,,,,Manual assignment based on HydroUI,
+FID1A,17.019,0.0631,0.0311,,,,,Manual assignment based on HydroUI,
+FID1A,17.092,0.1967,0.0743,,,,,Manual assignment based on HydroUI,
+FID1A,17.161,0.092,0.0323,,,,,Manual assignment based on HydroUI,
+FID1A,17.259,0.057,0.0342,,,,,Manual assignment based on HydroUI,
+FID1A,17.329,0.3048,0.089,17.315,"Cyclopropyl 2,4-xylyl ketone",C12H14O,60.47581531,Manual assignment based on HydroUI,O
+FID1A,17.458,0.1844,0.044,,,,,Manual assignment based on HydroUI,
+FID1A,17.576,0.3316,0.1035,,,,,Manual assignment based on HydroUI,
+FID1A,17.662,0.1907,0.0627,17.6602,"3-Hexanone, 2,4-dimethyl-",C8H16O,52.38677685,Manual assignment based on HydroUI,O
+FID1A,17.754,0.4041,0.1075,17.7591,"Naphthalene, 1,5-dimethyl-",C12H12,91.9753042,Manual assignment based on HydroUI,A
+FID1A,17.923,51.3372,32.2385,17.9223,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,97.40777804,Manual assignment based on HydroUI,
+FID1A,18.04,0.119,0.0451,,,,,Manual assignment based on HydroUI,
+FID1A,18.119,0.0318,0.0295,,,,,Manual assignment based on HydroUI,
+FID1A,18.207,0.111,0.0327,18.2097,"Naphthalene, 1,6-dimethyl-",C12H12,74.55024381,Manual assignment based on HydroUI,A
+FID1A,18.353,0.098,0.0438,,,,,Manual assignment based on HydroUI,
+FID1A,18.433,0.1541,0.0483,,,,,Manual assignment based on HydroUI,
+FID1A,18.548,0.1936,0.0636,18.5517,"Benzene, 1-isopentyl-2,4,5-trimethyl-",C14H22,60.92694178,Manual assignment based on HydroUI,A
+FID1A,18.64,0.0831,0.0275,,,,,Manual assignment based on HydroUI,
+FID1A,18.712,0.0855,0.038,,,,,Manual assignment based on HydroUI,
+FID1A,18.818,0.5293,0.2674,18.8165,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,73.89748072,Manual assignment based on HydroUI,
+FID1A,18.895,0.2756,0.1076,18.8857,"1,1,4,5,6-Pentamethyl-2,3-dihydro-1H-indene",C14H20,74.67957267,Manual assignment based on HydroUI,A
+FID1A,19.003,0.5111,0.1203,,,,,Manual assignment based on HydroUI,
+FID1A,19.143,0.1466,0.0545,19.1402,"Naphthalene, 2-(1-methylethyl)-",C13H14,62.83928785,Manual assignment based on HydroUI,A
+FID1A,19.264,0.5311,0.2209,19.2609,"Naphthalene, 1,6,7-trimethyl-",C13H14,85.92983128,Manual assignment based on HydroUI,A
+FID1A,19.329,0.5944,0.2611,19.3265,"Naphthalene, 1,4,6-trimethyl-",C13H14,85.6163129,Manual assignment based on HydroUI,A
+FID1A,19.528,0.2295,0.1332,,,,,Manual assignment based on HydroUI,
+FID1A,19.564,0.4438,0.1564,19.5626,"Dodecanoic acid, 4-biphenyl ester",C24H32O2,75.82319852,Manual assignment based on HydroUI,O
+FID1A,19.732,0.4745,0.1766,,,,,Manual assignment based on HydroUI,
+FID1A,19.767,0.2778,0.126,,,,,Manual assignment based on HydroUI,
+FID1A,19.862,0.0574,0.0302,,,,,Manual assignment based on HydroUI,
+FID1A,19.95,0.2112,0.0747,,,,,Manual assignment based on HydroUI,
+FID1A,20.119,0.5453,0.0835,20.1162,"Naphthalene, 2-methyl-1-propyl-",C14H16,55.04322386,Manual assignment based on HydroUI,A
+FID1A,20.227,0.2109,0.0738,20.2327,"Naphthalene, 1,2,3,4-tetramethyl-",C14H16,68.4701059,Manual assignment based on HydroUI,A
+FID1A,20.322,0.109,0.0601,,,,,Manual assignment based on HydroUI,
+FID1A,20.383,0.1604,0.0856,,,,,Manual assignment based on HydroUI,
+FID1A,20.425,0.151,0.0848,,,,,Manual assignment based on HydroUI,
+FID1A,20.466,0.1924,0.1009,,,,,Manual assignment based on HydroUI,
+FID1A,20.555,0.0398,0.0268,,,,,Manual assignment based on HydroUI,
+FID1A,20.614,0.0932,0.0358,,,,,Manual assignment based on HydroUI,
+FID1A,20.693,0.529,0.1082,20.6992,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,75.28536504,Manual assignment based on HydroUI,A
+FID1A,20.832,0.0509,0.0223,,,,,Manual assignment based on HydroUI,
+FID1A,20.951,0.7317,0.2352,20.9493,"1,4,5,8-Tetramethylnaphthalene",C14H16,88.72483653,Manual assignment based on HydroUI,A
+FID1A,21.14,0.6035,0.313,,,,,Manual assignment based on HydroUI,
+FID1A,21.19,0.2313,0.118,,,,,Manual assignment based on HydroUI,
+FID1A,21.257,0.0833,0.0453,,,,,Manual assignment based on HydroUI,
+FID1A,21.321,0.1293,0.0696,,,,,Manual assignment based on HydroUI,
+FID1A,21.378,0.3288,0.1735,,,,,Manual assignment based on HydroUI,
+FID1A,21.425,0.1929,0.1127,,,,,Manual assignment based on HydroUI,
+FID1A,21.493,0.4436,0.135,21.4907,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,57.85567665,Manual assignment based on HydroUI,A
+FID1A,21.621,0.1096,0.0754,,,,,Manual assignment based on HydroUI,
+FID1A,21.682,0.2754,0.1349,,,,,Manual assignment based on HydroUI,
+FID1A,21.807,0.2726,0.0571,,,,,Manual assignment based on HydroUI,
+FID1A,21.894,0.1363,0.0756,,,,,Manual assignment based on HydroUI,
+FID1A,21.972,0.5381,0.1382,21.9654,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,71.27922349,Manual assignment based on HydroUI,A
+FID1A,22.098,0.3569,0.1352,,,,,Manual assignment based on HydroUI,
+FID1A,22.203,0.2029,0.069,,,,,Manual assignment based on HydroUI,
+FID1A,22.27,0.0605,0.0344,,,,,Manual assignment based on HydroUI,
+FID1A,22.335,0.1016,0.0488,,,,,Manual assignment based on HydroUI,
+FID1A,22.389,0.0564,0.0341,,,,,Manual assignment based on HydroUI,
+FID1A,22.438,0.1652,0.0595,,,,,Manual assignment based on HydroUI,
+FID1A,22.543,0.2565,0.082,,,,,Manual assignment based on HydroUI,
+FID1A,22.633,0.6594,0.2723,,,,,Manual assignment based on HydroUI,
+FID1A,22.728,0.1661,0.0984,,,,,Manual assignment based on HydroUI,
+FID1A,22.776,0.1191,0.054,,,,,Manual assignment based on HydroUI,
+FID1A,22.844,0.1361,0.0642,,,,,Manual assignment based on HydroUI,
+FID1A,22.902,0.1646,0.0684,,,,,Manual assignment based on HydroUI,
+FID1A,22.996,0.4962,0.1604,,,,,Manual assignment based on HydroUI,
+FID1A,23.068,0.1911,0.0785,,,,,Manual assignment based on HydroUI,
+FID1A,23.212,0.5153,0.1468,,,,,Manual assignment based on HydroUI,
+FID1A,23.386,0.4414,0.1067,,,,,Manual assignment based on HydroUI,
+FID1A,23.57,0.3168,0.0654,,,,,Manual assignment based on HydroUI,
+FID1A,23.642,0.1492,0.0427,,,,,Manual assignment based on HydroUI,
+FID1A,23.717,0.0967,0.0449,,,,,Manual assignment based on HydroUI,
+FID1A,23.753,0.0938,0.0488,,,,,Manual assignment based on HydroUI,
+FID1A,23.828,0.194,0.0608,,,,,Manual assignment based on HydroUI,
+FID1A,24.022,0.3375,0.0608,,,,,Manual assignment based on HydroUI,
+FID1A,24.087,0.3191,0.0608,,,,,Manual assignment based on HydroUI,
+FID1A,24.241,0.2207,0.0539,,,,,Manual assignment based on HydroUI,
+FID1A,24.351,0.1034,0.0421,,,,,Manual assignment based on HydroUI,
+FID1A,24.4,0.0357,0.0224,,,,,Manual assignment based on HydroUI,
+FID1A,24.467,0.0518,0.0187,,,,,Manual assignment based on HydroUI,
+FID1A,24.522,0.0698,0.039,,,,,Manual assignment based on HydroUI,
+FID1A,24.564,0.0771,0.0466,,,,,Manual assignment based on HydroUI,
+FID1A,24.637,0.4436,0.0969,,,,,Manual assignment based on HydroUI,
+FID1A,24.75,0.1567,0.0392,,,,,Manual assignment based on HydroUI,
+FID1A,24.912,0.2958,0.0553,,,,,Manual assignment based on HydroUI,
+FID1A,25.083,0.2135,0.0505,,,,,Manual assignment based on HydroUI,
+FID1A,25.2,0.0947,0.0406,,,,,Manual assignment based on HydroUI,
+FID1A,25.25,0.0556,0.0372,,,,,Manual assignment based on HydroUI,
+FID1A,25.307,0.1202,0.0557,,,,,Manual assignment based on HydroUI,
+FID1A,25.37,0.0532,0.0286,,,,,Manual assignment based on HydroUI,
+FID1A,25.524,0.2207,0.0438,,,,,Manual assignment based on HydroUI,
+FID1A,25.582,0.1911,0.0468,,,,,Manual assignment based on HydroUI,
+FID1A,25.754,0.0815,0.0393,,,,,Manual assignment based on HydroUI,
+FID1A,25.843,0.2978,0.0858,25.8546,1-Ethyl-2-methylphenanthrene,C17H16,57.35704362,Manual assignment based on HydroUI,A
+FID1A,25.975,0.2056,0.0631,,,,,Manual assignment based on HydroUI,
+FID1A,26.118,0.0886,0.0303,,,,,Manual assignment based on HydroUI,
+FID1A,26.251,0.1595,0.0337,,,,,Manual assignment based on HydroUI,
+FID1A,26.339,0.0793,0.0363,,,,,Manual assignment based on HydroUI,
+FID1A,26.488,0.1698,0.044,,,,,Manual assignment based on HydroUI,
+FID1A,26.731,0.2798,0.0593,,,,,Manual assignment based on HydroUI,
+FID1A,26.868,0.063,0.0288,,,,,Manual assignment based on HydroUI,
+FID1A,26.915,0.0404,0.0339,,,,,Manual assignment based on HydroUI,
+FID1A,27.043,0.2301,0.0441,,,,,Manual assignment based on HydroUI,
+FID1A,27.14,0.2653,0.0913,,,,,Manual assignment based on HydroUI,
+FID1A,27.299,0.0658,0.025,27.3005,2-Isopropyl-10-methylphenanthrene,C18H18,63.04598419,Manual assignment based on HydroUI,A
+FID1A,27.345,0.211,0.0981,,,,,Manual assignment based on HydroUI,
+FID1A,27.388,0.4535,0.1237,27.392,Retene,C18H18,55.257026,Manual assignment based on HydroUI,A
+FID1A,27.596,0.1955,0.0408,,,,,Manual assignment based on HydroUI,
+FID1A,27.672,0.2155,0.0784,,,,,Manual assignment based on HydroUI,
+FID1A,27.761,0.249,0.0752,,,,,Manual assignment based on HydroUI,
+FID1A,27.835,0.0511,0.0485,,,,,Manual assignment based on HydroUI,
+FID1A,27.998,0.1032,0.029,,,,,Manual assignment based on HydroUI,
+FID1A,28.124,0.3054,0.0574,,,,,Manual assignment based on HydroUI,
+FID1A,28.367,0.3888,0.0834,,,,,Manual assignment based on HydroUI,
+FID1A,28.539,0.2046,0.0493,,,,,Manual assignment based on HydroUI,
+FID1A,28.628,0.1862,0.0995,28.6263,"8-Isopropyl-1,3-dimethylphenanthrene",C19H20,51.46376789,Manual assignment based on HydroUI,A
+FID1A,28.775,0.0881,0.0812,,,,,Manual assignment based on HydroUI,
+FID1A,28.913,0.3121,0.0653,,,,,Manual assignment based on HydroUI,
+FID1A,29.035,0.2517,0.0878,,,,,Manual assignment based on HydroUI,
+FID1A,29.8,2.0598,0.2311,,,,,Manual assignment based on HydroUI,
+FID1A,30.394,6.8954,0.3272,,,,,Manual assignment based on HydroUI,
+FID1A,30.987,8.9154,0.2346,,,,,Manual assignment based on HydroUI,
+FID1A,31.022,1.6786,0.2514,,,,,Manual assignment based on HydroUI,
+FID1A,31.235,0.2938,0.172,,,,,Manual assignment based on HydroUI,
+FID1A,31.322,0.4175,0.1592,,,,,Manual assignment based on HydroUI,
+FID1A,31.476,0.1056,0.0738,,,,,Manual assignment based on HydroUI,
+FID1A,31.587,0.0333,0.1507,,,,,Manual assignment based on HydroUI,
+FID1A,31.608,0.0984,0.161,,,,,Manual assignment based on HydroUI,
+FID1A,31.629,0.3021,0.1643,,,,,Manual assignment based on HydroUI,
+FID1A,31.702,0.2532,0.1651,,,,,Manual assignment based on HydroUI,
+FID1A,32.061,0.2234,0.1741,,,,,Manual assignment based on HydroUI,
+FID1A,32.167,0.4755,0.1596,,,,,Manual assignment based on HydroUI,
+FID1A,32.762,0.1315,0.1541,,,,,Manual assignment based on HydroUI,
+FID1A,33.036,0.5975,0.0755,,,,,Manual assignment based on HydroUI,
+FID1A,33.202,0.1475,0.1669,,,,,Manual assignment based on HydroUI,
+FID1A,33.249,0.1541,0.0807,,,,,Manual assignment based on HydroUI,
+FID1A,33.79,0.1606,0.0826,,,,,Manual assignment based on HydroUI,
+FID1A,34.145,0.1423,0.0392,,,,,Manual assignment based on HydroUI,
+FID1A,34.202,0.2613,0.1001,,,,,Manual assignment based on HydroUI,
+FID1A,35.143,0.1691,0.1124,,,,,Manual assignment based on HydroUI,
+FID1A,35.365,0.1831,0.1642,,,,,Manual assignment based on HydroUI,
+FID1A,35.479,0.5,0.1581,,,,,Manual assignment based on HydroUI,
+FID1A,35.654,0.1045,0.0267,,,,,Manual assignment based on HydroUI,
+FID1A,35.855,0.0783,0.0382,,,,,Manual assignment based on HydroUI,
+FID1A,36.117,0.4324,0.1215,,,,,Manual assignment based on HydroUI,
+FID1A,36.552,0.1708,0.1586,,,,,Manual assignment based on HydroUI,
+FID1A,36.824,0.1806,0.161,,,,,Manual assignment based on HydroUI,
+FID1A,37.52,0.1368,0.0719,,,,,Manual assignment based on HydroUI,
+FID1A,37.78,0.2567,0.0711,,,,,Manual assignment based on HydroUI,
+FID1A,37.863,0.4022,0.1169,,,,,Manual assignment based on HydroUI,
+FID1A,39.725,0.0315,0.1439,,,,,Manual assignment based on HydroUI,

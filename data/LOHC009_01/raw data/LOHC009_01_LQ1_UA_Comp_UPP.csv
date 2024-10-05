@@ -1,0 +1,128 @@
+,Component RT,Compound Name,Formula,Match Factor,Previous Best Compound Name,Previous Best Formula,Previous Best Match Factor,Previous Worst Compound Name,Previous Worst Formula,Previous Worst Match Factor
+0,38.31330822,"Acenaphthylidene, 1,1'-bis-",C24H16,55.61428061,"Acenaphthylidene, 1,1'-bis-",C24H16,55.61428061,"Acenaphthylidene, 1,1'-bis-",C24H16,55.61428061
+1,37.4129619,"Acenaphthylidene, 1,1'-bis-",C24H16,53.92527959,"Acenaphthylidene, 1,1'-bis-",C24H16,53.92527959,"Acenaphthylidene, 1,1'-bis-",C24H16,53.92527959
+2,32.3276,"8H-Indeno[2,1-b]phenanthrene",C21H14,80.05626608,"8H-Indeno[2,1-b]phenanthrene",C21H14,80.05626608,"Perylene, 3-methyl-",C21H14,67.80473139
+3,32.3083,"8H-Indeno[2,1-b]phenanthrene",C21H14,60.56488069,"8H-Indeno[2,1-b]phenanthrene",C21H14,60.56488069,"11H-Indeno[2,1-a]phenanthrene",C21H14,59.18083518
+4,31.8583,Benzo[a]pyrene,C20H12,67.32918494,Benzo[a]pyrene,C20H12,67.32918494,Benzo[k]fluoranthene,C20H12,59.61415686
+5,30.9013,Perylene,C20H12,86.89144507,Perylene,C20H12,86.89144507,Benzo[a]pyrene,C20H12,76.52467582
+6,30.5102,"3,9-Dimethylbenz[a]anthracene",C20H16,67.78801286,"3,9-Dimethylbenz[a]anthracene",C20H16,67.78801286,"Benz(a)anthracene, 8,12-dimethyl-",C20H16,58.16664555
+7,29.8806,"2,2'-Binaphthalene",C20H14,89.07737518,"2,2'-Binaphthalene",C20H14,89.07737518,"2,2'-Binaphthalene",C20H14,70.76953348
+8,29.7463,"2,2'-Binaphthalene",C20H14,90.8102104,"2,2'-Binaphthalene",C20H14,90.8102104,"2,2'-Binaphthalene",C20H14,51.98060685
+9,29.6937,"9H-Fluorene, 9-phenyl-",C19H14,66.96797832,"9H-Fluorene, 9-phenyl-",C19H14,66.96797832,"Chrysene, 6-methyl-",C19H14,63.87735015
+10,29.6833,"9H-Fluorene, 9-phenyl-",C19H14,71.83724563,"9H-Fluorene, 9-phenyl-",C19H14,71.83724563,"9H-Fluorene, 9-phenyl-",C19H14,61.49745694
+11,29.5985,"2,2'-Binaphthalene",C20H14,85.30122077,"2,2'-Binaphthalene",C20H14,85.30122077,"Benzo(a)pyrene, 7,8-dihydro-",C20H14,67.46095608
+12,29.5621,"Benz[a]anthracene, 7-methyl-",C19H14,87.93813957,"Benz[a]anthracene, 7-methyl-",C19H14,87.93813957,"Benz[a]anthracene, 7-methyl-",C19H14,81.4854709
+13,29.4636,"Chrysene, 1-methyl-",C19H14,86.30645285,"Chrysene, 1-methyl-",C19H14,86.30645285,"Benz[a]anthracene, 7-methyl-",C19H14,66.62431769
+14,29.3912,"Benz[a]anthracene, 8-methyl-",C19H14,65.85786255,"Benz[a]anthracene, 8-methyl-",C19H14,65.85786255,"Chrysene, 3-methyl-",C19H14,62.99893214
+15,29.37832888,No Match,,,"Iron, (.eta.5-2,4-cyclopentadien-1-yl)[(1,2,3,4,5,6-.eta.)-1,3,5-trimethylbenzene]-",C14H17Fe,52.2342364,"Iron, (.eta.5-2,4-cyclopentadien-1-yl)[(1,2,3,4,5,6-.eta.)-1,3,5-trimethylbenzene]-",C14H17Fe,52.2342364
+16,29.37173221,No Match,,,"Iron, (.eta.5-2,4-cyclopentadien-1-yl)[(1,2,3,4,5,6-.eta.)-1,3,5-trimethylbenzene]-",C14H17Fe,50.06960242,"Iron, (.eta.5-2,4-cyclopentadien-1-yl)[(1,2,3,4,5,6-.eta.)-1,3,5-trimethylbenzene]-",C14H17Fe,50.06960242
+17,28.5844,"1,2-Dihydrobenzo[b]fluoranthene",C20H14,92.47041473,"1,2-Dihydrobenzo[b]fluoranthene",C20H14,92.47041473,"1,2'-Binaphthalene",C20H14,81.5045704
+18,28.48976468,No Match,,,"Benzene, 1,2-difluoro-",C6H4F2,54.69434305,"Benzene, 1,2-difluoro-",C6H4F2,54.69434305
+19,28.4835,Triphenylene,C18H12,96.66948506,Triphenylene,C18H12,96.66948506,Chrysene,C18H12,86.08112559
+20,28.3871,Naphthacene,C18H12,90.54009847,Naphthacene,C18H12,90.54009847,Benzo[c]phenanthrene,C18H12,73.66836155
+21,28.0179,"1,2,3,4-Tetrahydrochrysene",C18H16,64.32211515,"1,2,3,4-Tetrahydrochrysene",C18H16,64.32211515,"1,2,3,4-Tetrahydrochrysene",C18H16,52.18806518
+22,27.64434802,"Pyrene, 1,9-dimethyl-",C18H14,60.51395622,"Pyrene, 1,9-dimethyl-",C18H14,60.51395622,"Pyrene, 1,9-dimethyl-",C18H14,60.51395622
+23,27.575,"Pyrene, 1,9-dimethyl-",C18H14,74.48102927,"Pyrene, 1,9-dimethyl-",C18H14,74.48102927,"(Z,Z)-3-Methyl-3H-cyclonona(def)biphenylene",C18H14,62.64445848
+24,27.5371,"Pyrene, 1,9-dimethyl-",C18H14,62.68998686,"Pyrene, 1,9-dimethyl-",C18H14,62.68998686,o-Terphenyl,C18H14,53.2804972
+25,27.4114,o-Terphenyl,C18H14,83.28319943,o-Terphenyl,C18H14,83.28319943,p-Terphenyl,C18H14,55.65792661
+26,26.8222,11H-Benzo[b]fluorene,C17H12,75.2904373,11H-Benzo[b]fluorene,C17H12,75.2904373,11H-Benzo[a]fluorene,C17H12,62.56400302
+27,26.6793,"Naphthalene, 1-(4-methylphenyl)-",C17H14,86.71875047,"Naphthalene, 1-(4-methylphenyl)-",C17H14,86.71875047,9-Methyl-10-vinylanthracene,C17H14,77.70662903
+28,26.5263,11H-Benzo[a]fluorene,C17H12,85.11461476,11H-Benzo[a]fluorene,C17H12,85.11461476,"1,4-Dimethyl-5-phenyl-naphthalene",C18H16,53.03720045
+29,26.3739,11H-Benzo[b]fluorene,C17H12,91.00128698,11H-Benzo[b]fluorene,C17H12,91.00128698,"Pyrene, 1-methyl-",C17H12,79.94279497
+30,26.1295,11H-Benzo[b]fluorene,C17H12,61.06083716,11H-Benzo[b]fluorene,C17H12,61.06083716,11H-Benzo[a]fluorene,C17H12,53.68079596
+31,25.7357,9-Ethyl-10-methylanthracene,C17H16,73.25930299,9-Ethyl-10-methylanthracene,C17H16,73.25930299,"4,4,9,9-Tetramethyl-4,9-disilatricyclo[6.2.0.0(3,6)]decane",C12H18Si2,59.46844962
+32,25.5613,"Naphthalene, 1-phenyl-",C16H12,62.64011443,"Naphthalene, 1-phenyl-",C16H12,62.64011443,"Anthracene, 9-ethenyl-",C16H12,53.99403902
+33,25.5453,"2,3-Dihydrofluoranthene",C16H12,85.48332966,"2,3-Dihydrofluoranthene",C16H12,85.48332966,"3,10B-Dihydrofluoranthene",C16H12,80.04493468
+34,25.5377,Pyrene,C16H10,61.05340565,Pyrene,C16H10,61.05340565,"Benzene, 1,1'-(1,3-butadiyne-1,4-diyl)bis-",C16H10,53.29390898
+35,25.3687,"Anthracene, 9-propyl-",C17H16,67.64133728,"Anthracene, 9-propyl-",C17H16,67.64133728,"Anthracene, 9-propyl-",C17H16,58.25044386
+36,25.2375,"Anthracene, 9-ethyl-",C16H14,63.28426339,"Anthracene, 9-ethyl-",C16H14,63.28426339,"Phenanthrene, 9,10-dimethyl-",C16H14,62.57708534
+37,25.2225,"Naphthalene, 2-(phenylmethyl)-",C17H14,74.98915854,"Naphthalene, 2-(phenylmethyl)-",C17H14,74.98915854,"Phenanthrene, 1,7-dimethyl-",C16H14,64.88148535
+38,25.2131,"Naphthalene, 2-(phenylmethyl)-",C17H14,85.45138227,"Naphthalene, 2-(phenylmethyl)-",C17H14,85.45138227,"Naphthalene, 2-(phenylmethyl)-",C17H14,67.66171634
+39,25.1237,"Naphthalene, 2-(phenylmethyl)-",C17H14,71.35096437,"Naphthalene, 2-(phenylmethyl)-",C17H14,71.35096437,"Naphthalene, 2-(phenylmethyl)-",C17H14,52.02438632
+40,25.021,Pyrene,C16H10,92.49668508,Pyrene,C16H10,92.49668508,Pyrene,C16H10,79.90825528
+41,24.9004,"Phenanthrene, 2,5-dimethyl-",C16H14,90.43522418,"Phenanthrene, 2,5-dimethyl-",C16H14,90.43522418,"Phenanthrene, 2,3-dimethyl-",C16H14,81.39882099
+42,24.7195,"Phenanthrene, 3,6-dimethyl-",C16H14,93.2425924,"Phenanthrene, 3,6-dimethyl-",C16H14,93.2425924,di-p-Tolylacetylene,C16H14,82.81393426
+43,24.5343,"Phenanthrene, 3,6-dimethyl-",C16H14,86.28366965,"Phenanthrene, 3,6-dimethyl-",C16H14,86.28366965,"Phenanthrene, 3,6-dimethyl-",C16H14,78.15217396
+44,24.4452,"Phenanthrene, 4,5-dimethyl-",C16H14,93.36734923,"Phenanthrene, 4,5-dimethyl-",C16H14,93.36734923,"Phenanthrene, 2,3-dimethyl-",C16H14,75.75371943
+45,24.2728,"Phenanthrene, 4,5-dimethyl-",C16H14,85.99762084,"Phenanthrene, 4,5-dimethyl-",C16H14,85.99762084,"Phenanthrene, 4,5-dimethyl-",C16H14,70.85169532
+46,24.0961,"1H-Indene, 1-(phenylmethylene)-",C16H12,92.73756166,"1H-Indene, 1-(phenylmethylene)-",C16H12,92.73756166,"Naphthalene, 1-phenyl-",C16H12,74.91509625
+47,23.6862,"1H-Indene, 2-phenyl-",C15H12,89.93128451,"1H-Indene, 2-phenyl-",C15H12,89.93128451,"Anthracene, 2-methyl-",C15H12,84.34582638
+48,23.632,"Anthracene, 2-methyl-",C15H12,90.46617728,"Anthracene, 2-methyl-",C15H12,90.46617728,"Phenanthrene, 4-methyl-",C15H12,85.47727534
+49,23.4318,"Phenanthrene, 2-methyl-",C15H12,97.43883214,"Phenanthrene, 2-methyl-",C15H12,97.43883214,"Phenanthrene, 2-methyl-",C15H12,90.57088333
+50,23.3686,"Phenanthrene, 2-methyl-",C15H12,95.4296101,"Phenanthrene, 2-methyl-",C15H12,95.4296101,"8,9-Dihydrocyclopenta[def]phenanthrene",C15H12,88.99441579
+51,22.9601,"1H-Indene, 1-(phenylmethylene)-",C16H12,95.49642635,"1H-Indene, 1-(phenylmethylene)-",C16H12,95.49642635,"Anthracene, 9-ethenyl-",C16H12,85.97608779
+52,22.8047,"1,1'-Biphenyl, 4-(1-methylethyl)-",C15H16,60.72458775,"Thiophene, 2,5-bis(1,1-dimethylethyl)-",C12H20S,61.20569267,"Thiophene, 2,5-bis(1,1-dimethylethyl)-",C12H20S,53.91464159
+53,22.5679,"Anthracene, 1,2,3,4,5,6,7,8-octahydro-1,1,4,4,5,5,8,8-octamethyl-",C22H34,65.83976142,"Anthracene, 1,2,3,4,5,6,7,8-octahydro-1,1,4,4,5,5,8,8-octamethyl-",C22H34,65.83976142,"Difluoroisopropyl(2,4,6-tri-tert-butylphenyl)silane",C21H36F2Si,63.01005899
+54,22.2036,Anthracene,C14H10,99.25284748,Anthracene,C14H10,99.25284748,Phenanthrene,C14H10,97.00034978
+55,21.9275,"2,2'-Dimethylbiphenyl",C14H14,76.12392851,"2,2'-Dimethylbiphenyl",C14H14,76.12392851,"Anthracene, 1,2,3,4-tetrahydro-",C14H14,61.05112143
+56,21.8541,"Phenanthrene, 1,2,3,4-tetrahydro-",C14H14,60.77839546,"Phenanthrene, 1,2,3,4-tetrahydro-",C14H14,60.77839546,"Phenanthrene, 1,2,3,4-tetrahydro-",C14H14,59.49784288
+57,21.6693,"2,2'-Dimethylbiphenyl",C14H14,91.24710306,"2,2'-Dimethylbiphenyl",C14H14,91.24710306,4-Ethylbiphenyl,C14H14,82.10245199
+58,21.6086,"4,4'-Dimethylbiphenyl",C14H14,74.11883367,"4,4'-Dimethylbiphenyl",C14H14,74.11883367,"2,2'-Dimethylbiphenyl",C14H14,64.86343605
+59,21.3687,"1H,2H,3H-Cyclopenta[a]naphthalen-5-ylmethane",C14H14,93.23900334,"1H,2H,3H-Cyclopenta[a]naphthalen-5-ylmethane",C14H14,93.23900334,"4,4'-Dimethylbiphenyl",C14H14,84.41953348
+60,21.2226,"Phenanthrene, 9,10-dihydro-",C14H12,94.20842644,"Phenanthrene, 9,10-dihydro-",C14H12,94.20842644,"Anthracene, 9,10-dihydro-",C14H12,86.56043701
+61,20.8136,4-Ethylbiphenyl,C14H14,85.93061962,4-Ethylbiphenyl,C14H14,85.93061962,4-Ethylbiphenyl,C14H14,66.36359788
+62,20.7146,4-Ethylbiphenyl,C14H14,85.32558828,4-Ethylbiphenyl,C14H14,85.32558828,"2,2'-Dimethylbiphenyl",C14H14,71.65236232
+63,20.6055,"2,2'-Dimethylbiphenyl",C14H14,92.24669904,"2,2'-Dimethylbiphenyl",C14H14,92.24669904,"4,4'-Dimethylbiphenyl",C14H14,82.49138152
+64,20.5105,4-Ethylbiphenyl,C14H14,75.81937974,4-Ethylbiphenyl,C14H14,75.81937974,"Benzene, 1,1'-ethylidenebis-",C14H14,72.33986837
+65,20.2851,"1,1'-Biphenyl, 4-methyl-",C13H12,84.20178086,"1,1'-Biphenyl, 4-methyl-",C13H12,84.20178086,"1,1'-Biphenyl, 4-methyl-",C13H12,82.83774845
+66,20.2008,"Benzene, 1,1',1'',1'''-(1,2-ethanediylidene)tetrakis-",C26H22,79.73621267,"Benzene, 1,1',1'',1'''-(1,2-ethanediylidene)tetrakis-",C26H22,79.73621267,"Benzene, 1,1',1'',1'''-(1,2-ethanediylidene)tetrakis-",C26H22,77.36012884
+67,20.1382,"1,1'-Biphenyl, 2-methyl-",C13H12,90.29313487,"1,1'-Biphenyl, 2-methyl-",C13H12,90.29313487,"1,1'-Biphenyl, 4-methyl-",C13H12,81.99064385
+68,20.0653,"Naphthalene, 1-(2-methylpropyl)-",C14H16,82.39830525,"Naphthalene, 1-(2-methylpropyl)-",C14H16,82.39830525,"Naphthalene, 2-butyl-",C14H16,75.61712922
+69,19.9756,1H-Phenalene,C13H10,78.68306596,1H-Phenalene,C13H10,78.68306596,Fluorene,C13H10,72.08733306
+70,19.5375,"Naphthalene, 1,4,6-trimethyl-",C13H14,80.63367508,"Naphthalene, 1,4,6-trimethyl-",C13H14,80.63367508,"Naphthalene, 2,3,6-trimethyl-",C13H14,74.33352299
+71,19.3019,"Naphthalene, 2,3,6-trimethyl-",C13H14,84.01248174,"Naphthalene, 2,3,6-trimethyl-",C13H14,84.01248174,"Naphthalene, 1,6,7-trimethyl-",C13H14,56.86303876
+72,19.2348,"Naphthalene, 2-(1-methylethyl)-",C13H14,69.2794393,"Naphthalene, 2-(1-methylethyl)-",C13H14,69.2794393,"Naphthalene, 1,6,7-trimethyl-",C13H14,63.7607685
+73,19.1139,"Naphthalene, 2-(1-methylethyl)-",C13H14,84.78644655,"Naphthalene, 2-(1-methylethyl)-",C13H14,84.78644655,"Naphthalene, 2,3,6-trimethyl-",C13H14,75.19241034
+74,18.9713,"Naphthalene, 2-(1-methylethyl)-",C13H14,92.13329758,"Naphthalene, 2-(1-methylethyl)-",C13H14,92.13329758,"Naphthalene, 2,3,6-trimethyl-",C13H14,71.12303167
+75,18.7957,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,75.66544226,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,75.66544226,Neopentane,C5H12,50.37559473
+76,18.7813,"Naphthalene, 1-propyl-",C13H14,84.11515752,"Naphthalene, 1-propyl-",C13H14,84.11515752,"Naphthalene, 1-propyl-",C13H14,67.23018943
+77,18.3974,"Naphthalene, 1,2-dimethyl-",C12H12,93.36108434,"Naphthalene, 1,2-dimethyl-",C12H12,93.36108434,"Naphthalene, 1,3-dimethyl-",C12H12,86.52717615
+78,18.1893,"Naphthalene, 1,4-dimethyl-",C12H12,96.96942306,"Naphthalene, 1,4-dimethyl-",C12H12,96.96942306,"Naphthalene, 1,2-dimethyl-",C12H12,82.77109958
+79,17.906,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,97.18394001,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,97.18394001,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,89.20555794
+80,17.7283,"Naphthalene, 2,6-dimethyl-",C12H12,96.2115645,"Naphthalene, 2,6-dimethyl-",C12H12,96.2115645,"Naphthalene, 1-ethyl-",C12H12,79.38831532
+81,17.6395,"Naphthalene, 1,2-dimethyl-",C12H12,63.25698237,"Naphthalene, 1,2-dimethyl-",C12H12,63.25698237,"Naphthalene, 1-ethyl-",C12H12,59.39498589
+82,17.5853,"Naphthalene, 2-ethyl-",C12H12,97.83929981,"Naphthalene, 2-ethyl-",C12H12,97.83929981,"Naphthalene, 1-ethyl-",C12H12,91.05606693
+83,17.3764,Biphenyl,C12H10,93.63800971,Biphenyl,C12H10,93.63800971,"Naphthalene, 2-ethenyl-",C12H10,78.88617647
+84,17.0978,"Naphthalene, 5-ethyl-1,2,3,4-tetrahydro-",C12H16,79.08211407,"Naphthalene, 5-ethyl-1,2,3,4-tetrahydro-",C12H16,79.08211407,"1H-Indene, 2,3-dihydro-4-propyl-",C12H16,69.26955767
+85,16.4976,"Naphthalene, 2-methyl-",C11H10,98.21528339,"Naphthalene, 2-methyl-",C11H10,98.21528339,"Naphthalene, 1-methyl-",C11H10,92.48656725
+86,16.2484,"Naphthalene, 2-methyl-",C11H10,98.39992862,"Naphthalene, 2-methyl-",C11H10,98.39992862,"Naphthalene, 2-methyl-",C11H10,96.89449434
+87,16.2146,"Naphthalene, 1,2,3,4-tetrahydro-5-methyl-",C11H14,69.99744959,"Naphthalene, 1,2,3,4-tetrahydro-5-methyl-",C11H14,69.99744959,"Naphthalene, 1,2,3,4-tetrahydro-5-methyl-",C11H14,63.93594359
+88,15.9069,"Naphthalene, 5-ethyl-1,2,3,4-tetrahydro-",C12H16,65.74912498,"Naphthalene, 5-ethyl-1,2,3,4-tetrahydro-",C12H16,65.74912498,"Naphthalene, 5-ethyl-1,2,3,4-tetrahydro-",C12H16,64.59377015
+89,15.8112,"Naphthalene, 1,2,3,4-tetrahydro-6-methyl-",C11H14,93.95505316,"Naphthalene, 1,2,3,4-tetrahydro-6-methyl-",C11H14,93.95505316,"Naphthalene, 1,2,3,4-tetrahydro-5-methyl-",C11H14,76.39871735
+90,15.3226,"2-Ethyl-2,3-dihydro-1H-indene",C11H14,71.40283111,"2-Ethyl-2,3-dihydro-1H-indene",C11H14,71.40283111,"1H-Indene, 1-ethyl-2,3-dihydro-",C11H14,68.93510202
+91,15.0862,"Naphthalene, 1,2,3,4-tetrahydro-2-methyl-",C11H14,79.30797146,"Naphthalene, 1,2,3,4-tetrahydro-2-methyl-",C11H14,79.30797146,"Naphthalene, 1,2,3,4-tetrahydro-2-methyl-",C11H14,75.27651315
+92,14.8012,"2,2-Dimethylindene, 2,3-dihydro-",C11H14,77.76783037,"2,2-Dimethylindene, 2,3-dihydro-",C11H14,77.76783037,"Benzene, (2-methyl-1-butenyl)-",C11H14,72.83906038
+93,14.7402,"2-Ethyl-2,3-dihydro-1H-indene",C11H14,67.22918381,"2-Ethyl-2,3-dihydro-1H-indene",C11H14,67.22918381,"Benzene, (2-methyl-1-butenyl)-",C11H14,60.51450422
+94,14.6756,"Undecane, 5-methyl-",C12H26,87.67641321,"Undecane, 5-methyl-",C12H26,87.67641321,"Decane, 2,4-dimethyl-",C12H26,77.00779009
+95,14.6331,Naphthalene,C10H8,98.64417812,Naphthalene,C10H8,98.64417812,Naphthalene,C10H8,97.42363476
+96,14.5561,"1H-Indene, 2,3-dihydro-4,6-dimethyl-",C11H14,66.43775703,"1H-Indene, 2,3-dihydro-4,6-dimethyl-",C11H14,66.43775703,"1H-Indene, 2,3-dihydro-4,6-dimethyl-",C11H14,66.3329928
+97,14.2695,"Naphthalene, 1,2,3,4-tetrahydro-",C10H12,98.13430637,"Naphthalene, 1,2,3,4-tetrahydro-",C10H12,98.13430637,"Naphthalene, 1,2,3,4-tetrahydro-",C10H12,94.21637037
+98,14.0686,"Benzene, 4-ethenyl-1,2-dimethyl-",C10H12,90.76681744,"Benzene, 4-ethenyl-1,2-dimethyl-",C10H12,90.76681744,"Benzene, 4-ethenyl-1,2-dimethyl-",C10H12,72.37080154
+99,14.0431,"Benzene, 1-methyl-4-butyl",C11H16,78.49749254,"Benzene, 1-methyl-4-butyl",C11H16,78.49749254,"Benzene, (1,2-dimethylpropyl)-",C11H16,76.27786366
+100,13.8847,"Benzene, 4-ethenyl-1,2-dimethyl-",C10H12,85.13242655,"Benzene, 4-ethenyl-1,2-dimethyl-",C10H12,85.13242655,"Benzene, 1-ethenyl-4-ethyl-",C10H12,69.0210317
+101,13.8629,"1H-Indene, 2,3-dihydro-4,7-dimethyl-",C11H14,55.67523461,"1H-Indene, 2,3-dihydro-4,7-dimethyl-",C11H14,55.67523461,"2,2-Dimethylindene, 2,3-dihydro-",C11H14,55.65572597
+102,13.021,"Indan, 1-methyl-",C10H12,96.68891234,"Indan, 1-methyl-",C10H12,96.68891234,"Benzene, 1-ethenyl-3-ethyl-",C10H12,89.82188381
+103,12.967,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,70.22661276,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,70.22661276,"Benzene, 1,2,4,5-tetramethyl-",C10H14,64.80250644
+104,12.9239,"Indan, 1-methyl-",C10H12,95.92190186,"Indan, 1-methyl-",C10H12,95.92190186,"Benzene, (2-methyl-1-propenyl)-",C10H12,83.88087709
+105,12.8508,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,83.68038959,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,83.68038959,"Benzene, 1,2,3,4-tetramethyl-",C10H14,81.70322043
+106,12.6609,"Benzene, 1-methyl-4-propyl-",C10H14,79.39527055,"Benzene, 1-methyl-4-propyl-",C10H14,79.39527055,"Benzene, (1-methylpropyl)-",C10H14,69.82311509
+107,12.4637,"Benzene, n-butyl-",C10H14,95.97383859,"Benzene, n-butyl-",C10H14,95.97383859,"Benzene, (2-methylpropyl)-",C10H14,82.66469034
+108,12.3738,"Benzene, 1-methyl-4-propyl-",C10H14,88.68552367,"Benzene, 1-methyl-4-propyl-",C10H14,88.68552367,"Benzene, (1-methylpropyl)-",C10H14,76.35129057
+109,12.1359,Indane,C9H10,97.57035508,Indane,C9H10,97.57035508,Indane,C9H10,76.29896535
+110,11.881,"Benzene, 1,2,4-trimethyl-",C9H12,91.97948556,"Benzene, 1,2,4-trimethyl-",C9H12,91.97948556,"Benzene, (1-methylethyl)-",C9H12,82.73616678
+111,11.8507,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,62.89298905,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,62.89298905,"Benzene, 1,2,3,5-tetramethyl-",C10H14,61.4773752
+112,11.5925,"Benzene, (2-methylpropyl)-",C10H14,90.18745759,"Benzene, (2-methylpropyl)-",C10H14,90.18745759,"Benzene, (2-methylpropyl)-",C10H14,76.15809087
+113,11.3277,Mesitylene,C9H12,97.61699324,Mesitylene,C9H12,97.61699324,Mesitylene,C9H12,85.67469849
+114,11.0742,No Match,,,"Hexane, 3,3,4,4-tetrafluoro-",C6H10F4,60.41379968,"Hexane, 3,3,4,4-tetrafluoro-",C6H10F4,60.01452728
+115,11.0692,"Benzene, 1-ethyl-4-methyl-",C9H12,96.87043269,"Benzene, 1-ethyl-4-methyl-",C9H12,96.87043269,"Benzene, 1-ethyl-4-methyl-",C9H12,82.18029755
+116,10.8348,"Benzene, 1,2,4-trimethyl-",C9H12,93.13540451,"Benzene, 1,2,4-trimethyl-",C9H12,93.13540451,"Benzene, 1,2,3-trimethyl-",C9H12,81.38131435
+117,10.7151,"Benzene, 1-ethyl-2-methyl-",C9H12,97.62049358,"Benzene, 1-ethyl-2-methyl-",C9H12,97.62049358,"Benzene, (1-methylethyl)-",C9H12,67.44778988
+118,10.7096,Toluene,C7H8,69.00470624,Toluene,C7H8,69.00470624,"Spiro[2,4]hepta-4,6-diene",C7H8,65.27598662
+119,10.5472,"Benzene, propyl-",C9H12,96.70316519,"Benzene, propyl-",C9H12,96.70316519,"Benzene, propyl-",C9H12,81.33913531
+120,9.9459,"Benzene, (1-methylethyl)-",C9H12,89.68841006,"Benzene, (1-methylethyl)-",C9H12,89.68841006,"Benzene, (1-methylethyl)-",C9H12,77.09703833
+121,9.2677,Ethylbenzene,C8H10,94.73703808,Ethylbenzene,C8H10,94.73703808,"1,3,5-Cycloheptatriene, 7-ethyl-",C9H12,67.66110014
+122,8.7449,No Match,,,"Benzene, 1-(bromomethyl)-4-methyl-",C8H9Br,62.13183878,"Propane, 2-chloro-2-methyl-",C4H9Cl,50.0643686
+123,8.7329,"Benzene, 1,3-dimethyl-",C8H10,85.01696444,"Benzene, 1,3-dimethyl-",C8H10,85.01696444,Ethylbenzene,C8H10,61.0161485
+124,8.5569,Ethylbenzene,C8H10,98.06195707,Ethylbenzene,C8H10,98.06195707,Ethylbenzene,C8H10,66.69134218
+125,7.9204,"Hexane, 2,2-dimethyl-",C8H18,72.5090803,"Hexane, 2,2-dimethyl-",C8H18,72.5090803,"Pentane, 2,2,4-trimethyl-",C8H18,67.15022193
+126,6.3174,Toluene,C7H8,89.23233309,Toluene,C7H8,89.23233309,Toluene,C7H8,81.38833246

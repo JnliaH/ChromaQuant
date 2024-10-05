@@ -1,0 +1,184 @@
+FID RT,FID Area,MS RT,Compound Name,Formula,Match Factor,Compound Source,Compound Type Abbreviation
+2.356,0.1802,,,,,,
+3.167,0.21,3.16,"Pentane, 3-ethyl-",C7H16,75.96511091,Manual,B
+3.285,0.2547,,,,,,
+3.437,0.3422,3.4346,n-Hexane,C6H14,90.89558177,Automatically assigned using a linear fit of manual peak assignments,L
+3.689,0.2916,,,,,,
+3.78,1.2352,3.6844,"Pentane, 2,2-dimethyl-",C7H16,92.03739353,Automatically assigned using a linear fit of manual peak assignments,B
+3.851,0.1643,,,,,,
+4.134,0.2078,,,,,,
+4.37,70655.1484,,,,,,
+4.592,0.8301,4.4461,"Pentane, 3-ethyl-",C7H16,51.18454486,Automatically assigned using a linear fit of manual peak assignments,B
+4.687,3.2304,4.6065,"Propanoic acid, 2-methyl-, 2-methylbutyl ester",C9H18O2,69.55187698,Automatically assigned using a linear fit of manual peak assignments,O
+7.082,0.0896,,,,,,
+10.659,0.0619,,,,,,
+11.846,0.0761,,,,,,
+12.069,0.0874,12.0652,"Hexane, 3,3-dimethyl-",C8H18,78.28693853,Automatically assigned using a linear fit of manual peak assignments,B
+12.415,0.0534,,,,,,
+12.554,0.0482,,,,,,
+13.145,0.0699,,,,,,
+14.703,0.2899,14.7008,"Nonane, 3,7-dimethyl-",C11H24,87.21078169,Automatically assigned using a linear fit of manual peak assignments,B
+17.461,0.1345,17.4606,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+17.925,135.8533,17.9237,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,97.47535366,Automatically assigned using a linear fit of manual peak assignments,A
+18.349,0.0864,,,,,,
+18.516,0.1235,,,,,,
+18.708,0.332,,,,,,
+18.82,0.9794,,,,,,
+19.563,0.2583,,,,,,
+19.762,0.0675,19.8848,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+19.891,0.459,19.8848,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+20.224,0.1022,,,,,,
+20.292,0.0462,,,,,,
+21.002,0.4986,20.9973,"Hexane, 3,3-dimethyl-",C8H18,88.40178924,Automatically assigned using a linear fit of manual peak assignments,B
+21.608,0.0581,,,,,,
+21.77,0.0421,,,,,,
+21.919,0.0752,,,,,,
+22.021,0.0377,,,,,,
+22.065,0.3686,22.0618,"Undecane, 5,7-dimethyl-",C13H28,85.99872562,Automatically assigned using a linear fit of manual peak assignments,B
+22.113,0.7768,,,,,,
+22.425,0.0944,,,,,,
+22.594,0.0468,,,,,,
+22.704,0.0391,,,,,,
+22.761,0.0468,,,,,,
+22.96,0.1471,,,,,,
+23.078,1.0087,23.0737,"Decane, 6-ethyl-2-methyl-",C13H28,89.22091253,Automatically assigned using a linear fit of manual peak assignments,B
+23.419,0.0671,,,,,,
+23.485,0.0433,,,,,,
+23.849,0.2533,,,,,,
+23.9,0.0651,,,,,,
+23.976,0.0875,,,,,,
+24.046,0.6598,,,,,,
+24.12,1.6526,24.0428,"Undecane, 3,8-dimethyl-",C13H28,84.63676378,Automatically assigned using a linear fit of manual peak assignments,B
+24.369,0.1218,,,,,,
+24.475,0.0544,,,,,,
+24.676,0.1514,,,,,,
+24.745,0.1733,,,,,,
+24.845,0.2578,,,,,,
+24.906,0.0792,,,,,,
+24.974,1.6705,24.9694,"2,6,10-Trimethyltridecane",C16H34,88.9873216,Automatically assigned using a linear fit of manual peak assignments,B
+25.061,0.0454,,,,,,
+25.266,0.1003,,,,,,
+25.375,0.1593,,,,,,
+25.534,0.1903,,,,,,
+25.585,0.0891,,,,,,
+25.629,0.1346,,,,,,
+25.665,0.0517,,,,,,
+25.783,0.2931,,,,,,
+25.861,1.0052,,,,,,
+25.958,2.8984,25.8576,"Undecane, 3,8-dimethyl-",C13H28,88.67068078,Automatically assigned using a linear fit of manual peak assignments,B
+26.024,0.0491,,,,,,
+26.158,0.2071,25.955,2-Hexadecanone,C16H32O,80.18537597,Automatically assigned using a linear fit of manual peak assignments,O
+26.285,0.1408,,,,,,
+26.408,0.0872,,,,,,
+26.485,0.2373,,,,,,
+26.548,0.3124,,,,,,
+26.594,0.3521,,,,,,
+26.713,2.3437,26.7108,"3-Ethyl-2,6,10-trimethylundecane",C16H34,86.55976824,Automatically assigned using a linear fit of manual peak assignments,B
+26.821,0.1571,,,,,,
+26.89,0.0489,,,,,,
+26.996,0.1275,,,,,,
+27.107,0.4474,,,,,,
+27.236,0.2739,,,,,,
+27.327,1.7396,27.3268,2-Ethoxyethyl acrylate,C7H12O3,66.16754956,Automatically assigned using a linear fit of manual peak assignments,O
+27.439,0.3779,,,,,,
+27.531,1.3981,27.3268,2-Ethoxyethyl acrylate,C7H12O3,66.16754956,Automatically assigned using a linear fit of manual peak assignments,O
+27.65,4.4372,27.5288,Tetracosane,C24H50,87.23003683,Automatically assigned using a linear fit of manual peak assignments,L
+27.733,0.1698,,,,,,
+27.806,0.2983,27.6458,2-Nonadecanone,C19H38O,81.84179247,Automatically assigned using a linear fit of manual peak assignments,O
+27.891,0.1194,,,,,,
+27.944,0.1044,,,,,,
+28.083,0.5007,,,,,,
+28.144,0.6777,,,,,,
+28.22,0.7828,28.3183,Heneicosane,C21H44,85.99996892,Automatically assigned using a linear fit of manual peak assignments,L
+28.272,0.1582,,,,,,
+28.32,3.2389,28.3193,"Undecane, 3,8-dimethyl-",C13H28,85.51181434,Manual,B
+28.449,0.1593,,,,,,
+28.508,0.1744,28.3183,Heneicosane,C21H44,85.99996892,Automatically assigned using a linear fit of manual peak assignments,L
+28.588,0.1818,,,,,,
+28.668,0.3121,,,,,,
+28.714,0.2936,,,,,,
+28.779,0.3598,,,,,,
+28.845,0.309,,,,,,
+28.912,0.3739,,,,,,
+28.985,0.2707,,,,,,
+29.035,0.1102,,,,,,
+29.079,1.5403,,,,,,
+29.216,5.5032,29.0771,Tetracosane,C24H50,85.3389567,Automatically assigned using a linear fit of manual peak assignments,L
+29.274,0.0972,,,,,,
+29.331,0.329,29.2123,"Carbonic acid, heptadecyl prop-1-en-2-yl ester",C21H40O3,71.94648967,Automatically assigned using a linear fit of manual peak assignments,O
+29.5,0.2568,29.3303,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+29.545,0.2455,,,,,,
+29.625,0.5472,,,,,,
+29.656,0.3478,,,,,,
+29.722,0.3781,,,,,,
+29.765,0.6421,,,,,,
+29.812,2.7886,29.811,3-Ethyl-3-methylheptane,C10H22,82.58762305,Automatically assigned using a linear fit of manual peak assignments,B
+29.86,1.0736,,,,,,
+29.958,0.4012,,,,,,
+30.209,2.0044,,,,,,
+30.284,0.1677,,,,,,
+30.346,0.6009,,,,,,
+30.384,0.2874,,,,,,
+30.434,0.3241,,,,,,
+30.543,1.7401,,,,,,
+30.711,6.4731,30.5403,"Tridecane, 3-methyl-",C14H30,73.27801401,Automatically assigned using a linear fit of manual peak assignments,B
+30.809,0.7561,30.60897273,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+30.944,0.5273,30.8121,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+31.027,0.7123,30.82350899,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+31.119,1.0046,31.0323,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,66.51825563,Automatically assigned using a linear fit of manual peak assignments,O
+31.16,0.4214,,,,,,
+31.239,0.6893,31.21051324,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+31.344,3.1456,31.3366,"Hexane, 3-ethyl-3-methyl-",C9H20,55.34016108,Manual,B
+31.418,1.2874,31.2699,"1,3-Benzenedicarboxylic acid, 5-(1,1-dimethylethyl)-",C12H14O4,56.67811809,Automatically assigned using a linear fit of manual peak assignments,O
+31.546,0.4546,31.3429,"Dodecane, 2,7,10-trimethyl-",C15H32,80.18921754,Automatically assigned using a linear fit of manual peak assignments,B
+31.6,0.2022,31.507,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+31.647,0.4059,31.507,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+31.771,1.168,31.6799,"4H-1-Benzopyran-4-one, 6,7-dimethoxy-3-phenyl-",C17H14O4,50.72575084,Automatically assigned using a linear fit of manual peak assignments,O
+31.858,0.4636,,,,,,
+31.897,0.461,31.76895799,"1,3-Dioxolane, 2-heptyl-",C10H20O2,50.05011382,Automatically assigned using a linear fit of manual peak assignments,O
+32.02,1.9162,31.8416,5-Hydroxy-7-methoxy-2-methyl-3-phenyl-4-chromenone,C17H14O4,55.0811522,Automatically assigned using a linear fit of manual peak assignments,O
+32.248,1.7818,32.1371,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,52.17362065,Automatically assigned using a linear fit of manual peak assignments,O
+32.358,0.3635,32.2436,"Nonane, 3,7-dimethyl-",C11H24,50.79268889,Automatically assigned using a linear fit of manual peak assignments,B
+32.497,6.1045,32.364,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+32.587,0.5188,32.4838,"Undecanal, 2-methyl-",C12H24O,54.20177527,Automatically assigned using a linear fit of manual peak assignments,O
+32.697,0.6083,32.4937,2-Pentadecanone,C15H30O,61.39383235,Automatically assigned using a linear fit of manual peak assignments,O
+32.852,0.8541,32.7609,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+32.98,1.3797,33.0306,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+33.057,0.6933,33.0306,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+33.169,0.7665,33.0306,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+33.294,2.8834,33.1672141,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+33.412,1.3669,33.278,"Malonic acid, 2,4-dimethylpent-3-yl pentyl ester",C15H28O4,50.77967151,Automatically assigned using a linear fit of manual peak assignments,O
+33.578,1.1336,33.3964,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,51.13060428,Automatically assigned using a linear fit of manual peak assignments,O
+33.791,0.8094,,,,,,
+33.891,0.623,,,,,,
+34.018,0.7977,,,,,,
+34.25,1.3607,34.07557133,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+34.517,1.9212,34.3152,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+34.676,0.2342,,,,,,
+34.896,5.4484,34.8913,"2-Nonanone, 9-hydroxy-",C9H18O2,54.67669196,Automatically assigned using a linear fit of manual peak assignments,O
+34.981,0.4431,,,,,,
+35.118,1.0797,,,,,,
+35.244,0.0985,,,,,,
+35.317,1.0869,,,,,,
+35.512,1.8683,35.4044,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,52.49917737,Automatically assigned using a linear fit of manual peak assignments,O
+35.642,0.8198,35.6309,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+35.797,0.7477,35.6309,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+35.965,3.3004,35.8114,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,50.16932652,Automatically assigned using a linear fit of manual peak assignments,O
+36.156,2.2297,35.9641,"2,4-Dimethylpentan-3-yl 2-methylbutanoate",C12H24O2,52.37260734,Automatically assigned using a linear fit of manual peak assignments,O
+36.327,0.3366,,,,,,
+36.411,0.5541,,,,,,
+36.617,0.7381,,,,,,
+36.888,0.0636,,,,,,
+37.018,1.1715,37.0691,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+37.35,1.1543,37.3119,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,57.55279236,Automatically assigned using a linear fit of manual peak assignments,O
+37.509,0.0672,,,,,,
+37.69,2.3692,37.5512,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+38.285,4.3473,38.4393,"Anthracene, 9-dodecyl-",C26H34,57.81646886,Automatically assigned using a linear fit of manual peak assignments,A
+38.504,0.1901,,,,,,
+38.613,0.3666,,,,,,
+38.758,0.8007,38.66698816,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+38.886,0.4789,,,,,,
+39.106,2.4865,,,,,,
+39.349,1.1407,39.38722475,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+39.782,3.9584,39.58626368,No Match,,,Automatically assigned using a linear fit of manual peak assignments,
+39.968,0.1594,,,,,,

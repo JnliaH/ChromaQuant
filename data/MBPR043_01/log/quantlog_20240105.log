@@ -1,0 +1,10 @@
+[AutoFpmMatch.py] 2024-01-05 13:38:13,456 - [INFO]: FIDpMS file exists and contains manual and/or blank sourced entries
+[AutoFpmMatch.py] 2024-01-05 13:38:36,276 - [INFO]: FIDpMS file exists and contains manual and/or blank sourced entries
+[AutoFpmMatch.py] 2024-01-05 13:38:36,277 - [WARNING]: One or more labelled peaks in the FIDpMS file have no entry for Compound Source
+[AutoFpmMatch.py] 2024-01-05 13:38:38,018 - [INFO]: Performing speculative labeling on MBPR043_01 with 183 peaks, 7 of which are labelled: 0 sourced manually and 7 with an unknown source
+[AutoFPMMatch.py] 2024-01-05 13:46:42,868 - [INFO]: FIDpMS file exists and contains manual and/or blank sourced entries
+[AutoFPMMatch.py] 2024-01-05 13:46:42,870 - [WARNING]: One or more labelled peaks in the FIDpMS file have no entry for Compound Source
+[AutoFPMMatch.py] 2024-01-05 13:46:43,452 - [INFO]: Performing speculative labeling on MBPR043_01 with 183 peaks, 7 of which are labelled: 0 sourced manually and 7 with an unknown source
+[AutoFPMMatch.py] 2024-01-05 13:52:01,140 - [INFO]: FIDpMS file exists and contains manual and/or blank sourced entries
+[AutoFPMMatch.py] 2024-01-05 13:52:01,142 - [WARNING]: One or more labelled peaks in the FIDpMS file have no entry for Compound Source
+[AutoFPMMatch.py] 2024-01-05 13:52:01,800 - [INFO]: Performing speculative labeling on MBPR043_01 with 183 peaks, 7 of which are labelled: 0 sourced manually and 7 with an unknown source

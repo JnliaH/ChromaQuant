@@ -1,0 +1,20 @@
+{
+    "Sample Name": "MBPR038_01",
+    "Reactor Name": "MB01",
+    "Catalyst Type": "Ru/C+BEA",
+    "Catalyst Amount (mg)": 59.9,
+    "Plastic Type": "PE4k Sigma-Aldrich",
+    "Plastic Amount (mg)": 299.7,
+    "Reaction Temperature (C)": 256,
+    "Quench Temperature (C)": 26,
+    "Reaction Pressure (psi)": 269,
+    "Initial Pressure (psi)": 122,
+    "Quench Pressure (psi)": 27,
+    "Start Time": "2023-12-01 13:29:00.000",
+    "End Time": "2023-12-04 12:43:00.000",
+    "Heat Time": 1.2833333333333332,
+    "Internal Standard Name": "Benzene, 1,3,5-tri-tert-butyl-",
+    "Internal Standard Mass (mg)": 13.5,
+    "Reactor Volume (mL)": 13,
+    "Remaining solids (mg)": 98.1
+}

@@ -1,0 +1,507 @@
+,Component RT,Compound Name,Formula,Match Factor,Previous Best Compound Name,Previous Best Formula,Previous Best Match Factor,Previous Worst Compound Name,Previous Worst Formula,Previous Worst Match Factor
+0,39.928449133524,Dimethyl hydrastate,C11H10O6,56.0742696884172,Dimethyl hydrastate,C11H10O6,56.0742696884172,Dimethyl hydrastate,C11H10O6,52.0684751967814
+1,39.0308990052595,No Match,,,"4,4,6-Trimethyl-1-(1-naphthyl)-1,4-dihydro-2-pyrimidinethiol, methyl derivative (isomer 1)",C18H20N2S,51.5047418682771,"4,4,6-Trimethyl-1-(1-naphthyl)-1,4-dihydro-2-pyrimidinethiol, methyl derivative (isomer 1)",C18H20N2S,51.5047418682771
+2,38.6461,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,72.7411352529435,"4-tert-Octylphenol, TMS derivative",C17H30OSi,74.6791980399216,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,63.5455595684535
+3,38.4276,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,71.4963518021363,"4-tert-Octylphenol, TMS derivative",C17H30OSi,73.9426625339118,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,68.4090519313404
+4,38.03,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,58.1642760082045,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,58.1642760082045,"Cyclotrisiloxane, hexamethyl-",C6H18O3Si3,54.1934121776469
+5,38.0086,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,76.200704310503,"4-tert-Octylphenol, TMS derivative",C17H30OSi,77.8038028025717,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,68.180314460194
+6,37.7795,No Match,,,"8-Isopropyl-5-methyl-5,6,7,8-tetrahydro-2,4-quinazolinedione",C12H18N2O2,55.4468906082824,Brallobarbital,C10H11BrN2O3,52.8559163614691
+7,37.3597,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,70.3201822168172,"4-tert-Octylphenol, TMS derivative",C17H30OSi,73.4432886517946,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,69.2043374943523
+8,37.1333,No Match,,,"Cyclotrisiloxane, hexamethyl-",C6H18O3Si3,61.3093925574593,"Cyclotrisiloxane, hexamethyl-",C6H18O3Si3,51.4564329592151
+9,36.9405,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,68.9456784483159,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,68.9456784483159,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,62.555660946228
+10,36.9322,"Benzene, 1-methoxy-4-(phenylethynyl)-",C15H12O,78.6087236788643,"Benzene, 1-methoxy-4-(phenylethynyl)-",C15H12O,78.6087236788643,"Phenanthrene, 3-methoxy-",C15H12O,69.8041997127056
+11,36.8984,5-Hydroxy-7-methoxy-2-methyl-3-phenyl-4-chromenone,C17H14O4,68.8185688229995,5-Hydroxy-7-methoxy-2-methyl-3-phenyl-4-chromenone,C17H14O4,68.8185688229995,"3(2H)-Benzofuranone, 6-methoxy-2-[(3-methoxyphenyl)methylene]-, (E)-",C17H14O4,61.8693259736066
+12,36.8699,No Match,,,"Chroman-4-one, 2,3-dehydro-3-hydroxy-2-(4-dimethylaminophenyl)-",C17H15NO3,60.8741825625146,"5H-Naphtho[2,3-c]carbazole, 5-methyl-",C21H15N,56.3400822498674
+13,36.6964,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,51.9926853221992,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,51.9926853221992,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,50.1870966908628
+14,36.4812,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,59.0978461258295,"4-tert-Octylphenol, TMS derivative",C17H30OSi,60.6912918231339,"4-tert-Octylphenol, TMS derivative",C17H30OSi,50.3902621548352
+15,36.0672,"4,7-Ethanoisobenzofuran-1,3-dione, 5-(acetyloxy)-3a,4,7,7a-tetrahydro-6-methyl-",C13H14O5,54.3510660290403,"4,7-Ethanoisobenzofuran-1,3-dione, 5-(acetyloxy)-3a,4,7,7a-tetrahydro-6-methyl-",C13H14O5,54.3510660290403,"1,3-Benzenediol, O,O'-dihexanoyl-",C18H26O4,50.9681257845826
+16,36.0047,No Match,,,"Vanadium, bis[(1,2,3,3a,7a-.eta.)-1H-inden-1-yl]-",C18H14V,50.4259732935669,"Vanadium, bis[(1,2,3,3a,7a-.eta.)-1H-inden-1-yl]-",C18H14V,50.4259732935669
+17,35.6141082514532,No Match,,,"4-Methyl-2,4-bis(p-hydroxyphenyl)pent-1-ene, 2TMS derivative",C24H36O2Si2,59.3233720351838,"4-Methyl-2,4-bis(p-hydroxyphenyl)pent-1-ene, 2TMS derivative",C24H36O2Si2,59.3233720351838
+18,35.582084790637,No Match,,,2-Chloroaniline-5-sulfonic acid,C6H6ClNO3S,59.4685264165489,2-Chloroaniline-5-sulfonic acid,C6H6ClNO3S,59.4685264165489
+19,35.573,No Match,,,"Pyrrole, 2-methyl-5-phenyl-",C11H11N,58.0396108641705,"DL-Alanine, N-methyl-N-(byt-3-en-1-yloxycarbonyl)-, hexadecyl ester",C25H47NO4,50.3540890788859
+20,35.4315504566767,No Match,,,"2-(3,4-Dimethoxy-phenyl)-2,3-dihydro-1-thia-4a,9-diaza-fluoren-4-one",C18H16N2O3S,55.8865218661442,"2-(3,4-Dimethoxy-phenyl)-2,3-dihydro-1-thia-4a,9-diaza-fluoren-4-one",C18H16N2O3S,55.8865218661442
+21,35.4172,No Match,,,"Pyrrole, 2-methyl-5-phenyl-",C11H11N,65.1024745781593,"Ethane, iodo-",C2H5I,61.2350558637246
+22,35.162,No Match,,,"3-Fluoro-4-(trifluoromethoxy)benzoic acid, TMS",C11H12F4O3Si,50.3137862517787,"3-Fluoro-4-(trifluoromethoxy)benzoic acid, TMS",C11H12F4O3Si,50.3137862517787
+23,34.7411,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,51.6446939309383,"4-tert-Octylphenol, TMS derivative",C17H30OSi,55.2604605477292,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,50.6881733090488
+24,34.5331,No Match,,,"Thiophen-2-methylamine, N-(2-fluorophenyl)-",C11H10FNS,53.2906708280812,"Thiophen-2-methylamine, N-(2-fluorophenyl)-",C11H10FNS,53.2906708280812
+25,34.4953,No Match,,,"3-tert-Butylphenol, O-pentafluoropropionyl-",C13H13F5O2,53.7251223697264,"4-tert-Butylphenol, O-pentafluoropropionyl-",C13H13F5O2,53.6934349642887
+26,34.474,No Match,,,"1,2-Dihydroanthra[1,2-d]thiazole-2,6,11-trione",C15H7NO3S,52.8358495009915,"1,2-Dihydroanthra[1,2-d]thiazole-2,6,11-trione",C15H7NO3S,52.8358495009915
+27,34.2533,"Methanol, [4-(1,1-dimethylethyl)phenoxy]-, acetate",C13H18O3,55.1956521804182,"Methanol, [4-(1,1-dimethylethyl)phenoxy]-, acetate",C13H18O3,55.1956521804182,"1,2-Benzenediol, 3,5-bis(1,1-dimethylethyl)-",C14H22O2,50.9259819116204
+28,34.0746003890326,No Match,,,"4-(4-Hydroxyphenyl)-4-methyl-2-pentanone, TMS derivative",C15H24O2Si,56.924724069084,"4-(4-Hydroxyphenyl)-4-methyl-2-pentanone, TMS derivative",C15H24O2Si,56.924724069084
+29,33.6158,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,53.41980498351,"4-tert-Octylphenol, TMS derivative",C17H30OSi,55.59562451977,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,53.1499970825645
+30,33.421,No Match,,,"1,2,4-Triazol-3-amine, 5-(1,3,5-trimethyl-4-pyrazolyl)amino-",C8H13N7,53.2654809895,"1,2,4-Triazol-3-amine, 5-(1,3,5-trimethyl-4-pyrazolyl)amino-",C8H13N7,53.2654809895
+31,33.3714,No Match,,,"Benzoic acid, 3-(2,3-dihydro-1-indolylcarbonyl)-5-nitro-, methyl ester",C17H14N2O5,56.7530288405306,4-(2-Ethyl-3-methyl-5(2H)-isoxazolylidene)-3-methyl-5(4H)-isoxazolone,C10H12N2O3,50.2038482179662
+32,33.2729,No Match,,,"Spiroxatrine, N-acetyl",C24H27N3O4,50.5550310418494,"Spiroxatrine, N-acetyl",C24H27N3O4,50.5550310418494
+33,33.2252,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,74.6756338464335,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,74.6756338464335,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,69.3363420388269
+34,33.031,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,59.3789429784366,"4-tert-Octylphenol, TMS derivative",C17H30OSi,59.8561845817716,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,56.9848492677717
+35,33.0117,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,71.0587483014307,"4-tert-Octylphenol, TMS derivative",C17H30OSi,73.3007252685579,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,63.2060129806429
+36,32.9902132075457,No Match,,,"Terephthalic acid, isobutyl 2,2,3,3,3-pentafluoropropyl ester",C15H15F5O4,50.8940703893712,"Terephthalic acid, isobutyl 2,2,3,3,3-pentafluoropropyl ester",C15H15F5O4,50.8940703893712
+37,32.7923170517347,No Match,,,"4-Methyl-2,4-bis(p-hydroxyphenyl)pent-1-ene, 2TMS derivative",C24H36O2Si2,64.799215588494,"4-Methyl-2,4-bis(p-hydroxyphenyl)pent-1-ene, 2TMS derivative",C24H36O2Si2,64.799215588494
+38,32.6831,No Match,,,"1H-Imidazole, 1-[(2-methoxy-5-methylphenyl)sulfonyl]-4-methyl-2-phenyl-",C18H18N2O3S,55.5413125545167,Ethyl 6-ferrocenyl-6-oxohexanoate,C18H22FeO3,54.4058726890711
+39,32.5797,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,54.6476223646012,"4-tert-Octylphenol, TMS derivative",C17H30OSi,55.9519274800246,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,52.7185943468756
+40,32.0921,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,54.5027048539174,"4-Methyl-2,4-bis(p-hydroxyphenyl)pent-1-ene, 2TMS derivative",C24H36O2Si2,60.9621744587853,"1,2,4-Benzenetricarboxylic acid, 1,2-dimethyl ester",C11H10O6,54.5027048539174
+41,31.9082,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,64.2327855946408,"4-Methyl-2,4-bis(p-hydroxyphenyl)pent-1-ene, 2TMS derivative",C24H36O2Si2,68.3846530590335,"Cyclotrisiloxane, hexamethyl-",C6H18O3Si3,58.4286609329612
+42,31.74,No Match,,,"4-tert-Octylphenol, TMS derivative",C17H30OSi,57.2141164832846,"4-tert-Octylphenol, TMS derivative",C17H30OSi,50.2579412363525
+43,31.2818,No Match,,,"2,4-Dimethylbenzyl chloride",C9H11Cl,65.3992990983261,"Benzene, 4-(chloromethyl)-1,2-dimethyl-",C9H11Cl,56.7866425443346
+44,31.2317,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,66.1914586475766,"4-tert-Octylphenol, TMS derivative",C17H30OSi,66.3883656952544,"2'-Hydroxy-5'-methylacetophenone, TMS derivative",C12H18O2Si,50.7578199633688
+45,31.1727,"Methanone, 1,4-phenylenebis[phenyl-",C20H14O2,52.0752152784316,"Methanone, 1,4-phenylenebis[phenyl-",C20H14O2,52.0752152784316,"Methanone, 1,4-phenylenebis[phenyl-",C20H14O2,50.3738736087982
+46,30.9989,No Match,,,"3-Fluoro-4-(trifluoromethoxy)benzoic acid, TMS",C11H12F4O3Si,51.676794695737,"3-Fluoro-4-(trifluoromethoxy)benzoic acid, TMS",C11H12F4O3Si,51.676794695737
+47,30.8361583693884,No Match,,,"4-Methyl-2,4-bis(p-hydroxyphenyl)pent-1-ene, 2TMS derivative",C24H36O2Si2,62.7885996071558,"4-Methyl-2,4-bis(p-hydroxyphenyl)pent-1-ene, 2TMS derivative",C24H36O2Si2,62.7885996071558
+48,30.8146,No Match,,,"1H-Pyrimido[1,2-a]quinoline-2-acetic acid, 1-oxo-, ethyl ester",C16H14N2O3,57.2571557174266,"1,2-Dihydroanthra[1,2-d]thiazole-2,6,11-trione",C15H7NO3S,50.192599010248
+49,30.6279,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,72.4989274982762,"4-tert-Octylphenol, TMS derivative",C17H30OSi,73.1929465245586,"Cyclotrisiloxane, hexamethyl-",C6H18O3Si3,55.610178868949
+50,30.6217,"4,4'-bi-4H-pyran, 2,2',6,6'-tetrakis(1,1-dimethylethyl)-4,4'-dimethyl-",C28H46O2,70.912950714421,"4-tert-Octylphenol, TMS derivative",C17H30OSi,73.3989892276801,4-Methyl-2-trimethylsilyloxy-acetophenone,C12H18O2Si,67.4894119481781
+51,30.0438,Brayelin,C15H14O4,50.6499448954192,Brayelin,C15H14O4,50.6499448954192,Brayelin,C15H14O4,50.6499448954192
+52,29.7995,"Phenol, 2,4,6-tri-tert-butyl-",C18H30O,61.7871937298415,"p-(2-(3,3-Dimethyl-3H-indol-2-yl)vinyl)phenol",C18H17NO,62.8635198078226,"Cyclopropanecarboxylic acid, 2,4,6-tri-t-butyl-phenyl ester",C22H34O2,51.2967482305804
+53,29.205,No Match,,,"2,3,8,9-Tetrahydro-1H,5ah-cyclopenta[4,5]thieno[2,3-d]pyrido[1,2-a]pyrimidine-6(7H)-thione",C13H14N2S2,56.9586818105395,"Oxamide, N-(4-tert-butylphenyl)-N'-isopropyl-",C15H22N2O2,55.2498865776022
+54,28.899,"2-Naphthoic acid, 6-hydroxy-5,7-dimethoxy-, acetate",C15H14O6,51.9597021410337,"2-Naphthoic acid, 6-hydroxy-5,7-dimethoxy-, acetate",C15H14O6,51.9597021410337,"2-Naphthoic acid, 6-hydroxy-5,7-dimethoxy-, acetate",C15H14O6,51.9597021410337
+55,28.8769,"Phenol, 2,4,6-tri-tert-butyl-",C18H30O,67.9350926999812,"Phenol, 2,4,6-tri-tert-butyl-",C18H30O,67.9350926999812,"8-Methoxy-11-methyl-11H-indolo[3,2-c]quinoline",C17H14N2O,55.1079280805451
+56,28.7644,No Match,,,"1H,3H-naphtho[1,8-cd]pyran-1,3-dione, 6-(phenylthio)-",C18H10O3S,52.0929174311798,"Benzamide, N,N-dimethyl-4-(4-methyl-1-phthalazinylamino)-",C18H18N4O,51.2394466252186
+57,28.6236,"8-Isopropyl-1,3-dimethylphenanthrene",C19H20,74.063551325516,"8-Isopropyl-1,3-dimethylphenanthrene",C19H20,74.063551325516,"Ethanone, 1-(7-hydroxy-5-methoxy-2,2-dimethyl-2H-1-benzopyran-8-yl)-",C14H16O4,51.7360464730434
+58,28.5344,"2,6-Bis(1,1-dimethylethyl)-4-(1-oxopropyl)phenol",C17H26O2,61.7775829398322,"1,2,3,6,7,8-Hexahydro-10H-cyclopenta[4,5]thieno[2,3-d]pyrrolo[1,2-a]pyrimidine-10-thione",C12H12N2S2,66.3617430331936,"Phenol, 2,4,6-tri-tert-butyl-",C18H30O,57.8284437012129
+59,28.3752,No Match,,,"1,4-Dichloro-5,8-dihydroxyanthraquinone, diacetate",C18H10Cl2O6,61.6513185170431,"4,6-Diamino-1-[3,4-dichlorophenyl]-3-methylpyrazolo[3,4-d]pyrimidine",C12H10Cl2N6,55.3443953436433
+60,28.3583,"2-Naphthoic acid, 6-hydroxy-5,7-dimethoxy-, acetate",C15H14O6,55.9152275149452,"2-Naphthoic acid, 6-hydroxy-5,7-dimethoxy-, acetate",C15H14O6,55.9152275149452,"2-Naphthoic acid, 6-hydroxy-5,7-dimethoxy-, acetate",C15H14O6,55.9152275149452
+61,28.1197,"8-Isopropyl-1,3-dimethylphenanthrene",C19H20,51.0902258691456,"1,2,3,6,7,8-Hexahydro-10H-cyclopenta[4,5]thieno[2,3-d]pyrrolo[1,2-a]pyrimidine-10-thione",C12H12N2S2,59.1293872050259,"Benzo[b]naphtho[2,3-d]thiophene, 8-methyl-",C17H12S,50.6172751934741
+62,28.1045945341958,No Match,,,3-Ethoxy-4-hydroxy-5-iodobenzaldehyde,C9H9IO3,55.3797761793011,3-Ethoxy-4-hydroxy-5-iodobenzaldehyde,C9H9IO3,55.3797761793011
+63,27.917,"1,4-Naphthoquinone, 6-acetyl-2,5,7-trihydroxy-",C12H8O6,56.522378422991,"1,4-Naphthoquinone, 6-acetyl-2,5,7-trihydroxy-",C12H8O6,56.522378422991,"1H-Pyrazole-4-acetic acid, 1,5-diphenyl-",C17H14N2O2,50.0221655635589
+64,27.7553,"Benzene, 1-[(4-ethylphenyl)ethynyl]-4-propyl-",C19H20,57.0509220150845,"5-Ethyl-5-(4-acetoxyphenyl)-hexahydropyrimidin-2,4,6-trione",C14H14N2O5,65.442569497446,"Phenol, 2,6-bis(1,1-dimethylpropyl)-4-methyl-",C17H28O,50.0704178058334
+65,27.6716,"1,3,6,8-Tetramethylanthracene",C18H18,68.700347216521,"1,3,6,8-Tetramethylanthracene",C18H18,68.700347216521,"3-(3-Fluorophenyl)-1H-pyrazole, TMS",C12H15FN2Si,54.4251469717587
+66,27.5876,"3,5-di-tert-Butyl-4-hydroxyacetophenone",C16H24O2,58.2236685125869,"3,5-di-tert-Butyl-4-hydroxyacetophenone",C16H24O2,58.2236685125869,"Ethanone, 1-(7-hydroxy-5-methoxy-2,2-dimethyl-2H-1-benzopyran-8-yl)-",C14H16O4,50.8770890918365
+67,27.5504969922604,No Match,,,"acetamide, 2,2,2-trifluoro-N-(2-hydroxy-4-methylphenyl)-",C9H8F3NO2,55.499315671615,"acetamide, 2,2,2-trifluoro-N-(2-hydroxy-4-methylphenyl)-",C9H8F3NO2,55.499315671615
+68,27.3865,2-Isopropyl-10-methylphenanthrene,C18H18,73.5231442009286,2-Isopropyl-10-methylphenanthrene,C18H18,73.5231442009286,"Phenanthrene, 3,4,5,6-tetramethyl-",C18H18,55.5697016660209
+69,27.2944,2-Isopropyl-10-methylphenanthrene,C18H18,74.9244900738173,2-Isopropyl-10-methylphenanthrene,C18H18,74.9244900738173,"Anthracene, 2-(1,1-dimethylethyl)-",C18H18,59.0099729899276
+70,27.1407,"1,3,6,8-Tetramethylanthracene",C18H18,74.1218573322244,"1,3,6,8-Tetramethylanthracene",C18H18,74.1218573322244,"8-(2-Hydroxy-1-methoxy-3-methylbut-3-enyl)-7-methoxychromen-2-one, Me derivative",C17H20O5,51.6082601041329
+71,27.0361,"1,3,6,8-Tetramethylanthracene",C18H18,53.9158470542521,"4-tert-Butyl-2,6-diisopropylphenyl acetate",C18H28O2,64.6113674485685,"Quinoxalino[2,3-b]quinoxaline, 5,11-dihydro-",C14H10N4,53.6617464363218
+72,26.91,2-Isopropyl-10-methylphenanthrene,C18H18,64.782526492869,2-Isopropyl-10-methylphenanthrene,C18H18,64.782526492869,p-Iodoanisole,C7H7IO,55.9004687761385
+73,26.8442,No Match,,,(Dimethylphenylsilyl)phenylacetylene,C16H16Si,50.4513721672451,(Dimethylphenylsilyl)phenylacetylene,C16H16Si,50.4513721672451
+74,26.7263,"Ethanone, 1-(4,6-dihydroxy-2,3,5-trimethyl-7-benzofuranyl)-",C13H14O4,64.6874634675942,"Ethanone, 1-(4,6-dihydroxy-2,3,5-trimethyl-7-benzofuranyl)-",C13H14O4,64.6874634675942,"4-tert-Butyl-2,6-diisopropylphenyl acetate",C18H28O2,52.3992472128048
+75,26.6023,2-Isopropyl-10-methylphenanthrene,C18H18,54.2240713287648,"4-tert-Butyl-2,6-diisopropylphenyl acetate",C18H28O2,56.0553326214725,"2-Propanone, 1-(5-phenyl-3H-1,2-dithiol-3-ylidene)-",C12H10OS2,54.2139127016655
+76,26.5862,2-Benzylidene-coumaran-3-one,C15H10O2,54.9160879843144,(Dimethylphenylsilyl)phenylacetylene,C16H16Si,59.5617660026443,"Ethanone, 1-(4,6-dihydroxy-2,3,5-trimethyl-7-benzofuranyl)-",C13H14O4,51.9356137898962
+77,26.494,"Ethanone, 1-(4,6-dihydroxy-2,3,5-trimethyl-7-benzofuranyl)-",C13H14O4,63.0024173539541,"2-Propanone, 1-(5-phenyl-3H-1,2-dithiol-3-ylidene)-",C12H10OS2,63.6118311889106,"Ethanone, 1-(4,6-dihydroxy-2,3,5-trimethyl-7-benzofuranyl)-",C13H14O4,62.1617709374301
+78,26.442,No Match,,,"Phenol, 2,6-bis(1,1-dimethylethyl)-4-methyl-, methylcarbamate",C17H27NO2,50.445538570998,"Phenol, 2,6-bis(1,1-dimethylethyl)-4-methyl-, methylcarbamate",C17H27NO2,50.445538570998
+79,26.2756,"2,6-Di-t-butyl-4-methylphenol acetate(ester)",C17H26O2,50.4907094575154,"Phenol, 2,6-bis(1,1-dimethylethyl)-4-methyl-, methylcarbamate",C17H27NO2,58.1367357838768,"2,6-Di-t-butyl-4-methylphenol acetate(ester)",C17H26O2,50.4907094575154
+80,26.2506,"Phenanthrene, 2,3,5-trimethyl-",C17H16,51.4006641281156,Noscapine,C22H23NO7,62.1210521828162,9-Ethyl-10-methylanthracene,C17H16,50.8556251241286
+81,26.2389,No Match,,,"1H-Purine-2,6-dione,3,7-dihydro-3-methyl-8-oxiranylmethylthio",C9H10N4O3S,51.9910758895885,"Phosphinic acid, (1,1-dimethylethyl)[4-(1,1-dimethylethyl)phenyl]-",C14H23O2P,50.5397686114901
+82,26.1158,"2-Propenoic acid, 3-(3,4,5-trimethoxyphenyl)-",C12H14O5,67.4135190334218,"Indol-2(3H)-one, 3-(4-methoxyphenylimino)-5-methyl-",C16H14N2O2,67.5455499996845,"Dinaphtho[1,2-b:1',2'-d]furan",C20H12O,51.8295126954284
+83,26.0270019112173,No Match,,,4-Iodo-2-methoxyphenol,C7H7IO2,51.0660341935493,4-Iodo-2-methoxyphenol,C7H7IO2,51.0660341935493
+84,26.0004,"Phenanthrene, 2,3,5-trimethyl-",C17H16,67.0367973043419,"Phenanthrene, 2,3,5-trimethyl-",C17H16,67.0367973043419,"Phenanthrene, 2,3,5-trimethyl-",C17H16,51.3248604801429
+85,25.9833,4-Propylbiphenyl-4'-carboxylic acid,C16H16O2,53.9646057876083,4-Propylbiphenyl-4'-carboxylic acid,C16H16O2,53.9646057876083,"Naphtho[2,1-b:7,8-b']difuran, 1,2,9,10-tetrahydro-2,9-dimethyl-",C16H16O2,51.1779572645105
+86,25.8363,"Phenanthrene, 2,3,5-trimethyl-",C17H16,77.7272889379169,"Phenanthrene, 2,3,5-trimethyl-",C17H16,77.7272889379169,Noscapine,C22H23NO7,61.5352843993358
+87,25.7499,"Phenanthrene, 2,3,5-trimethyl-",C17H16,74.8020349981264,"Phenanthrene, 2,3,5-trimethyl-",C17H16,74.8020349981264,"Phenanthrene, 2,3,5-trimethyl-",C17H16,58.3131238724757
+88,25.5669,No Match,,,"2-Aminocaprylic acid, N-(2-chloroethoxycarbonyl)-, hexyl ester",C17H32ClNO4,66.5794697156369,"Benzoic acid, 2-chloro-5-(fluorosulfonyl)-",C7H4ClFO4S,50.0171302424654
+89,25.4114471221452,No Match,,,"Phenol, 2,6-bis(1,1-dimethylethyl)-4-methyl-, methylcarbamate",C17H27NO2,50.5610953677546,"Phenol, 2,6-bis(1,1-dimethylethyl)-4-methyl-, methylcarbamate",C17H27NO2,50.5610953677546
+90,25.2985,"Benzene, 1-(1,1-dimethylethyl)-4-phenoxy-",C16H18O,78.4953571911107,"Benzene, 1-(1,1-dimethylethyl)-4-phenoxy-",C16H18O,78.4953571911107,"2-Methoxy-5-nitrophenol, TBDMS",C13H21NO4Si,62.286825201271
+91,25.204,"9H-Xanthen-9-one, 4-methoxy-",C14H10O3,59.7083578792633,"1H-Benzo[d,E]phthalazine, 6-methoxy-1,3-dimethyl-",C14H14N2O,62.8466501431311,"5(10H)-Pyrido[3,4-b]quinolone, 7-methoxy-",C13H10N2O2,55.5648798501624
+92,25.1195,"Naphtho[1,2-b]furan-4,5-dione, 2-isopropyl-",C15H12O3,59.9263559548656,"Naphtho[1,2-b]furan-4,5-dione, 2-isopropyl-",C15H12O3,59.9263559548656,"1-Acetyl-4-methoxy-9H-pyrido[3,4-b]indole",C14H12N2O2,59.0382782949943
+93,25.0713,4-Isopropylxanthen-9-one,C16H14O2,66.9766056487406,"6-Methylthieno[2,3-d]pyrimidin-4(3H)-one, TMS derivative",C10H14N2OSSi,73.5639689974329,"3H-Pyrazol-3-one, 1,2-dihydro-1-methyl-5-(trifluoromethyl)-, TMS derivative",C8H13F3N2OSi,54.7159625997187
+94,24.9053,"Benzene, 1-(1,1-dimethylethyl)-4-phenoxy-",C16H18O,51.8968416947535,"1,4-Benzenediamine, N-(1-methylethyl)-N'-phenyl-",C15H18N2,56.464144765637,3-Fluoro-9-phenanthrenecarboxylic acid,C15H9FO2,50.0965926050487
+95,24.8982,"Benzene, 1-(1,1-dimethylethyl)-4-phenoxy-",C16H18O,66.5508631459474,"1,4-Benzenediamine, N-(1-methylethyl)-N'-phenyl-",C15H18N2,72.4802246376594,"[1,1'-Biphenyl]-2-ol, 5-(1,1-dimethylethyl)-",C16H18O,57.9712592046344
+96,24.8635,No Match,,,"2-(2-Fluorophenyl)isoindole-1,3-dione",C14H8FNO2,52.6364832610197,"1H-Isoindole-1,3(2H)-dione, 2-(4-fluorophenyl)-",C14H8FNO2,51.3718143726378
+97,24.7543,No Match,,,Fenclorim,C10H6Cl2N2,51.5882999094517,Fenclorim,C10H6Cl2N2,51.5882999094517
+98,24.7372,di-p-Tolylacetylene,C16H14,58.8639069940392,di-p-Tolylacetylene,C16H14,58.8639069940392,"Phenanthrene, 2,7-dimethyl-",C16H14,52.6681118192339
+99,24.7075,"Naphtho[2,1-b:7,8-b']difuran, 1,2,9,10-tetrahydro-2,9-dimethyl-",C16H16O2,50.5395183991287,3-(4-Fluorobenzylidene)-2-benzofuran-1(3H)-one,C15H9FO2,51.562245532182,3-(4-Fluorobenzylidene)-2-benzofuran-1(3H)-one,C15H9FO2,50.2772012161196
+100,24.6613,"1,1'-Biphenyl, 4-butoxy-",C16H18O,63.2744063491536,"1,1'-Biphenyl, 4-butoxy-",C16H18O,63.2744063491536,"Butanoic acid, heptafluoro-, 4-[1-(2,2,3,3,4,4,4-heptafluoro-1-oxobutoxy)-2-[(2,2,3,3,4,4,4-heptafluoro-1-oxobutyl)amino]ethyl]-1,2-phenylene ester",C24H7F28NO7,52.0118295310816
+101,24.6334,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,79.6489205536706,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,79.6489205536706,"Sebacic acid, butyl 4-(2-phenylpropyl-2)-phenyl ester",C29H40O4,57.6610980510666
+102,24.6169,No Match,,,"1H-Purin-6-amine, N-phenyl-",C11H9N5,63.1545920520046,"N-Phenyl-5H,6H,7H-cyclopenta[d]pyrimidin-2-amine",C13H13N3,58.3744799713248
+103,24.5537,No Match,,,Cyprodinil,C14H15N3,55.6776652324651,Cyprodinil,C14H15N3,50.2950130584599
+104,24.5448128249888,"2',4',5'-Trimethoxyacetophenone",C11H14O4,50.2994544361579,"2',4',5'-Trimethoxyacetophenone",C11H14O4,50.2994544361579,"2',4',5'-Trimethoxyacetophenone",C11H14O4,50.2994544361579
+105,24.5135,"Naphtho[1,2-b]furan-4,5-dione, 2-isopropyl-",C15H12O3,57.4133931658221,"2-(3-Methoxyphenyl)-1,3-benzoxazol-6-amine",C14H12N2O2,67.3929000871582,"2,7-Dimethoxyphenazine",C14H12N2O2,56.4688192986697
+106,24.4624,"Sydonic acid, 3Me derivative",C18H28O4,50.3500325952509,"3H-Indol-3-one, 2-phenyl-, 1-oxide",C14H9NO2,53.5912381465109,"4,5-Bis(methylamino)-fluorene",C15H16N2,50.0587720931963
+107,24.3415,No Match,,,"9,9-Dimethyl-9-sila-9,10-dihydrophenanthrene",C15H16Si,61.0076890982272,"7-Methyl-6,8-bis(methylthio)pyrrolo[1,2]pyrazine",C10H12N2S2,52.2456623229469
+108,24.3334,"1,3-Dimethyl-5-(adamantyl-1)benzene",C18H24,66.6790280100206,3-(4-Fluorobenzylidene)-2-benzofuran-1(3H)-one,C15H9FO2,73.0227413403806,"Quinizarin, O-(2-butyl)-",C18H16O4,64.86639926604
+109,24.28,"2,3,4,6-Tetramethoxystyrene",C12H16O4,67.8179499223774,"2-Acetylmethylamino-4,5,6,7-tetrahydrobenzothiazol-7-one",C10H12N2O2S,70.747724245812,"9,9-Dimethyl-9-sila-9,10-dihydrophenanthrene",C15H16Si,60.6419920197205
+110,24.2294,No Match,,,3-(4-Fluorobenzylidene)-2-benzofuran-1(3H)-one,C15H9FO2,57.5885818421138,"4-Oxo-3-oxa-8,10-diazatricyclo[7.4.0.0(2,7)]trideca-1(9),2(7),5,10,12-pentaene-5-carbonitrile",C11H5N3O2,53.905822698018
+111,24.1657,"1-Propanone, 2,2-dimethyl-1-(4-phenoxyphenyl)-",C17H18O2,58.8711143099394,"N4'-Propyl-biphenyl-4,4'-diamine",C15H18N2,59.3350864924911,"N4'-Propyl-biphenyl-4,4'-diamine",C15H18N2,57.8194613854912
+112,24.1113,"Benzene, 1-(1,1-dimethylethyl)-4-phenoxy-",C16H18O,54.4628043731161,"2-Phenazinol, 6-amino-",C12H9N3O,65.6286460138747,"3,5-Dinitro-4-hydroxybenzaldehyde",C7H4N2O6,50.7059441242387
+113,24.0924,"Benzene, 1,1'-ethylidenebis[4-ethyl-",C18H22,53.5301602039473,"Thieno[2,3-d]pyrimidin-4-ol, O-TMS",C9H12N2OSSi,58.1289771510459,"Benzene, 1,1'-ethylidenebis[4-ethyl-",C18H22,53.5301602039473
+114,24.0659,"1,3-Dimethyl-5-(adamantyl-1)benzene",C18H24,50.5887348210803,"6-[1-Hydroxy-1-(3-methyl-5-oxooxolan-2-yl)ethyl]-4-methoxy-3-methylpyran-2-one, Ac derivative",C16H20O7,51.4913204950357,"1,3-Dimethyl-5-(adamantyl-1)benzene",C18H24,50.5887348210803
+115,24.0208,"1-(2,3,4-Trimethoxyphenyl)ethanol",C11H16O4,62.4989529077352,"2,3-Dihydro-1H-2-isopropylcyclopenta[b]quinoxaline",C14H16N2,62.7305227939495,"1,3-Dimethyldibenzothiophene",C14H12S,51.0018621679196
+116,23.9524,No Match,,,"1,4-Benzenediamine, N-(1-methylethyl)-N'-phenyl-",C15H18N2,70.1287940209298,"Silane, dimethyl(4-methoxyphenoxy)ethoxy-",C11H18O3Si,58.4113958862214
+117,23.8605,No Match,,,"2,3-Dihydro-1H-2-propylcyclopenta[b]quinoxaline",C14H16N2,61.3524374047656,"2,3-Dihydro-1H-2-propylcyclopenta[b]quinoxaline",C14H16N2,61.3524374047656
+118,23.8256,"Sebacic acid, nonyl 4-(2-phenylpropyl-2)-phenyl ester",C34H50O4,82.2540394033647,"Sebacic acid, nonyl 4-(2-phenylpropyl-2)-phenyl ester",C34H50O4,82.2540394033647,"1,3-Dimethyldibenzothiophene",C14H12S,64.1935576071829
+119,23.7473,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,62.1168475158307,"1,2-5,6-Dipyrazinocyclooctane",C12H12N4,65.8557966177662,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,53.686837363426
+120,23.6667,"1,1'-Biphenyl, 4-butoxy-",C16H18O,60.6239674539894,"1,1'-Biphenyl, 4-butoxy-",C16H18O,60.6239674539894,"2-Amino-4,5-difluorobenzonitrile, TMS",C10H12F2N2Si,50.5224249067949
+121,23.6335,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,54.430815554025,"Benzenemethanol, 2,3,4,5,6-pentafluoro-.alpha.-methyl-",C8H5F5O,54.6811617185135,"Benzoic acid, 2,4,5-trimethoxy-",C10H12O5,52.3812943697444
+122,23.5691,"Sebacic acid, nonyl 4-(2-phenylpropyl-2)-phenyl ester",C34H50O4,72.0026368588426,"Sebacic acid, nonyl 4-(2-phenylpropyl-2)-phenyl ester",C34H50O4,72.0026368588426,3-Ethyldibenzothiophene,C14H12S,59.7434383141618
+123,23.5352,"Benzo[a]fluorene, 1,2,3,4,6b,7,8,9,10,10a-decahydro-",C17H22,62.9138686473942,"Maltol, TBDMS derivative",C12H20O3Si,65.5647812038086,ALEPH-4,C14H23NO2S,55.9297144903253
+124,23.4925,1-Ethoxy-2-phenylmethylbenzene,C15H16O,60.3467676312605,1-Ethoxy-2-phenylmethylbenzene,C15H16O,60.3467676312605,"2,4'-Dihydroxy-stilbene",C14H12O2,54.907684911624
+125,23.3825,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,77.662559509507,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,77.662559509507,"9H-Xanthen-9-one, 1-hydroxy-",C13H8O3,60.7921699543077
+126,23.3636044883862,No Match,,,"9H-Pyrido[3,4-b]indole, 7-methoxy-1,9-dimethyl-",C14H14N2O,55.6003847372067,"9H-Pyrido[3,4-b]indole, 7-methoxy-1,9-dimethyl-",C14H14N2O,55.6003847372067
+127,23.3574,"9H-Xanthen-9-one, 3-methoxy-",C14H10O3,59.0977576023248,"9H-Xanthen-9-one, 3-methoxy-",C14H10O3,59.0977576023248,ALEPH-4,C14H23NO2S,51.1581833656891
+128,23.2647,3-Phenyl-4-hydroxyacetophenone,C14H12O2,62.3405326996666,3-Phenyl-4-hydroxyacetophenone,C14H12O2,62.3405326996666,"Sebacic acid, butyl 4-(2-phenylpropyl-2)-phenyl ester",C29H40O4,58.8747278360433
+129,23.2084,"Naphthalene, 1,6-dimethyl-4-(1-methylethyl)-",C15H18,80.0569196252268,"Naphthalene, 1,6-dimethyl-4-(1-methylethyl)-",C15H18,80.0569196252268,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,67.4782201244061
+130,23.1593,2-Furfurylidene-3-oxo-4-indanyl acetate,C16H12O4,61.722512639097,2-Furfurylidene-3-oxo-4-indanyl acetate,C16H12O4,61.722512639097,"N-(4-Methyl-2-pyrimidinyl)-1,3-benzoxazol-2-amine",C12H10N4O,52.2716672450627
+131,23.0647,"3,4,5-Trimethoxyphenylacetic acid",C11H14O5,50.886824735998,"9H-Pyrido(3,4-b)indole, 6-methoxy-1-methyl-",C13H12N2O,59.1184445754273,"Benzoic acid, 2,4,5-trimethoxy-",C10H12O5,50.280293386658
+132,22.9899,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,84.4559660548445,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,84.4559660548445,"4-Methyl-5-trifluoromethyl-4H-1,2,4-tri- azolin-3(2H)-thione",C4H4F3N3S,66.6658710228346
+133,22.8986,"1-(2,3,4-Trimethoxyphenyl)ethanol",C11H16O4,57.4377779951528,"2,3-Dihydro-1H-2-propylcyclopenta[b]quinoxaline",C14H16N2,67.1516193769574,"2,2-Dichloroethyl 2,3,4,5,6-pentafluorobenzoate",C9H3Cl2F5O2,50.5952809956095
+134,22.8365,"2',4'-Dihydroxy-3',5'-dimethoxyacetophenone",C10H12O5,68.3053633666109,Harmine,C13H12N2O,71.6927433872089,"Preechinulin, N,N,N-tris-methyl",C22H29N3O2,55.7100731352026
+135,22.768,1-Ethoxy-2-phenylmethylbenzene,C15H16O,59.4434764455005,"2,3-Dihydro-1H-2-propylcyclopenta[b]quinoxaline",C14H16N2,71.2122858411794,"2,6-Dimethyl-3-(1H-pyrazol-5-yl)imidazo[1,2-a]pyridine",C12H12N4,51.2270249329793
+136,22.7245,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,81.9388514611287,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,81.9388514611287,"2,3-Dihydro-1,3-dimethyl(1H)cyclopenta[b]quinoxaline",C13H14N2,67.2041464952858
+137,22.6288,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,88.5890708860271,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,88.5890708860271,"Naphthalene, 1,6-dimethyl-4-(1-methylethyl)-",C15H18,73.9729282500074
+138,22.6042,No Match,,,"4-Methoxymandelic acid, 2TMS derivative",C15H26O4Si2,62.1801122755507,2-[2-Thienyl]cinchoninic acid ethyl ester,C16H13NO2S,56.1498933516124
+139,22.5354,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,60.9554855930179,".beta.-Carboline, 8-methoxy-1-methyl-",C13H12N2O,64.4926188925642,"Phen-1,2-diol, 4-fluoro-5-aminoacetyl-, dimethyl ether",C10H12FNO3,53.5502201732326
+140,22.4551,1-Ethoxy-2-phenylmethylbenzene,C15H16O,60.4838688111738,"2,3-Dihydro-1H-2-propylcyclopenta[b]quinoxaline",C14H16N2,77.5560175556882,"2,7-dimethyl-3-(1H-pyrazol-5-yl)imidazo[1,2-a]pyridine, TMS (isomer 2)",C15H20N4Si,50.3495254454814
+141,22.4298,"Naphthalene, 1,6,7-trimethyl-",C13H14,68.4276717534685,"Naphthalene, 1,6,7-trimethyl-",C13H14,68.4276717534685,"Urea, N,N-diphenyl-N'-decyl-",C23H32N2O,53.62239022871
+142,22.3851,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,61.4186513751697,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,61.4186513751697,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,50.778712880576
+143,22.3321,No Match,,,Pyrimethanil,C12H13N3,57.216781542969,"1-Dodecanamine, N-dodecyl-",C24H51N,51.2771193835144
+144,22.3261,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,70.0000523450331,"Succinic acid, 2,4,6-trichlorophenyl 3-phenoxybenzyl ester",C23H17Cl3O5,73.5412289464528,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,60.0013438758921
+145,22.2619,"1,5-Diacetylnaphthalene",C14H12O2,63.3929308362362,"2,3-Dihydro-2-ethyl-1H-cyclopenta[b]quinoxaline",C13H14N2,66.3538476141081,".beta.-Carboline, 8-methoxy-1-methyl-",C13H12N2O,59.1984776720293
+146,22.2016,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,69.3032529228548,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,69.3032529228548,"Naphthalene, 1,6-dimethyl-4-(1-methylethyl)-",C15H18,61.8863392799882
+147,22.0948,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,84.7102562010262,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,84.7102562010262,"2,3-Dihydro-1,2-dimethyl-1H-cyclopenta[b]quinoxaline",C13H14N2,57.0865312500989
+148,21.9649,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,84.2341838544773,"6-Isopropyl-1,4-dimethylnaphthalene",C15H18,84.2341838544773,"Phenol, 2-(1-phenylethyl)-",C14H14O,60.6807688238353
+149,21.9550175345682,No Match,,,"2,6-Difluoro-3-methylbenzoic acid, 2,3,4,6-tetrachlorophenyl ester",C14H6Cl4F2O2,51.2579456047657,"2,6-Difluoro-3-methylbenzoic acid, 2,3,4,6-tetrachlorophenyl ester",C14H6Cl4F2O2,51.2579456047657
+150,21.9421,"(1R,2S,5R)-5-Methyl-2-(1-methyl-1-(2'-naphthyl)ethyl)-cyclohexane-1-yl acrylate",C23H28O2,57.8063610130789,2-(3-Methylbutyl)-5-phenylpyridine,C16H19N,65.3150891730672,4-tert-Butylphthalonitrile,C12H12N2,51.4221570316559
+151,21.9036,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,59.0893613105321,"1-Acetyl-4,6,8-trimethylazulene",C15H16O,59.0893613105321,"Benzenemethanol, 2,3,4,5,6-pentafluoro-.alpha.-methyl-",C8H5F5O,55.1284139397493
+152,21.8921,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,64.5280411628658,"Phloroglucinol, trimethylsilyl ether",C9H14O3Si,65.4816199156947,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,53.582979053811
+153,21.8,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,69.473125502824,"Succinic acid, 2,4,6-trichlorophenyl 3-phenoxybenzyl ester",C23H17Cl3O5,76.3295595950124,"Phenol, 2-(1-phenylethyl)-",C14H14O,62.4547641869284
+154,21.7415,No Match,,,"Cyclohexene, 3-ethyl-1-trimethylsilyloxy-",C11H22OSi,60.6700363376536,2-{[(2-Phenylpyrimidin-5-yl)methyl]amino}ethanol,C13H15N3O,54.2463152317096
+155,21.6785,"Naphthalene, 1,6-dimethyl-4-(1-methylethyl)-",C15H18,76.5635808532886,"Naphthalene, 1,6-dimethyl-4-(1-methylethyl)-",C15H18,76.5635808532886,"2,4,6(1H,3H,5H)-Pyrimidinetrione, 5-ethyl-1,3-dimethyl-",C8H12N2O3,63.1854156236008
+156,21.619,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,76.9028326169598,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,76.9028326169598,"Naphthalene, 1,6-dimethyl-4-(1-methylethyl)-",C15H18,67.8747526299837
+157,21.6089,No Match,,,"Z-2-Propenoic acid, 3-iodo-, methyl ester",C4H5IO2,52.0938814320376,"3H-1,2,4-Triazol-3-one, 5-[[[(2-cyclohexyl-4-thiazolyl)methyl]thio]methyl]-2,4-dihydro-",C13H18N4OS2,50.0089196425585
+158,21.5673,No Match,,,"Phosphinic acid, (1,1-dimethylethyl)[4-(1,1-dimethylethyl)phenyl]-",C14H23O2P,54.94062570396,"(2S,3aS,6aS)-Octahydrocyclopenta[b]pyrrole-2-carboxylic acid, N-trimethylsilyl-, trimethylsilyl ester",C14H29NO2Si2,50.3857992301048
+159,21.5418,No Match,,,"D-Alanine, N-(2,6-difluoro-3-methylbenzoyl)-, undecyl ester",C22H33F2NO3,53.714618291853,"D-Alanine, N-(2,6-difluoro-3-methylbenzoyl)-, tridecyl ester",C24H37F2NO3,53.0624289290705
+160,21.4897,Chamazulene,C14H16,72.1294258573698,"2,3-Dihydro-1H-1-methylcyclopenta[b]quinoxaline",C12H12N2,73.4884872578805,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,65.7727140418963
+161,21.4217,"1,1'-Biphenyl, 4-methoxy-",C13H12O,67.0675516349032,"2,3-Dihydro-1H-1-methylcyclopenta[b]quinoxaline",C12H12N2,70.0424049374039,"2,4,6(1H,3H,5H)-Pyrimidinetrione, 5-ethyl-1,3-dimethyl-5-(1-methylpropyl)-",C12H20N2O3,60.4899642742117
+162,21.3734,"1,4,5,8-Tetramethylnaphthalene",C14H16,84.6016303600337,"1,4,5,8-Tetramethylnaphthalene",C14H16,84.6016303600337,"1,1'-Biphenyl, 4-methoxy-",C13H12O,67.3387987821412
+163,21.3167,"1,2,3,3a,8,9,9a,9b-Octahydrocyclopenta[def]phenanthrene",C15H18,56.3731431059451,"D-Alanine, N-(2,6-difluoro-3-methylbenzoyl)-, isohexyl ester",C17H23F2NO3,64.4039306259262,"1,2,3,3a,8,9,9a,9b-Octahydrocyclopenta[def]phenanthrene",C15H18,56.3731431059451
+164,21.2509,"1,1'-Biphenyl, 4-methoxy-",C13H12O,73.1369616674505,"2,4,6(1H,3H,5H)-Pyrimidinetrione, 5-ethyl-1,3-dimethyl-5-(1-methylpropyl)-",C12H20N2O3,75.0403995285918,"1,1'-Biphenyl, 4-methoxy-",C13H12O,65.7975481104971
+165,21.2112,No Match,,,"D-Alanine, N-(2,6-difluoro-3-methylbenzoyl)-, undecyl ester",C22H33F2NO3,77.8223744611165,"D-Alanine, N-(2,6-difluoro-3-methylbenzoyl)-, tridecyl ester",C24H37F2NO3,71.7348494901934
+166,21.1853,"1,4,5,8-Tetramethylnaphthalene",C14H16,77.1705236583635,"1,4,5,8-Tetramethylnaphthalene",C14H16,77.1705236583635,"Naphthalene, 1,2,3,4-tetramethyl-",C14H16,65.842555195565
+167,21.1356,"Naphthalene, 1,2,3,4-tetramethyl-",C14H16,92.6853423160194,"Naphthalene, 1,2,3,4-tetramethyl-",C14H16,92.6853423160194,"1,4,5,8-Tetramethylnaphthalene",C14H16,76.9189520753279
+168,21.0593,No Match,,,"Thieno[2,3-b]pyridine, 3-chloro-",C7H4ClNS,56.2760673525873,"Purine, 2-amino-6-chloro-",C5H4ClN5,51.5825093204436
+169,21.0264,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,71.243670188986,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,71.243670188986,".beta.-Carboline, 6-methoxy-",C12H10N2O,60.0038855759232
+170,20.9463,"1,4,5,8-Tetramethylnaphthalene",C14H16,94.333251882068,"1,4,5,8-Tetramethylnaphthalene",C14H16,94.333251882068,Nonyl trimethylsilyl methylphosphonate,C13H31O3PSi,53.7651687610226
+171,20.8942,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,60.1689131769259,"Dibenzofuran, 2-methoxy-",C13H10O2,63.1800720902029,"9H-Pyrido[2,3-b]indole, 6-methoxy-",C12H10N2O,59.7068302719581
+172,20.8892,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,56.4305817046178,"Azulene, 1,4-dimethyl-7-(1-methylethyl)-",C15H18,56.4305817046178,"9H-Pyrido[2,3-b]indole, 6-methoxy-",C12H10N2O,53.2528513020024
+173,20.8235,"1,1'-Biphenyl, 4-methoxy-",C13H12O,62.6341723821007,"2,4,6(1H,3H,5H)-Pyrimidinetrione, 5-ethyl-1,3-dimethyl-5-(1-methylpropyl)-",C12H20N2O3,65.5161368419125,"2,4,6(1H,3H,5H)-Pyrimidinetrione, 5-ethyl-1,3-dimethyl-5-(1-methylpropyl)-",C12H20N2O3,54.4384585783804
+174,20.7099,No Match,,,"Pyridine, 2,2'-methylenebis-",C11H10N2,70.2762528866415,"2-Pyridinamine, N-phenyl-",C11H10N2,65.8644533443171
+175,20.6975,"Naphthalene, 1,2,3,4-tetramethyl-",C14H16,80.7691029282637,"Naphthalene, 1,2,3,4-tetramethyl-",C14H16,80.7691029282637,Dibenzothiophene,C12H8S,50.3914986496841
+176,20.686,No Match,,,"2-Bromobenzoic acid, 3-chlorophenyl ester",C13H8BrClO2,64.9938506158099,"3-Bromobenzoic acid, 3,5-difluorophenyl ester",C13H7BrF2O2,63.6664796674856
+177,20.6637,No Match,,,"Dibenzofurane, 2-amino-6,7,8,9-tetrahydro-",C12H13NO,55.8757282456814,"Phenylphosphonic acid, hexyl ethyl ester",C14H23O3P,50.1627268037308
+178,20.6141,7H-Benz[de]anthracen-7-one,C17H10O,57.2584809230427,"3H-pyrazol-3-one, 2-(1,3-dihydro-1-oxo-5-isobenzofuranyl)-2,4-dihydro-5-methyl-",C12H10N2O3,57.6303592890622,"8-Methoxy-2-[n-propyl]-5,6-dihydro-4H-imidazo[I,j]quinoline",C14H18N2O,53.0320368640069
+179,20.6,"1,4,5,8-Tetramethylnaphthalene",C14H16,55.7120919673898,"2,4,6(1H,3H,5H)-Pyrimidinetrione, 5-ethyl-1,3-dimethyl-5-(1-methylpropyl)-",C12H20N2O3,72.9492823006872,"1,4,5,8-Tetramethylnaphthalene",C14H16,55.7120919673898
+180,20.551,No Match,,,"D-Alanine, N-(2,6-difluoro-3-methylbenzoyl)-, isobutyl ester",C15H19F2NO3,56.1504292482063,"D-Alanine, N-(2,6-difluoro-3-methylbenzoyl)-, undecyl ester",C22H33F2NO3,53.3454042410797
+181,20.4931,"3,5-Dihydroxy-4'-methoxydiphenyl",C13H12O3,60.6315874327761,"2,6-Pyrazinedicarbonitrile, 3-amino-5-(diethylamino)-",C10H12N6,60.8707667713719,"1H-Pyrido[3,4-b]indole, 2,3,4,9-tetrahydro-6-methoxy-1-methyl-",C13H16N2O,53.5203124540325
+182,20.47,"1-(3-Methylbutyl)-2,3,4,6-tetramethylbenzene",C15H24,53.3805277667583,"Spiro(1,3-benzodioxole)-2,1'-cyclohexan-4'-one",C12H12O3,56.3396721160062,"1-(3-Methylbutyl)-2,3,4,6-tetramethylbenzene",C15H24,50.7588086533332
+183,20.4609,"1,4,5,8-Tetramethylnaphthalene",C14H16,67.7041706812704,"1,1'-Biphenyl, 4-methoxy-",C13H12O,71.6361168715295,"2,4,6(1H,3H,5H)-Pyrimidinetrione, 5-ethyl-1,3-dimethyl-5-(1-methylpropyl)-",C12H20N2O3,57.9215414185141
+184,20.4364,No Match,,,"Glutaric acid, monoamide, N-(4-methylbenzyl)-, isobutyl ester",C17H25NO3,53.7694705740145,"Glutaric acid, monoamide, N-(4-methylbenzyl)-, isohexyl ester",C19H29NO3,50.1315207535856
+185,20.4201,"1,4,5,8-Tetramethylnaphthalene",C14H16,64.8694580468319,"2,4,6(1H,3H,5H)-Pyrimidinetrione, 5-ethyl-1,3-dimethyl-5-(1-methylpropyl)-",C12H20N2O3,73.2934888687619,"Pyridine, 2,2'-methylenebis-",C11H10N2,51.4984783972371
+186,20.3922,No Match,,,"Methyl N,N-dipropylphosphoramidocyanidate",C8H17N2O2P,50.8508940396101,"1,3,5-Trimethyl-1,3-dihydro-benzoimidazol-2-one",C10H12N2O,50.4900098648377
+187,20.3752,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,73.2819485381358,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,73.2819485381358,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,61.771294109039
+188,20.3156,"1,4,5,8-Tetramethylnaphthalene",C14H16,76.0242594070369,"1,4,5,8-Tetramethylnaphthalene",C14H16,76.0242594070369,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,61.7399244071238
+189,20.2438,"Naphthalene, 1,4,6-trimethyl-",C13H14,64.4616930827708,"2,4,6,(1H,3H,5H)-Pyrimidinetrione, 5-acetyl-",C6H6N2O4,69.5761954396421,"Naphthalene, 2,3,6-trimethyl-",C13H14,56.2801681964785
+190,20.2263,"1,4,5,8-Tetramethylnaphthalene",C14H16,76.2770864537409,"1,4,5,8-Tetramethylnaphthalene",C14H16,76.2770864537409,"Naphthalene, 1-methyl-7-(1-methylethyl)-",C14H16,62.3513090868933
+191,20.1659,"1,1,2,2,3,3-Hexamethylindane",C15H22,51.543720828491,"2-Amino-4,6-difluorophenol, triacetate",C12H11F2NO4,54.91366932203,"Cadina-1(10),6,8-triene",C15H22,50.5438208961072
+192,20.1112,"Naphthalene, 2-methyl-1-propyl-",C14H16,77.2807228856609,"Naphthalene, 2-methyl-1-propyl-",C14H16,77.2807228856609,"1,2-Benzenediol, O-(5-chlorovaleryl)-O'-(1-naphthoyl)-",C22H19ClO4,57.2498372737354
+193,20.0798,No Match,,,"5-Isopropyl-5-(2-hydroxy-2-propenyl)-hexahydropyrimidin-2,4,6-trione",C10H14N2O4,57.0807066810707,"5-Acetonyl-5-propyl-hexahydropyrimidin-2,4,6-trione",C10H14N2O4,54.2044942071461
+194,20.0395,"Naphthalene, 1,4,6-trimethyl-",C13H14,58.3547100547101,"2,4,6,(1H,3H,5H)-Pyrimidinetrione, 5-acetyl-",C6H6N2O4,64.0047520484525,"1-(2,3-Dimethyl-phenyl)-pyrrolidin-2-ylideneamine",C12H16N2,50.15421572315
+195,19.9455,"Naphthalene, 2-(1-methylethyl)-",C13H14,67.5830408725812,"Naphthalene, 2-(1-methylethyl)-",C13H14,67.5830408725812,"Naphthalene, 2,3,6-trimethyl-",C13H14,56.8825427070628
+196,19.9144,"Benzene, ethylpentamethyl-",C13H20,78.4550826089962,"Benzene, ethylpentamethyl-",C13H20,78.4550826089962,"Silane, (4-ethenylphenyl)trimethyl-",C11H16Si,63.5445221671306
+197,19.7963,No Match,,,"4-(1-Methylpropylamino)pyrido[3,2-c]pyridazine",C11H14N4,52.3539964129646,"4-(1-Methylpropylamino)pyrido[3,2-c]pyridazine",C11H14N4,52.3539964129646
+198,19.7574,"Naphthalene, 2,3,6-trimethyl-",C13H14,83.8610055781362,"Naphthalene, 2,3,6-trimethyl-",C13H14,83.8610055781362,"1,2-Benzenediol, O-(2-methylbenzoyl)-O'-(1-naphthoyl)-",C25H18O4,54.6156365192704
+199,19.724,"Naphthalene, 2,3,6-trimethyl-",C13H14,89.4719176564803,"Naphthalene, 2,3,6-trimethyl-",C13H14,89.4719176564803,"Pipecolic acid, N-propoxycarbonyl-, hexadecyl ester",C26H49NO4,70.1445199541836
+200,19.622,"1,3-Benzenediol, o-(4-ethylbenzoyl)-o'-(3-methylbenzoyl)-",C23H20O4,71.601821588007,"1,3-Benzenediol, o-(4-ethylbenzoyl)-o'-(3-methylbenzoyl)-",C23H20O4,71.601821588007,"5H-5-Methyl-6,7-dihydrocyclopentapyrazine",C8H10N2,62.1704749227821
+201,19.6089,"(3aS,4R,7R)-1,4,9,9-Tetramethyl-5,6,7,8-tetrahydro-4H-3a,7-methanoazulene",C15H22,57.9579845136281,"2,3,4-Trifluorobenzoic acid, 4-nitrophenyl ester",C13H6F3NO4,72.0917840075994,"2-Oxa-1,3-disilacyclohexane, 1,1,3,3-tetramethyl-",C7H18OSi2,55.4115168586454
+202,19.5935437296241,No Match,,,"6-Dodecanol, TMS derivative",C15H34OSi,50.1212701029632,"6-Dodecanol, TMS derivative",C15H34OSi,50.1212701029632
+203,19.5577,"Naphthalene, 2,3,6-trimethyl-",C13H14,94.872688283943,"Naphthalene, 2,3,6-trimethyl-",C13H14,94.872688283943,"Naphthalene, 1,6,7-trimethyl-",C13H14,78.4374572629341
+204,19.5241,"1'-Acetonaphthone, 2'-hydroxy-4'-methoxy-",C13H12O3,52.5686713029046,3-Allyl-2-methyl-4(3H)-quinazolinethione,C12H12N2S,52.681542919947,"Ethanone, 1-[6-hydroxy-2-(1-methylethenyl)-5-benzofuranyl]-",C14H16O2,52.4799772240567
+205,19.486,"Benzene, 1-(1,5-dimethylhexyl)-4-methyl-",C15H24,60.764575306186,"Benzene, 1-(1,5-dimethylhexyl)-4-methyl-",C15H24,60.764575306186,"Benzene, 1-(1,5-dimethylhexyl)-4-methyl-",C15H24,52.5362665986182
+206,19.3542,"Benzene, 1,1'-(1,1,10,10-tetramethyl-1,10-decanediyl)bis[3,4-dimethyl-",C30H46,62.4643517001695,"Propiophenone, 2,2',4',6'-tetramethyl-",C13H18O,65.3967442681303,4-pentylphenyl 4-propylbenzoate,C21H26O2,57.8524390761863
+207,19.3236,"Naphthalene, 2,3,6-trimethyl-",C13H14,91.0335124870901,"Naphthalene, 2,3,6-trimethyl-",C13H14,91.0335124870901,"Naphthalene, 2,3,6-trimethyl-",C13H14,76.6999358355837
+208,19.2766,"Benzene, 1,2,4-trimethyl-",C9H12,59.1379332455324,"1,5-Dimethyl-2-pyrrolecarbonitrile",C7H8N2,62.5272321126466,"3-Methylbenzoic acid, 2,5-dichlorophenyl ester",C14H10Cl2O2,56.3709150474292
+209,19.259,"Naphthalene, 1,6,7-trimethyl-",C13H14,94.0937973279845,"Naphthalene, 1,6,7-trimethyl-",C13H14,94.0937973279845,"Naphthalene, 2,3,6-trimethyl-",C13H14,75.2480838954115
+210,19.1793,No Match,,,"2-Trifluoromethylbenzoic acid, 2-chloroethyl ester",C10H8ClF3O2,60.2746488438086,"3,4,4,4-Tetrachloro-1-(2,4-dichloro-phenyl)-butan-1-one",C10H6Cl6O,50.1524479731982
+211,19.1365,"Naphthalene, 2-(1-methylethyl)-",C13H14,68.93651701622,"Naphthalene, 2-(1-methylethyl)-",C13H14,68.93651701622,"Naphthalene, 1,4,6-trimethyl-",C13H14,55.5248153518482
+212,19.0212,No Match,,,"4-(1-Methylpropylamino)pyrido[3,2-c]pyridazine",C11H14N4,55.3141041860473,"4-(1-Methylpropylamino)pyrido[3,2-c]pyridazine",C11H14N4,55.3141041860473
+213,19.014,No Match,,,"L-Valine, N-(4-ethylbenzoyl)-, decyl ester",C24H39NO3,63.6436415038193,"1,2-Benzenediol, O-(4-ethylbenzoyl)-O'-(2-trifluoromethylbenzoyl)-",C23H17F3O4,51.2281116507598
+214,18.9938,"Naphthalene, 2-(1-methylethyl)-",C13H14,92.6876900965429,"Naphthalene, 2-(1-methylethyl)-",C13H14,92.6876900965429,"5-Methyl-1-phenylhexa-1,3,4-triene",C13H14,65.0047060450047
+215,18.9671,"1,3-Dimethyl-4-cyclohexylbenzene",C14H20,56.534080354292,"1,3-Dimethyl-4-cyclohexylbenzene",C14H20,56.534080354292,"1,4-Dimethyl-2-cyclohexylbenzene",C14H20,54.4522919849079
+216,18.8873,"1,1,4,5,6-Pentamethyl-2,3-dihydro-1H-indene",C14H20,77.2014373385771,"1,1,4,5,6-Pentamethyl-2,3-dihydro-1H-indene",C14H20,77.2014373385771,"2-Propenoic acid, 3-(1H-indol-3-yl)-, (E)-",C11H9NO2,50.04184312005
+217,18.8169,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,71.7018740567354,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,71.7018740567354,"2,2-Dimethyl-3-heptanone",C9H18O,55.5399382125014
+218,18.7623,"1-(3-Methylbutyl)-2,4,6-trimethylbenzene",C14H22,64.0618409032544,"1-(3-Methylbutyl)-2,4,6-trimethylbenzene",C14H22,64.0618409032544,"1-Acetyl-2,7-naphthalenediol",C12H10O3,50.6713358933967
+219,18.7145,"1,1,2,2,3,3-Hexamethylindane",C15H22,56.6497984737614,"1,2-Benzenediol, O-(4-trifluoromethylbenzoyl)-O'-(2,3,4-trifluorobenzoyl)-",C21H10F6O4,76.0200484627861,"1H-Cyclopenta(b)quinoline, 2,3,5,6,7,8-hexahydro-9-amino-",C12H16N2,50.0255837658127
+220,18.7045,"Decane, 3,3,4-trimethyl-",C13H28,65.6697849328309,"2,5-Dimethyl-3,3a-dithia-4-oxapentalene",C7H8OS2,70.688449707416,"Phosphinothioic acid, (1,1-dimethylethyl)phenyl-, O-methyl ester",C11H17OPS,60.8539181361177
+221,18.6333,No Match,,,4-Trifluoromethylbenzoic acid. cyclobutyl ester,C12H11F3O2,63.7004224655766,Methyl-4-trifluoromethylbenzoate,C9H7F3O2,56.556224184384
+222,18.564,"Naphthalene, 1,2,3,4-tetrahydro-1,6,8-trimethyl-",C13H18,65.4708232030889,"Toluene, 4-(1,1-dimethyl-2-propynyloxy)-",C12H14O,66.6363466775545,"1H-Indene, 2,3-dihydro-1,1,4,5-tetramethyl-",C13H18,57.7251036511643
+223,18.5418,"Benzene, 1-isopentyl-2,4,5-trimethyl-",C14H22,72.1007338954923,"Benzene, 1-isopentyl-2,4,5-trimethyl-",C14H22,72.1007338954923,"1-(3-Methylbutyl)-2,3,5-trimethylbenzene",C14H22,59.181939303265
+224,18.4426,"Naphthalene, 1,2,3,4-tetrahydro-5,6,7,8-tetramethyl-",C14H20,62.4354272545208,"4-(1-Methylpropylamino)pyrido[3,2-c]pyridazine",C11H14N4,62.5246504730269,3-(Bromoacetyl)-2H-chromen-2-one,C11H7BrO3,54.1463115761362
+225,18.421,"Naphthalene, 1-ethyl-",C12H12,75.5941562429334,"Naphthalene, 1-ethyl-",C12H12,75.5941562429334,"Naphthalene, 2-ethyl-",C12H12,73.9252504697188
+226,18.3968,"Benzene, 1,1'-(1,1,10,10-tetramethyl-1,10-decanediyl)bis[3,4-dimethyl-",C30H46,55.375805089134,"Propiophenone, 2,2',4',6'-tetramethyl-",C13H18O,55.7840500141754,"Propiophenone, 2,2',4',6'-tetramethyl-",C13H18O,50.0331065610806
+227,18.3704,"Toluene, 4-(1,1-dimethyl-2-propynyloxy)-",C12H14O,76.0803562518435,"Toluene, 4-(1,1-dimethyl-2-propynyloxy)-",C12H14O,76.0803562518435,"2,3,4-Trifluorobenzoic acid, cyclobutyl ester",C11H9F3O2,65.0972209604369
+228,18.3438,3-Ethyl-3-methylheptane,C10H22,73.8531495290276,"Sulfurous acid, 2-ethylhexyl hexyl ester",C14H30O3S,75.7589765998195,"2,4-Dichlorobenzyl alcohol, 2-methylbutyl ether",C12H16Cl2O,51.4384550324411
+229,18.2897,"1,3,5-Trimethyl-2-cyclopentylbenzene",C14H20,72.6932467638608,"Toluene, 4-(1,1-dimethyl-2-propynyloxy)-",C12H14O,74.105689555232,"1,4-benzenedicarbonitrile, 2,5-dimethoxy-",C10H8N2O2,57.4374650245951
+230,18.2453,"Hexane, 2,4,4-trimethyl-",C9H20,60.9918197709614,"Sulfurous acid, 2-ethylhexyl isobutyl ester",C12H26O3S,63.4581092317955,"Octane, 1-iodo-",C8H17I,50.7382296162977
+231,18.2106,"Naphthalene, 1,2-dimethyl-",C12H12,78.8979691844096,"Naphthalene, 1,2-dimethyl-",C12H12,78.8979691844096,"Naphthalene, 2,7-dimethyl-",C12H12,55.0572793043606
+232,18.1886,"Hexane, 3,3-dimethyl-",C8H18,56.2837425968619,"Hexane, 3,3-dimethyl-",C8H18,56.2837425968619,"L-Valine, N-(4-methylbenzoyl)-, heptadecyl ester",C30H51NO3,50.6325021473763
+233,18.1614,"Naphthalene, 1,2,3,4-tetrahydro-5,6,7,8-tetramethyl-",C14H20,59.8975070897122,3-Acetylcoumarin,C11H8O3,64.1806687600294,"2-Trifluoromethylbenzoic acid, 2,3-dichlorophenyl ester",C14H7Cl2F3O2,58.1654496465625
+234,18.155,"Naphthalene, 1,2,3,4-tetrahydro-5,6,7,8-tetramethyl-",C14H20,59.2093359859915,4-Trifluoromethylbenzoic acid. cyclobutyl ester,C12H11F3O2,59.8149687473722,3-Formyl-6-isopropylchromone,C13H12O3,53.8736944488759
+235,18.1492,6-Hydroxy-4-methylcoumarin,C10H8O3,72.7936506982449,6-Hydroxy-4-methylcoumarin,C10H8O3,72.7936506982449,6-(Acetyl)oxy-4-methylcoumarin,C12H10O4,58.4864597377699
+236,18.1153,"Diglycolic acid, di(3-methylpent-2-yl) ester",C16H30O5,67.0171427261594,"Diglycolic acid, di(3-methylpent-2-yl) ester",C16H30O5,67.0171427261594,"Boron, (piperidine)tris(trifluoromethyl)-, (t-4)-",C8H11BF9N,52.6416831630125
+237,18.0784,No Match,,,Nithiamide,C5H5N3O3S,61.1489665498956,Nithiamide,C5H5N3O3S,55.4232577470426
+238,18.06,No Match,,,"Methanone, (4-aminophenyl)(1-pyrrolidinyl)-",C11H14N2O,70.52451458926,"Isobutyramide, N-benzyl-N-phenethyl-",C19H23NO,53.5049673583256
+239,18.038,"Naphthalene, 1,2,3,4-tetrahydro-5,6,7,8-tetramethyl-",C14H20,60.3854009726688,"Phenol, 2-(2-pentyn-4-yl)-4-methyl-",C12H14O,66.1060167965744,"1,1,4,5,6-Pentamethyl-2,3-dihydro-1H-indene",C14H20,55.7660675907479
+240,17.9959,No Match,,,"4,6-Dihydroxypyrimidine, 5-aminocarbonyl-",C5H5N3O3,58.0355671578921,"2,3'-Dipyridyl",C10H8N2,50.4238797811736
+241,17.9224,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,97.4122744306879,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,97.4122744306879,"Benzene, 1,3,5-tri-tert-butyl-",C18H30,90.2889431581598
+242,17.8729,3-Acetylcoumarin,C11H8O3,64.9920480209514,"3-Trifluoromethylbenzoic acid, cyclobutyl ester",C12H11F3O2,67.5353248434213,4-Trifluoromethylbenzoic acid. cyclobutyl ester,C12H11F3O2,64.4134211642519
+243,17.8509,"Benzene, ethylpentamethyl-",C13H20,69.8980716330396,"Naphthalene, 2,2-dimethyl-1-oxa-2-sila-1,2-dihydro-",C10H12OSi,72.4909372394521,"2,2'-Isopropylidenedifuran",C11H12O2,69.2894321888654
+244,17.8016,"1-(3-Methylbutyl)-2,3,5-trimethylbenzene",C14H22,68.0243832789744,"1-(3-Methylbutyl)-2,3,5-trimethylbenzene",C14H22,68.0243832789744,"1-(3-Methylbutyl)-2,3,6-trimethylbenzene",C14H22,62.6101948335761
+245,17.7955,"1,3-Dimethyl-4-cyclohexylbenzene",C14H20,61.5499941355474,"1,3-Dimethyl-4-cyclohexylbenzene",C14H20,61.5499941355474,"1-(3-Methylbutyl)-2,3,5-trimethylbenzene",C14H22,56.974067865905
+246,17.7866,3-Acetylcoumarin,C11H8O3,63.6645066809181,"1,4-benzenedicarbonitrile, 2,5-dimethoxy-",C10H8N2O2,65.2292560066705,4-Trifluoromethylbenzoic acid. cyclobutyl ester,C12H11F3O2,63.1781056980128
+247,17.7511,"Naphthalene, 2,6-dimethyl-",C12H12,96.1992350547942,"Naphthalene, 2,6-dimethyl-",C12H12,96.1992350547942,"Naphthalene, 1,2-dimethyl-",C12H12,85.8282072041598
+248,17.7382,"1,3-Dioxolane-4-methanol, 2-pentadecyl-, acetate, trans-",C21H40O4,51.1912036955426,Methidathion,C6H11N2O4PS3,54.530310478983,"1,3-Dioxolane-4-methanol, 2-pentadecyl-, acetate, trans-",C21H40O4,51.1912036955426
+249,17.6832,No Match,,,Dimethyl(trimethylsilylmethyl)ethoxysilane,C8H22OSi2,55.4231775692485,"Methyl 3-[1-(2,6-dichlorobenzoyl)-5-formylpyrrol-2-yl]prop-2-enoate",C16H11Cl2NO4,51.485960808203
+250,17.6557,"Dodecane, 5-methyl-",C13H28,82.5376145557704,"Dodecane, 5-methyl-",C13H28,82.5376145557704,"Nonane, 2-methyl-5-propyl-",C13H28,52.1352589116241
+251,17.6281,"(E)-3-Butylidene-4,5-dihydroisobenzofuran-1(3H)-one",C12H14O2,67.8891015668646,"(E)-3-Butylidene-4,5-dihydroisobenzofuran-1(3H)-one",C12H14O2,67.8891015668646,"Spiro[3.6]deca-5,7-dien-1-one,5,9,9-trimethyl",C13H18O,56.0243861234265
+252,17.6077,No Match,,,"Glutaric acid, naphth-2-ylmethyl 2,4-dichlorophenyl ester",C22H18Cl2O4,61.9230999106993,"2-Thiophenecarboxylic acid, 5-ethyl-",C7H8O2S,50.3318133317517
+253,17.5794,"Octane, 6-ethyl-2-methyl-",C11H24,57.7182245115185,"Octane, 6-ethyl-2-methyl-",C11H24,57.7182245115185,"Decane, 2,4-dimethyl-",C12H26,56.2319269079281
+254,17.5676,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,80.6006038005047,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,80.6006038005047,"1H-Indene, 2,3-dihydro-1,4,7-trimethyl-",C12H16,64.8688963133459
+255,17.5458,"1,3-Benzenediol, o-(4-ethylbenzoyl)-o'-(3-methylbenzoyl)-",C23H20O4,61.527546392359,"l-Alanine, N-(4-ethylbenzoyl)-, heptyl ester",C19H29NO3,76.7191180165059,"l-Alanine, N-(4-ethylbenzoyl)-, octyl ester",C20H31NO3,61.2209600832618
+256,17.4784,"Phenol, 2-(2-pentyn-4-yl)-4-methyl-",C12H14O,61.1416099131748,"Phenol, 2-(2-pentyn-4-yl)-4-methyl-",C12H14O,61.1416099131748,"2,2,4-Trimethylchromene-3",C12H14O,58.5577244473163
+257,17.4521,"Heptane, 3,3,5-trimethyl-",C10H22,75.5971727045075,"Heptane, 3,3,5-trimethyl-",C10H22,75.5971727045075,"2-Trifluoromethylbenzoic acid, 2-tetrahydrofurylmethyl ester",C13H13F3O3,53.930148300091
+258,17.4294,No Match,,,"2-Trifluoromethylbenzoic acid, 2-formyl-4,6-dichlorophenyl ester",C15H7Cl2F3O3,75.767503874793,4'-(Trifluoromethyl)acetophenone,C9H7F3O,61.127938279671
+259,17.4181,"Naphthalene, 1,2,3,4-tetrahydro-1,6,8-trimethyl-",C13H18,56.6763619125805,"Naphthalene, 1,2,3,4-tetrahydro-1,6,8-trimethyl-",C13H18,56.6763619125805,"1H-Indene, 2,3-dihydro-1,1,4,7-tetramethyl-",C13H18,54.6008308231867
+260,17.3209,"Benzene, 2-(2-butenyl)-1,3,5-trimethyl-",C13H18,70.1314426860363,N-(Mesitylmethyl)-2-heptanamine,C17H29N,75.7136960283023,"Phenol, 2-(2-propenyl)-, acetate",C11H12O2,51.7658299614237
+261,17.2949,"1,3,5-Trimethyl-2-cyclopentylbenzene",C14H20,60.4335629844499,"Phenol, 2-(2-pentyn-4-yl)-4-methyl-",C12H14O,76.2116631835739,"1,3,5-Trimethyl-2-cyclopentylbenzene",C14H20,60.4335629844499
+262,17.258,No Match,,,"1,2-Benzenediol, O-(4-methylbenzoyl)-O'-(2-(trifluoromethyl)benzoyl)-",C22H15F3O4,69.2403113470412,"Benzamide, 4,N-dimethyl-N-(2-butyl)-",C13H19NO,53.2848397172637
+263,17.1831,No Match,,,"Phenylphosphonic acid, 2,4,4-trimethylpentyl pentadecyl ester",C29H53O3P,61.3768060467783,"Phenylphosphonic acid, 2,4,4-trimethylpentyl tridecyl ester",C27H49O3P,53.783425769439
+264,17.1481,4-pentylphenyl 4-propylbenzoate,C21H26O2,61.3072705719344,"Benzo[b]thiophene, 2-propyl-",C11H12S,64.3626729601479,4-pentylphenyl 4-propylbenzoate,C21H26O2,56.1185694603044
+265,17.1089,"Naphthalene, 1,2,3,4-tetrahydro-1,6,8-trimethyl-",C13H18,61.4746583866196,"Phenol, 2-(2-pentyn-4-yl)-4-methyl-",C12H14O,70.2323799838162,"Silane, trimethyl(phenylethynyl)-",C11H14Si,60.7171263219299
+266,17.0876,"Benzene, hexamethyl-",C12H18,71.6358891618493,"1(3H)-Isobenzofuranone, 3,3-dimethyl-",C10H10O2,85.3677834234637,"Ethanone, 1-(2,4,6-trimethylphenyl)-",C11H14O,63.3105341502323
+267,17.0781,"Tridecane, 3-methyl-",C14H30,73.2147351754047,"Tridecane, 3-methyl-",C14H30,73.2147351754047,"DL-Norleucine, N-propargyloxycarbonyl-, hexadecyl ester",C26H47NO4,50.1614352574928
+268,17.0236,"Benzene, 1,1'-(1,1,10,10-tetramethyl-1,10-decanediyl)bis[3,4-dimethyl-",C30H46,64.8587396828054,"1,2-Dihydro-3-methoxy-2-oxoquinoxaline",C9H8N2O2,67.8246714391185,"2(3H)-Benzofuranone, 3-(methoxymethylene)-",C10H8O3,56.7787917950799
+269,16.9877,No Match,,,"3-Pyridinecarbonitrile, 1,4-dihydro-1-methyl-",C7H8N2,75.8415422493351,"1,3-Benzenediol, O-(2,6-difluorobenzoyl)-O'-(2-methylbenzoyl)-",C21H14F2O4,61.7519350176971
+270,16.9759,"Tridecane, 2-methyl-",C14H30,78.4954542994519,"Tridecane, 2-methyl-",C14H30,78.4954542994519,"Decane, 3,3,6-trimethyl-",C13H28,68.5268920761424
+271,16.967,"2,4,6-Trimethylpropiophenone",C12H16O,58.0346562034734,"3-Ethyl-3,4-dihydro-2(1H)-quinoxalinone",C10H12N2O,61.3262603826177,"2,4,6-Trimethylpropiophenone",C12H16O,55.1087406028239
+272,16.9608,"1,3,5-Cycloheptatriene, 2,4-diethyl-7,7-dimethyl-",C13H20,60.4219792246759,"Benzo[b]thiophene, 2-propyl-",C11H12S,64.718864554752,6-Hydroxy-4-methylcoumarin,C10H8O3,56.8562500724575
+273,16.9346,"(3-Methylphenyl) methanol, 2-methylbutyl ether",C13H20O,66.2180760362574,"(1H)Pyrrole-3-carbonitrile, 2-methyl-",C6H6N2,69.9361980123007,"(1H)Pyrrole-2-carbonitrile, 5-methyl-",C6H6N2,65.2475871929212
+274,16.9137,"Hexane, 2,2,4-trimethyl-",C9H20,61.6770787358702,"Hexane, 2,2,4-trimethyl-",C9H20,61.6770787358702,"Hexane, 2,2,4-trimethyl-",C9H20,53.000361642573
+275,16.9083,"Decane, 2,8,8-trimethyl-",C13H28,51.479514649498,"Octa-3,5-diene-2,7-dione, 4,5-dihydroxy-",C8H10O4,68.4309092175914,"Phenylphosphonic acid, 2,4,4-trimethylpentyl tridecyl ester",C27H49O3P,51.3651879131631
+276,16.8888,"Benzene, hexamethyl-",C12H18,78.1971452430255,"1(3H)-Isobenzofuranone, 3,3-dimethyl-",C10H10O2,80.3512038500012,"Ethanone, 1,1'-(1,4-phenylene)bis-",C10H10O2,69.8294165570501
+277,16.8835,No Match,,,"Benzamide, 4-butyl-N-(3-methylbutyl)-",C16H25NO,65.4355397736429,"Benzamide, 4-butyl-N-butyl-",C15H23NO,58.3128940224529
+278,16.8479,"Pentane, 3-ethyl-3-methyl-",C8H18,68.2797585913259,5-Methyl-2-(2-methyl-2-tetrahydrofuryl)tetrahydrofuran,C10H18O2,75.6957431328197,"Heptane, 4,4-dimethyl-",C9H20,52.0031331126706
+279,16.8126,"Naphthalene, 1,2,3,4-tetrahydro-1,6,8-trimethyl-",C13H18,76.1724542744988,"Naphthalene, 1,2,3,4-tetrahydro-1,6,8-trimethyl-",C13H18,76.1724542744988,"1H-Indene, 2,3-dihydro-1,1,4,6-tetramethyl-",C13H18,65.5060018146548
+280,16.804,"Heptane, 3,3,4-trimethyl-",C10H22,81.2435801070704,"Oxalic acid, dineopentyl ester",C12H22O4,82.1517537810911,"Butanoic acid, 2-butoxy-1-methyl-2-oxoethyl ester",C11H20O4,52.8491765288623
+281,16.7772,No Match,,,"3-Pyridinecarbonitrile, 1,4-dihydro-1-methyl-",C7H8N2,75.3821255824607,Catecholborane,C6H5BO2,57.3562101730055
+282,16.6915,"Benzene, 1,3,5-trimethyl-2-(1-methylethenyl)-",C12H16,72.1205694362794,"Indene, 1,1-dimethyl-1-sila-",C10H12Si,72.3671322926958,"2,4,5-Trifluorobenzyl alcohol,2-methylpropyl ether",C11H13F3O,55.7833655486564
+283,16.6567,"Benzene, ethylpentamethyl-",C13H20,78.745527130567,"Benzene, ethylpentamethyl-",C13H20,78.745527130567,"Benzo[b]thiophene, 2-propyl-",C11H12S,56.9345891176345
+284,16.6227,"1H-Indene, 2,3-dihydro-1,1,4,6-tetramethyl-",C13H18,63.9881934167437,"1H-Benzimidazole, 2-(1,1-dimethylethyl)-",C11H14N2,73.0779232155824,"1H-Indene, 2,3-dihydro-1,1,4,6-tetramethyl-",C13H18,63.9881934167437
+285,16.59,"Tridecane, 3-methyl-",C14H30,51.3813570275046,"l-Norleucine, n-propargyloxycarbonyl-, pentadecyl ester",C25H45NO4,54.0261232127187,"DL-Norleucine, N-propargyloxycarbonyl-, hexadecyl ester",C26H47NO4,51.1843789688766
+286,16.5802,"1H-Indene, 2,3-dihydro-1,4,7-trimethyl-",C12H16,67.915681032607,"1H-Indene, 2,3-dihydro-1,4,7-trimethyl-",C12H16,67.915681032607,"1H-Indene, 2,3-dihydro-1,1,4-trimethyl-",C12H16,57.9605122627002
+287,16.5732,"Benzene, 1,3,5-trimethyl-2-propyl-",C12H18,64.3032020301107,"4-Ethylbenzoic acid, 2,5-dichlorophenyl ester",C15H12Cl2O2,65.1247153040666,"Glycine, N-(4-ethylbenzoyl)-, ethyl ester",C13H17NO3,53.0884442707983
+288,16.5464,7-Methoxy-2-tetralone,C11H12O2,67.9351173217189,"1H-Indazol-6-ol, N-acetyl-, acetate",C11H10N2O3,67.9354585085432,"Dihydrobenzimidazol-2-one, 1,3-diacetyl-",C11H10N2O3,63.8254534460071
+289,16.5209,"Naphthalene, 2-methyl-",C11H10,81.151646930585,"Succinic acid, 2,4,6-trichlorophenyl 2-naphthylmethyl ester",C21H15Cl3O4,84.5191746895706,"2,6-Difluorobenzoic acid, pentyl ester",C12H14F2O2,60.5320083440589
+290,16.5117,"Hexane, 3,3-dimethyl-",C8H18,54.6769859215448,"Hexane, 3,3-dimethyl-",C8H18,54.6769859215448,"Hexane, 3,3-dimethyl-",C8H18,50.1987000659733
+291,16.4642,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,70.0411396425391,"Silane, methyltripropynyl-",C10H12Si,72.3019779541181,"1H-Benzimidazole, 2-(1-methylethyl)-",C10H12N2,64.4687310401486
+292,16.4509,"[2,2-bis(Propan-2-yl)-1,3-dioxolan-4-yl]methanol",C10H20O3,54.6851421076576,"2,3,6-Trifluorobenzyl alcohol,2-methylbutyl ether",C12H15F3O,55.1485418692061,"1,3-Dioxolane-4-methanol, 2-pentadecyl-, acetate, trans-",C21H40O4,53.3192306679668
+293,16.4422,"Nonane, 4,5-dimethyl-",C11H24,83.1067057586604,"Nonane, 4,5-dimethyl-",C11H24,83.1067057586604,"5-Fluoro-2-hydroxypyridine, Ac derivative",C7H6FNO2,59.0207844893403
+294,16.4115,"Dibenzo[a,i]biphenylene, 5,6,6a,6b,7,8,12b,12c-octahydro-2,11-dimethoxy-",C22H24O2,56.0875384269007,"2,5,6-Trimethylbenzimidazole",C10H12N2,59.8773078548621,"5H-Cyclopenta[c]pyridine-4-carboxamide, 6,7-dihydro-3-amino-",C9H11N3O,54.2995104133907
+295,16.3693,No Match,,,4-(Difluoromethoxy)benzonitrile,C8H5F2NO,54.583994749505,4-(Difluoromethoxy)benzonitrile,C8H5F2NO,50.3502327290677
+296,16.3561,7-Hydroxy-2-hydroxymethylene-1-indanone,C10H8O3,51.450986788002,7-Hydroxy-2-hydroxymethylene-1-indanone,C10H8O3,51.450986788002,6-Hydroxy-4-methylcoumarin,C10H8O3,50.5448886922401
+297,16.3486,"Naphthalene, 1,2,3,4-tetrahydro-1,6,8-trimethyl-",C13H18,67.5437687546483,5H-Tetrazol-5-amine,CH3N5,78.2349073904014,"2-(Trifluoromethyl)benzyl alcohol, 2-methylbutyl ether",C13H17F3O,50.8067473206663
+298,16.2756,"Naphthalene, 2-methyl-",C11H10,81.6527888642225,"Naphthalene, 2-methyl-",C11H10,81.6527888642225,"Naphthalene, 1-methyl-",C11H10,70.0153770791152
+299,16.2655,No Match,,,Phosphoramidous difluoride,F2H2NP,51.6033767468614,Phosphoramidous difluoride,F2H2NP,51.6033767468614
+300,16.2079,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,87.5970744668783,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,87.5970744668783,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,70.0604675582713
+301,16.1723,No Match,,,"3-Pyridinecarbonitrile, 1,4-dihydro-1-methyl-",C7H8N2,72.8690288752252,"Benzamide, 4,N-dimethyl-N-(2-butyl)-",C13H19NO,61.8014893656428
+302,16.1666,No Match,,,"3-Pyridinecarbonitrile, 1,4-dihydro-1-methyl-",C7H8N2,52.1403995126197,"3-Pyridinecarbonitrile, 1,4-dihydro-1-methyl-",C7H8N2,51.1895326537157
+303,16.1603,"2-naphthalenol, 6-methoxy-",C11H10O2,67.5061806058347,7-Methoxy-8-aminoisoquinoline,C10H10N2O,69.9977437446746,7-Methoxy-8-aminoisoquinoline,C10H10N2O,64.1857020449076
+304,16.1264,"Hexane, 3,3-dimethyl-",C8H18,67.592308468603,1H-Tetrazol-5-amine,CH3N5,80.2572544407521,"2,4,4-Trimethyl-1-hexene",C9H18,55.4171052080608
+305,16.1032,"1H-Indene, 2,3-dihydro-1,1,5-trimethyl-",C12H16,81.9911598801003,"1H-Indene, 2,3-dihydro-1,1,5-trimethyl-",C12H16,81.9911598801003,"1H-Indene, 2,3-dihydro-1,5,7-trimethyl-",C12H16,73.5863211839677
+306,16.0232,"Benzene, pentamethyl-",C11H16,90.5378348304843,"Benzene, pentamethyl-",C11H16,90.5378348304843,"Benzene, 1-(1,1-dimethylethyl)-3-methyl-",C11H16,80.6264800531214
+307,16.0136,No Match,,,"1,2,3,4-Tetrahydroisoquinoline, 1-[3-hydroxybenzyl]-6-methoxy-",C17H19NO2,69.4792217484887,"3H-1,3-Benzodiazol-5-ylmethanamine",C8H9N3,53.3718197710434
+308,16.0062,No Match,,,"4,4'-Diacetamidobenzil",C18H16N2O4,64.2870731615029,"N-[2,4-Diamino-5,6,7,8-tetrahydro-6-quinazolinyl]-N-[3,4-dichlorobenzyl]-2-methoxyacetamide",C18H21Cl2N5O2,50.8039182474618
+309,15.9155,"Benzene, 1,4-dimethyl-2-(2-methylpropyl)-",C12H18,89.8124458877398,"Benzene, 1,4-dimethyl-2-(2-methylpropyl)-",C12H18,89.8124458877398,"Benzamide, N,N,3-trimethyl-",C10H13NO,73.8165292925442
+310,15.8756,"Benzene, 1,1'-(1,1,10,10-tetramethyl-1,10-decanediyl)bis[3,4-dimethyl-",C30H46,71.6971770560925,"Methanone, (2,3-dihydro-5-benzofuryl)(4-morpholyl)-",C13H15NO3,82.0609028894531,"Benzene, 1,1'-(1,1,10,10-tetramethyl-1,10-decanediyl)bis[3,4-dimethyl-",C30H46,71.6971770560925
+311,15.8428,"Octane, 2,2,6-trimethyl-",C11H24,77.351929481319,"Octane, 2,2,6-trimethyl-",C11H24,77.351929481319,"Decane, 3,8-dimethyl-",C12H26,54.7168581146646
+312,15.7976,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,62.5163107684771,"1-Naphthalenemethanol, 1,2,3,4-tetrahydro-8-methyl-",C12H16O,63.1374071092401,"4-Ethyl-3-methyl-3-phenylpyrrolidine-2,5-dione, TMS (isomer 1)",C16H23NO2Si,55.2721269927681
+313,15.7528,"Benzene, 1-(1,1-dimethylethyl)-3,5-dimethyl-",C12H18,78.1297507480477,"Ethanone, 1-(2,4,6-trimethylphenyl)-",C11H14O,84.230963087599,"Benzene, 1,2,4-trimethyl-5-(1-methylethyl)-",C12H18,59.1322300287288
+314,15.7168,"Dodecane, 3-methyl-",C13H28,75.5344356258186,"Dodecane, 3-methyl-",C13H28,75.5344356258186,"Undecane, 3-ethyl-",C13H28,68.9707288052044
+315,15.658,"Benzene, 1,4-dimethyl-2-(2-methylpropyl)-",C12H18,75.3341440220354,"Benzene, 1,4-dimethyl-2-(2-methylpropyl)-",C12H18,75.3341440220354,"l-Alanine, N-(p-toluoyl)-, octyl ester",C19H29NO3,67.450067802205
+316,15.6365,"1-Propanone, 1-(2,4-dimethylphenyl)-",C11H14O,76.5845562607218,"1-Propanone, 1-(2,4-dimethylphenyl)-",C11H14O,76.5845562607218,"6,7-Dimethyl-3H-isobenzofuran-1-one",C10H10O2,71.9634608226502
+317,15.6183,"Undecane, 3-methyl-",C12H26,77.7196980187052,"Undecane, 3-methyl-",C12H26,77.7196980187052,"Heptane, 2,2,3,3,5,6,6-heptamethyl-",C14H30,58.4404051656474
+318,15.5885,"1H-Indene, 2,3-dihydro-4,7-dimethyl-",C11H14,78.0607905319403,"1H-Indene, 2,3-dihydro-4,7-dimethyl-",C11H14,78.0607905319403,"1H-Indene, 2,3-dihydro-4,7-dimethyl-",C11H14,69.8031985593466
+319,15.5526,"Dodecane, 4-methyl-",C13H28,62.1813355239653,"Dodecane, 4-methyl-",C13H28,62.1813355239653,"Decane, 2,3,8-trimethyl-",C13H28,50.2698066595605
+320,15.544,"Isolongifolene, 9,10-dehydro-",C15H22,55.9993873737203,"(3-Methylphenyl) methanol, 2-methylbutyl ether",C13H20O,75.5987179558503,"Isolongifolene, 9,10-dehydro-",C15H22,55.9993873737203
+321,15.5224,"Benzene, 1,2-diethyl-3,4-dimethyl-",C12H18,77.8694805063179,"Benzene, 1,2-diethyl-3,4-dimethyl-",C12H18,77.8694805063179,"Benzene, hexamethyl-",C12H18,72.1186052195176
+322,15.4979,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,82.6935535889916,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,82.6935535889916,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,69.4914807212341
+323,15.4918,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,70.4687875644572,5-Isopropyl-2-methylphenethyl acetate,C14H20O2,71.2272758670292,"Benzene, 1-(1-methylethenyl)-4-(1-methylethyl)-",C12H16,69.0934207885901
+324,15.4849,"Nonane, 5-butyl-",C13H28,64.201088452073,5-Methyl-2-(2-methyl-2-tetrahydrofuryl)tetrahydrofuran,C10H18O2,71.8685128276781,"Nonane, 5-(2-methylpropyl)-",C13H28,61.5433684124436
+325,15.4563,No Match,,,"Piperidine, 1-ethyl-",C7H15N,67.4741569739516,"9-Hydrazono-3,6-dichloro-2,7-bis-(2-piperidin-1-yl-ethoxy)-fluorene",C27H34Cl2N4O2,55.7803740070111
+326,15.4328,"Benzene, 1,4-dimethyl-2-(2-methylpropyl)-",C12H18,78.057624501308,"Benzene, 1,4-dimethyl-2-(2-methylpropyl)-",C12H18,78.057624501308,"l-Alanine, N-(p-toluoyl)-, methyl ester",C12H15NO3,68.3008137360704
+327,15.3919,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,84.6299075106728,"1H-Indene, 2,3-dihydro-1,1,3-trimethyl-",C12H16,84.6299075106728,"1H-Indene, 2,3-dihydro-1,5,7-trimethyl-",C12H16,70.0441010792767
+328,15.3579,"Benzene, pentamethyl-",C11H16,69.3646384132195,"Benzene, pentamethyl-",C11H16,69.3646384132195,"N-Ethyl-3-methyl-N-(2-([1,1,3,3-tetramethyl-3-(pyridin-3-ylmethoxy)disiloxanyl]oxy)ethyl)aniline",C21H34N2O3Si2,57.6162503762546
+329,15.344,"Benzene, 1,3,5-trimethyl-2-propyl-",C12H18,59.9981925656177,"Benzene, 1,3,5-trimethyl-2-propyl-",C12H18,59.9981925656177,"1,2-Benzenediol, o-(4-ethylbenzoyl)-o'-(3-methylbenzoyl)-",C23H20O4,58.8931832602991
+330,15.2949,"Nonane, 2,2,4,4,6,8,8-heptamethyl-",C16H34,54.9813547699412,"7,7-Diethoxy-5-heptyn-4-ol",C11H20O3,56.6537788934066,Tributyl phosphate,C12H27O4P,51.7099908672087
+331,15.2009,"Dodecane, 3-methyl-",C13H28,54.032943556356,"[2,2-bis(Propan-2-yl)-1,3-dioxolan-4-yl]methanol",C10H20O3,59.1755862411444,"3,4,5-Trifluorobenzyl alcohol, neopentyl ether",C12H15F3O,51.4051269196945
+332,15.1787,"Benzene, 1,3,5-trimethyl-2-propyl-",C12H18,83.5608171140547,"Benzene, 1,3,5-trimethyl-2-propyl-",C12H18,83.5608171140547,"4-Ethylbenzoic acid, 2,3-dichlorophenyl ester",C15H12Cl2O2,73.295714784755
+333,15.1582,"1,3-Benzenediol, o-(2-furoyl)-o'-(4-methylbenzoyl)-",C19H14O5,60.1888761725617,"Benzonitrile, 4-ethoxy-",C9H9NO,62.6001086884671,"o-Toluic acid, 2,6-dimethylnon-1-en-3-yn-5-yl ester",C19H24O2,59.6987577595759
+334,15.1222,"Undecane, 3,8-dimethyl-",C13H28,74.5657752235319,"Undecane, 3,8-dimethyl-",C13H28,74.5657752235319,"Decane, 5-ethyl-5-methyl-",C13H28,51.3191800902877
+335,15.108,"Benzene, pentamethyl-",C11H16,58.5487100948929,"Benzene, pentamethyl-",C11H16,58.5487100948929,"5H-Cyclopentapyrazine, 6,7-dihydro-2,5-dimethyl-",C9H12N2,52.5440877461594
+336,15.0349,No Match,,,"Phthalic acid, di(2,4,5-trifluorobenzyl) ester",C22H12F6O4,62.8899275562509,"Silane, methyltripropynyl-",C10H12Si,58.7067681176073
+337,15.0236,"Undecane, 3,7-dimethyl-",C13H28,85.0135935743083,"Undecane, 3,7-dimethyl-",C13H28,85.0135935743083,"Decane, 1-bromo-2-methyl-",C11H23Br,60.9016380243166
+338,15.0012,"Ethanone, 1-(2,3,4-trimethylphenyl)-",C11H14O,62.6303313390815,"2,3,4-Trifluorophenol, methyl ether",C7H5F3O,65.8749182949656,"Ethanone, 1-(2,3,4-trimethylphenyl)-",C11H14O,59.2306477986886
+339,14.9625,"Benzene, pentamethyl-",C11H16,85.324371919364,"Benzene, pentamethyl-",C11H16,85.324371919364,"Malonic acid, di(2-ethylbutyl) ester",C15H28O4,55.7196396030146
+340,14.9048,"Undecane, 2,5-dimethyl-",C13H28,88.0746207302858,"Undecane, 2,5-dimethyl-",C13H28,88.0746207302858,"Nonane, 3-methyl-",C10H22,65.9764805445456
+341,14.8577,"Pentane, 3-ethyl-3-methyl-",C8H18,72.8931316895964,5-Methyl-2-(2-methyl-2-tetrahydrofuryl)tetrahydrofuran,C10H18O2,78.8439363409088,"Succinic acid, 3-methylbut-2-yl tetrahydrofurfuryl ester",C14H24O5,57.4144264561106
+342,14.8214,"1H-Indene, 2,3-dihydro-1,1-dimethyl-",C11H14,83.7349422107202,"1H-Indene, 2,3-dihydro-1,1-dimethyl-",C11H14,83.7349422107202,"1H-Indene, 2,3-dihydro-1,1-dimethyl-",C11H14,64.0960349770154
+343,14.8148,No Match,,,3-(4-Methylbenzoyl)-2-thioxo-4-thiazolyl 4-methylbenzoate,C19H15NO3S2,82.6761621091844,"2-Methylbenzoic acid, 2,3-dichlorophenyl ester",C14H10Cl2O2,78.5591436092896
+344,14.7808,"Benzene, pentamethyl-",C11H16,88.9394531169406,"Benzene, pentamethyl-",C11H16,88.9394531169406,"Benzene, 1,4-dimethyl-2-(1-methylethyl)-",C11H16,70.7064505039955
+345,14.7113,"1,3-Dimethyl-5-n-hexyladamantane",C18H32,59.4256127604666,"1,3-Dimethyl-5-n-hexyladamantane",C18H32,59.4256127604666,"3,5-Dimethylbenzylnonylamine",C18H31N,50.5912887755817
+346,14.6951,"Dodecane, 3-methyl-",C13H28,80.715321529706,"Dodecane, 3-methyl-",C13H28,80.715321529706,"Undecane, 6-ethyl-",C13H28,63.1320292606546
+347,14.6879,"Benzene, 1,2-diethyl-3,4-dimethyl-",C12H18,60.4835598745477,"Benzene, 1,2-diethyl-3,4-dimethyl-",C12H18,60.4835598745477,"Undecane, 6-ethyl-",C13H28,54.2582423043912
+348,14.6805,"Benzene, 1,3,5-triethyl-",C12H18,74.3491428030024,"Benzene, 1,3,5-triethyl-",C12H18,74.3491428030024,"Benzene, 1,2-diethyl-3,4-dimethyl-",C12H18,68.5341790986502
+349,14.6529,"1H-Indene, 2,3-dihydro-1,1-dimethyl-",C11H14,85.8105946931962,"1H-Indene, 2,3-dihydro-1,1-dimethyl-",C11H14,85.8105946931962,"1H-Indene, 2,3-dihydro-1,6-dimethyl-",C11H14,66.880932655941
+350,14.6463,"1,3-Benzenediol, O,O'-di(2-methylbenzoyl)-",C22H18O4,80.5065887759656,"1,3-Benzenediol, O,O'-di(2-methylbenzoyl)-",C22H18O4,80.5065887759656,"2-Methylbenzoic acid, 2,3-dichlorophenyl ester",C14H10Cl2O2,75.8574427523339
+351,14.6241,"Benzene, pentamethyl-",C11H16,72.7895589122499,"Benzene, pentamethyl-",C11H16,72.7895589122499,"Benzene, 2,4-dimethyl-1-(1-methylethyl)-",C11H16,60.5543728958374
+352,14.5786,"1H-Indene, 2,3-dihydro-4,7-dimethyl-",C11H14,70.0541708356951,"1H-Indene, 2,3-dihydro-4,7-dimethyl-",C11H14,70.0541708356951,"1H-Indazole, 5,7-dimethyl-",C9H10N2,57.0716562252589
+353,14.5476,Methyl 3-ethylbenzoate,C10H12O2,51.5809412116832,Methyl 3-ethylbenzoate,C10H12O2,51.5809412116832,"Phthalic acid, cyclohexylmethyl 3,4-dichlorophenyl ester",C21H20Cl2O4,51.1118059568828
+354,14.4224,"Benzene, 1-methyl-4-(1-methylpropyl)-",C11H16,89.8244013877488,"Benzene, 1-methyl-4-(1-methylpropyl)-",C11H16,89.8244013877488,"Benzene, (1,1-dimethylpropyl)-",C11H16,74.2340886760806
+355,14.3325,"4-Ethylbenzoic acid, 6-ethyl-3-octyl ester",C19H30O2,58.1576886192629,"4-Ethylbenzoic acid, 6-ethyl-3-octyl ester",C19H30O2,58.1576886192629,"Propanoic acid, 2,2-dimethyl-, cesium salt",C5H9CsO2,50.1755207635108
+356,14.2759,"1,3-Benzenediol, O,O'-di(2-methylbenzoyl)-",C22H18O4,78.581028131322,"3,5-Dimethylbenzylhexylamine",C15H25N,81.4171952783571,4'-Methylpropiophenone,C10H12O,74.3016492711853
+357,14.2565,"Undecane, 3-methyl-",C12H26,91.4144720436035,"Undecane, 3-methyl-",C12H26,91.4144720436035,"Undecane, 3-methyl-",C12H26,62.8714914082469
+358,14.2307902368551,No Match,,,"Acetic acid, 2-nitro-3-phenylallyl ester",C11H11NO4,54.8428117627826,"Acetic acid, 2-nitro-3-phenylallyl ester",C11H11NO4,54.8428117627826
+359,14.1988,4'-Methylpropiophenone,C10H12O,73.2025159202663,"3,5-Dimethylbenzylhexylamine",C15H25N,79.5038266780408,"3,5-Dimethylbenzylpentylamine",C14H23N,68.0414696438756
+360,14.1507,"Nonane, 5-(2-methylpropyl)-",C13H28,81.3742964492397,"Nonane, 5-(2-methylpropyl)-",C13H28,81.3742964492397,"Dodecane, 2,6,11-trimethyl-",C15H32,63.7120431016502
+361,14.1081,o-Cymene,C10H14,86.8835910150011,o-Cymene,C10H14,86.8835910150011,"Benzene, 1,2,3,5-tetramethyl-",C10H14,68.2631960768594
+362,14.0843,"Undecane, 4-methyl-",C12H26,72.3004725078314,"Undecane, 4-methyl-",C12H26,72.3004725078314,"Benzene, 1-methyl-2-(2-propenyl)-",C10H12,59.5804663913988
+363,14.0635,"Benzene, (1-methylbutyl)-",C11H16,68.6364537793124,"L-Alanine, N-benzoyl-, methyl ester",C11H13NO3,74.4862904735658,"Benzene, (1-methylbutyl)-",C11H16,67.7453882448329
+364,14.0209,Dodecane,C12H26,86.7557959830537,Dodecane,C12H26,86.7557959830537,"Octane, 2-methyl-",C9H20,62.9505798904779
+365,14.0078,"Heptane, 4-propyl-",C10H22,58.8041783262722,"Heptane, 4-propyl-",C10H22,58.8041783262722,6-pentylpiperidin-2-one,C10H19NO,56.3790373458427
+366,13.9374,"Benzene, 1,3-diethyl-5-methyl-",C11H16,93.8862379008802,"Benzene, 1,3-diethyl-5-methyl-",C11H16,93.8862379008802,"2,4-Dimethyl-6-oxo-1,6-dihydro-3-pyridinecarbonitrile",C8H8N2O,71.906994850853
+367,13.9108,"1H-Indene, 2,3-dihydro-1,3-dimethyl-",C11H14,66.8387164305728,"3-Phenyl-4,5-dimethyl-2,1-oxaborolane",C13H19BO,67.6298840486155,(S)-3-Ethyl-2-phenylpentanenitrile,C13H17N,50.6244606693659
+368,13.8857,"1H-Indene, 2,3-dihydro-1,1-dimethyl-",C11H14,65.4882573541629,"3-Phenyl-4,5-dimethyl-2,1-oxaborolane",C13H19BO,67.2857195464709,"1H-Indene, 2,3-dihydro-1,3-dimethyl-",C11H14,65.0120609200119
+369,13.8806,"2,2-Dimethylindene, 2,3-dihydro-",C11H14,60.4863996538486,"2,2-Dimethylindene, 2,3-dihydro-",C11H14,60.4863996538486,"3-Phenyl-4,5-dimethyl-2,1-oxaborolane",C13H19BO,53.1200871407958
+370,13.8205,"Benzene, 1-methyl-4-(1-methylpropyl)-",C11H16,76.3109592838115,"3,5-Dimethylbenzylhexylamine",C15H25N,77.4600799765154,"Benzene, 1-ethyl-4-(1-methylethyl)-",C11H16,70.0940125271242
+371,13.7949,"Decane, 3,8-dimethyl-",C12H26,83.8232660484337,"Decane, 3,8-dimethyl-",C12H26,83.8232660484337,"Benzene, 1-ethyl-3-(1-methylethyl)-",C11H16,54.6951634319463
+372,13.7186,"3,4-Dimethylcumene",C11H16,60.1936172742375,"3,4-Dimethylcumene",C11H16,60.1936172742375,"Benzene, 1,4-dimethyl-2-(1-methylethyl)-",C11H16,57.2717374531431
+373,13.6874,"Undecane, 3-methyl-",C12H26,90.0256633098179,"Undecane, 3-methyl-",C12H26,90.0256633098179,"Undecane, 2,10-dimethyl-",C13H28,79.9110188554535
+374,13.5851,"Nonane, 5-methyl-5-propyl-",C13H28,84.4538344371428,"Nonane, 5-methyl-5-propyl-",C13H28,84.4538344371428,"Undecane, 5,5-dimethyl-",C13H28,66.1504819451664
+375,13.5777,"Benzene, 1,2,4,5-tetramethyl-",C10H14,95.1252116339344,"Benzene, 1,2,4,5-tetramethyl-",C10H14,95.1252116339344,"Benzene, 1,2,4,5-tetramethyl-",C10H14,86.3833115704867
+376,13.5147,"Undecane, 5,7-dimethyl-",C13H28,86.7821599961357,"Undecane, 5,7-dimethyl-",C13H28,86.7821599961357,"Heptane, 2,4-dimethyl-",C9H20,76.5088132973761
+377,13.5048,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,94.4482028042966,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,94.4482028042966,"Benzene, 1-methyl-3-(1-methylethyl)-",C10H14,83.1651527355484
+378,13.4597,"Benzene, pentamethyl-",C11H16,68.1813246424054,"4-Methylbicyclo(3.2.2)nona-3,6-dien-2-one",C10H12O,73.7726605830086,"Benzene, 1,4-dimethyl-2-(1-methylethyl)-",C11H16,54.1603548072902
+379,13.4202,3-Ethyl-3-methylheptane,C10H22,65.8880740811246,3-Ethyl-3-methylheptane,C10H22,65.8880740811246,"Succinic acid, 2,2-dichloroethyl tetrahydrofurfuryl ester",C11H16Cl2O5,61.1552807352438
+380,13.4144,"Undecane, 3,5-dimethyl-",C13H28,92.0541500541289,"Undecane, 3,5-dimethyl-",C13H28,92.0541500541289,"l-Norleucine, N-allyloxycarbonyl-, pentyl ester",C15H27NO4,54.8466813479458
+381,13.3547,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,81.5295633798273,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,81.5295633798273,"Benzene, 1-methyl-3-(1-methylethyl)-",C10H14,79.0713592242584
+382,13.3455,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,69.712734342413,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,69.712734342413,"Valeric acid, 2-tetrahydrofurylmethyl ester",C10H18O3,50.4593139273279
+383,13.3344,1-n-Pentyladamantane,C15H26,72.8483153561893,1-n-Pentyladamantane,C15H26,72.8483153561893,"Trichloroacetic acid, 1-adamantylmethyl ester",C13H17Cl3O2,72.1166899631223
+384,13.2899,"Benzene, 1-methyl-4-(1-methylpropyl)-",C11H16,74.5432391837717,"Benzene, 1-methyl-4-(1-methylpropyl)-",C11H16,74.5432391837717,"3,5-Dimethylbenzylhexylamine",C15H25N,70.8755551475502
+385,13.2429,"Benzene, [1-[[1-(1-methylethyl)-3-butenyl]oxy]ethyl]-, [S-(R*,R*)]-",C15H22O,67.540159874692,"(1H)Pyrrole-3-carbonitrile, 2-methyl-",C6H6N2,72.7054139195938,"1-Hexene, 3-methyl-6-phenyl-4-(1-phenylethoxy)-",C21H26O,62.4633261343642
+386,13.2237,"2-Cyclopenten-1-one, 4-butyl-3-methoxy-",C10H16O2,59.9231481734099,"2-Thiopheneacetic acid, oct-3-en-2-yl ester",C14H20O2S,63.4615717244012,"Thiophene, 2,3-dimethyl-",C6H8S,59.8868891431524
+387,13.1369,"Undecane, 4,7-dimethyl-",C13H28,89.2972712570692,"Undecane, 4,7-dimethyl-",C13H28,89.2972712570692,Tridecane,C13H28,81.7553736993436
+388,12.9862,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,95.6830019385047,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,95.6830019385047,o-Cymene,C10H14,88.5348425273385
+389,12.9359,"Cyclohexane, 1-ethyl-1-methyl-",C9H18,63.7449061961999,"Cyclohexanone, 3-butyl-",C10H18O,74.7704751846084,"Hept-2-ene, 2,4,4,6-tetramethyl-",C11H22,63.4389349871818
+390,12.876,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,92.0696241069371,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,92.0696241069371,"1,2-Benzenediol, O-(5-chlorovaleryl)-O-(2-methylbenzoyl)-",C19H19ClO4,65.6051542761709
+391,12.8458,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,92.4781016291125,"Benzene, 2-ethyl-1,4-dimethyl-",C10H14,92.4781016291125,"Benzene, 1-methyl-2-propyl-",C10H14,66.5411382138959
+392,12.794,"Undecane, 3,5-dimethyl-",C13H28,86.7848555064222,"Undecane, 3,5-dimethyl-",C13H28,86.7848555064222,"Decane, 2,2,7-trimethyl-",C13H28,73.1408361787703
+393,12.7082,3-Ethyl-3-methylheptane,C10H22,75.0723462012499,3-Ethyl-3-methylheptane,C10H22,75.0723462012499,"Malonic acid, 2-ethylbutyl octyl ester",C17H32O4,55.9250534716555
+394,12.6766,"Benzene, 1-methyl-4-propyl-",C10H14,76.6788229621934,"Benzene, 1-methyl-4-propyl-",C10H14,76.6788229621934,"Benzene, 1-methyl-2-propyl-",C10H14,72.3958847469813
+395,12.652,"Nonane, 5-(2-methylpropyl)-",C13H28,92.6775479576263,"Nonane, 5-(2-methylpropyl)-",C13H28,92.6775479576263,"Nonane, 5-butyl-",C13H28,79.6302845190831
+396,12.5381,"Decane, 2-methyl-",C11H24,90.5143542866986,"Decane, 2-methyl-",C11H24,90.5143542866986,"Octane, 2,3,3-trimethyl-",C11H24,83.9252523046247
+397,12.517,"Decane, 2-methyl-",C11H24,76.2878127464565,"Decane, 2-methyl-",C11H24,76.2878127464565,"Octane, 2,3,3-trimethyl-",C11H24,68.4465720509051
+398,12.5113,"Benzene, 1-ethyl-3,5-dimethyl-",C10H14,94.734546268215,"Benzene, 1-ethyl-3,5-dimethyl-",C10H14,94.734546268215,.alpha.-Benzyl-N-methylphenethylamine,C16H19N,58.7400621057494
+399,12.4776,"Decane, 4-methyl-",C11H24,80.1587216545795,"Decane, 4-methyl-",C11H24,80.1587216545795,"1-Bromo-3,5,5-trimethylhexane",C9H19Br,54.2511315542212
+400,12.4229,"Heptane, 4-ethyl-",C9H20,81.8545115390427,"Heptane, 4-ethyl-",C9H20,81.8545115390427,"Nonane, 2,5-dimethyl-",C11H24,71.6850576128261
+401,12.3918,"Benzene, 1-methyl-4-propyl-",C10H14,81.9680714551365,"Benzene, 1-methyl-4-propyl-",C10H14,81.9680714551365,"Benzene, 1-methyl-2-propyl-",C10H14,73.1062138780648
+402,12.3681,"Nonane, 2,3-dimethyl-",C11H24,71.0192957579062,"Nonane, 2,3-dimethyl-",C11H24,71.0192957579062,"Decane, 4-methyl-",C11H24,64.4160974152384
+403,12.1068,"Nonane, 3,7-dimethyl-",C11H24,88.3609197180528,"Nonane, 3,7-dimethyl-",C11H24,88.3609197180528,"Nonane, 5-butyl-",C13H28,80.8761252507367
+404,12.027,"Undecane, 5,5-dimethyl-",C13H28,89.3243280111737,"Undecane, 5,5-dimethyl-",C13H28,89.3243280111737,"Undecane, 2,7-dimethyl-",C13H28,76.4579308924532
+405,11.9063,"Octane, 5-ethyl-2-methyl-",C11H24,90.9359566117563,"Octane, 5-ethyl-2-methyl-",C11H24,90.9359566117563,"Benzene, 1-ethyl-2-methyl-",C9H12,63.3978696445628
+406,11.8986,"Benzene, (1-methylethyl)-",C9H12,90.0238874477069,"Benzene, (1-methylethyl)-",C9H12,90.0238874477069,"Benzene, 1-ethyl-4-methyl-",C9H12,67.2110643203224
+407,11.8649,"Benzene, 1,2,4,5-tetramethyl-",C10H14,65.2622842900328,"Benzene, 1,2,4,5-tetramethyl-",C10H14,65.2622842900328,"Benzene, 1-ethyl-2,4-dimethyl-",C10H14,62.3826228458404
+408,11.8123,"Octane, 3-ethyl-",C10H22,91.096980045411,"Octane, 3-ethyl-",C10H22,91.096980045411,"Octane, 3,3-dimethyl-",C10H22,69.8070199168432
+409,11.7595,"Nonane, 2,5-dimethyl-",C11H24,93.5276124868856,"Nonane, 2,5-dimethyl-",C11H24,93.5276124868856,"Undecane, 5,6-dimethyl-",C13H28,83.6739397628898
+410,11.6561,"Undecane, 4,7-dimethyl-",C13H28,87.107638967898,"Undecane, 4,7-dimethyl-",C13H28,87.107638967898,"Decane, 5-methyl-",C11H24,77.8681839995007
+411,11.4624,"3-Hexene, 3-ethyl-2,5-dimethyl-",C10H20,72.4355308737113,"3-Hexene, 3-ethyl-2,5-dimethyl-",C10H20,72.4355308737113,"Cyclohexane, 1-methyl-4-(1-methylethyl)-, trans-",C10H20,67.0768060869324
+412,11.3945,Decane,C10H22,87.1323896881842,Decane,C10H22,87.1323896881842,"Undecane, 4,8-dimethyl-",C13H28,81.9324456214371
+413,11.3451,"Benzene, 1,2,4-trimethyl-",C9H12,97.6052837277832,"Benzene, 1,2,4-trimethyl-",C9H12,97.6052837277832,Mesitylene,C9H12,87.0394576858427
+414,11.2354,"Trans-1,4-diethylcyclohexane",C10H20,65.1164274951263,Flamenol,C7H8O3,67.3632467080853,Flamenol,C7H8O3,58.1739338288998
+415,11.1767,"Cyclohexane, 1-isopropyl-1-methyl-",C10H20,75.6063215408858,"Sulfurous acid, di(cyclohexylmethyl) ester",C14H26O3S,83.1179557065127,"Cyclohexane, 1-isopropyl-1-methyl-",C10H20,72.7693342236216
+416,11.1204,"Cyclohexane, 1-methyl-4-(1-methylethyl)-, trans-",C10H20,77.3659130709619,"Cyclohexane, 1-methyl-4-(1-methylethyl)-, trans-",C10H20,77.3659130709619,"2-Pyrazoline, 1-butyl-5-methyl-",C8H16N2,70.9752811716145
+417,11.087,"Benzene, 1-ethyl-4-methyl-",C9H12,91.3957389592749,"Benzene, 1-ethyl-4-methyl-",C9H12,91.3957389592749,"Benzene, 1-ethyl-2-methyl-",C9H12,79.6723163172451
+418,11.051,"Butane, 2,2,3,3-tetramethyl-",C8H18,61.8971085958364,"Butane, 2,2,3,3-tetramethyl-",C8H18,61.8971085958364,"Methane, isocyanato-",C2H3NO,55.8874072876206
+419,10.9721,"Trans-1,4-diethylcyclohexane",C10H20,84.4919803160501,"Trans-1,4-diethylcyclohexane",C10H20,84.4919803160501,"Cyclohexane, 1,2-diethyl-, cis-",C10H20,76.5546351427814
+420,10.9562,"Cyclohexane, 2-ethyl-1,3-dimethyl-",C10H20,73.8320933097139,"Cyclohexane, 2-ethyl-1,3-dimethyl-",C10H20,73.8320933097139,"4,4-Dimethyl octane",C10H22,63.0941423873058
+421,10.8496,"Octane, 3,6-dimethyl-",C10H22,94.5304848551066,"Octane, 3,6-dimethyl-",C10H22,94.5304848551066,Mesitylene,C9H12,71.5135331670308
+422,10.722,"Benzene, 1-ethyl-4-methyl-",C9H12,92.1474793371943,"Benzene, 1-ethyl-4-methyl-",C9H12,92.1474793371943,"Benzene, 1-ethyl-4-methyl-",C9H12,80.9696928447588
+423,10.7129,"Nonane, 2-methyl-",C10H22,89.5025646942422,"Nonane, 2-methyl-",C10H22,89.5025646942422,"(.+/-.)-2-Phenylpropanoic Acid, neopentyl ester",C14H20O2,61.687311255381
+424,10.6832,"Trans-1,4-diethylcyclohexane",C10H20,67.1292961668663,"Trans-1,4-diethylcyclohexane",C10H20,67.1292961668663,Flamenol,C7H8O3,59.9538354817805
+425,10.6634,"Nonane, 4-methyl-",C10H22,84.0479748529489,"Nonane, 4-methyl-",C10H22,84.0479748529489,"Nonane, 4-methyl-",C10H22,63.88469663217
+426,10.6306,2-[(2-Methyl-endo-2-norbornyl)oxy]-tetrahydropyran,C13H22O2,67.653190625875,2-[(2-Methyl-endo-2-norbornyl)oxy]-tetrahydropyran,C13H22O2,67.653190625875,"Tetrahydrofuran-5-on-2-methanol, .alpha.-[.alpha.-methoxy-(tetrahydrofuran-5-on-2-ylmethoxy)]-",C11H16O7,57.3482872031661
+427,10.5277,"Undecane, 5,6-dimethyl-",C13H28,89.9854378988575,"Undecane, 5,6-dimethyl-",C13H28,89.9854378988575,"Decane, 2,5-dimethyl-",C12H26,80.8775007472855
+428,10.4201,"Cyclohexane, 1,1,3,5-tetramethyl-, cis-",C10H20,64.5169911169391,"2-Pyrazoline, 4-ethyl-1-isopropyl-",C8H16N2,76.2413428154399,"Thiophene, 3,4-diethyl-",C8H12S,61.1755586472498
+429,10.3018,No Match,,,Difluoroisocyanatophosphine,CF2NOP,56.4094480476877,"Bis(3,3,5,5-tetramethylcyclohexyl) ethylphosphonate",C22H43O3P,54.4806956972756
+430,10.2467,"Trans-1,4-diethylcyclohexane",C10H20,70.8836505584008,2-(Butyliden-2-one)tetrahydrofuran,C8H12O2,74.3389895017623,"3,4-Diethyl-3-hexene",C10H20,68.2988913957006
+431,10.2214,"Undecane, 6,6-dimethyl-",C13H28,87.4803813257651,"Undecane, 6,6-dimethyl-",C13H28,87.4803813257651,"Sulfurous acid, di(2-ethylhexyl) ester",C16H34O3S,71.6449031497841
+432,10.1012,"Octane, 3,6-dimethyl-",C10H22,97.0404198299378,"Octane, 3,6-dimethyl-",C10H22,97.0404198299378,"Undecane, 6,6-dimethyl-",C13H28,93.4189490167709
+433,10.0603,"Cyclohexane, 1,1'-(1,3-propanediyl)bis-",C15H28,65.7025241716998,"4-Pyrimidinol, 5-methoxy-",C5H6N2O2,67.6395726691103,trans-7-Oxabicyclo[4.3.0]nonane,C8H14O,63.7962623218665
+434,10.0006,"Octane, 2,7-dimethyl-",C10H22,92.4250230904304,"Octane, 2,7-dimethyl-",C10H22,92.4250230904304,"3,6-Heptanedione",C7H12O2,78.4597028476013
+435,9.9135,"Octane, 2,5-dimethyl-",C10H22,94.804485891468,"Octane, 2,5-dimethyl-",C10H22,94.804485891468,"Nonane, 4-methyl-",C10H22,83.5541759534732
+436,9.7612,"Heptane, 4-ethyl-",C9H20,88.0472805429648,"Heptane, 4-ethyl-",C9H20,88.0472805429648,"Pentane, 3-ethyl-2,4-dimethyl-",C9H20,69.7412257422256
+437,9.7276,"Pentane, 3,3-diethyl-",C9H20,53.0027956905944,"Propanoic acid, anhydride",C6H10O3,64.0208917174251,"2,4-Dimethyl-2-oxazoline-4-methanol",C6H11NO2,52.9635192728845
+438,9.6393,1-Ethyl-4-methylcyclohexane,C9H18,69.0816761487566,1-Ethyl-4-methylcyclohexane,C9H18,69.0816761487566,"Oxalic acid, di(cyclohexylmethyl) ester",C16H26O4,62.3228829787585
+439,9.5728,"1-Ethyl-3-methylcyclohexane (c,t)",C9H18,83.4604866258064,"1-Ethyl-3-methylcyclohexane (c,t)",C9H18,83.4604866258064,"Cyclohexane, 1-ethyl-4-methyl-, trans-",C9H18,78.2322153640077
+440,9.3829,Nonane,C9H20,91.6465819146399,Nonane,C9H20,91.6465819146399,"Heptane, 4-ethyl-",C9H20,81.5103770489598
+441,9.2873,Ethylbenzene,C8H10,95.4278371060492,Ethylbenzene,C8H10,95.4278371060492,o-Xylene,C8H10,79.8704038953006
+442,9.192,"Oxalic acid, di(cyclohexylmethyl) ester",C16H26O4,81.1995955738278,"Oxalic acid, di(cyclohexylmethyl) ester",C16H26O4,81.1995955738278,"Carbonic acid, dithio-, S-methyl O-(2-methylcyclohexyl) ester, trans-",C9H16OS2,72.6188245514456
+443,9.1449,"1-Ethyl-3-methylcyclohexane (c,t)",C9H18,89.5002923561631,"1-Ethyl-3-methylcyclohexane (c,t)",C9H18,89.5002923561631,"Cyclohexane, 1-ethyl-4-methyl-, trans-",C9H18,83.7635246592625
+444,9.0332,"Cyclohexane, 1,3,5-trimethyl-",C9H18,84.4481530344387,"Cyclohexane, 1,3,5-trimethyl-",C9H18,84.4481530344387,"Cyclohexane, 1,2,4-trimethyl-",C9H18,74.2509499014357
+445,8.9721,"Cyclohexane, 1,3,5-trimethyl-",C9H18,78.9073111759324,"Cyclohexane, 1,3,5-trimethyl-",C9H18,78.9073111759324,"1-Pentanone, 1-(2-thienyl)-",C9H12OS,66.1868550868012
+446,8.8978,"Cyclohexane, 1,3,5-trimethyl-",C9H18,79.1987793105025,"Cyclohexane, 1,3,5-trimethyl-",C9H18,79.1987793105025,"Cyclohexane, 1,3,5-trimethyl-",C9H18,64.043853844712
+447,8.761,"Octane, 3-methyl-",C9H20,91.8585513191205,"Octane, 3-methyl-",C9H20,91.8585513191205,"Octane, 3-methyl-",C9H20,84.2340006964742
+448,8.7544,"Benzene, 1,3-dimethyl-",C8H10,93.9901084545346,"Benzene, 1,3-dimethyl-",C8H10,93.9901084545346,p-Xylene,C8H10,75.8051152588808
+449,8.6031,"Octane, 2-methyl-",C9H20,98.1377890836191,"Octane, 2-methyl-",C9H20,98.1377890836191,"Octane, 3,6-dimethyl-",C10H22,66.4561182214227
+450,8.5786,Ethylbenzene,C8H10,85.2970117900826,Ethylbenzene,C8H10,85.2970117900826,p-Xylene,C8H10,79.2345874550979
+451,8.425,Isomaltol,C6H6O3,77.7241014096442,"3,3-Diisopropyl-1-(2,2,2-trifluoroethyl)azetidin-2,4-dione",C11H16F3NO2,80.1544001987644,Isomaltol,C6H6O3,77.7241014096442
+452,8.4187,"Heptane, 2,3-dimethyl-",C9H20,91.3877359152696,"Heptane, 2,3-dimethyl-",C9H20,91.3877359152696,"Heptane, 2,3-dimethyl-",C9H20,72.5764981442246
+453,8.3312,"Cyclohexane, 1,3,5-trimethyl-",C9H18,88.6797455289989,"Cyclohexane, 1,3,5-trimethyl-",C9H18,88.6797455289989,"Cyclohexane, 1,3,5-trimethyl-, (1.alpha.,3.alpha.,5.alpha.)-",C9H18,73.9670823965778
+454,8.1208,"Cyclohexane, 1-isopropyl-1-methyl-",C10H20,71.2220920107869,"Sulfurous acid, di(cyclohexylmethyl) ester",C14H26O3S,74.6488538388748,"Cyclopentane, 1-hydroxymethyl-1,3-dimethyl-",C8H16O,71.0807300584238
+455,8.1157,"Cyclohexane, 1-isopropyl-1-methyl-",C10H20,78.6189344943087,"Cyclopentane, 1-hydroxymethyl-1,3-dimethyl-",C8H16O,79.6046388979413,"2-Butyl-3,4,5,6-tetrahydropyridine",C9H17N,60.3694205481861
+456,8.0376,"1,1,4-Trimethylcyclohexane",C9H18,84.5920358473542,"1,1,4-Trimethylcyclohexane",C9H18,84.5920358473542,"2,4-Diamino-1,3,5-triazine",C3H5N5,68.715640890816
+457,7.9882,"Cyclohexane, 1,1,3-trimethyl-",C9H18,63.9550162193666,"3,4-Hexanedione, 1,1,1,6,6,6-hexafluoro-",C6H4F6O2,69.6470691381815,"Phosphonic acid, ethyl hexyl ester",C8H19O3P,63.0775780346103
+458,7.9243,"Heptane, 2,5-dimethyl-",C9H20,97.2856435013354,"Heptane, 2,5-dimethyl-",C9H20,97.2856435013354,"Octane, 3-methyl-",C9H20,88.7468070525866
+459,7.8043,"Cyclohexane, 1-methyl-3-propyl-",C10H20,66.3952066591136,"Sulfurous acid, di(cyclohexylmethyl) ester",C14H26O3S,72.4371403186733,"Cyclohexane, 1-methyl-3-propyl-",C10H20,66.3952066591136
+460,7.7638,"Octane, 2-methyl-",C9H20,94.1871577497214,"Octane, 2-methyl-",C9H20,94.1871577497214,"Heptane, 2,6-dimethyl-",C9H20,80.5079920184339
+461,7.6118,"Heptane, 2,4-dimethyl-",C9H20,92.72668953947,"Heptane, 2,4-dimethyl-",C9H20,92.72668953947,2-Methylbutanoic anhydride,C10H18O3,80.6139732058482
+462,7.4438,"Pentane, 2,3,3,4-tetramethyl-",C9H20,71.6028724223714,5-Methyl-2-(2-methyl-2-tetrahydrofuryl)tetrahydrofuran,C10H18O2,79.6307005509459,Phosphoramidous difluoride,F2H2NP,65.0481051285574
+463,7.3465,"Ethanone, 1-(2-furanyl)-",C6H6O2,79.3325603757645,"Ethanone, 1-(2-furanyl)-",C6H6O2,79.3325603757645,"Ethanone, 1-(2-furanyl)-",C6H6O2,77.4628860501283
+464,7.236,"Cyclohexane, 1,4-dimethyl-, cis-",C8H16,93.1563745676334,"Cyclohexane, 1,4-dimethyl-, cis-",C8H16,93.1563745676334,"Cyclohexane, 1,3-dimethyl-, trans-",C8H16,85.2223664170101
+465,7.0802,Octane,C8H18,92.8723229168764,Octane,C8H18,92.8723229168764,"Pentane, 2,3,3,4-tetramethyl-",C9H20,75.1060181698902
+466,7.0573,No Match,,,"Thiophene, 3-ethyl-",C6H8S,74.961259970465,"Thiophene, 3-ethyl-",C6H8S,73.9456598689513
+467,7.0473,"Ethanone, 1,2-di-2-furanyl-2-hydroxy-",C10H8O4,74.849757014966,"Ethanone, 1,2-di-2-furanyl-2-hydroxy-",C10H8O4,74.849757014966,"3,5-O-Furylidene-d-xylofuranose",C10H12O6,64.9688840674311
+468,6.8752,"Cyclopentane, 1-ethyl-1-methyl-",C8H16,77.1233435377813,2-Methyl-2-bromohept-6-en-3-one,C8H13BrO,80.36211647606,"Pyrrolidin-1-yl-acetic acid, hydrazide",C6H13N3O,59.592489641177
+469,6.8196,"Cyclopentane, 1-ethyl-3-methyl-",C8H16,89.5371834736209,"Cyclopentane, 1-ethyl-3-methyl-",C8H16,89.5371834736209,"Cyclopentane, 1-ethyl-1-methyl-",C8H16,82.8028670657517
+470,6.659,"Hexane, 2,2,5-trimethyl-",C9H20,75.2926776996532,"Hexane, 2,2,5-trimethyl-",C9H20,75.2926776996532,"Hexane, 2,2,4-trimethyl-",C9H20,69.5817090911592
+471,6.6203,No Match,,,Emimycin,C4H4N2O2,65.1384273448392,3-Nitropyrrole,C4H4N2O2,57.5495358578203
+472,6.5862,"Cyclohexane, 1,4-dimethyl-",C8H16,93.2602282040206,"Cyclohexane, 1,4-dimethyl-",C8H16,93.2602282040206,"Cycloheptane, bromo-",C7H13Br,71.4165236020115
+473,6.484,No Match,,,"2-(Fluoromethyl)pyrrolidine, N-acetyl",C7H12FNO,53.8064952730469,Methyl 1-acetylpyrrolidine-2-carboxylate,C8H13NO3,50.1520217382944
+474,6.4427,"Heptane, 3-methyl-",C8H18,95.6840983770737,"Heptane, 3-methyl-",C8H18,95.6840983770737,"Proline, 1-acetyl-, ethyl ester",C9H15NO3,50.0756659797235
+475,6.355,Isobutyl isovalerate,C9H18O2,65.1269843783181,"Borinic acid, diethyl-",C4H11BO,66.8171468072532,"2,2-Dimethylpropanoic anhydride",C10H18O3,63.6988105915716
+476,6.3422,Toluene,C7H8,89.308479349532,Toluene,C7H8,89.308479349532,"Spiro[2,4]hepta-4,6-diene",C7H8,78.6007297023106
+477,6.2548,"Heptane, 2-methyl-",C8H18,98.0617555695261,"Heptane, 2-methyl-",C8H18,98.0617555695261,"Hexane, 2,5-dimethyl-",C8H18,87.3166480552373
+478,6.1317,"Hexane, 2,3-dimethyl-",C8H18,95.6441949548122,"Hexane, 2,3-dimethyl-",C8H18,95.6441949548122,"Pentane, 2,3,4-trimethyl-",C8H18,83.6395367459365
+479,5.6854,"Cyclopentane, 1,2,4-trimethyl-",C8H16,77.263904331411,"Cyclopentane, 1,2,4-trimethyl-",C8H16,77.263904331411,1-Hepten-3-one,C7H12O,68.6609756479261
+480,5.5036,"Hexane, 2,4-dimethyl-",C8H18,90.9589171267034,"Hexane, 2,4-dimethyl-",C8H18,90.9589171267034,"Pentane, 2,2,3,4-tetramethyl-",C9H20,85.7254869273301
+481,5.457,"Hexane, 2,5-dimethyl-",C8H18,97.2856546927924,"Hexane, 2,5-dimethyl-",C8H18,97.2856546927924,"Heptane, 2-methyl-",C8H18,86.1360315035304
+482,5.3322,"Cyclohexane, methyl-",C7H14,93.6921626508199,"Cyclohexane, methyl-",C7H14,93.6921626508199,"1H-Pyrazole, 4,5-dihydro-4,5-dimethyl-",C5H10N2,58.455872898757
+483,4.9268,(Z)-4-Methyl-2-hexene,C7H14,92.5105670914142,(Z)-4-Methyl-2-hexene,C7H14,92.5105670914142,"1-Propanone, 1-cyclopropyl-",C6H10O,73.8552738078446
+484,4.8359,Heptane,C7H16,96.9028014919169,Heptane,C7H16,96.9028014919169,Heptane,C7H16,88.2293885933363
+485,4.6756,"Cyclopentane, 1,2-dimethyl-, trans-",C7H14,79.0610727251455,"Cyclopentane, 1,2-dimethyl-, trans-",C7H14,79.0610727251455,"Cyclopentane, 1,3-dimethyl-, cis-",C7H14,70.1396490715514
+486,4.6314,"Cyclopentane, 1,3-dimethyl-, cis-",C7H14,78.3202760780621,"2H-Pyran-2,6(3H)-dione, dihydro-4,4-dimethyl-",C7H10O3,78.4123758366209,"Butane, 2-cyclopropyl-",C7H14,69.7816882868159
+487,4.5988,"Propanoic acid, 2-methyl-, anhydride",C8H14O3,69.2995057933223,"Propanoic acid, 2-methyl-, anhydride",C8H14O3,69.2995057933223,"Butanoic acid, anhydride",C8H14O3,61.4020348731641
+488,4.5831,"Cyclopentane, 1,2-dimethyl-, cis-",C7H14,83.5359982802352,"Cyclopentane, 1,2-dimethyl-, cis-",C7H14,83.5359982802352,"2,3-Dimethyl-1-hexene",C8H16,66.0779225993254
+489,4.4287,"Hexane, 3-methyl-",C7H16,96.5488799163708,"Hexane, 3-methyl-",C7H16,96.5488799163708,Heptane,C7H16,89.2450458509482
+490,4.3418,No Match,,,"1-(2-Isopropyl-phenoxy)-3-morpholin-4-yl-propan-2-ol, methyl ether",C17H27NO3,66.285290024898,"1-(2,5-Dimethylphenoxy)-3-(4-morpholinyl)-2-propanol, TMS",C18H31NO3Si,61.9125058702177
+491,4.3233,"1-Pentene, 3,3-dimethyl-",C7H14,83.1042444283771,"2,2'-Bipyrrolidine",C8H16N2,90.7033113152682,"2-Pentanol, propanoate",C8H16O2,54.5988040064437
+492,4.309,"2(3H)-Furanone, 5-ethyldihydro-",C6H10O2,61.8641411323777,Cyclopentanamine,C5H11N,70.2463401837398,"1,2-Bis(2-hydroxypropyl)hydrazine",C6H16N2O2,57.1597874572415
+493,4.1173,"1-Hexene, 3,4,5-trimethyl-",C9H18,75.5901510466563,"1-Hexene, 3,4,5-trimethyl-",C9H18,75.5901510466563,"4,4-Dimethyl-1-hexene",C8H16,63.4392301384172
+494,3.7764,3-Ethyl-2-methyl-1-heptene,C10H20,60.0817322545386,"Furan, 2,3-dihydro-3-methyl-",C5H8O,64.5118399677636,3-Methylnon-1-yn-3-ol,C10H18O,59.3639426720787
+495,3.7711,"Cyclopentane, methyl-",C6H12,66.6081654280103,"Cyclopentane, methyl-",C6H12,66.6081654280103,"Cyclopentane, methyl-",C6H12,60.4832725182415
+496,3.7498,"Pentane, 2,4-dimethyl-",C7H16,96.279523216233,"Pentane, 2,4-dimethyl-",C7H16,96.279523216233,Acetyl valeryl,C7H12O2,85.424455571567
+497,3.6787,Cyclohexane,C6H12,81.5992662047063,Cyclohexane,C6H12,81.5992662047063,Cyclohexane,C6H12,75.213928048985
+498,3.5269,"1-Butene, 2,3-dimethyl-",C6H12,84.1693817068035,"1-Butene, 2,3-dimethyl-",C6H12,84.1693817068035,"2-Pentene, 4-methyl-, (E)-",C6H12,76.8164536040298
+499,3.4327,n-Hexane,C6H14,94.082701271623,n-Hexane,C6H14,94.082701271623,2-Ethyl-oxetane,C5H10O,82.4645474775387
+500,3.2818,"Pentane, 3-methyl-",C6H14,98.290439994918,"Pentane, 3-methyl-",C6H14,98.290439994918,"Hexane, 2,2,3-trimethyl-",C9H20,89.411285693988
+501,3.1603,"Pentane, 2-methyl-",C6H14,98.6906886738424,"Pentane, 2-methyl-",C6H14,98.6906886738424,"Pentane, 2-methyl-",C6H14,95.0669187002936
+502,2.8735,2-Methyl-1-butene,C5H10,87.980005340952,"Oxetane, 3-(1-methylethyl)-",C6H12O,88.4243525809191,"2-Pentene, (E)-",C5H10,85.3805587590761
+503,2.7694,Pentane,C5H12,84.7796641469885,"Propanal, 2-methyl-",C4H8O,86.9979478954009,Pentane,C5H12,76.5648073050609
+504,2.6735,"Butane, 2-methyl-",C5H12,98.1764176469982,"Butane, 2-methyl-",C5H12,98.1764176469982,Pentane,C5H12,93.094794629046
+505,2.4449,Isobutane,C4H10,93.2530466161428,Isobutane,C4H10,93.2530466161428,Propyl pyruvate,C6H10O3,89.8516456103413
