@@ -24,7 +24,7 @@ from datetime import datetime
 
 """ PARAMETERS """
 
-version = "1.1w"
+version = "0.3.0"
 
 """ DIRECTORIES """
 #Get directories from handling script
@@ -73,8 +73,8 @@ def uiSetup(theme_Dir):
     #Set up labelframe font
     style.configure('QuantLabelframe.TLabelframe.Label',font=('TKDefaultFont',16))
 
-    root.geometry("1220x620")
-    root.title("AutoQuantUI – Quantification Made Easy")
+    root.geometry("1090x560")
+    root.title("ChromaQuant – Quantification Made Easy")
     root.resizable(0,0)
 
     #style.theme_use('forest')
@@ -306,7 +306,7 @@ title_font = tkFont.Font(size=18)   #Title font
 topFrame = ttk.Frame(mainframe)
 topFrame.grid(column=0,row=0,sticky='w',padx=(350,0))
 
-#Add a frame for the AutoQuant logo
+#Add a frame for the ChromaQuant logo
 logoFrame = ttk.Frame(topFrame)
 logoFrame.grid(column=0,row=0)
 
@@ -315,12 +315,12 @@ tsFrame = ttk.Frame(topFrame)
 tsFrame.grid(column=1,row=0)
 
 #Add title text
-tk.Label(tsFrame,text="AutoQuant v"+version,font=title_font).grid(column=0,row=0,pady=10,padx=10)
+tk.Label(tsFrame,text="ChromaQuant v"+version,font=title_font).grid(column=0,row=0,pady=10,padx=10)
 
-#Add an image for the AutoQuant logo
+#Add an image for the ChromaQuant logo
 #Load the image
-#image = tk.PhotoImage(file=img_Dir+'AutoQuantIcon.png')
-image_i = Image.open(os.path.join(img_Dir,'AutoQuantIcon.png'))
+#image = tk.PhotoImage(file=img_Dir+'ChromaQuantIcon.png')
+image_i = Image.open(os.path.join(img_Dir,'ChromaQuantIcon.png'))
 #Resize the image
 resize_image = image_i.resize((100,100))
 #Redefine the image
