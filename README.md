@@ -1,6 +1,8 @@
 <h1>ChromaQuant</h1>
-A solution for automated gas chromatographic peak assignment and quantification
+<i>A solution for automated gas chromatographic peak assignment and quantification</i>
+
 <h4>Introduction</h4>
+<img style="float: right;" align="right" width="256" alt="ChromaQuant Logo" src="https://github.com/JnliaH/ChromaQuant/blob/rebrand/images/ChromaQuantIcon.png">
 This project aims to simplify the workflow for combining gas chromatographic (GC) data collected from multiple sources. More
 specifically, it is designed to accommodate the case where GC's with flame ionization and thermal conductivity detectors are
 used to collect quantitatiive data that must be labelled using data from mass spectroscopic results. This project assumes the
