@@ -61,11 +61,11 @@ def uiSetup(theme_Dir):
     root = ThemedTk(theme='adapta')
 
     # Import the tcl file with the tk.call method
-    root.tk.call('source', theme_Dir)  # Put here the path of your theme file
+    root.tk.call('source', theme_Dir)
 
     # Set the theme with the theme_use method
     style = ttk.Style(root)
-    style.theme_use('forest-light')  # Theme files create a ttk theme, here you can put its name
+    style.theme_use('forest-light')
     #Set up style button font
     style.configure('QuantButton.TButton',font=('TKDefaultFont',16))
     #Set up style accent button font
