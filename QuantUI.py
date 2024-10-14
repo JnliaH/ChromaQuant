@@ -19,11 +19,13 @@ import os
 import subprocess
 import sys
 from PIL import Image, ImageTk
-import handleDirectories as hd
 from datetime import datetime
+#Local packages
+import handleDirectories as hd
+from AutoFpmMatch import main_AutoFpmMatch
+from AutoQuantification import main_AutoQuantification
 
 """ PARAMETERS """
-
 version = "0.3.0"
 
 """ DIRECTORIES """
@@ -134,30 +136,30 @@ def quant_select(event):
     global quantphases
     quantphases = logBox.get
 
-#Function for running subprocess
-def runProcess(sname,pythonDir,varList):
+#Function for running method functions
+def runProcess(sname,pythonFun,varList):
     """
-    Function that runs a subprocess
+    Function that runs an external main function
     Parameters
     ----------
     sname : String
         Name of sample to be analyzed.
-    pythonDir : String
-        Directory of subprocess python file to be run.
+    pythonFun : Function
+        Function to be run.
     varList : List
-        List of reformatted variables to be passed to the subprocess.
+        List of reformatted variables to be passed to the function.
 
     Returns
     -------
     None.
 
     """
-    #Create list of arguments to pass to the command line
-    cmdList = ['python',pythonDir,sname] + varList
     #Start time for execution time
     exec_start = datetime.now()
-    #Run the subprocess
-    subprocess.run(cmdList, text=True, check=True, shell=True)
+    #Insert sname at the beginning of the variables list
+    varList.insert(0,sname)
+    #Run the method function
+    pythonFun(*varList)
     #End time for execution time
     exec_end = datetime.now()
     #Execution time
@@ -267,7 +269,7 @@ def runFIDpMS(sname,specLabTF,sphase,model):
             #Get list of reformatVar_dict values
             reformatVar_list = list(reformatVar_dict.values())
             #Run subprocess
-            runProcess(sname,afm_Dir,reformatVar_list)
+            runProcess(sname,main_AutoFpmMatch,reformatVar_list)
             
         except subprocess.CalledProcessError as e:
             print(f'Command {e.cmd} failed with error {e.returncode}')
@@ -288,7 +290,7 @@ def runQuant(sname,quantphases):
         
         try:
             #Run subprocess
-            runProcess(sname,aq_Dir,[quantphases])
+            runProcess(sname,main_AutoQuantification,[quantphases])
             
         except subprocess.CalledProcessError as e:
             print(f'Command {e.cmd} failed with error {e.returncode}')
