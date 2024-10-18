@@ -21,16 +21,14 @@ import sys
 from PIL import Image, ImageTk
 from datetime import datetime
 #Local packages
-import handleDirectories as hd
-from AutoFpmMatch import main_AutoFpmMatch
-from AutoQuantification import main_AutoQuantification
+import chromatools as ct
 
 """ PARAMETERS """
 version = "0.3.0"
 
 """ DIRECTORIES """
 #Get directories from handling script
-directories = hd.handle(os.path.dirname(os.path.abspath(__file__)))
+directories = ct.handle(os.path.dirname(os.path.abspath(__file__)))
 #Unpack directories
 #Primary files directory
 files = directories['files']
@@ -268,8 +266,12 @@ def runFIDpMS(sname,specLabTF,sphase,model):
         try:
             #Get list of reformatVar_dict values
             reformatVar_list = list(reformatVar_dict.values())
+            print(reformatVar_list)
+            #Append list with directories list
+            reformatVar_list.append(directories)
+            print(reformatVar_list)
             #Run subprocess
-            runProcess(sname,main_AutoFpmMatch,reformatVar_list)
+            runProcess(sname,ct.main_AutoFpmMatch,reformatVar_list)
             
         except subprocess.CalledProcessError as e:
             print(f'Command {e.cmd} failed with error {e.returncode}')
@@ -290,7 +292,7 @@ def runQuant(sname,quantphases):
         
         try:
             #Run subprocess
-            runProcess(sname,main_AutoQuantification,[quantphases])
+            runProcess(sname,ct.main_AutoQuantification,[quantphases,directories])
             
         except subprocess.CalledProcessError as e:
             print(f'Command {e.cmd} failed with error {e.returncode}')
