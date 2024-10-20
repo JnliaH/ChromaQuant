@@ -19,6 +19,7 @@ from chemformula import ChemFormula
 import json
 from datetime import datetime
 import logging
+import openpyxl
 
 """ QUANTIFICATION MAIN FUNCTION"""
 def main_AutoQuantification(sname,quantphases,directories):
