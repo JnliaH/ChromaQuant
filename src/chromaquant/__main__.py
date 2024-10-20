@@ -10,7 +10,7 @@ Started 01-04-2024
 """
 
 """ PACKAGES """
-
+print("[__main__] Loading packages...")
 import tkinter as tk
 from tkinter import ttk
 from ttkthemes import ThemedTk
@@ -23,6 +23,7 @@ from datetime import datetime
 import importlib.util
 
 """ LOCAL PACKAGES """
+print("[__main__] Importing local packages...")
 #Get current file absolute directory
 file_dir = os.path.dirname(os.path.abspath(__file__))
 #Get absolute directories for subpackages
@@ -50,13 +51,17 @@ qt = import_from_path("qt",subpack_dir['Quant'])
 mt = import_from_path("mt",subpack_dir['Match'])
 
 """ PARAMETERS """
+print("[__main__] Defining parameters...")
 version = "0.3.0"
 __version__ = "0.3.0"
 
 """ UI FUNCTION """
+
 def runUI():
 
     """ DIRECTORIES """
+    print("[__main__] Defining directories...")
+    print("[__main__] Using Handle package...")
     #Get directories from handling script
     directories = hd.handle(os.path.dirname(os.path.abspath(__file__)))
     #Unpack directories
@@ -78,12 +83,12 @@ def runUI():
     aq_Dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),'AutoQuantification.py')
     
     """ DATA SEARCH """
-    
+    print("[__main__] Searching for valid data files...")
     #Get a list of all available sample data directories (excluding "old") in the data files directory
     sampleList = [f.name for f in os.scandir(DF_Dir) if f.is_dir() if f.name != "old"]
       
     """ FUNCTIONS """
-    
+    print("[__main__] Defining functions...")
     #Function for setting up the UI
     def uiSetup(theme_Dir):
         
@@ -328,7 +333,9 @@ def runUI():
                 print(f'Command {e.cmd} failed with error {e.returncode}')
         
         return None
+    
     """ CODE """
+    print("[__main__] Initializing UI mainframe...")
     #Run the UI setup
     root, mainframe = uiSetup(theme_Dir)
     
@@ -469,6 +476,7 @@ def runUI():
     return None
 
 """ RUN MAIN FUNCTION """
+print("[__main__] Starting UI...")
 if __name__ == "__main__":
 	runUI()
 
