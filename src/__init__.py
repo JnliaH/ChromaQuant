@@ -8,3 +8,5 @@ Julia Hancock
 Created 10-19-2024
 
 """
+
+__version__ = "0.0.3"
