@@ -1,0 +1,21 @@
+{
+    "Sample Name": "[Sample]_[Injection]",
+    "Reactor Name": "[Reactor name]",
+    "Catalyst Type": "[Catalyst name, be as descriptive as possible]",
+    "Catalyst Amount (mg)": "[Catalyst added to reactor, sum masses if more than one catalyst]",
+    "Plastic Type": "[Name of substrate added, be as descriptive as possible]",
+    "Plastic Amount (mg)": "[Mass of substrate added]",
+    "Reaction Temperature (C)": "[Temperature of reactor before quenching]",
+    "Quench Temperature (C)": "[Temperature of reactor after quenching]",
+    "Reaction Pressure (psi)": "[Pressure of reactor before quenching]",
+    "Initial Pressure (psi)": "[Initial charge pressure of reactor]",
+    "Quench Pressure (psi)": "[Pressure of reactor after quenching",
+    "Start Time": "[Start time in format yyyy-mm-dd hh:mm:ss.000]",
+    "End Time": "[End time in format yyyy-mm-dd hh:mm:ss.000]",
+    "Heat Time": "[Time taken to reach reaction temperature from room temperature]",
+    "Internal Standard Name": "[Name of external/internal standard]",
+    "Internal Standard Mass (mg)": "[Mass of external/internal standard]",
+    "Reactor Volume (mL)": "[Reactor total volume]",
+    "Remaining solids (mg)": "[Weight of dry residual solids]",
+    "Injected CO2 (mL)": "[Volume of CO2 injected into gas bag containing gas sample]"
+}

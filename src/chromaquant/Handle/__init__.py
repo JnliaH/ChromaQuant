@@ -9,4 +9,4 @@ Created 10-19-2024
 
 """
 
-from .handleDirectories import handle
+from .handleDirectories import *
