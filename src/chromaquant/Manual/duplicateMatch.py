@@ -2,6 +2,18 @@
 # -*- coding: utf-8 -*-
 """
 
+COPYRIGHT STATEMENT:
+
+ChromaQuant – A quantification software for complex gas chromatographic data
+
+Copyright (c) 2024, by Julia Hancock
+              Affiliation: Dr. Julie Elaine Rorrer
+	      URL: https://www.rorrerlab.com/
+
+License: BSD 3-Clause License
+
+---
+
 SCRIPT THAT TAKES MATCHED FID AND MS PEAKS AND ASSESSES DUPLICATES
 Julia Hancock
 
