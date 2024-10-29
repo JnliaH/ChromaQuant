@@ -20,7 +20,7 @@ $$RF = \frac{(A_i/A_s)}{m_i/m_s}$$
 
 Where $A_i$ is the Area for the species of interest, $A_s$ is the area of the internal standard, $m_i$ is the mass of the species of interest, and $m_s$ is the mass of the internal standard. In the Rorrer Lab, we use 1,3,5-tri-tert-butylbenzene as an internal standard. Response factors are determined by making solutions (~6) of known concentration across a given concentration range and applying a linear fit. Interpolation/extrapolation is used for cases where response factors are not known using fits determined in the liquid FID RFs Excel sheet. Gas TCD integration values are quantified by using (non-relative) response factors defined as:
 
-$$RF = \frac{Area}{Vol.%}$$
+$$RF = \frac{Area}{Volume Percent}$$
 
 Quantitative data is then determined by getting a total volume of gas collected by dividing the amount of CO2 (the internal standard) injected by the vol.% CO2. This total volume is then used alongside volume percents for each species of interest and the ideal gas law to determine the quantity of each product. Again, RFs are determined using external calibration gas injections. Gas FID integration is quantified similarly, except the total volume of gas determined in the TCD step is used since CO2 does not show up separately in the FID chromatogram.
 
