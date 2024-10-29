@@ -25,13 +25,16 @@ $$RF = \frac{Area}{Volume Percent}$$
 Quantitative data is then determined by getting a total volume of gas collected by dividing the amount of CO2 (the internal standard) injected by the vol.% CO2. This total volume is then used alongside volume percents for each species of interest and the ideal gas law to determine the quantity of each product. Again, RFs are determined using external calibration gas injections. Gas FID integration is quantified similarly, except the total volume of gas determined in the TCD step is used since CO2 does not show up separately in the FID chromatogram.
 
 <h4>Installation</h4>
-To install on a MacOSX system, simply download the dist directory from the remote repository alongside the resources, response-factors, and images folders. Copy the ChromaQuant directory from the dist directory and paste it in the desired location. Locate the "ChromaQuant/_internal/properties.json" file in this pasted directory and edit the "app-directory" value to read the absolute path to the ChromaQuant UNIX executable and the "file-directory" value to read the desired path to ChromaQuant data files. Finally, create a folder named ChromaQuant at the location of the file-directory path.<br><br>
+Install ChromaQuant by running the following command in the terminal/command prompt:<br>
 
-It is recommended that the ChromaQuant folder be placed in the Applications folder and the file directory (a.k.a. the ChromaQuant documents folder) to be created in the "Users/[User]/Documents" folder. 
+> pip install chromaquant
 
-Create an empty folder inside the documents folder named data. Paste the resources, response-factors, and images folder into the documents folder. Note that the resources and response-factors folder contain data relevant to the Rorrer Lab – response factors and known compounds depend highly on reactions and reaction conditions studied, GC acquisition methods, and column configuration.
+This should install ChromaQuant along with its dependencies. There are several subpackage files used in both manual and automatic analysis that can be imported directly. To start the GUI for automated quantification, run the following command:<br>
+> chroma-ui
 
-Finally, test that the ChromaQuant executable runs by navigating to the app directory and double clicking the executable. If it does, you can (optionally) set the executable's icon to the ChromaQuantIcon.icns found in the images directory and make aliases as desired.
+or
+
+> python -m chromaquant
 
 <h4>The workflow</h4>
 <p align="center">
