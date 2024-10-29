@@ -3,23 +3,33 @@
 
 <h4>Introduction</h4>
 <img style="float: right;" align="right" width="256" alt="ChromaQuant Logo" src="https://github.com/JnliaH/ChromaQuant/blob/rebrand/images/ChromaQuantIcon.png">
-This project aims to simplify the workflow for combining gas chromatographic (GC) data collected from multiple sources. More
-specifically, it is designed to accommodate the case where GC's with flame ionization and thermal conductivity detectors are
-used to collect quantitatiive data that must be labelled using data from mass spectroscopic results. This project assumes the
+This project aims to simplify the workflow for combining gas chromatography (GC) data collected from multiple sources. More
+specifically, it is designed to accommodate the case where GCs with flame ionization and thermal conductivity detectors are
+used to collect quantitative data that must be labelled using data from mass spectroscopic results. This project assumes the
 following setup:
 <ul>
   <li>A GC equipped with FID/TCD is used to quantify gaseous products from a reaction</li>
   <li>A GC equipped with FID/MS is used to quantify liquid products from a reaction</li>
   <li>A GC equipped with FID/MS is used to label both gas and liquid reaction products</li>
 </ul>
-The GC's mentioned in the second and third bullets are assumed to be the same GC. This project also assumes that external software can be used to obtain spectra and integration/identification results.
+The GCs mentioned in the second and third bullets are assumed to be the same GC. This project also assumes that external software can be used to obtain spectra and integration/identification results.<br><br>
+
+Relative response factors (or simply "response factors" or RFs from now on) are used to get quantitative data from liquid FID results. These are defined as:
+
+$$RF = \frac{(A_i/A_s)}{m_i/m_s}$$
+
+Where $A_i$ is the Area for the species of interest, $A_s$ is the area of the internal standard, $m_i$ is the mass of the species of interest, and $m_s$ is the mass of the internal standard. In the Rorrer Lab, we use 1,3,5-tri-tert-butylbenzene as an internal standard. Response factors are determined by making solutions (~6) of known concentration across a given concentration range and applying a linear fit. Interpolation/extrapolation is used for cases where response factors are not known using fits determined in the liquid FID RFs Excel sheet. Gas TCD integration values are quantified by using (non-relative) response factors defined as:
+
+$$RF = \frac{Area}{Vol.%}$$
+
+Quantitative data is then determined by getting a total volume of gas collected by dividing the amount of CO2 (the internal standard) injected by the vol.% CO2. This total volume is then used alongside volume percents for each species of interest and the ideal gas law to determine the quantity of each product. Again, RFs are determined using external calibration gas injections. Gas FID integration is quantified similarly, except the total volume of gas determined in the TCD step is used since CO2 does not show up separately in the FID chromatogram.
 
 <h4>Installation</h4>
 To install on a MacOSX system, simply download the dist directory from the remote repository alongside the resources, response-factors, and images folders. Copy the ChromaQuant directory from the dist directory and paste it in the desired location. Locate the "ChromaQuant/_internal/properties.json" file in this pasted directory and edit the "app-directory" value to read the absolute path to the ChromaQuant UNIX executable and the "file-directory" value to read the desired path to ChromaQuant data files. Finally, create a folder named ChromaQuant at the location of the file-directory path.<br><br>
 
 It is recommended that the ChromaQuant folder be placed in the Applications folder and the file directory (a.k.a. the ChromaQuant documents folder) to be created in the "Users/[User]/Documents" folder. 
 
-Create an empty folder inside the documents folder named data. Paste the resources, response-factors, and images folder into the documents folder. Note that the resources and response-factors folder contain data relevant to the Rorrer Lab – response factors and known compounds depend highly on reaction conditions and GC analysis methodology.
+Create an empty folder inside the documents folder named data. Paste the resources, response-factors, and images folder into the documents folder. Note that the resources and response-factors folder contain data relevant to the Rorrer Lab – response factors and known compounds depend highly on reactions and reaction conditions studied, GC acquisition methods, and column configuration.
 
 Finally, test that the ChromaQuant executable runs by navigating to the app directory and double clicking the executable. If it does, you can (optionally) set the executable's icon to the ChromaQuantIcon.icns found in the images directory and make aliases as desired.
 
