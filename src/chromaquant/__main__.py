@@ -63,8 +63,8 @@ mt = import_from_path("mt",subpack_dir['Match'])
 
 """ PARAMETERS """
 print("[__main__] Defining parameters...")
-version = "0.3.0"
-__version__ = "0.3.0"
+version = "0.3.1"
+__version__ = "0.3.1"
 
 """ UI FUNCTION """
 
