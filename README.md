@@ -35,7 +35,7 @@ Finally, test that the ChromaQuant executable runs by navigating to the app dire
 
 <h4>The workflow</h4>
 <p align="center">
-  <img width="498" alt="Analytical workflow diagram demonstrating which files are necessary and which processes they are used in." src="https://github.com/JnliaH/ChromaQuant/assets/173843508/c5849b00-1c46-4140-9bea-0b75af8d36af"><br>
+  <img width="498" alt="Analytical workflow diagram demonstrating which files are necessary and which processes they are used in." src="images/workflow.png"><br>
   <b>Figure 1</b>: ChromaQuant's analytical workflow
 </p>
 
