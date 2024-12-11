@@ -34,6 +34,38 @@ import scipy
 """ FID AND MS MATCHING MAIN FUNCTION"""
 def main_AutoFpmMatch(sname,sphase,splab_TF,model,directories):
 
+    """ DIRECTORIES """
+    print("[AutoFpmMatch] Finding directories...")
+
+    #Unpack directories from passed variable
+    #Primary files directory
+    files = directories['files']
+    #Resources directory
+    RE_Dir = directories['resources']
+    #Theme directory
+    theme_Dir = directories['theme']
+    #Response factor directory
+    RF_Dir = directories['rf']
+    #Data directory
+    DF_Dir = directories['data']
+    #Images directory
+    img_Dir = directories['images']
+    #Data file log directory
+    DFlog_Dir = os.path.join(DF_Dir,sname,'log')
+    #Data file breakdowns directory
+    DFbreak_Dir = os.path.join(DF_Dir,sname,'breakdowns')
+    #Raw data file directory
+    Raw_Dir = os.path.join(DF_Dir,sname,'raw data')
+
+    #Dictionary of substrings to add to sample name to create file names
+    sub_Dict = {'Gas TCD+FID':['_GS2_TCD_CSO.csv'],
+                'Gas Labelled MS Peaks':['_GS1_UA_Comp_UPP.csv'],
+                'Gas FID+MS':['_GS2_FIDpMS.csv'],
+                'Liquid FID':['_LQ1_FID_CSO.csv'],
+                'Liquid Labelled MS Peaks':['_LQ1_UA_Comp_UPP.csv'],
+                'Liquid FID+MS':['_LQ1_FIDpMS.csv'],
+                'Info':['_INFO.json']}
+    
     """ PARAMETERS """
     print("[AutoFpmMatch] Defining parameters...")
     #Default third order fit arguments for gas FID and MS peak matching
@@ -74,26 +106,27 @@ def main_AutoFpmMatch(sname,sphase,splab_TF,model,directories):
     #Each compound type abbreviation will have an entry in the dictionary corresponding to a list of
     #substrings to be checked against a compound name string
 
-    contains = {'L':['methane','ethane','propane','butane','pentane','hexane','heptane','octane','nonane',\
-                    'decane','undecane','hendecane','dodecane','tridecane','tetradecane','pentadecane','hexadecane','heptadecane','octadecane','nonadecane',\
-                    'icosane','eicosane','heneicosane','henicosane','docosane','tricosane','tetracosane','pentacosane','hexacosane','cerane','heptacosane','octacosane','nonacosane',\
-                    'triacontane','hentriacontane','untriacontane','dotriacontane','dicetyl','tritriacontane','tetratriacontane','pentatriacontane','hexatriacontane','heptatriacontane','octatriacontane','nonatriacontane',\
-                    'tetracontane','hentetracontane','dotetracontane','tritetracontane','tetratetracontane','pentatetracontane','hexatetracontane','heptatetracontane','octatetracontane','nonatetracontane','pentacontane'],\
+    contains = {
+                "L":["methane","ethane","propane","butane","pentane","hexane","heptane","octane","nonane",
+                    "decane","undecane","hendecane","dodecane","tridecane","tetradecane","pentadecane","hexadecane","heptadecane","octadecane","nonadecane",
+                    "icosane","eicosane","heneicosane","henicosane","docosane","tricosane","tetracosane","pentacosane","hexacosane","cerane","heptacosane","octacosane","nonacosane",
+                    "triacontane","hentriacontane","untriacontane","dotriacontane","dicetyl","tritriacontane","tetratriacontane","pentatriacontane","hexatriacontane","heptatriacontane","octatriacontane","nonatriacontane",
+                    "tetracontane","hentetracontane","dotetracontane","tritetracontane","tetratetracontane","pentatetracontane","hexatetracontane","heptatetracontane","octatetracontane","nonatetracontane","pentacontane"],
                 
-                'B':['iso','neo','methyl','ethyl','propyl','butyl','pentyl','hexyl','heptyl','octyl','nonyl',\
-                    'decyl','undecyl','dodecyl','tridecyl','tetradecyl','pentadecyl','hexadecyl','heptadecyl','octadecyl','nonadecyl',\
-                    'icosyl','eicosyl','heneicosyl','henicosyl','docosyl','tricosyl','tetracosyl','pentacosyl','hexacosyl','heptacosyl','octacosyl','nonacosyl',\
-                    'triacontyl','hentriacontyl','untriacontyl','dotriacontyl','tritriacontyl','tetratriacontyl','pentatriacontyl','hexatriacontyl','heptatriacontyl','octatriacontyl','nonatriacontyl',\
-                    'tetracontyl','hentetracontyl','dotetracontyl','tritetracontyl','tetratetracontyl','pentatetracontyl','hexatetracontyl','heptatetracontyl','octatetracontyl','nonatetracontyl','pentacontyl'],
+                "B":["iso","neo","methyl","ethyl","propyl","butyl","pentyl","hexyl","heptyl","octyl","nonyl",
+                    "decyl","undecyl","dodecyl","tridecyl","tetradecyl","pentadecyl","hexadecyl","heptadecyl","octadecyl","nonadecyl",
+                    "icosyl","eicosyl","heneicosyl","henicosyl","docosyl","tricosyl","tetracosyl","pentacosyl","hexacosyl","heptacosyl","octacosyl","nonacosyl",
+                    "triacontyl","hentriacontyl","untriacontyl","dotriacontyl","tritriacontyl","tetratriacontyl","pentatriacontyl","hexatriacontyl","heptatriacontyl","octatriacontyl","nonatriacontyl",
+                    "tetracontyl","hentetracontyl","dotetracontyl","tritetracontyl","tetratetracontyl","pentatetracontyl","hexatetracontyl","heptatetracontyl","octatetracontyl","nonatetracontyl","pentacontyl"],
                 
-                'A':['benzyl','benzo','phenyl','benzene','toluene','xylene','mesitylene','durene','naphthalene','fluorene','anthracene','phenanthrene','phenalene',\
-                    'tetracene','chrysene','triphenylene','pyrene','pentacene','perylene','corannulene','coronene','ovalene','indan','indene','tetralin'],\
+                "A":["benzyl","benzo","phenyl","benzene","toluene","xylene","mesitylene","durene","naphthalene","fluorene","anthracene","phenanthrene","phenalene",
+                    "tetracene","chrysene","triphenylene","pyrene","pentacene","perylene","corannulene","coronene","ovalene","indan","indene","tetralin","decahydronaphthalene","decalin"],
                 
-                'C':['cyclo','menthane'],\
+                "C":["cyclo","menthane"],
                 
-                'E':['ene','yne'],\
+                "E":["ene","yne"],
                 
-                'O':[]}
+                "O":[]}
 
     #Tuple of contains keys in order of priority
     keyLoop = ('A','C','E','B','L')
@@ -102,39 +135,6 @@ def main_AutoFpmMatch(sname,sphase,splab_TF,model,directories):
     elementExclude = ('He','Li','Be','B','N','O','F','Ne','Na','Mg','Al','Si','P',\
                     'S','Cl','Ar','K','Ca','Sc','Ti','V','Cr','Mn','Fe','Co',\
                     'Ni','Cu','Zn')
-
-    """ DIRECTORIES """
-    print("[AutoFpmMatch] Finding directories...")
-
-    #Unpack directories from passed variable
-    #Primary files directory
-    files = directories['files']
-    #Resources directory
-    RE_Dir = directories['resources']
-    #Theme directory
-    theme_Dir = directories['theme']
-    #Response factor directory
-    RF_Dir = directories['rf']
-    #Data directory
-    DF_Dir = directories['data']
-    #Images directory
-    img_Dir = directories['images']
-    #Data file log directory
-    DFlog_Dir = os.path.join(DF_Dir,sname,'log')
-    #Data file breakdowns directory
-    DFbreak_Dir = os.path.join(DF_Dir,sname,'breakdowns')
-    #Raw data file directory
-    Raw_Dir = os.path.join(DF_Dir,sname,'raw data')
-
-    #Dictionary of substrings to add to sample name to create file names
-    sub_Dict = {'Gas TCD+FID':['_GS2_TCD_CSO.csv'],
-                'Gas Labelled MS Peaks':['_GS1_UA_Comp_UPP.csv'],
-                'Gas FID+MS':['_GS2_FIDpMS.csv'],
-                'Liquid FID':['_LQ1_FID_CSO.csv'],
-                'Liquid Labelled MS Peaks':['_LQ1_UA_Comp_UPP.csv'],
-                'Liquid FID+MS':['_LQ1_FIDpMS.csv'],
-                'Info':['_INFO.json']}
-
 
     """ LOGGING """
     print("[AutoFpmMatch] Initializing logging [WIP]...")
