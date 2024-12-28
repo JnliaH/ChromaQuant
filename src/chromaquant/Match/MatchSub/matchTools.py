@@ -71,7 +71,7 @@ def matchPeaks(fpmDF,mDF,fit,peakError=0.06):
         fpmi = int(fpmiter[0])
         fpmrow = fpmiter[1]
         
-        #Estimate an MS RT for the row's FID RT using the linear fit
+        #Estimate an MS RT for the row's FID RT using the fit
         est_MSRT = fit(fpmrow['FID RT'])
         #Compare the estimated MS RT to all real MS RT's, seeing if there is a match within error
         mDF_match = mDF.loc[(mDF['Component RT'] >= est_MSRT-peakError) & (mDF['Component RT'] <= est_MSRT+peakError)].copy()

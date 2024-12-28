@@ -95,7 +95,7 @@ def checkFile(fpmDir,fDir):
     if not os.path.exists(fpmDir):
 
         #print that file wasn't found and a new one is being created
-        print('FIDpMS file not found for sample and phase, creating new...')
+        print('[fileChecks] FIDpMS file not found for sample and phase, creating new...')
 
         #Read FID dataframe
         fDF = pd.read_csv(fDir)
@@ -139,7 +139,7 @@ def checkFile(fpmDir,fDir):
             if 'Manual' in fpmDF_labelled.values.tolist() or pd.isna(fpmDF_labelled.values).any():
 
                 #Print
-                print('FIDpMS file exists and contains manual and/or blank sourced entries')
+                print('[fileChecks] FIDpMS file exists and contains manual and/or blank sourced entries')
 
                 return fpmDF, True
             
@@ -147,7 +147,7 @@ def checkFile(fpmDir,fDir):
             else:
 
                 #Print
-                print('FIDpMS file exists but does not contains manual or blank sourced entries')
+                print('[fileChecks] FIDpMS file exists but does not contains manual or blank sourced entries')
 
                 return fpmDF, False
             
@@ -155,6 +155,6 @@ def checkFile(fpmDir,fDir):
         else:
 
             #Print
-            print('FIDpMS file exists but contains no labelled peaks')
+            print('[fileChecks] FIDpMS file exists but contains no labelled peaks')
 
             return fpmDF, False
