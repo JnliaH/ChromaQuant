@@ -155,8 +155,6 @@ class chromaUI:
         self.hydroFrame.grid(column=3,row=0,sticky='NSWE',padx=(0,self.widget_padx),pady=self.widget_pady)
         self.setupHydro()
 
-
-
     def greet(self):
         print("Greetings!")
     
@@ -239,7 +237,7 @@ class chromaUI:
         self.select_dict['fpm_typevar']()
         self.setupRadioButton(self.matchFrame,'Please select the sample type:',[0,1],[20,20],1,'fpm_typevar',{'Liquid':'L','Gas':'G'},self.select_dict['fpm_typevar'],'L')
         #Add a radiobutton set for selecting match model
-        self.setupRadioButton(self.matchFrame,'Please select the desired matching fit model:',[0,2],[20,20],1,'fpm_modelvar',{'Retention\nTime':'R','Third\nOrder':'T','Linear':'L'},self.select_dict['fpm_modelvar'],'R')
+        self.setupRadioButton(self.matchFrame,'Please select the desired matching fit model:',[0,2],[20,20],1,'fpm_modelvar',{'Retention\nTime':'R','Polynomial':'P'},self.select_dict['fpm_modelvar'],'R')
         #Add start button
         self.setupStartButton(self.matchFrame,[0,3],[20,20],4,self.runMatch)
 
@@ -336,7 +334,7 @@ class chromaUI:
     def runMatch(self):
         #Function for running the match function
         print("[__main__] Running FID and MS matching...")
-        mt.mainMatch(self.var_dict['sampleVar'].get(),self.var_dict['fpm_typevar'].get())
+        mt.mainMatch(self.var_dict['sampleVar'].get(),self.var_dict['fpm_typevar'].get(),self.var_dict['fpm_modelvar'])
         return None
     
     def runQuant(self):
@@ -349,7 +347,8 @@ class chromaUI:
 
         print("[__main__] Running HydroUI...")
         return None
-    
+
+
 root = tk.Tk()
 my_gui = chromaUI(root,directories)
 

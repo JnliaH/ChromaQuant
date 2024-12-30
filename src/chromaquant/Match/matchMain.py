@@ -112,7 +112,7 @@ def getFitLambda(fit_param):
         return fit
 
 """ MATCH FUNCTION """
-def mainMatch(sname,sphase):
+def mainMatch(sname,sphase,model):
 
     """ DIRECTORIES """
     print("[matchMain] Getting directories...")
@@ -188,10 +188,20 @@ def mainMatch(sname,sphase):
     print("[matchMain] Extracting match fit parameters...")
     fit = getFitLambda(match_fit_parameters)
 
-    # Run the matching function – this function takes a passed function describing an estimated relationship between MS RT's and FID RT's and matches peaks. 
-    # Function can be of any form as long as it returns a floating point value for the estimated MS RT
-    print("[matchMain] Matching peaks...")
-    fpmDF = mtsb.matchPeaks(fpmDF,mDF,fit,peak_errors['peak-error-third']) 
+    #If model is polynomial...
+    if model == 'P':
+        # Run the matching function – this function takes a passed function describing an estimated relationship between MS RT's and FID RT's and matches peaks. 
+        # Function can be of any form as long as it returns a floating point value for the estimated MS RT
+        print("[matchMain] Matching peaks according to polynomial fit...")
+        fpmDF = mtsb.matchPeaks(fpmDF,mDF,fit,peak_errors['peak-error-third']) 
+
+    #If model is retention time...
+    if model == 'R':
+         # Run the matching function – this function takes a passed function describing an estimated relationship between MS RT's and FID RT's and matches peaks. 
+        # Function can be of any form as long as it returns a floating point value for the estimated MS RT
+        print("[matchMain] Matching peaks by retention time...")
+        fpmDF = mtsb.matchRT(fpmDF,mDF,peakError=peak_errors['peak-error-RT'])
+        fpmDF = mtsb.matchPeaks(fpmDF,mDF,fit,peak_errors['peak-error-third']) 
 
     # Run the compound type abbreviation assignment function – this function takes a passed matched FID and MS list and assigns
     # compound type abbreviations to each matched entry
@@ -206,4 +216,4 @@ def mainMatch(sname,sphase):
     return None
 
 #For testing
-#mainMatch('example2','L')
+mainMatch('example2','L','R')
