@@ -108,7 +108,7 @@ def findRecentFile(prefix,suffix,path):
             
             #If list has one element, return the full path to that element's path
             if len(filter_suffix_files) == 1:
-                
+
                 return os.path.join(path , filter_suffix_files[0])
             
             #Otherwise, filter the list based on which file is most recent
@@ -144,5 +144,19 @@ def findRecentFile(prefix,suffix,path):
     else:
         #Break function and return None
         return None
+
+#Define function that inserts a column to a CTCN Dataframe labeling the carbon number
+def insertCN(CTCN_DF):
+    
+    #Get the length of the dataframe, take this to be the maximum carbon number
+    CN_max = len(CTCN_DF)
+    
+    #Get a list of carbon numbers for each row
+    CN_list = [i for i in range(1,CN_max+1)]
+    
+    #Insert this list as a new column at the beginning of the dataframe
+    CTCN_DF.insert(loc=0, column='Carbon Number', value=CN_list)
+
+    return CTCN_DF
 
 #findRecentFile('LRF','.xlsx','/Users/connards/Documents/ChromaQuant/response-factors')

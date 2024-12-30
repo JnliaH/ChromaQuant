@@ -61,10 +61,12 @@ mn = import_from_path("mn",subpack_dir['Manual'])
 qtsb = import_from_path("qt",subpack_dir['QuantSub'])
 
 """ VARIABLES FOR TESTING """
+
 sname = 'example2'
 quantphases = 'LG'
 
 """ DIRECTORIES """
+
 print("[quantMain] Getting directories...")
 #Get directories from handling script
 directories = hd.handle(app_dir)
@@ -79,6 +81,7 @@ directories['break'] = os.path.join(directories['data'],sname,'breakdowns')
 directories['raw'] = os.path.join(directories['data'],sname,'raw data')
 
 """ ANALYSIS CONFIGURATION """
+
 print("[quantMain] Interpreting analysis configuration...")
 #Read analysis configuration file
 with open(os.path.join(directories['resources'],'analysis-config.json')) as f:
@@ -107,6 +110,7 @@ CL_Dict = analysis_config['CL_Dict']
 CT_Dict = analysis_config['CT_Dict']
 
 """ EVALUATING PARAMETERS """
+
 print("[quantMain] Evaluating run parameters...")
 
 #Define liquid-gas Boolean for running analysis
@@ -129,6 +133,7 @@ gasBag_temp = analysis_config['sample-injection-conditions']['gas-bag-temp-C']  
 gasBag_pressure = analysis_config['sample-injection-conditions']['gas-bag-pressure-psia']    #psi
 
 """ RESPONSE FACTOR INFO """
+
 print("[quantMain] Searching for response factors...")
 #Liquid response factor file name
 LRF_path = qtsb.findRecentFile('LRF','.xlsx',directories['rf'])
@@ -138,3 +143,231 @@ FIDRF_path = qtsb.findRecentFile('FIDRF','.csv',directories['rf'])
 TCDRF_path = qtsb.findRecentFile('TCDRF','.csv',directories['rf'])
 
 print(LRF_path,FIDRF_path,TCDRF_path)
+
+""" DATA IMPORTS """
+
+print("[quantMain] Importing data...")
+#Import sample information from json file
+with open(os.path.join(directories['data'],sname,sname+'_INFO.json')) as sinfo_f:
+    sinfo = json.load(sinfo_f)
+
+#Change ISO date-time strings into datetime objects
+sinfo['Start Time'] = datetime.fromisoformat(sinfo['Start Time'])
+sinfo['End Time'] = datetime.fromisoformat(sinfo['End Time'])
+
+#Calculate a reaction time using the start, end, and heat time values and add to sinfo
+sinfo['Reaction Time'] = abs(sinfo['End Time']-sinfo['Start Time']).total_seconds()/3600 - sinfo['Heat Time']
+
+#Use sample name to form file names using file_suffix and append full pathnames for all entries
+for key in file_suffix:
+    file_suffix[key] = [file_suffix[key][0],os.path.join(directories['raw'],sname+file_suffix[key][0])]
+
+#If the run liquid analysis Boolean is True..
+if lgTF[0]:
+    #DEFINE DIRECTORIES FOR LIQUID FID QUANTIFICATION
+    #Define directory for liquid matched MS and FID peaks
+    DIR_LQ1_FIDpMS = file_suffix['Liquid FID+MS'][1]
+    
+    #Read matched peak data between liquid FID and MS
+    LQ1_FIDpMS = pd.read_csv(DIR_LQ1_FIDpMS)
+    
+    #Filter FIDpMS to only include rows with non-NaN compounds
+    LQ1_FIDpMS_Filtered = LQ1_FIDpMS[LQ1_FIDpMS['Compound Name'].notnull()].reset_index(drop=True)
+    
+    #Create a duplicate of the FIDpMS dataframe for future saving as a breakdown
+    LQ_FID_BreakdownDF = LQ1_FIDpMS_Filtered.copy()
+    
+    #Read liquid response factors data
+    LQRF = {i:pd.read_excel(LRF_path,sheet_name=i) for i in CL_Dict.keys()}
+    
+else:
+    pass
+
+#If the run gas analysis Boolean is True..
+if lgTF[1]:
+    #DEFINE DIRECTORIES FOR GAS TCD AND FID QUANTIFICATION
+    #Define directory for gas TCD peaks
+    DIR_GS2_TCD = file_suffix['Gas TCD+FID'][1]
+    #Define directory for gas FID peaks
+    DIR_GS2_FIDpMS = file_suffix['Gas FID+MS'][1]
+    
+    #Read gas FID and TCD Peak data
+    GS2_TCD = pd.read_csv(DIR_GS2_TCD)
+    
+    #Create a duplicate of the gas TCD/FID dataframe for future saving as a breakdown
+    #Also filter breakdown dataframe to only include rows sourced from TCD
+    GS_TCD_BreakdownDF = GS2_TCD.loc[GS2_TCD['Signal Name'] == 'TCD2B'].copy()
+    
+    #Read matched peak data between gas FID and MS
+    GS2_FIDpMS = pd.read_csv(DIR_GS2_FIDpMS)
+    
+    #Create a duplicate of the FIDpMS dataframe for future saving as a breakdown
+    GS_FID_BreakdownDF = GS2_FIDpMS.copy()
+    
+    #Read gas TCD response factors data
+    TCDRF = pd.read_csv(TCDRF_path)
+    #Read gas FID response factors data
+    GSRF = pd.read_csv(FIDRF_path)
+    
+else:
+    pass
+
+""" MAIN SCRIPT """
+
+#If the run liquid analysis Boolean is True..
+if lgTF[0]:
+    print("[AutoQuantification] Analyzing liquids...")
+    #Get liquid FID breakdown and miscellaneous dataframes
+    LQ_FID_BreakdownDF, LQCT_DF, LQCN_DF, LQCTCN_DF, LQmass_DF = qtsb.liquidFID(LQ_FID_BreakdownDF, LQRF, [CL_Dict, CT_Dict], sinfo)
+    
+    #Insert the carbon number column to LQCTCN_DF
+    LQCTCN_DF = qtsb.insertCN(LQCTCN_DF)
+    
+#If the run gas analysis Boolean is True..
+if lgTF[1]:
+    print("[AutoQuantification] Analyzing gases...")
+    #If the external standard Boolean is True..
+    if ES_bool:
+        #Get gas TCD breakdown and miscellaneous dataframes
+        GS_TCD_BreakdownDF, TCDRF, total_volume, TCD_cond = qtsb.gasTCD_ES(GS_TCD_BreakdownDF,TCDRF,sinfo,[gasBag_temp,gasBag_pressure],peak_error)
+        
+        #Get gas FID breakdown and miscellaneous dataframes
+        GS_FID_BreakdownDF, GSCT_DF, GSCN_DF, GSCTCN_DF, GSmass_DF = qtsb.gasFID_ES(GS_FID_BreakdownDF,GSRF,[CL_Dict, CT_Dict], sinfo,[gasBag_temp,gasBag_pressure],total_volume)
+    #Otherwise..
+    else:
+        #Get gas TCD breakdown and miscellaneous dataframes
+        GS_TCD_BreakdownDF, TCDRF, TCD_cond = qtsb.gasTCD(GS_TCD_BreakdownDF,TCDRF,sinfo,peak_error)
+        
+        #Get gas FID breakdown and miscellaneous dataframes
+        GS_FID_BreakdownDF, GSCT_DF, GSCN_DF, GSCTCN_DF, GSmass_DF = qtsb.gasFID(GS_FID_BreakdownDF,GSRF,[CL_Dict, CT_Dict], sinfo)
+    
+    #Insert the carbon number column to GSCTCN_DF
+    GSCTCN_DF = qtsb.insertCN(GSCTCN_DF)
+
+#If both the gas and liquid analysis Booleans are True..
+if lgTF[0] and lgTF[1]:
+    print("[AutoQuantification] Totaling contributions from liquid and gas phases...")
+    #Get maximum carbon number between breakdown dataframes
+    CN_max = max([int(GS_FID_BreakdownDF['Carbon Number'].max()),int(LQ_FID_BreakdownDF['Carbon Number'].max())])
+    
+    #Sum the liquid and gas breakdown carbon number and compound type dataframes
+    #Initiate an empty CTCN dataframe
+    total_CTCN_DF = pd.DataFrame({'Aromatics': pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Linear Alkanes': pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Branched Alkanes':pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Cycloalkanes':pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Alkenes/Alkynes':pd.Series(np.empty(CN_max),index=range(CN_max)),
+                            'Other':pd.Series(np.empty(CN_max),index=range(CN_max))})
+
+
+    #For every row in this sum dataframe...
+    for i, row in total_CTCN_DF.iterrows():
+        #For every entry in this row...
+        for j, value in row.items():
+            #If the current index is below the carbon number limit of both the gas and liquid dataframes...
+            if i <= len(LQCTCN_DF.index)-1 and i <= len(GSCTCN_DF.index)-1:
+                total_CTCN_DF.at[i,j] = LQCTCN_DF.at[i,j] + GSCTCN_DF.at[i,j]
+            #Otherwise, if the current index is below the carbon number limit of only the liquid dataframe...
+            elif i <= len(LQCTCN_DF.index)-1:
+                total_CTCN_DF.at[i,j] = LQCTCN_DF.at[i,j]
+            #Otherwise, if the current index is below the carbon number limit of only the gas dataframe...
+            elif i <= len(GSCTCN_DF.index)-1:
+                total_CTCN_DF.at[i,j] = GSCTCN_DF.at[i,j]
+            #Otherwise, pass
+            else:
+                pass
+
+    #Add the TCD data afterwards
+    #Filter the TCD breakdown dataframe to only include entries with non-nan formulas
+    GS_TCD_BreakdownDF_filter = GS_TCD_BreakdownDF[GS_TCD_BreakdownDF['Formula'].notnull()]
+    #Filter the TCD breakdown dataframe to only include formulas with carbon in them
+    GS_TCD_BreakdownDF_filter = GS_TCD_BreakdownDF_filter[(GS_TCD_BreakdownDF_filter['Formula'].str.contains('C')) & (GS_TCD_BreakdownDF_filter['Formula'].str.contains('H'))]
+    
+    #For every row in this filtered TCD dataframe
+    for i, row in GS_TCD_BreakdownDF_filter.iterrows():
+        #Get a chemical formula dictionary for the row's formula
+        chemFormDict = ChemFormula(row['Formula']).element
+        #If the carbon number is less than four...
+        if chemFormDict['C'] < 4:
+            #Assign the mass value to the linear entry for the given carbon number in the total dataframe
+            total_CTCN_DF.at[chemFormDict['C']-1,'Linear Alkanes'] = row['Mass (mg)']
+        #Otherwise, if the compound is isobutane...
+        elif row['Compound Name'] == 'Isobutane':
+            #Add the mass value to the branched entry for carbon number 4 in the total dataframe
+            total_CTCN_DF.at[3,'Branched Alkanes'] = row['Mass (mg)']
+        #Otherwise, if the compound is butane...
+        elif row['Compound Name'] == 'n-Butane':
+            #Add the mass value to the linear entry for carbon number 4 in the total dataframe
+            total_CTCN_DF.at[3,'Linear Alkanes'] = row['Mass (mg)']
+        #Otherwise, pass
+        else:
+            pass
+    
+    #Insert the carbon number column to total_CTCN_DF
+    total_CTCN_DF = qtsb.insertCN(total_CTCN_DF)
+    
+#Otherwise, pass
+else:
+    pass
+
+""" BREAKDOWN SAVING """
+print("[AutoQuantification] Formatting and saving breakdown file...")
+#If breakdown directory does not exist within sample folder, create it
+if not os.path.exists(directories['break']):
+    os.makedirs(directories['break'])
+
+#Get current datetime string
+nows = datetime.now().strftime('%Y%m%d')
+
+#Define breakdown file name
+bfn = sname+"_Breakdown_"+nows+".xlsx"
+
+#Create pandas Excel writers
+writer = pd.ExcelWriter(hd.fileCheck(os.path.join(directories['break'],bfn)), engine="xlsxwriter")
+
+#Get dataframe for sample info
+sinfo_DF = pd.DataFrame(sinfo,index=[0])
+    
+#If the run liquid analysis Boolean is True..
+if lgTF[0]:
+    #Position the liquid FID dataframes in the worksheet.
+    sinfo_DF.to_excel(writer, sheet_name="Liquid FID",startcol=1, startrow=1, index=False) 
+    LQ_FID_BreakdownDF.to_excel(writer, sheet_name="Liquid FID",startcol=1, startrow=4, index=False)
+    LQCT_DF.to_excel(writer, sheet_name="Liquid FID",startcol=16, startrow=7, index=False)
+    LQCN_DF.to_excel(writer, sheet_name="Liquid FID", startcol=16, startrow=15, index=False)
+    LQmass_DF.to_excel(writer, sheet_name="Liquid FID",startcol=22, startrow=1,index=False)
+    LQCTCN_DF.to_excel(writer, sheet_name="Liquid FID", startcol=20, startrow=7, index=False)
+else:
+    pass
+
+#If the run gas analysis Boolean is True..
+if lgTF[1]:
+    #Position the gas FID dataframes in the worksheet.
+    sinfo_DF.to_excel(writer, sheet_name="Gas FID",startcol=1, startrow=1, index=False) 
+    GS_FID_BreakdownDF.to_excel(writer, sheet_name="Gas FID",startcol=1, startrow=4, index=False)
+    GSCT_DF.to_excel(writer, sheet_name="Gas FID",startcol=18, startrow=7, index=False)
+    GSCN_DF.to_excel(writer, sheet_name="Gas FID", startcol=18, startrow=15, index=False)
+    GSmass_DF.to_excel(writer, sheet_name="Gas FID",startcol=22, startrow=1,index=False)
+    GSCTCN_DF.to_excel(writer, sheet_name="Gas FID",startcol=22, startrow=7,index=False)
+    
+    #Expand sample info dataframe to include total TCD mass and gas bag volume
+    sinfo_DF.at[0,'Total product (mg)'] = GS_TCD_BreakdownDF['Mass (mg)'].sum()
+    sinfo_DF.at[0,'Gas bag volume (m^3)'] = total_volume
+    
+    #Position the gas TCD dataframes in the worksheet
+    GS_TCD_BreakdownDF.to_excel(writer, sheet_name="Gas TCD",startcol=1,startrow=4, index=False)
+    sinfo_DF.to_excel(writer, sheet_name="Gas TCD",startcol=1, startrow=1, index=False) 
+else:
+    pass
+
+#If both the gas and liquid analysis Booleans are True..
+if lgTF[0] and lgTF[1]:
+    #Position the total product dataframe in the worksheet
+    total_CTCN_DF.to_excel(writer, sheet_name = "Total",startcol=1, startrow=1,index=False)
+
+#Close the Excel writer
+writer.close()
+
+print("[AutoQuantification] Matching complete.")
+#Close main function by returning
+#return None

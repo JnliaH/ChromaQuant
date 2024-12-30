@@ -26,6 +26,18 @@ import pandas as pd
 
 """ FUNCTIONS """
 
+#Function for checking if file exists and adding number if so, used for new breakdowns
+def fileCheck(path):
+    #Inspired by https://stackoverflow.com/questions/13852700/create-file-but-if-name-exists-add-number
+    filename, extension = os.path.splitext(path)
+    i = 1
+    
+    while os.path.exists(path):
+        path = filename + " ("+str(i)+")" + extension
+        i += 1
+    
+    return path
+
 #Function for selecting FID peak, MS peak, and FIDpMS pathnames according to sample name and phase
 def fileNamer(sname,sphase,sub_Dict,pathData):
     """
