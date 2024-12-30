@@ -23,12 +23,13 @@ Started 12-29-2024
 from chemformula import ChemFormula
 
 #Function for quantifying gas TCD data w/ external standard
-def gasTCD_ES(BreakdownDF,DBRF,sinfo,gasBag_cond,peak_error):
+def gasTCD_ES(BreakdownDF,DBRF,gasBag_cond,peak_error):
     
     #Unpack gas bag conditions
     temp = gasBag_cond[0]       #temperature of gas bag, C
     pressure = gasBag_cond[1]   #sample pressure in gas bag, psi
-    
+    co2 = gasBag_cond[2]        #CO2 volume, mL
+
     #Initialize compound name column in BreakdownDF
     BreakdownDF['Compound Name'] = 'None'
     
@@ -101,12 +102,9 @@ def gasTCD_ES(BreakdownDF,DBRF,sinfo,gasBag_cond,peak_error):
     for i, row in DBRF.iterrows():
         DBRF.at[i,'RT Max'] = DBRF.at[i,'RT (min)'] + peak_error
         DBRF.at[i,'RT Min'] = DBRF.at[i,'RT (min)'] - peak_error
-        
-    #Unpack sinfo to get CO2 injection volume
-    co2 = sinfo['Injected CO2 (mL)']            #volume injected CO2, mL
     
     #Convert sinfo variables to new units
-    co2 = co2 / 10**6                     #volume injected CO2, mL
+    co2 = co2 / 10**6                     #volume injected CO2, m^3
     temp = temp + 273.15                  #reactor temperature, K
     pressure = pressure / 14.504*100000   #reactor pressure, Pa
     
@@ -161,4 +159,4 @@ def gasTCD_ES(BreakdownDF,DBRF,sinfo,gasBag_cond,peak_error):
     else:
         pass
     
-    return BreakdownDF, DBRF, volume, TCD_cond
+    return BreakdownDF, volume

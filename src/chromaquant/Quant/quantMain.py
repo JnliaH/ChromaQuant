@@ -179,27 +179,31 @@ def mainQuant(sname,quantphases):
         
         #Read liquid response factors data
         LQRF = {i:pd.read_excel(LRF_path,sheet_name=i) for i in CL_Dict.keys()}
+
+        print("[quantMain] Analyzing liquids...")
+        #Get liquid FID breakdown and miscellaneous dataframes
+        LQ_FID_BreakdownDF, LQCT_DF, LQCN_DF, LQCTCN_DF, LQmass_DF = qtsb.liquidFID(LQ_FID_BreakdownDF, LQRF, [CL_Dict, CT_Dict], sinfo)
+        
+        #Insert the carbon number column to LQCTCN_DF
+        LQCTCN_DF = qtsb.insertCN(LQCTCN_DF)
         
     else:
         pass
 
     #If the run gas analysis Boolean is True..
     if lgTF[1]:
+
         #DEFINE DIRECTORIES FOR GAS TCD AND FID QUANTIFICATION
-        #Define directory for gas TCD peaks
-        DIR_GS2_TCD = file_suffix['Gas TCD+FID'][1]
-        #Define directory for gas FID peaks
-        DIR_GS2_FIDpMS = file_suffix['Gas FID+MS'][1]
         
         #Read gas FID and TCD Peak data
-        GS2_TCD = pd.read_csv(DIR_GS2_TCD)
+        GS2_TCD = pd.read_csv(file_suffix['Gas TCD+FID'][1])
         
         #Create a duplicate of the gas TCD/FID dataframe for future saving as a breakdown
         #Also filter breakdown dataframe to only include rows sourced from TCD
         GS_TCD_BreakdownDF = GS2_TCD.loc[GS2_TCD['Signal Name'] == 'TCD2B'].copy()
         
         #Read matched peak data between gas FID and MS
-        GS2_FIDpMS = pd.read_csv(DIR_GS2_FIDpMS)
+        GS2_FIDpMS = pd.read_csv(file_suffix['Gas FID+MS'][1])
         
         #Create a duplicate of the FIDpMS dataframe for future saving as a breakdown
         GS_FID_BreakdownDF = GS2_FIDpMS.copy()
@@ -208,41 +212,23 @@ def mainQuant(sname,quantphases):
         TCDRF = pd.read_csv(TCDRF_path)
         #Read gas FID response factors data
         GSRF = pd.read_csv(FIDRF_path)
-        
-    else:
-        pass
 
-    """ MAIN SCRIPT """
-
-    #If the run liquid analysis Boolean is True..
-    if lgTF[0]:
-        print("[quantMain] Analyzing liquids...")
-        #Get liquid FID breakdown and miscellaneous dataframes
-        LQ_FID_BreakdownDF, LQCT_DF, LQCN_DF, LQCTCN_DF, LQmass_DF = qtsb.liquidFID(LQ_FID_BreakdownDF, LQRF, [CL_Dict, CT_Dict], sinfo)
-        
-        #Insert the carbon number column to LQCTCN_DF
-        LQCTCN_DF = qtsb.insertCN(LQCTCN_DF)
-        
-    #If the run gas analysis Boolean is True..
-    if lgTF[1]:
         print("[quantMain] Analyzing gases...")
-        #If the external standard Boolean is True..
-        if ES_bool:
-            #Get gas TCD breakdown and miscellaneous dataframes
-            GS_TCD_BreakdownDF, TCDRF, total_volume, TCD_cond = qtsb.gasTCD_ES(GS_TCD_BreakdownDF,TCDRF,sinfo,[gasBag_temp,gasBag_pressure],peak_error)
-            
-            #Get gas FID breakdown and miscellaneous dataframes
-            GS_FID_BreakdownDF, GSCT_DF, GSCN_DF, GSCTCN_DF, GSmass_DF = qtsb.gasFID_ES(GS_FID_BreakdownDF,GSRF,[CL_Dict, CT_Dict], sinfo,[gasBag_temp,gasBag_pressure],total_volume)
-        #Otherwise..
-        else:
-            #Get gas TCD breakdown and miscellaneous dataframes
-            GS_TCD_BreakdownDF, TCDRF, TCD_cond = qtsb.gasTCD(GS_TCD_BreakdownDF,TCDRF,sinfo,peak_error)
-            
-            #Get gas FID breakdown and miscellaneous dataframes
-            GS_FID_BreakdownDF, GSCT_DF, GSCN_DF, GSCTCN_DF, GSmass_DF = qtsb.gasFID(GS_FID_BreakdownDF,GSRF,[CL_Dict, CT_Dict], sinfo)
+        #Get gas TCD breakdown and miscellaneous dataframes
+        GS_TCD_BreakdownDF, total_volume = qtsb.gasTCD_ES(GS_TCD_BreakdownDF,TCDRF,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
+                                                                                    peak_error)
+        
+        #Get gas FID breakdown and miscellaneous dataframes
+        GS_FID_BreakdownDF, GSCT_DF, GSCN_DF, GSCTCN_DF, GSmass_DF = qtsb.gasFID_ES(GS_FID_BreakdownDF,GSRF,\
+                                                                                    [CL_Dict, CT_Dict],sinfo,\
+                                                                                    [gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
+                                                                                     total_volume)
         
         #Insert the carbon number column to GSCTCN_DF
         GSCTCN_DF = qtsb.insertCN(GSCTCN_DF)
+
+    else:
+        pass
 
     #If both the gas and liquid analysis Booleans are True..
     if lgTF[0] and lgTF[1]:
@@ -372,4 +358,4 @@ def mainQuant(sname,quantphases):
     #Close main function by returning
     return None
 
-mainQuant(sname,quantphases)
+#mainQuant(sname,quantphases)

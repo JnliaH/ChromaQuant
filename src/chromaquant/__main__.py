@@ -334,13 +334,15 @@ class chromaUI:
     def runMatch(self):
         #Function for running the match function
         print("[__main__] Running FID and MS matching...")
-        mt.mainMatch(self.var_dict['sampleVar'].get(),self.var_dict['fpm_typevar'].get(),self.var_dict['fpm_modelvar'])
+        mt.mainMatch(self.var_dict['sampleVar'], self.var_dict['fpm_typevar'].get(),self.var_dict['fpm_modelvar'])
+        print("[__main__] Matching complete")
         return None
     
     def runQuant(self):
         #Function for running the quantification function
         print("[__main__] Running quantification...")
-        #qt.mainQuant()
+        qt.mainQuant(self.var_dict['sampleVar'], self.var_dict['quant_typevar'].get())
+        print("[__main__] Quantification complete")
         return None
     
     def runHydro(self):
@@ -354,4 +356,5 @@ my_gui = chromaUI(root,directories)
 
 root.mainloop()
 
+print('[__main__] Program terminated')
 

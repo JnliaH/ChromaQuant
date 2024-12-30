@@ -216,4 +216,4 @@ def mainMatch(sname,sphase,model):
     return None
 
 #For testing
-mainMatch('example2','L','R')
+#mainMatch('example2','L','R')

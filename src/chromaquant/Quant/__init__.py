@@ -9,4 +9,4 @@ Created 10-19-2024
 
 """
 
-from .AutoQuantification import main_AutoQuantification
+from .quantMain import mainQuant

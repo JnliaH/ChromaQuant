@@ -25,7 +25,7 @@ import numpy as np
 from chemformula import ChemFormula
 
 #Function for quantifying gas FID data w/ external standard
-def gasFID_ES(BreakdownDF,DBRF,Label_info,sinfo,gasBag_cond,total_volume,cutoff=4):
+def gasFID_ES(BreakdownDF,DBRF,Label_info,gasBag_cond,total_volume,cutoff=4):
     """
     Function quantifies gas FID data and returns a breakdown dataframe
 
@@ -40,8 +40,6 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,sinfo,gasBag_cond,total_volume,cutoff=
         predefined chemical lumps given in 'LABELS' section above
     Label_info : List
         List of dictionaries containing chemical lump and compound type abbreviations
-    sinfo : Dict
-        Dictionary containing key sample information
     total_volume : Float
         Float describing the total amount of gas estimated by the external standard volume percent
     cutoff : Integer, optional
@@ -93,7 +91,7 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,sinfo,gasBag_cond,total_volume,cutoff=
         return BreakdownDF
     
     #Function for quantifying compounds using ideal gas law
-    def gasQuant(BreakdownDF,DBRF,sinfo,total_volume,cutoff):
+    def gasQuant(BreakdownDF,DBRF,total_volume,cutoff):
         
         #Remove rows in BreakdownDF with a carbon number at or below cutoff
         BreakdownDF = BreakdownDF.loc[BreakdownDF['Carbon Number'] > cutoff].copy()
@@ -102,7 +100,7 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,sinfo,gasBag_cond,total_volume,cutoff=
         temp = gasBag_cond[0]       #temperature of gas bag, C
         pressure = gasBag_cond[1]   #sample pressure in gas bag, psi
         
-        #Convert sinfo variables to new units
+        #Convert gas bag conditions to new units
         temp = temp + 273.15                    #gas bag temperature, K
         pressure = pressure / 14.504*100000     #gas bag pressure, Pa
         
@@ -127,7 +125,7 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,sinfo,gasBag_cond,total_volume,cutoff=
         return BreakdownDF
     
     #Function for further breaking down product distribution
-    def moreBreakdown(BreakdownDF,CT_dict,sinfo):
+    def moreBreakdown(BreakdownDF,CT_dict):
         """
         This function prepares further breakdown dictionaries for use in exporting to Excel
     
@@ -137,8 +135,6 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,sinfo,gasBag_cond,total_volume,cutoff=
             Dataframe containing columns associated with matched FID and MS peak data.
         CT_dict : Dict
             Dictionary of all compound type abbreviations in use and their associated expansions
-        sinfo : Dict
-            Dictionary containing sample information.
             
         Returns
         -------
@@ -236,8 +232,8 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,sinfo,gasBag_cond,total_volume,cutoff=
     #Run response factor assignment function
     BreakdownDF = assignRF(BreakdownDF, DBRF)
     #Run gas quantification function
-    BreakdownDF = gasQuant(BreakdownDF,DBRF,sinfo,total_volume,cutoff)
+    BreakdownDF = gasQuant(BreakdownDF,DBRF,total_volume,cutoff)
     #Run further breakdown function
-    BreakdownDF, CT_DF, CN_DF, CTCN_DF, mass_DF = moreBreakdown(BreakdownDF, CT_Dict, sinfo)
+    BreakdownDF, CT_DF, CN_DF, CTCN_DF, mass_DF = moreBreakdown(BreakdownDF, CT_Dict)
     
     return BreakdownDF, CT_DF, CN_DF, CTCN_DF, mass_DF
