@@ -212,7 +212,11 @@ def mainMatch(sname,sphase,model):
     #Run the duplicate handling function
     fpmDF = mtsb.duplicateHandle(fpmDF)
 
-    print("[matchMain] Finished matching")
+    print("[AutoFpmMatch] Saving results...")
+    #Save the FIDpMS data
+    fpmDF.to_csv(paths[2],index=False)
+    
+    #Close main function by returning
     return None
 
 #For testing

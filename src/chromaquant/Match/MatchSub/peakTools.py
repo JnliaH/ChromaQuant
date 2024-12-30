@@ -145,7 +145,7 @@ def duplicateHandle(DF):
             
         #Otherwise, define the return dataframe as empty
         else:
-            DF_return = pd.DataFrame
+            DF_return = pd.DataFrame()
             
         #Return the boolean and the filtered DataFrame
         return duplicate_TF, DF_return
@@ -211,9 +211,12 @@ def duplicateHandle(DF):
     #Create a copy of the argument DataFrame to be used
     DF_in = DF.copy()
     
-    #Initiate a DataFrame for the logic output
+    #Initialize a DataFrame for the logic output
     DF_logic = pd.DataFrame()
     
+    #Initialize a DataFrame for the output DF, create a copy of original DF in case there are no duplicates
+    DF_done = DF.copy()
+
     #For every row in the provided DataFrame
     for i, row in DF_in.iterrows():
         
@@ -239,6 +242,7 @@ def duplicateHandle(DF):
                 
                 #If duplicate_TF is True...
                 if duplicate_TF:
+
                     #Run the duplicate logic funcion
                     DF_logic = duplicateLogic(DF_search)
                     

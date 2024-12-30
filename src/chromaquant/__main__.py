@@ -155,8 +155,8 @@ class chromaUI:
         self.hydroFrame.grid(column=3,row=0,sticky='NSWE',padx=(0,self.widget_padx),pady=self.widget_pady)
         self.setupHydro()
 
-    def greet(self):
-        print("Greetings!")
+    def default(self):
+        print("[__main__][TEST] Testing message")
     
     def setupUI(self):
     
@@ -309,9 +309,9 @@ class chromaUI:
             self.var_dict[var_name].set(init_state)
 
     def sampleSelect(self,event):
-        self.var_dict['sampleVar'] = self.sampleBox.get()
-        print("[__main__] User selected " + self.sampleBox.get())
-        return self.var_dict['sampleVar']
+        sname = self.sampleBox.get()
+        print("[__main__] User selected " + sname)
+        return sname
 
     #Function for setting up anonymous varaible select functions
     def setupVarSelect(self):
