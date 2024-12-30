@@ -128,7 +128,6 @@ def mainMatch(sname,sphase):
     #Raw data file directory
     directories['raw'] = os.path.join(directories['data'],sname,'raw data')
 
-
     """ ANALYSIS CONFIGURATION """
     print("[matchMain] Interpreting analysis configuration...")
     #Read analysis configuration file
@@ -206,4 +205,5 @@ def mainMatch(sname,sphase):
     print("[matchMain] Finished matching")
     return None
 
-mainMatch('example2','L')
+#For testing
+#mainMatch('example2','L')

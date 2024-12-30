@@ -69,7 +69,9 @@
 
 "response-factor-files": {
 
-            "liquid-RF" : "LRF"
+            "liquid-RF" : "LRF",
+            "gas-FID-RF" : "FIDRF",
+            "gas-TCD-RF" : "TCDRF"
             
 },
 

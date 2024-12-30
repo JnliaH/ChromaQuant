@@ -80,13 +80,13 @@ sampleList = [f.name for f in os.scandir(directories['data']) if f.is_dir() if f
 #Define ChromaQuantUI as class
 class chromaUI:
 
-    runFIDpMS_function = lambda x: x+1
-
+    #Key variables = sampleVar, fpm_typevar, fpm_modelvar, quant_typevar
     #Initialization function – master here will be our root widget
     def __init__(self, master, directories):
 
         self.master = master
         self.directories = directories
+
         #Standard padding
         self.std_padx = 10
         self.std_pady = 10
@@ -97,11 +97,21 @@ class chromaUI:
 
         #Initialize user variable dictionary
         self.var_dict = {}
+        #Initialize user variable entries
+        self.var_dict['sampleVar'] = tk.StringVar()
+        self.var_dict['fpm_typevar'] = tk.StringVar()
+        self.var_dict['fpm_modelvar'] = tk.StringVar()
+        self.var_dict['quant_typevar'] = tk.StringVar()
+
+        #Setup UI
         self.setupUI()
 
         #Create font objects
         self.title_font = tkFont.Font(size=18,weight='bold')   #Title font
         
+        #SETUP SELECT FUNCTIONS
+        self.setupVarSelect()
+
         #IMAGE AND TITLE
         #Add a frame for the logo and title/sample info
         self.topFrame = ttk.Frame(self.mainframe)
@@ -145,6 +155,8 @@ class chromaUI:
         self.hydroFrame.grid(column=3,row=0,sticky='NSWE',padx=(0,self.widget_padx),pady=self.widget_pady)
         self.setupHydro()
 
+
+
     def greet(self):
         print("Greetings!")
     
@@ -165,7 +177,7 @@ class chromaUI:
         #Set up labelframe border
         style.configure('QuantLabelframe.TLabelframe',borderwidth=5,bordercolor='red')
     
-        root.geometry("880x1000")
+        root.geometry("890x1000")
         root.title("ChromaQuant – Quantification Made Easy")
     
         #Create a main frame
@@ -224,9 +236,10 @@ class chromaUI:
             .grid(column=0,row=0,columnspan=4,padx=self.std_padx,pady=self.std_pady)
         
         #Add a radiobutton set for selecting sample type
-        self.setupRadioButton(self.matchFrame,'Please select the sample type:',[0,1],[20,20],1,'fpm_typevar',{'Liquid':'L','Gas':'G'},self.greet,'L')
+        self.select_dict['fpm_typevar']()
+        self.setupRadioButton(self.matchFrame,'Please select the sample type:',[0,1],[20,20],1,'fpm_typevar',{'Liquid':'L','Gas':'G'},self.select_dict['fpm_typevar'],'L')
         #Add a radiobutton set for selecting match model
-        self.setupRadioButton(self.matchFrame,'Please select the desired matching fit model:',[0,2],[20,20],1,'fpm_modelvar',{'Retention\nTime':'R','Third\nOrder':'T','Linear':'L'},self.greet,'R')
+        self.setupRadioButton(self.matchFrame,'Please select the desired matching fit model:',[0,2],[20,20],1,'fpm_modelvar',{'Retention\nTime':'R','Third\nOrder':'T','Linear':'L'},self.select_dict['fpm_modelvar'],'R')
         #Add start button
         self.setupStartButton(self.matchFrame,[0,3],[20,20],4,self.runMatch)
 
@@ -237,7 +250,7 @@ class chromaUI:
             .grid(column=0,row=0,columnspan=4,padx=self.std_padx,pady=self.std_pady)
         
         #Add a radiobutton set for selecting sample type
-        self.setupRadioButton(self.quantFrame,'Which components are present in the sample?',[0,1],[20,20],1,'quant_typevar',{'Liquid\nOnly':'L','Gas\nOnly':'G','Liquid\nand Gas':'LG'},self.greet,'L')
+        self.setupRadioButton(self.quantFrame,'Which components are present in the sample?',[0,1],[20,20],1,'quant_typevar',{'Liquid\nOnly':'L','Gas\nOnly':'G','Liquid\nand Gas':'LG'},self.select_dict['quant_typevar'],'L')
         
         #Add start button
         self.setupStartButton(self.quantFrame,[0,2],[20,20],4,self.runQuant)
@@ -250,8 +263,8 @@ class chromaUI:
     def setupStartButton(self,frame,placement,pad,columnspan,function):
 
         #Add a start button
-        fidpms_sbutton = ttk.Button(frame,text="\n\n\nRun Script\n\n\n",width=20,style='Accent.TButton',command=function)
-        fidpms_sbutton.grid(column=placement[0],row=placement[1],padx=pad[0],pady=pad[1],columnspan=columnspan)
+        ttk.Button(frame,text="\n\n\nRun Script\n\n\n",width=20,style='Accent.TButton',command=function)\
+            .grid(column=placement[0],row=placement[1],padx=pad[0],pady=pad[1],columnspan=columnspan)
 
     def setupRadioButton(self,frame,label_text,placement,pad,columnspan,var_name,option_val_dict,function,init_state='Option Blank'):
         
@@ -264,9 +277,7 @@ class chromaUI:
         #Set up a radiobutton for selecting liquid or gas
         #Add a label
         tk.Label(frame,text=label_text).grid(column=placement[0],row=placement[1],padx=pad[0],pady=pad[1],columnspan=columnspan,sticky='e')
-        #Define var_name entry in class's var_dict
-        self.var_dict[var_name] = tk.StringVar()
-        
+
         #Define current column as column to the right of label
         current_col = placement[0] + 1
         #Define radiobutton padding loop iterable
@@ -300,9 +311,22 @@ class chromaUI:
             self.var_dict[var_name].set(init_state)
 
     def sampleSelect(self,event):
-        sname = self.sampleBox.get()
-        print("User selected " + self.sampleBox.get())
-        return sname
+        self.var_dict['sampleVar'] = self.sampleBox.get()
+        print("[__main__] User selected " + self.sampleBox.get())
+        return self.var_dict['sampleVar']
+
+    #Function for setting up anonymous varaible select functions
+    def setupVarSelect(self):
+        
+        #Predefine dictionary for selection functions
+        self.select_dict = {}
+
+        #For every variable...
+        for i in self.var_dict:
+            #Define lambda function using default argument for user selection message
+            self.select_dict[i] = lambda i=i: print("[__main__] User Selected " + self.var_dict[i].get() + " for " + i)
+
+        return None
 
     def runUPP(self):
         #Function for running the UPP function
