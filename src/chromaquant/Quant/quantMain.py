@@ -69,6 +69,12 @@ quantphases = 'LG'
 
 def mainQuant(sname,quantphases):
 
+    print("[quantMain] Beginning quantification...")
+    
+    #Get current time
+    print("[quantMain] Getting current time...")
+    now = datetime.now()
+
     print("[quantMain] Getting directories...")
     #Get directories from handling script
     directories = hd.handle(app_dir)
@@ -220,8 +226,8 @@ def mainQuant(sname,quantphases):
         
         #Get gas FID breakdown and miscellaneous dataframes
         GS_FID_BreakdownDF, GSCT_DF, GSCN_DF, GSCTCN_DF, GSmass_DF = qtsb.gasFID_ES(GS_FID_BreakdownDF,GSRF,\
-                                                                                    [CL_Dict, CT_Dict],sinfo,\
-                                                                                    [gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
+                                                                                    [CL_Dict, CT_Dict],\
+                                                                                    [gasBag_temp,gasBag_pressure],\
                                                                                      total_volume)
         
         #Insert the carbon number column to GSCTCN_DF
@@ -355,6 +361,11 @@ def mainQuant(sname,quantphases):
     writer.close()
 
     print("[quantMain] Quantification complete.")
+
+    #Print computation time
+    compTime = datetime.now().timestamp()*1000 - now.timestamp()*1000
+    print("[quantMain] Time taken: {:.3f} ms".format(compTime))
+
     #Close main function by returning
     return None
 

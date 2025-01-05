@@ -38,6 +38,8 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,gasBag_cond,total_volume,cutoff=4):
         likely imported from an excel sheet where each sheet is specific to
         a given chemical lump. The top-level keys must be associated with the
         predefined chemical lumps given in 'LABELS' section above
+    gasBag_cond : List
+        List containing gas bag temperature [0] and gas bag pressure [1]
     Label_info : List
         List of dictionaries containing chemical lump and compound type abbreviations
     total_volume : Float

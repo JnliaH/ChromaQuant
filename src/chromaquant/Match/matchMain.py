@@ -114,6 +114,12 @@ def getFitLambda(fit_param):
 """ MATCH FUNCTION """
 def mainMatch(sname,sphase,model):
 
+    print("[matchMain] Beginning match...")
+
+    #Get current time
+    print("[matchMain] Getting current time...")
+    now = datetime.now()
+
     """ DIRECTORIES """
     print("[matchMain] Getting directories...")
     #Get directories from handling script
@@ -216,6 +222,10 @@ def mainMatch(sname,sphase,model):
     #Save the FIDpMS data
     fpmDF.to_csv(paths[2],index=False)
     
+    #Print computation time
+    compTime = datetime.now().timestamp()*1000 - now.timestamp()*1000
+    print("[matchMain] Time taken: {:.3f} ms".format(compTime))
+
     #Close main function by returning
     return None
 

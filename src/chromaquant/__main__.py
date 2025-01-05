@@ -310,6 +310,7 @@ class chromaUI:
 
     def sampleSelect(self,event):
         sname = self.sampleBox.get()
+        print(sname)
         print("[__main__] User selected " + sname)
         return sname
 
@@ -334,14 +335,14 @@ class chromaUI:
     def runMatch(self):
         #Function for running the match function
         print("[__main__] Running FID and MS matching...")
-        mt.mainMatch(self.var_dict['sampleVar'], self.var_dict['fpm_typevar'].get(),self.var_dict['fpm_modelvar'])
+        mt.mainMatch(self.var_dict['sampleVar'].get(), self.var_dict['fpm_typevar'].get(),self.var_dict['fpm_modelvar'].get())
         print("[__main__] Matching complete")
         return None
     
     def runQuant(self):
         #Function for running the quantification function
         print("[__main__] Running quantification...")
-        qt.mainQuant(self.var_dict['sampleVar'], self.var_dict['quant_typevar'].get())
+        qt.mainQuant(self.var_dict['sampleVar'].get(), self.var_dict['quant_typevar'].get())
         print("[__main__] Quantification complete")
         return None
     
