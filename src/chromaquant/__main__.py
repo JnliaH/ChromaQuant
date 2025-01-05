@@ -40,7 +40,8 @@ file_dir = os.path.dirname(os.path.abspath(__file__))
 subpack_dir = {'Handle':os.path.join(file_dir,'Handle','__init__.py'),
                'Manual':os.path.join(file_dir,'Manual','__init__.py'),
                'Match':os.path.join(file_dir,'Match','__init__.py'),
-               'Quant':os.path.join(file_dir,'Quant','__init__.py')}
+               'Quant':os.path.join(file_dir,'Quant','__init__.py'),
+               'UAPP':os.path.join(file_dir,'UAPP','__init__.py')}
 
 #Define function to import from path
 def import_from_path(module_name,path):
@@ -59,6 +60,7 @@ hd = import_from_path("hd",subpack_dir['Handle'])
 mn = import_from_path("mn",subpack_dir['Manual'])
 qt = import_from_path("qt",subpack_dir['Quant'])
 mt = import_from_path("mt",subpack_dir['Match'])
+ua = import_from_path("ua",subpack_dir['UAPP'])
 
 """ PARAMETERS """
 print("[__main__] Defining parameters...")
@@ -329,7 +331,9 @@ class chromaUI:
 
     def runUPP(self):
         #Function for running the UPP function
-        print("[__main__] Running Unknowns Postprocessing...")
+        print("[__main__] Running Unknowns Analysis Postprocessing...")
+        ua.mainUAPP(self.var_dict['sampleVar'].get())
+        print("[__main__] UAPP complete")
         return None
     
     def runMatch(self):

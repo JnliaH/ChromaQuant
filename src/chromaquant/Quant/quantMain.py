@@ -41,7 +41,7 @@ app_dir =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #Get absolute directories for subpackages
 subpack_dir = {'Handle':os.path.join(app_dir,'Handle','__init__.py'),
                'Manual':os.path.join(app_dir,'Manual','__init__.py'),
-               'QuantSub':os.path.join(app_dir,'Quant/QuantSub','__init__.py')}
+               'QuantSub':os.path.join(app_dir,'Quant','QuantSub','__init__.py')}
 
 #Define function to import from path
 def import_from_path(module_name,path):
