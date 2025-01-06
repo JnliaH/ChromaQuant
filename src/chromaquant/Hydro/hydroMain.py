@@ -100,7 +100,7 @@ def mainHydro(sname,stype,smatchtf):
             fn_FPM = "default_FIDpMS.csv"
 
     """ DIRECTORIES """
-    print("[matchMain] Getting directories...")
+    print("[hydroMain] Getting directories...")
     #Get directories from handling script
     directories = hd.handle(app_dir)
 
@@ -114,7 +114,7 @@ def mainHydro(sname,stype,smatchtf):
     directories['raw'] = os.path.join(directories['data'],sname,'raw data')
 
     """ ANALYSIS CONFIGURATION """
-    print("[matchMain] Interpreting analysis configuration...")
+    print("[hydroMain] Interpreting analysis configuration...")
     #Read analysis configuration file
     with open(os.path.join(directories['resources'],'analysis-config.json')) as f:
         analysis_config = json.load(f)
@@ -147,15 +147,15 @@ def mainHydro(sname,stype,smatchtf):
     peak_errors = analysis_config["peak-errors"]
 
     #Define directories for desired dataframes
-    DIR_LQ_FIDpMS_PeaksLB = os.path.join(directories['raw'],sname+'/'+fn_FPM)
-    DIR_LQ_FID_SPEC = os.path.join(directories['raw'],sname+'/'+fn_FID_SPEC)
-    DIR_LQ_MS_SPEC = os.path.join(directories['raw'],sname+'/'+fn_MS_SPEC)
+    #DIR_LQ_FIDpMS_PeaksLB = os.path.join(directories['raw'],+fn_FPM)
+    DIR_LQ_FID_SPEC = os.path.join(directories['raw'],fn_FID_SPEC)
+    DIR_LQ_MS_SPEC = os.path.join(directories['raw'],fn_MS_SPEC)
 
     #Column names to add to imported spectral data
     col_names_SPEC = ['RT','Signal']
 
     #Read matched peak data between FID and MS
-    LQ_FIDpMS_PeaksLB = pd.read_csv(DIR_LQ_FIDpMS_PeaksLB)
+    #LQ_FIDpMS_PeaksLB = pd.read_csv(DIR_LQ_FIDpMS_PeaksLB)
 
     #Read spectra data for FID
     LQ_FID_SPEC = pd.read_csv(DIR_LQ_FID_SPEC, names=col_names_SPEC, header=None)
@@ -465,12 +465,8 @@ def mainHydro(sname,stype,smatchtf):
             #Return a blank string
             return ''
 
-    """ EXECUTE APPLICATION """
-
-    #Run the application
-    if __name__ == '__main__':
-        app.run(debug=True)
-
+    """ RETURN APPLICATION """
+    return app
         
     """
     #Callback controls

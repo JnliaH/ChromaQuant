@@ -31,6 +31,9 @@ import sys
 from PIL import Image, ImageTk
 from datetime import datetime
 import importlib.util
+import threading
+import time
+import json
 
 """ LOCAL PACKAGES """
 print("[__main__] Importing local packages...")
@@ -62,7 +65,7 @@ mn = import_from_path("mn",subpack_dir['Manual'])
 qt = import_from_path("qt",subpack_dir['Quant'])
 mt = import_from_path("mt",subpack_dir['Match'])
 ua = import_from_path("ua",subpack_dir['UAPP'])
-hy = import_from_path("hy",subpack_dir['Hydro'])
+#hy = import_from_path("hy",subpack_dir['Hydro'])
 
 """ PARAMETERS """
 print("[__main__] Defining parameters...")
@@ -90,6 +93,16 @@ class chromaUI:
 
         self.master = master
         self.directories = directories
+
+        #ANALYSIS CONFIGURATION
+        print("[__main__] Interpreting analysis configuration...")
+        #Read analysis configuration file
+        with open(os.path.join(self.directories['resources'],'analysis-config.json')) as f:
+            self.analysis_config = json.load(f)
+
+        #Extract analysis configuration info
+        #File suffixes to add to form data filenames
+        self.file_suffix_list = [i[0] for i in list(self.analysis_config["file-suffix"].values())]
 
         #Standard padding
         self.std_padx = 10
@@ -136,10 +149,16 @@ class chromaUI:
         self.rowtwoFrame.grid(column=0,row=2,sticky='WE')
         self.rowtwoFrame.grid_columnconfigure((0,4),weight=1)
 
+        #FILE TRACKING
+        #Add a frame for tracking data files
+        self.trackFrame = ttk.LabelFrame(self.rowoneFrame,text='File Tracking',style='QuantLabelframe.TLabelframe')
+        self.trackFrame.grid(column=1,row=0,sticky='NSWE',padx=self.widget_padx,pady=self.widget_pady)
+        self.setupFileTrack()
+
         #UNKNOWNS ANALYSIS POSTPROCESS
         #Add a frame for the UA_UPP script
         self.uppFrame = ttk.LabelFrame(self.rowoneFrame,text='Unknowns Analysis Postprocessing',style='QuantLabelframe.TLabelframe')
-        self.uppFrame.grid(column=1,row=0,sticky='NSWE',padx=self.widget_padx,pady=self.widget_pady)
+        self.uppFrame.grid(column=2,row=0,sticky='NSWE',padx=(0,self.widget_padx),pady=self.widget_pady)
         self.setupUPP()
         #padx=self.widget_padx,pady=self.widget_pady
         
@@ -157,8 +176,8 @@ class chromaUI:
 
         #HYDROUI
         #Add a frame for the hydroUI script
-        self.hydroFrame = ttk.LabelFrame(self.rowtwoFrame,text='HydroUI',style='QuantLabelframe.TLabelframe')
-        self.hydroFrame.grid(column=3,row=0,sticky='NSWE',padx=(0,self.widget_padx),pady=(0,self.widget_pady))
+        self.hydroFrame = ttk.LabelFrame(self.rowtwoFrame,text='HydroUI (WIP)',style='QuantLabelframe.TLabelframe')
+        self.hydroFrame.grid(column=2,row=0,sticky='NSWE',padx=(0,self.widget_padx),pady=(0,self.widget_pady))
         self.setupHydro()
 
     def default(self):
@@ -180,6 +199,8 @@ class chromaUI:
         style.configure('QuantLabelframe.TLabelframe.Label',font=('Arial',16))
         #Set up labelframe border
         style.configure('QuantLabelframe.TLabelframe',borderwidth=5,bordercolor='red')
+        #Set up file tracking text font
+        self.fileTrackFont = tkFont.Font(size=14)
     
         #root.geometry("890x1000")
         root.title("ChromaQuant – Quantification Made Easy")
@@ -228,6 +249,52 @@ class chromaUI:
         #Bind the sampleBox to a function
         self.sampleBox.bind("<<ComboboxSelected>>",self.sampleSelect)
     
+    def setupFileTrack(self):
+
+        #Create text window, place in grid
+        self.fileTrack_Text = tk.Text(self.trackFrame, height=12, width=20, fg='black', font=self.fileTrackFont)
+        self.fileTrack_Text.grid(column=0,row=0,padx=20,pady=10,sticky='NSWE')
+        #Set text config to NORMAL
+        self.fileTrack_Text.config(state=tk.NORMAL)
+        #Configure text options
+        #Option for default text
+        self.fileTrack_Text.tag_config('default', background="white", foreground="black")
+        #Option for present file
+        self.fileTrack_Text.tag_config('true', background="white", foreground='green')
+        #Option for file not found
+        self.fileTrack_Text.tag_config('false', background="white", foreground='red')
+
+        #Create default options
+        for i in self.file_suffix_list:
+            self.fileTrack_Text.insert(tk.END,"\n{0}".format(i),'default')
+        
+    def updateFileTrack(self):
+
+        #Delete all text in file tracking widget
+        self.fileTrack_Text.delete(1.0,tk.END)
+
+        #Get list of files currently in data and raw data directory
+        self.rawDataFiles = [f for f in os.listdir(directories['raw']) if os.path.isfile(os.path.join(directories['raw'],f))]
+        self.dataFiles = [f for f in os.listdir(directories['sample']) if os.path.isfile(os.path.join(directories['sample'],f))]
+        
+        #Loop through the data files to search for everything but the INFO file (last index)
+        for i in self.file_suffix_list[:-1]:
+            #If given file exists in list, color green
+            if self.sname+i in self.rawDataFiles:
+                self.fileTrack_Text.insert(tk.END,"\n{0}".format(i),'true')
+            #Otherwise, color red
+            else:
+                self.fileTrack_Text.insert(tk.END,"\n{0}".format(i),'false')
+
+        #If last data file (INFO) exists in data files directory, color green
+        if self.sname+self.file_suffix_list[-1] in self.dataFiles:
+                self.fileTrack_Text.insert(tk.END,"\n{0}".format(self.file_suffix_list[-1]),'true')
+        #Otherwise, color red
+        else:
+                self.fileTrack_Text.insert(tk.END,"\n{0}".format(self.file_suffix_list[-1]),'false')
+
+        print("[__main__] File tracking results updated...")
+
     def setupUPP(self):
 
         #Add start button
@@ -311,9 +378,29 @@ class chromaUI:
             self.var_dict[var_name].set(init_state)
 
     def sampleSelect(self,event):
-        sname = self.sampleBox.get()
-        print("[__main__] User selected " + sname)
-        return sname
+
+        self.sname = self.sampleBox.get()
+
+        print("[__main__] User selected " + self.sname)
+
+        print("[__main__] Getting sample directories...")
+
+        #Sample directory
+        self.directories['sample'] = os.path.join(self.directories['data'],self.sname)
+
+        #Data file log directory
+        self.directories['log'] = os.path.join(self.directories['sample'],'log')
+
+        #Data file breakdowns directory
+        self.directories['break'] = os.path.join(self.directories['sample'],'breakdowns')
+
+        #Raw data file directory
+        self.directories['raw'] = os.path.join(self.directories['sample'],'raw data')
+
+        print("[__main__] Checking files...")
+        self.updateFileTrack()
+
+        return self.sname
 
     #Function for setting up anonymous varaible select functions
     def setupVarSelect(self):
@@ -352,9 +439,18 @@ class chromaUI:
     def runHydro(self):
 
         #Function for running the hydroUI function
-        print("[__main__] Running HydroUI...")
-        hy.mainHydro(self.var_dict['sampleVar'].get(), self.var_dict['hydro_typevar'].get(), self.var_dict['hydro_matchvar'].get())
-        print("[__main__] HydroUI closed")
+        print("[__main__] Defining HydroUI application...")
+        """ COMMENT OUT FOR NOW, LAGGY
+        self.app = hy.mainHydro(self.var_dict['sampleVar'].get(), self.var_dict['hydro_typevar'].get(), self.var_dict['hydro_matchvar'].get())
+        print("[__main__] Application defined, running...")
+        if __name__ == "__main__":
+            #Define a thread and set as daemon – SCRIPT WILL CONTINUE TO RUN UNTIL CHROMAUI CLOSED
+            hydroThread = threading.Thread(target=lambda: self.app.run(debug=True, use_reloader=False))
+            hydroThread.daemon = True
+            #Start thread
+            hydroThread.start()
+        print("[__main__] HydroUI active")
+        """
         return None
 
 root = tk.Tk()
