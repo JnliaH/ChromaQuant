@@ -38,6 +38,7 @@ import re
 from datetime import datetime
 import importlib.util
 import sys
+import math
 
 """ LOCAL PACKAGES """
 
@@ -89,18 +90,24 @@ def mainUAPP(sname):
 
     #Raw data file directory
     directories['raw'] = os.path.join(directories['data'],sname,'raw data')
-    
+
     #PARAMETERS
     #Limit of identical peak RT
     PeakRTLim = 0.005
 
     """ DIRECTORIES """
 
-    #Create list of string paths for each file in provided file directory
+    #Define final files and files location list
+    files = []
     fileLoc = []
-    for path, subdirs, files in os.walk(directories['raw']):
-        for name in files:
-            fileLoc.append(os.path.join(path, name))
+    #Unpack variables from walking through raw data directory
+    for path, subdirs, files_original in os.walk(directories['raw']):
+        for i in files_original:
+            if i[-11:] == "UA_Comp.csv":
+                files.append(i)
+                fileLoc.append(os.path.join(path, i))
+            else:
+                pass
 
     """ COMPOUND CONSTRAINS """
     #Establish lists for two levels of element restrictions:
@@ -141,12 +148,25 @@ def mainUAPP(sname):
     def concatDF(dataSlice, DFin):
         #Assumes a dataframe provided with these columns: ['Component RT','Compound Name','Formula','Match Factor']
         #Also assumes dataSlice will contain at least these same columns
+
+        #Define columns
         col = ['Component RT','Compound Name','Formula','Match Factor','Previous Best Compound Name',\
             'Previous Best Formula','Previous Best Match Factor','Previous Worst Compound Name',\
             'Previous Worst Formula','Previous Worst Match Factor']
-        listOut = [dataSlice[col[i]] for i in range(len(col))]
-        DFout = pd.concat([pd.DataFrame([listOut], columns=DFin.columns), DFin], ignore_index=True)
         
+        #Define list containing slices to be exported
+        listOut = [dataSlice[col[i]] for i in range(len(col))]
+
+        #If DFin is not empty...
+        if not DFin.empty:
+            #Form DFout using concat
+            DFout = pd.concat([pd.DataFrame([listOut], columns=DFin.columns), DFin], ignore_index=True)
+
+        #Otherwise...
+        else:
+            #Define DFout as the listout slice
+            DFout = pd.DataFrame([listOut], columns=DFin.columns)
+
         return DFout
 
     #Function to add series of matches with best and worst match factor to a selected match series
@@ -234,7 +254,6 @@ def mainUAPP(sname):
     #Function to return True if formula only contains softBar restrictions of given priority
     def dosoftBar(formula,noBar,softBar,priority):
         
-        #Find all elements present in formula
         elements = re.findall('[A-Z][a-z]?',formula)
         #Get dataframe of elements and priority from softBar
         ePDF = pd.DataFrame.from_dict({"Symbol":[obj.Symbol for obj in softBar], "Priority":[obj.Priority for obj in softBar]})
@@ -284,7 +303,7 @@ def mainUAPP(sname):
         priorList = sorted(list(set([x.Priority for x in softBar])))
         #Get list of all retention times
         arrayRF = filterDF['Component RT'].unique()
-        #Create dictionary for outputted data
+        #Create DataFrame for outputted data
         constDF = pd.DataFrame(columns=['Component RT','Compound Name','Formula','Match Factor','Previous Best Compound Name',\
                                         'Previous Best Formula','Previous Best Match Factor','Previous Worst Compound Name',\
                                         'Previous Worst Formula','Previous Worst Match Factor'])
@@ -298,7 +317,7 @@ def mainUAPP(sname):
             #Remove Unknowns from slice, if slice is empty then skip one loop
             compound_slice = compound_slice.loc[~compound_slice["Compound Name"].str.contains("Unknown")]
             #Sort slice by match factor, reset indices
-            test_slice = compound_slice.sort_values(by=['Match Factor'], ascending=False).reset_index(drop=True)
+            test_slice = compound_slice.sort_values(by=['Match Factor'], ascending=True).reset_index(drop=True)
             
             #Find rows with best and worst match factors
             try:
@@ -317,12 +336,24 @@ def mainUAPP(sname):
                 
                 #For every row in the slice sorted by match factor..
                 for index, row in test_slice.iterrows():
-                    #..If the formula meets the noBar criteria, choose row and break formula
-                    if donoBar(row['Formula'],noBar) and counted_loops == 0:
+
+                    #..If the loop number is greater than the number of listed priorities OR the row has a NaN formula,
+                    #  add row with "No Match" and formula NaN
+                    if counted_loops > len(priorList) or not isinstance(row['Formula'], str):
+                        constSeries = concatSeries(pd.Series({"Component RT":RTi,"Compound Name":"No Match",\
+                                                            "Match Factor":float('nan'),"Formula":float('nan')}),\
+                                                            best_match,worst_match)
+                        constDF = concatDF(constSeries,constDF)
+                        search_tf = False
+                        break
+                
+                    #..Otherwise if the formula meets the noBar criteria, choose row and break formula
+                    elif donoBar(row['Formula'],noBar) and counted_loops == 0:
                         constSeries = concatSeries(row,best_match,worst_match)
                         constDF = concatDF(constSeries,constDF)
                         search_tf = False
                         break
+
                     #..Otherwise if the loop number is greater than 0 and less than the 
                     #  number of unique softBar priorities, determine if formula meets softBar criteria
                     elif counted_loops > 0 and counted_loops < len(priorList):
@@ -337,19 +368,6 @@ def mainUAPP(sname):
                                 pass
                         except:
                             pass
-                    #..Otherwise if the loop number is greater than the number of listed priorities,
-                    #  add row with "No Match" and formula NaN
-                    elif counted_loops > len(priorList):
-                        constSeries = concatSeries(pd.Series({"Component RT":RTi,"Compound Name":"No Match",\
-                                                            "Match Factor":float('nan'),"Formula":float('nan')}),\
-                                                            best_match,worst_match)
-                        constDF = concatDF(constSeries,constDF)
-                        search_tf = False
-                        break
-                    else:
-                        pass
-                    #Separate into its own function momentarily
-                    #if 
                     
                 #Count one while loop
                 counted_loops += 1
@@ -372,14 +390,14 @@ def mainUAPP(sname):
         
     """ CODE """
 
-    #Unpack all .csv files in provided directory
-    print("[MAIN] Unpacking data from provided directory...")
+    #Unpack all .csv files with ending "UA_Comp.csv" in provided directory
+    print("[uappMain] Unpacking data from provided directory...")
     UAData_raw = {}
 
     for i in range(len(files)):
-        UAData_raw[files[i]] = unpackUA(fileLoc[i])
+            UAData_raw[files[i]] = unpackUA(fileLoc[i])
 
-    print("[MAIN] Data unpacked.")
+    print("[uappMain] Data unpacked.")
 
     #Dictionaries for filtered and constrained data for each file
     filterDF_Dict = {}
@@ -389,21 +407,21 @@ def mainUAPP(sname):
     for i in range(len(files)):
 
         #Group retention times for all files
-        print("[" + files[i] + "] Grouping retention times...")
+        print("[uappMain][" + files[i] + "] Grouping retention times...")
         filterDF = groupRT(UAData_raw[files[i]])
         filterDF_Dict[files[i]] = filterDF
 
         #Apply constraints to all files
-        print("[" + files[i] + "] Applying compound constraints...")
+        print("[uappMain][" + files[i] + "] Applying compound constraints...")
         constDF = constrain(filterDF, [noBar,softBar])
         constDF_Dict[files[i]] = constDF
 
     #Save results
-    print("[MAIN] Saving results...")
+    print("[uappMain] Saving results...")
     outputCSV(constDF_Dict, directories['raw'], files)
-    print("[MAIN] Files saved to " + str(directories['raw']))
+    print("[uappMain] Files saved to " + str(directories['raw']))
 
     #Complete program
-    print("[MAIN] Unknowns post processing finished.")
+    print("[uappMain] Unknowns post processing finished.")
 
     return None

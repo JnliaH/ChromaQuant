@@ -312,7 +312,6 @@ class chromaUI:
 
     def sampleSelect(self,event):
         sname = self.sampleBox.get()
-        print(sname)
         print("[__main__] User selected " + sname)
         return sname
 
