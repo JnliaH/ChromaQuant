@@ -41,7 +41,8 @@ subpack_dir = {'Handle':os.path.join(file_dir,'Handle','__init__.py'),
                'Manual':os.path.join(file_dir,'Manual','__init__.py'),
                'Match':os.path.join(file_dir,'Match','__init__.py'),
                'Quant':os.path.join(file_dir,'Quant','__init__.py'),
-               'UAPP':os.path.join(file_dir,'UAPP','__init__.py')}
+               'UAPP':os.path.join(file_dir,'UAPP','__init__.py'),
+               'Hydro':os.path.join(file_dir,'Hydro','__init__.py')}
 
 #Define function to import from path
 def import_from_path(module_name,path):
@@ -61,6 +62,7 @@ mn = import_from_path("mn",subpack_dir['Manual'])
 qt = import_from_path("qt",subpack_dir['Quant'])
 mt = import_from_path("mt",subpack_dir['Match'])
 ua = import_from_path("ua",subpack_dir['UAPP'])
+hy = import_from_path("hy",subpack_dir['Hydro'])
 
 """ PARAMETERS """
 print("[__main__] Defining parameters...")
@@ -82,7 +84,7 @@ sampleList = [f.name for f in os.scandir(directories['data']) if f.is_dir() if f
 #Define ChromaQuantUI as class
 class chromaUI:
 
-    #Key variables = sampleVar, fpm_typevar, fpm_modelvar, quant_typevar
+    #Key variables = sampleVar, fpm_typevar, fpm_modelvar, quant_typevar, hydro_typevar
     #Initialization function – master here will be our root widget
     def __init__(self, master, directories):
 
@@ -95,7 +97,7 @@ class chromaUI:
 
         #Padding for widgets/widget rows
         self.widget_padx = 20
-        self.widget_pady = 10
+        self.widget_pady = 20
 
         #Initialize user variable dictionary
         self.var_dict = {}
@@ -104,6 +106,8 @@ class chromaUI:
         self.var_dict['fpm_typevar'] = tk.StringVar()
         self.var_dict['fpm_modelvar'] = tk.StringVar()
         self.var_dict['quant_typevar'] = tk.StringVar()
+        self.var_dict['hydro_typevar'] = tk.StringVar()
+        self.var_dict['hydro_matchvar'] = tk.StringVar()
 
         #Setup UI
         self.setupUI()
@@ -148,13 +152,13 @@ class chromaUI:
         #QUANTIFICATION
         #Add a frame for the main quantification script
         self.quantFrame = ttk.LabelFrame(self.rowtwoFrame,text='Quantification',style='QuantLabelframe.TLabelframe')
-        self.quantFrame.grid(column=1,row=0,sticky='NSWE',padx=self.widget_padx,pady=self.widget_pady)
+        self.quantFrame.grid(column=1,row=0,sticky='NSWE',padx=self.widget_padx,pady=(0,self.widget_pady))
         self.setupQuant()
 
         #HYDROUI
         #Add a frame for the hydroUI script
         self.hydroFrame = ttk.LabelFrame(self.rowtwoFrame,text='HydroUI',style='QuantLabelframe.TLabelframe')
-        self.hydroFrame.grid(column=3,row=0,sticky='NSWE',padx=(0,self.widget_padx),pady=self.widget_pady)
+        self.hydroFrame.grid(column=3,row=0,sticky='NSWE',padx=(0,self.widget_padx),pady=(0,self.widget_pady))
         self.setupHydro()
 
     def default(self):
@@ -177,7 +181,7 @@ class chromaUI:
         #Set up labelframe border
         style.configure('QuantLabelframe.TLabelframe',borderwidth=5,bordercolor='red')
     
-        root.geometry("890x1000")
+        #root.geometry("890x1000")
         root.title("ChromaQuant – Quantification Made Easy")
     
         #Create a main frame
@@ -230,10 +234,6 @@ class chromaUI:
         self.setupStartButton(self.uppFrame,[0,0],[20,20],1,self.runUPP)
 
     def setupMatch(self):
-    
-        #Add text to the top of the frame
-        tk.Label(self.matchFrame,text='Please enter all information')\
-            .grid(column=0,row=0,columnspan=4,padx=self.std_padx,pady=self.std_pady)
         
         #Add a radiobutton set for selecting sample type
         self.select_dict['fpm_typevar']()
@@ -244,10 +244,6 @@ class chromaUI:
         self.setupStartButton(self.matchFrame,[0,3],[20,20],4,self.runMatch)
 
     def setupQuant(self):
-
-        #Add text to the top of the frame
-        tk.Label(self.quantFrame,text='Please enter all information')\
-            .grid(column=0,row=0,columnspan=4,padx=self.std_padx,pady=self.std_pady)
         
         #Add a radiobutton set for selecting sample type
         self.setupRadioButton(self.quantFrame,'Which components are present in the sample?',[0,1],[20,20],1,'quant_typevar',{'Liquid\nOnly':'L','Gas\nOnly':'G','Liquid\nand Gas':'LG'},self.select_dict['quant_typevar'],'L')
@@ -256,9 +252,13 @@ class chromaUI:
         self.setupStartButton(self.quantFrame,[0,2],[20,20],4,self.runQuant)
 
     def setupHydro(self):
-
+        
+        #Add a radiobutton set for selecting sample type
+        self.setupRadioButton(self.hydroFrame,'Which phase to analyze?',[0,1],[20,20],1,'hydro_typevar',{'Liquid':'L','Gas':'G'},self.select_dict['hydro_typevar'],'L')
+        #Add a radiobutton set for selecting sample type
+        self.setupRadioButton(self.hydroFrame,'Display FID and MS matches?',[0,2],[20,20],1,'hydro_matchvar',{'Yes':'T','No':'F'},self.select_dict['hydro_matchvar'],'F')
         #Add start button
-        self.setupStartButton(self.hydroFrame,[0,0],[20,20],1,self.runHydro)
+        self.setupStartButton(self.hydroFrame,[0,3],[20,20],4,self.runHydro)
 
     def setupStartButton(self,frame,placement,pad,columnspan,function):
 
@@ -351,9 +351,11 @@ class chromaUI:
     
     def runHydro(self):
 
+        #Function for running the hydroUI function
         print("[__main__] Running HydroUI...")
+        hy.mainHydro(self.var_dict['sampleVar'].get(), self.var_dict['hydro_typevar'].get(), self.var_dict['hydro_matchvar'].get())
+        print("[__main__] HydroUI closed")
         return None
-
 
 root = tk.Tk()
 my_gui = chromaUI(root,directories)
