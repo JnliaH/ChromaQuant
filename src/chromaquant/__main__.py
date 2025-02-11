@@ -274,21 +274,24 @@ class chromaUI:
         self.fileTrack_Text.delete(1.0,tk.END)
 
         #Get list of files currently in data and raw data directory
-        self.rawDataFiles = [f for f in os.listdir(directories['raw']) if os.path.isfile(os.path.join(directories['raw'],f))]
-        self.dataFiles = [f for f in os.listdir(directories['sample']) if os.path.isfile(os.path.join(directories['sample'],f))]
+        self.rawDataFiles = [f.lower() for f in os.listdir(directories['raw']) if os.path.isfile(os.path.join(directories['raw'],f))]
+        self.dataFiles = [f.lower() for f in os.listdir(directories['sample']) if os.path.isfile(os.path.join(directories['sample'],f))]
         
         #Loop through the data files to search for everything but the INFO file (last index)
         for i in self.file_suffix_list[:-1]:
+
             #If given file exists in list, color green
-            if self.sname+i in self.rawDataFiles:
+            if (self.sname+i).lower() in self.rawDataFiles:
                 self.fileTrack_Text.insert(tk.END,"\n{0}".format(i),'true')
+
             #Otherwise, color red
             else:
                 self.fileTrack_Text.insert(tk.END,"\n{0}".format(i),'false')
 
         #If last data file (INFO) exists in data files directory, color green
-        if self.sname+self.file_suffix_list[-1] in self.dataFiles:
+        if (self.sname+self.file_suffix_list[-1]).lower() in self.dataFiles:
                 self.fileTrack_Text.insert(tk.END,"\n{0}".format(self.file_suffix_list[-1]),'true')
+        
         #Otherwise, color red
         else:
                 self.fileTrack_Text.insert(tk.END,"\n{0}".format(self.file_suffix_list[-1]),'false')
