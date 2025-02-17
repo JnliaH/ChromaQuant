@@ -37,7 +37,7 @@ def liquidFID(BreakdownDF,DBRF,Label_info,sinfo):
     def assignCTCN(BreakdownDF,CT_dict):
         #Iterate through every species in the breakdown dataframe and add entries in two new columns: Compound Type and Carbon Number
         for i, row in BreakdownDF.iterrows():
-            #If there exists a formula..
+            #If there exists a formula.. #FIND ALTERNATIVE BESIDES TRY
             try:
                 #Set breakdown compound type according to the abbreviation already in the breakdown dataframe
                 BreakdownDF.at[i,'Compound Type'] = CT_dict[BreakdownDF.at[i,'Compound Type Abbreviation']]
