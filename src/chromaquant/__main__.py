@@ -87,7 +87,7 @@ sampleList = [f.name for f in os.scandir(directories['data']) if f.is_dir() if f
 #Define ChromaQuantUI as class
 class chromaUI:
 
-    #Key variables = sampleVar, fpm_typevar, fpm_modelvar, quant_typevar, hydro_typevar
+    #Key variables = sampleVar, fpm_typevar, fpm_modelvar, quant_typevar, quant_modelvar, hydro_typevar
     #Initialization function – master here will be our root widget
     def __init__(self, master, directories):
 
@@ -119,8 +119,15 @@ class chromaUI:
         self.var_dict['fpm_typevar'] = tk.StringVar()
         self.var_dict['fpm_modelvar'] = tk.StringVar()
         self.var_dict['quant_typevar'] = tk.StringVar()
+        self.var_dict['quant_modelvar'] = tk.StringVar()
         self.var_dict['hydro_typevar'] = tk.StringVar()
         self.var_dict['hydro_matchvar'] = tk.StringVar()
+
+        #Initialize list of variables to have an anonymous printing function
+        self.varSelect_list = ['sampleVar','fpm_typevar','fpm_modelvar','quant_modelvar','hydro_typevar','hydro_matchvar']
+
+        #Initialize radiobutton object dictionary
+        self.radio_dict = {}
 
         #Setup UI
         self.setupUI()
@@ -306,27 +313,29 @@ class chromaUI:
     def setupMatch(self):
         
         #Add a radiobutton set for selecting sample type
-        self.select_dict['fpm_typevar']()
-        self.setupRadioButton(self.matchFrame,'Please select the sample type:',[0,1],[20,20],1,'fpm_typevar',{'Liquid':'L','Gas':'G'},self.select_dict['fpm_typevar'],'L')
+        self.radio_dict['fpm_typevar'] = self.setupRadioButton(self.matchFrame,'Please select the sample type:',[0,1],[20,20],1,'fpm_typevar',{'Liquid':'L','Gas':'G'},self.select_dict['fpm_typevar'],'L')
         #Add a radiobutton set for selecting match model
-        self.setupRadioButton(self.matchFrame,'Please select the desired matching fit model:',[0,2],[20,20],1,'fpm_modelvar',{'Retention\nTime':'R','Polynomial':'P'},self.select_dict['fpm_modelvar'],'R')
+        self.radio_dict['fpm_modelvar'] = self.setupRadioButton(self.matchFrame,'Please select the desired matching fit model:',[0,2],[20,20],1,'fpm_modelvar',{'Retention\nTime':'R','Polynomial':'P'},self.select_dict['fpm_modelvar'],'R')
         #Add start button
         self.setupStartButton(self.matchFrame,[0,3],[20,20],4,self.runMatch)
 
     def setupQuant(self):
         
         #Add a radiobutton set for selecting sample type
-        self.setupRadioButton(self.quantFrame,'Which components are present in the sample?',[0,1],[20,20],1,'quant_typevar',{'Liquid\nOnly':'L','Gas\nOnly':'G','Liquid\nand Gas':'LG'},self.select_dict['quant_typevar'],'L')
+        self.radio_dict['quant_typevar'] = self.setupRadioButton(self.quantFrame,'Which components are present in the sample?',[0,1],[20,20],1,'quant_typevar',{'Liquid\nOnly':'L','Gas\nOnly':'G','Liquid\nand Gas':'LG'},self.quant_typevarSelect,'L')
+        
+        #Add a radiobutton set for selecting the gas quantification method
+        self.radio_dict['quant_modelvar'] = self.setupRadioButton(self.quantFrame,'Which method should be used to quantify gas phase products?',[0,2],[20,0],1,'quant_modelvar',{'CO2\nVolume':'C','Scale\nFactor':'S','Internal\nStandard':'I'},self.select_dict['quant_modelvar'],'Disabled')
         
         #Add start button
-        self.setupStartButton(self.quantFrame,[0,2],[20,20],4,self.runQuant)
+        self.setupStartButton(self.quantFrame,[0,3],[20,20],4,self.runQuant)
 
     def setupHydro(self):
         
         #Add a radiobutton set for selecting sample type
-        self.setupRadioButton(self.hydroFrame,'Which phase to analyze?',[0,1],[20,20],1,'hydro_typevar',{'Liquid':'L','Gas':'G'},self.select_dict['hydro_typevar'],'L')
+        self.radio_dict['hydro_typevar'] = self.setupRadioButton(self.hydroFrame,'Which phase to analyze?',[0,1],[20,20],1,'hydro_typevar',{'Liquid':'L','Gas':'G'},self.select_dict['hydro_typevar'],'L')
         #Add a radiobutton set for selecting sample type
-        self.setupRadioButton(self.hydroFrame,'Display FID and MS matches?',[0,2],[20,20],1,'hydro_matchvar',{'Yes':'T','No':'F'},self.select_dict['hydro_matchvar'],'F')
+        self.radio_dict['hydro_matchvar'] = self.setupRadioButton(self.hydroFrame,'Display FID and MS matches?',[0,2],[20,20],1,'hydro_matchvar',{'Yes':'T','No':'F'},self.select_dict['hydro_matchvar'],'F')
         #Add start button
         self.setupStartButton(self.hydroFrame,[0,3],[20,20],4,self.runHydro)
 
@@ -356,12 +365,15 @@ class chromaUI:
         radiopad = [(10,10) for i in range(len(option_val_dict))]
         radiopad[-1] = (10,20)
 
+        #Define list of radiobutton objects
+        dict_radiobutton = {i:0 for i in option_val_dict}
+
         #For every option in the option-value dictionary, add a radiobutton (iterate over columns)
         for option in option_val_dict:
 
-            #Add the radiobutton
-            ttk.Radiobutton(frame , text=option , variable=self.var_dict[var_name] , value=option_val_dict[option] , command=function)\
-                .grid(column=current_col , row=placement[1] , padx=radiopad[current_pad] , sticky='w')
+            #Store the radiobutton object
+            dict_radiobutton[option] = ttk.Radiobutton(frame , text=option , variable=self.var_dict[var_name] , value=option_val_dict[option] , command=function)
+            dict_radiobutton[option].grid(column=current_col , row=placement[1] , padx=radiopad[current_pad] , sticky='w')
             
             #Iterate current column and radio padding list
             current_col += 1
@@ -372,6 +384,11 @@ class chromaUI:
         if init_state == 'Option Blank':
             self.var_dict[var_name].set(next(iter(option_val_dict.values())))
 
+        #If init_state is 'Disabled', set the radiobuttons to be disabled
+        elif init_state == 'Disabled':
+            for option in option_val_dict:
+                dict_radiobutton[option].config(state=tk.DISABLED)
+
         #Otherwise, if the init_state does not have a counterpart in the values of the option_val_dict, select the first radiobutton
         elif init_state not in option_val_dict.values():
             self.var_dict[var_name].set(next(iter(option_val_dict.values())))
@@ -379,6 +396,9 @@ class chromaUI:
         #Otherwise, select the specified radiobutton
         else:
             self.var_dict[var_name].set(init_state)
+
+        return dict_radiobutton
+    
 
     def sampleSelect(self,event):
 
@@ -405,7 +425,7 @@ class chromaUI:
 
         return self.sname
 
-    #Function for setting up anonymous varaible select functions
+    #Function for setting up anonymous varaible select functions for printing messages
     def setupVarSelect(self):
         
         #Predefine dictionary for selection functions
@@ -413,11 +433,42 @@ class chromaUI:
 
         #For every variable...
         for i in self.var_dict:
-            #Define lambda function using default argument for user selection message
-            self.select_dict[i] = lambda i=i: print("[__main__] User Selected " + self.var_dict[i].get() + " for " + i)
+
+            #If variable is listed in the anonymous variable list...
+            if i in self.varSelect_list:
+                #Define lambda function using default argument for user selection message
+                self.select_dict[i] = lambda i=i: print("[__main__] User Selected " + self.var_dict[i].get() + " for " + i)
+            
+            #Otherwise, pass
+            else:
+                pass
 
         return None
 
+    #Function for quant_typevar selection
+    def quant_typevarSelect(self):
+
+        #If the phase selected is either gas or both liquid and gas...
+        if self.var_dict['quant_typevar'].get() == 'G' or self.var_dict['quant_typevar'].get() == 'LG':
+            #Enable all radiobuttons
+            for radiobutton in self.radio_dict['quant_modelvar']:
+                self.radio_dict['quant_modelvar'][radiobutton].config(state=tk.NORMAL)
+
+        #Otherwise, disable all radiobuttons
+        else:
+            #Disable all radiobuttons
+            for radiobutton in self.radio_dict['quant_modelvar']:
+                print(radiobutton)
+                self.radio_dict['quant_modelvar'][radiobutton].config(state=tk.DISABLED)
+            
+            #Set quant_modelvar to none
+            self.var_dict['quant_modelvar'].set(None)
+
+        print("[__main__] User Selected " + self.var_dict['quant_typevar'].get() + " for quant_typevar")
+
+        return None
+
+    #Function for 
     def runUPP(self):
         #Function for running the UPP function
         print("[__main__] Running Unknowns Analysis Postprocessing...")
@@ -435,7 +486,7 @@ class chromaUI:
     def runQuant(self):
         #Function for running the quantification function
         print("[__main__] Running quantification...")
-        qt.mainQuant(self.var_dict['sampleVar'].get(), self.var_dict['quant_typevar'].get())
+        qt.mainQuant(self.var_dict['sampleVar'].get(), self.var_dict['quant_typevar'].get(), self.var_dict['quant_modelvar'].get())
         print("[__main__] Quantification complete")
         return None
     

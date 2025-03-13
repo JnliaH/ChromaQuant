@@ -67,7 +67,7 @@ quantphases = 'LG'
 
 """ DIRECTORIES """
 
-def mainQuant(sname,quantphases):
+def mainQuant(sname,quantphases,quantmodel):
 
     print("[quantMain] Beginning quantification...")
     
@@ -117,6 +117,10 @@ def mainQuant(sname,quantphases):
     #Dictionary of compound types
     CT_Dict = analysis_config['CT_Dict']
 
+    #Atmospheric pressure
+    atmospheric_conditions = analysis_config['atmospheric-conditions']
+    P_0 = atmospheric_conditions['P_0']
+
     """ EVALUATING PARAMETERS """
 
     print("[quantMain] Evaluating run parameters...")
@@ -163,6 +167,11 @@ def mainQuant(sname,quantphases):
 
     #Calculate a reaction time using the start, end, and heat time values and add to sinfo
     sinfo['Reaction Time'] = abs(sinfo['End Time']-sinfo['Start Time']).total_seconds()/3600 - sinfo['Heat Time']
+
+    #Get the reactor conditions
+    #Quench pressure, psig
+    P_f = sinfo['Quench Pressure (psi)']
+    V_R = sinfo['Reactor Volume (mL)']
 
     #Use sample name to form file names using file_suffix and append full pathnames for all entries
     for key in file_suffix:
@@ -220,15 +229,33 @@ def mainQuant(sname,quantphases):
         GSRF = pd.read_csv(FIDRF_path)
 
         print("[quantMain] Analyzing gases...")
-        #Get gas TCD breakdown and miscellaneous dataframes
-        GS_TCD_BreakdownDF, total_volume = qtsb.gasTCD_ES(GS_TCD_BreakdownDF,TCDRF,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
-                                                                                    peak_error)
+
+        #If the model to be used is Volume Estimation...
+        if quantmodel == 'CV':
+            #Get gas TCD breakdown and miscellaneous dataframes
+            GS_TCD_BreakdownDF, V_TC = qtsb.gasTCD_VE(GS_TCD_BreakdownDF,TCDRF,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
+                                                                                        peak_error)
         
+        #Otherwise if the model to be used is Scale Factor...
+        elif quantmodel == 'SF':
+            #Get reactor conditions
+            reactor_cond = [P_f, V_R, P_0]
+            #Get gas TCD breakdown and miscellaneous dataframes
+            GS_TCD_BreakdownDF, V_TC, SF = qtsb.gasTCD_SF(GS_TCD_BreakdownDF,TCDRF,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
+                                                                                        reactor_cond,peak_error)
+        
+        #Otherwise if the model to be used is Internal Standard...
+        elif quantmodel == 'IS':
+            #NOT YET IMPLEMENTED!!
+            #Get gas TCD breakdown and miscellaneous dataframes
+            GS_TCD_BreakdownDF, V_TC = qtsb.gasTCD_VE(GS_TCD_BreakdownDF,TCDRF,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
+                                                                                        peak_error)
+
         #Get gas FID breakdown and miscellaneous dataframes
         GS_FID_BreakdownDF, GSCT_DF, GSCN_DF, GSCTCN_DF, GSmass_DF = qtsb.gasFID_ES(GS_FID_BreakdownDF,GSRF,\
                                                                                     [CL_Dict, CT_Dict],\
                                                                                     [gasBag_temp,gasBag_pressure],\
-                                                                                     total_volume)
+                                                                                     V_TC)
         
         #Insert the carbon number column to GSCTCN_DF
         GSCTCN_DF = qtsb.insertCN(GSCTCN_DF)
@@ -344,8 +371,16 @@ def mainQuant(sname,quantphases):
         
         #Expand sample info dataframe to include total TCD mass and gas bag volume
         sinfo_DF.at[0,'Total product (mg)'] = GS_TCD_BreakdownDF['Mass (mg)'].sum()
-        sinfo_DF.at[0,'Gas bag volume (m^3)'] = total_volume
-        
+        sinfo_DF.at[0,'Gas bag volume with CO2 (mL)'] = V_TC
+
+        #If the Scale Factor method was used...
+        if quantmodel == 'SF':
+            #Expand sample info dataframe to include scale factor
+            sinfo_DF.at[0,'Scale Factor'] = SF
+        #Otherwise, pass
+        else:
+            pass
+
         #Position the gas TCD dataframes in the worksheet
         GS_TCD_BreakdownDF.to_excel(writer, sheet_name="Gas TCD",startcol=1,startrow=4, index=False)
         sinfo_DF.to_excel(writer, sheet_name="Gas TCD",startcol=1, startrow=1, index=False) 

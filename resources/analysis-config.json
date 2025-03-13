@@ -80,3 +80,5 @@
 "CT_Dict" : {"A":"Aromatics", "B":"Branched Alkanes", "C":"Cycloalkanes", "E":"Alkenes/Alkynes", "L":"Linear Alkanes", "O":"Other"}
 
 }
+
+"atmospheric-conditions" : {"P_0":14.7}
