@@ -121,6 +121,9 @@ def mainQuant(sname,quantphases,quantmodel):
     atmospheric_conditions = analysis_config['atmospheric-conditions']
     P_0 = atmospheric_conditions['P_0']
 
+    #Response factor file names
+    RF_file_names = analysis_config['RF-file-names']
+
     """ EVALUATING PARAMETERS """
 
     print("[quantMain] Evaluating run parameters...")
@@ -147,12 +150,14 @@ def mainQuant(sname,quantphases,quantmodel):
     """ RESPONSE FACTOR INFO """
 
     print("[quantMain] Searching for response factors...")
-    #Liquid response factor file name
-    LRF_path = qtsb.findRecentFile('LRF','.xlsx',directories['rf'])
-    #FID gas response factor file name
-    FIDRF_path = qtsb.findRecentFile('FIDRF','.csv',directories['rf'])
-    #TCD gas response factor file name
-    TCDRF_path = qtsb.findRecentFile('TCDRF','.csv',directories['rf'])
+    #Liquid response factor file path
+    LRF_path = qtsb.findRecentFile(RF_file_names['Liquid FID'],'.xlsx',directories['rf'])
+    #FID gas response factor file path
+    FIDRF_path = qtsb.findRecentFile(RF_file_names['Gas FID'],'.csv',directories['rf'])
+    #TCD gas response factor file path
+    TCDRF_path = qtsb.findRecentFile(RF_file_names['TCD'],'.csv',directories['rf'])
+    #TCD gas internal standard response factor file path
+    TCDRF_IS_path = qtsb.findRecentFile(RF_file_names['TCD IS'],'.csv',directories['rf'])
 
     """ DATA IMPORTS """
 
@@ -225,19 +230,21 @@ def mainQuant(sname,quantphases,quantmodel):
         
         #Read gas TCD response factors data
         TCDRF = pd.read_csv(TCDRF_path)
+        #Read gas TCD IS response factors data
+        TCDRF_IS = pd.read_csv(TCDRF_IS_path)
         #Read gas FID response factors data
         GSRF = pd.read_csv(FIDRF_path)
 
         print("[quantMain] Analyzing gases...")
 
         #If the model to be used is Volume Estimation...
-        if quantmodel == 'CV':
+        if quantmodel == 'C':
             #Get gas TCD breakdown and miscellaneous dataframes
             GS_TCD_BreakdownDF, V_TC = qtsb.gasTCD_VE(GS_TCD_BreakdownDF,TCDRF,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
                                                                                         peak_error)
         
         #Otherwise if the model to be used is Scale Factor...
-        elif quantmodel == 'SF':
+        elif quantmodel == 'S':
             #Get reactor conditions
             reactor_cond = [P_f, V_R, P_0]
             #Get gas TCD breakdown and miscellaneous dataframes
@@ -245,10 +252,10 @@ def mainQuant(sname,quantphases,quantmodel):
                                                                                         reactor_cond,peak_error)
         
         #Otherwise if the model to be used is Internal Standard...
-        elif quantmodel == 'IS':
+        elif quantmodel == 'I':
             #NOT YET IMPLEMENTED!!
             #Get gas TCD breakdown and miscellaneous dataframes
-            GS_TCD_BreakdownDF, V_TC = qtsb.gasTCD_VE(GS_TCD_BreakdownDF,TCDRF,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
+            GS_TCD_BreakdownDF, V_TC = qtsb.gasTCD_VE(GS_TCD_BreakdownDF,TCDRF_IS,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
                                                                                         peak_error)
 
         #Get gas FID breakdown and miscellaneous dataframes

@@ -171,9 +171,9 @@ def gasTCD_SF(BreakdownDF,DBRF,gasBag_cond,reactor_cond,peak_error):
     def volumeIGL(V_C,reactor_cond):
 
         #Unpack reactor conditions
-        P_f = reactor_cond[1]       #reactor quench pressure, psig
-        V_R = reactor_cond[2]       #reactor internal volume, mL
-        P_0 = reactor_cond[3]       #atmospheric pressure, psi
+        P_f = reactor_cond[0]       #reactor quench pressure, psig
+        V_R = reactor_cond[1]       #reactor internal volume, mL
+        P_0 = reactor_cond[2]       #atmospheric pressure, psi
 
         #Estimate total volum of gas bag, mL
         V_T = V_R * (P_f + P_0) / P_0
@@ -299,7 +299,7 @@ def gasTCD_SF(BreakdownDF,DBRF,gasBag_cond,reactor_cond,peak_error):
     return BreakdownDF, V_TC, SF
 
 #Function for quantifying gas TCD data w/ internal standard method
-def gasTCD_SF(BreakdownDF,DBRF,gasBag_cond,peak_error):
+def gasTCD_IS(BreakdownDF,DBRF,gasBag_cond,peak_error):
     
     #Unpack gas bag conditions
     temp = gasBag_cond[0]       #temperature of gas bag, C
