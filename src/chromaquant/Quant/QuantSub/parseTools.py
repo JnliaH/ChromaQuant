@@ -75,7 +75,7 @@ def findRecentFile(prefix,suffix,path):
     for i in files:
         #If current file has the passed prefix...
         if prefix == i[:len(prefix)]:
-            #Add currenrt file to filtered files list
+            #Add current file to filtered files list
             filter_files.append(i)
         #Otherwise, pass
         else:

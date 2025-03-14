@@ -253,10 +253,11 @@ def mainQuant(sname,quantphases,quantmodel):
         
         #Otherwise if the model to be used is Internal Standard...
         elif quantmodel == 'I':
-            #NOT YET IMPLEMENTED!!
+            #Get reactor conditions
+            reactor_cond = [P_f, V_R, P_0]
             #Get gas TCD breakdown and miscellaneous dataframes
-            GS_TCD_BreakdownDF, V_TC = qtsb.gasTCD_VE(GS_TCD_BreakdownDF,TCDRF_IS,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
-                                                                                        peak_error)
+            GS_TCD_BreakdownDF, V_TC = qtsb.gasTCD_IS(GS_TCD_BreakdownDF,TCDRF_IS,[gasBag_temp,gasBag_pressure,sinfo['Injected CO2 (mL)']],\
+                                                                                        reactor_cond,peak_error)
 
         #Get gas FID breakdown and miscellaneous dataframes
         GS_FID_BreakdownDF, GSCT_DF, GSCN_DF, GSCTCN_DF, GSmass_DF = qtsb.gasFID_ES(GS_FID_BreakdownDF,GSRF,\

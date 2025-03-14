@@ -175,7 +175,7 @@ def gasTCD_SF(BreakdownDF,DBRF,gasBag_cond,reactor_cond,peak_error):
         V_R = reactor_cond[1]       #reactor internal volume, mL
         P_0 = reactor_cond[2]       #atmospheric pressure, psi
 
-        #Estimate total volum of gas bag, mL
+        #Estimate total volume of gas bag, mL
         V_T = V_R * (P_f + P_0) / P_0
 
         #Estimate total volume of gas bag plus volume CO2, mL
@@ -299,25 +299,17 @@ def gasTCD_SF(BreakdownDF,DBRF,gasBag_cond,reactor_cond,peak_error):
     return BreakdownDF, V_TC, SF
 
 #Function for quantifying gas TCD data w/ internal standard method
-def gasTCD_IS(BreakdownDF,DBRF,gasBag_cond,peak_error):
+def gasTCD_IS(BreakdownDF,DBRF,gasBag_cond,reactor_cond,peak_error):
     
-    #Unpack gas bag conditions
-    temp = gasBag_cond[0]       #temperature of gas bag, C
-    pressure = gasBag_cond[1]   #sample pressure in gas bag, psi
-    co2 = gasBag_cond[2]        #CO2 volume, mL
-
     #Initialize compound name column in BreakdownDF
     BreakdownDF['Compound Name'] = 'None'
-    
-    #Function to find if CO2 peak exists
-    def getCO2(BreakdownDF,DBRF,TCD_cond,peak_error):
-        
-        #Unpack TCD conditions
-        co2 = TCD_cond[0]
-        pressure = TCD_cond[1]
-        temp = TCD_cond[2]
-        R = TCD_cond[3]
-        
+
+    #Define molar mass of CO2, g/mol
+    Mc = 44.009
+
+    # Function to estimate mass of CO2 from provided conditions and get area of CO2
+    def massCO2(BreakdownDF,DBRF,R,C,V_C,P_0,GB_temp):
+
         #Find the CO2 peak row in DBRF
         CO2_row = DBRF.loc[DBRF['Compound Name'] == "Carbon Dioxide"].iloc[0]
         
@@ -330,39 +322,19 @@ def gasTCD_IS(BreakdownDF,DBRF,gasBag_cond,peak_error):
         
         #Define boolean describing whether or not CO2 match has been found
         CO2_bool = False
-        #Define volume estimate
-        volume = 0
-        
+
         #Iterate through every row in BreakdownDF
         for i, row in BreakdownDF.iterrows():
             
             #If the TCD retention time is within range of the CO2 entry...
             if CO2_RTmin <= row['RT'] <= CO2_RTmax:
                 
-                #Add the compound name to the breakdown dataframe
-                BreakdownDF.at[i,'Compound Name'] = 'Carbon Dioxide'
-                
-                #Add the other relevant information to the breakdown dataframe
-                BreakdownDF.at[i,'Formula'] = 'CO2'
-                BreakdownDF.at[i,'RF (Area/vol.%)'] = CO2_row['RF']
-                BreakdownDF.at[i,'MW (g/mol)'] = ChemFormula('CO2').formula_weight
-                
-                #Get volume percent using response factor
-                volpercent = row['Area']/CO2_row['RF']
-                BreakdownDF.at[i,'Vol.%'] = volpercent
-                
-                #Calculate total volume using volume percent
-                volume = co2 * 100 / volpercent   #total volume, m^3
-                
-                #Assign CO2 volume
-                BreakdownDF.at[i,'Volume (m^3)'] = co2
-                
-                #Get moles using ideal gas law (PV=nRT)
-                BreakdownDF.at[i,'Moles (mol)'] = co2*pressure/(temp*R)
-                
-                #Get mass (mg) using moles and molar mass
-                BreakdownDF.at[i,'Mass (mg)'] = BreakdownDF.at[i,'Moles (mol)'] * BreakdownDF.at[i,'MW (g/mol)'] * 1000
-                
+                #Get mass of CO2, mg
+                mc = C * Mc * (P_0 * V_C) / (R * (GB_temp + 273.15)) * 1000
+
+                #Get area of CO2
+                Ac = row['Area']
+
                 #Set CO2_bool to True
                 CO2_bool = True
                 
@@ -371,32 +343,47 @@ def gasTCD_IS(BreakdownDF,DBRF,gasBag_cond,peak_error):
             #Otherwise, pass
             else:
                 pass
-        
-        return CO2_bool, volume, BreakdownDF
-    
-    #Add min and max peak assignment values to DBRF
-    for i, row in DBRF.iterrows():
-        DBRF.at[i,'RT Max'] = DBRF.at[i,'RT (min)'] + peak_error
-        DBRF.at[i,'RT Min'] = DBRF.at[i,'RT (min)'] - peak_error
-    
-    #Convert sinfo variables to new units
-    co2 = co2 / 10**6                     #volume injected CO2, m^3
-    temp = temp + 273.15                  #reactor temperature, K
-    pressure = pressure / 14.504*100000   #reactor pressure, Pa
-    
-    #Define ideal gas constant, m^3*Pa/K*mol
-    R = 8.314
-    
-    #Define variable to total volume (m^3)
-    volume = 0
-    
-    #Define list of conditions
-    TCD_cond = [co2,pressure,temp,R]
-    
-    #Check if there is a peak in the BreakdownDF that can be assigned to CO2
-    CO2_bool, volume, BreakdownDF = getCO2(BreakdownDF,DBRF,TCD_cond,peak_error)
-    
-    if CO2_bool:
+
+        #Raise error if no CO2 peak found
+        if CO2_bool == False:
+            raise Exception("[gasTCD][ERROR] No CO2 peak found in TCD")
+
+        else:
+            pass
+
+        return mc, Ac
+
+    #Function to calculate amounts of each species using the scale factor
+    def quantTCD(BreakdownDF,DBRF,gasBag_cond,reactor_cond):
+
+        # Unpack gas bag conditions
+        GB_temp = gasBag_cond[0]       # Temperature of gas bag, C
+        GB_pressure = gasBag_cond[1]   # Sample pressure in gas bag, psig
+        V_C = gasBag_cond[2]           # CO2 volume, mL
+
+        #Unpack reactor conditions
+        P_f = reactor_cond[0]       #reactor quench pressure, psig
+        V_R = reactor_cond[1]       #reactor internal volume, mL
+        P_0 = reactor_cond[2]       #atmospheric pressure, psi
+
+        # Define ideal gas constant, m^3*Pa/K*mol
+        R = 8.314
+
+        #Define conversion factor, Pa * m^3 * psi^-1 * mL^-1
+        C = 0.00689476
+
+        #Get mass of CO2
+        mc, Ac = massCO2(BreakdownDF,DBRF,R,C,V_C,P_0,GB_temp)
+
+        #Get total volume plus CO2
+        V_T = V_R * (P_f + P_0) / P_0
+        V_TC = V_T + V_C
+
+        #Add min and max peak assignment values to DBRF
+        for i, row in DBRF.iterrows():
+            DBRF.at[i,'RT Max'] = DBRF.at[i,'RT (min)'] + peak_error
+            DBRF.at[i,'RT Min'] = DBRF.at[i,'RT (min)'] - peak_error
+
         #Iterate through every row in BreakdownDF
         for i, row in BreakdownDF.iterrows():
             
@@ -411,28 +398,25 @@ def gasTCD_IS(BreakdownDF,DBRF,gasBag_cond,peak_error):
                     
                     #Add the other relevant information to the breakdown dataframe
                     BreakdownDF.at[i,'Formula'] = row2['Formula']
-                    BreakdownDF.at[i,'RF (Area/vol.%)'] = row2['RF']
+                    BreakdownDF.at[i,'RF'] = row2['RF']
                     BreakdownDF.at[i,'MW (g/mol)'] = ChemFormula(row2['Formula']).formula_weight
                     
-                    #Get volume percent using response factor
-                    volpercent = row['Area']/row2['RF']
-                    BreakdownDF.at[i,'Vol.%'] = volpercent
+                    #If the peak is CO2...
+                    if row['Compound Name'] == "Carbon Dioxide":
+                        #Set mass to mc
+                        BreakdownDF.at[i,'Mass(mg)'] = mc
                     
-                    #Get volume using volume percent
-                    vol = volume*volpercent/100
-                    BreakdownDF.at[i,'Volume (m^3)'] = vol
-                    
-                    #Get moles using ideal gas law (PV=nRT)
-                    BreakdownDF.at[i,'Moles (mol)'] = vol*pressure/(temp*R)
-                    
-                    #Get mass (mg) using moles and molar mass
-                    BreakdownDF.at[i,'Mass (mg)'] = BreakdownDF.at[i,'Moles (mol)'] * BreakdownDF.at[i,'MW (g/mol)'] * 1000
+                    #Otherwise...
+                    else:
+                        #Get mass (mg) using mass of carbon dioxide and response factor
+                        BreakdownDF.at[i,'Mass (mg)'] = (mc * (BreakdownDF.at[i,'Area'] / Ac)) / BreakdownDF.at[i,'RF']
                 
                 #Otherwise, pass    
                 else:
                     pass
-    #Otherwise, pass
-    else:
-        pass
+        
+        return BreakdownDF, V_TC
     
-    return BreakdownDF, volume
+    BreakdownDF, V_TC = quantTCD(BreakdownDF,DBRF,gasBag_cond,reactor_cond)
+    
+    return BreakdownDF, V_TC
