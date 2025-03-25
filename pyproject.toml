@@ -19,7 +19,7 @@ keywords = [
 ]
 classifiers = [
 	"Development Status :: 2 - Pre-Alpha",
-	"Programming Language :: Python",
+	"Programming Language :: Python :: 3",
 	"License :: OSI Approved :: BSD License",
 	"Natural Language :: English",
 	"Topic :: Scientific/Engineering :: Chemistry",
@@ -49,6 +49,7 @@ include	= [
 	"/images",
 	"/resources",
 	"/response-factors",
+	"/src",
 	"CONTRIBUTING.md",
 	"README.md",
 	"LICENSE.txt",
