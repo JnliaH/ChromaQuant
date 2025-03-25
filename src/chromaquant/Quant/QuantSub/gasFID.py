@@ -43,7 +43,7 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,gasBag_cond,total_volume,cutoff=4):
     Label_info : List
         List of dictionaries containing chemical lump and compound type abbreviations
     total_volume : Float
-        Float describing the total amount of gas estimated by the external standard volume percent
+        Float describing the total amount of gas estimated by the external standard volume percent, mL
     cutoff : Integer, optional
         Integer representing the maximum cutoff carbon number that can be 
         quantified using FID.The default is 4.
@@ -105,7 +105,7 @@ def gasFID_ES(BreakdownDF,DBRF,Label_info,gasBag_cond,total_volume,cutoff=4):
         #Convert gas bag conditions to new units
         temp = temp + 273.15                    #gas bag temperature, K
         pressure = pressure / 14.504*100000     #gas bag pressure, Pa
-        
+        total_volume /= 10**6                   #gas bag volume, m^3
         #Define ideal gas constant, m^3*Pa/K*mol
         R = 8.314
         

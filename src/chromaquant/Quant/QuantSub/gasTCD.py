@@ -112,13 +112,13 @@ def gasTCD_VE(BreakdownDF,DBRF,gasBag_cond,peak_error):
     R = 8.314
     
     #Define variable to total volume (m^3)
-    volume = 0
+    V_TC = 0
     
     #Define list of conditions
     TCD_cond = [co2,pressure,temp,R]
     
     #Check if there is a peak in the BreakdownDF that can be assigned to CO2
-    CO2_bool, volume, BreakdownDF = getCO2(BreakdownDF,DBRF,TCD_cond,peak_error)
+    CO2_bool, V_TC, BreakdownDF = getCO2(BreakdownDF,DBRF,TCD_cond,peak_error)
     
     if CO2_bool:
         #Iterate through every row in BreakdownDF
@@ -143,7 +143,7 @@ def gasTCD_VE(BreakdownDF,DBRF,gasBag_cond,peak_error):
                     BreakdownDF.at[i,'Vol.%'] = volpercent
                     
                     #Get volume using volume percent
-                    vol = volume*volpercent/100
+                    vol = V_TC*volpercent/100
                     BreakdownDF.at[i,'Volume (m^3)'] = vol
                     
                     #Get moles using ideal gas law (PV=nRT)
@@ -159,7 +159,10 @@ def gasTCD_VE(BreakdownDF,DBRF,gasBag_cond,peak_error):
     else:
         pass
     
-    return BreakdownDF, volume
+    #Convert total volume to mL
+    V_TC *= 10**6
+
+    return BreakdownDF, V_TC
 
 #Function for quantifying gas TCD data w/ scale factor method
 def gasTCD_SF(BreakdownDF,DBRF,gasBag_cond,reactor_cond,peak_error):
@@ -283,7 +286,7 @@ def gasTCD_SF(BreakdownDF,DBRF,gasBag_cond,reactor_cond,peak_error):
                     BreakdownDF.at[i,'Adj. Vol.%'] = volpercent_a
                     
                     #Get moles using ideal gas law (PV=nRT)
-                    BreakdownDF.at[i,'Moles (mol)'] = C * (GB_pressure * volpercent_a * V_TC)/(R * (GB_temp + 273.15))
+                    BreakdownDF.at[i,'Moles (mol)'] = C * (GB_pressure * volpercent_a / 100 * V_TC)/(R * (GB_temp + 273.15))
                     
                     #Get mass (mg) using moles and molar mass
                     BreakdownDF.at[i,'Mass (mg)'] = BreakdownDF.at[i,'Moles (mol)'] * BreakdownDF.at[i,'MW (g/mol)'] * 1000
@@ -378,7 +381,7 @@ def gasTCD_IS(BreakdownDF,DBRF,gasBag_cond,reactor_cond,peak_error):
         #Get total volume plus CO2
         V_T = V_R * (P_f + P_0) / P_0
         V_TC = V_T + V_C
-
+        print(V_TC)
         #Add min and max peak assignment values to DBRF
         for i, row in DBRF.iterrows():
             DBRF.at[i,'RT Max'] = DBRF.at[i,'RT (min)'] + peak_error

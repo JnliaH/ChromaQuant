@@ -362,36 +362,38 @@ def mainQuant(sname,quantphases,quantmodel):
         LQ_FID_BreakdownDF.to_excel(writer, sheet_name="Liquid FID",startcol=1, startrow=4, index=False)
         LQCT_DF.to_excel(writer, sheet_name="Liquid FID",startcol=16, startrow=7, index=False)
         LQCN_DF.to_excel(writer, sheet_name="Liquid FID", startcol=16, startrow=15, index=False)
-        LQmass_DF.to_excel(writer, sheet_name="Liquid FID",startcol=22, startrow=1,index=False)
-        LQCTCN_DF.to_excel(writer, sheet_name="Liquid FID", startcol=20, startrow=7, index=False)
+        LQmass_DF.to_excel(writer, sheet_name="Liquid FID",startcol=22, startrow=4,index=False)
+        LQCTCN_DF.to_excel(writer, sheet_name="Liquid FID", startcol=20, startrow=10, index=False)
     else:
         pass
 
     #If the run gas analysis Boolean is True..
     if lgTF[1]:
-        #Position the gas FID dataframes in the worksheet.
-        sinfo_DF.to_excel(writer, sheet_name="Gas FID",startcol=1, startrow=1, index=False) 
-        GS_FID_BreakdownDF.to_excel(writer, sheet_name="Gas FID",startcol=1, startrow=4, index=False)
-        GSCT_DF.to_excel(writer, sheet_name="Gas FID",startcol=18, startrow=7, index=False)
-        GSCN_DF.to_excel(writer, sheet_name="Gas FID", startcol=18, startrow=15, index=False)
-        GSmass_DF.to_excel(writer, sheet_name="Gas FID",startcol=22, startrow=1,index=False)
-        GSCTCN_DF.to_excel(writer, sheet_name="Gas FID",startcol=22, startrow=7,index=False)
-        
+
         #Expand sample info dataframe to include total TCD mass and gas bag volume
         sinfo_DF.at[0,'Total product (mg)'] = GS_TCD_BreakdownDF['Mass (mg)'].sum()
         sinfo_DF.at[0,'Gas bag volume with CO2 (mL)'] = V_TC
 
         #If the Scale Factor method was used...
-        if quantmodel == 'SF':
+        if quantmodel == 'S':
             #Expand sample info dataframe to include scale factor
             sinfo_DF.at[0,'Scale Factor'] = SF
         #Otherwise, pass
         else:
             pass
 
+        #Position the gas FID dataframes in the worksheet.
+        sinfo_DF.to_excel(writer, sheet_name="Gas FID",startcol=1, startrow=1, index=False) 
+        GS_FID_BreakdownDF.to_excel(writer, sheet_name="Gas FID",startcol=1, startrow=4, index=False)
+        GSCT_DF.to_excel(writer, sheet_name="Gas FID",startcol=18, startrow=7, index=False)
+        GSCN_DF.to_excel(writer, sheet_name="Gas FID", startcol=18, startrow=15, index=False)
+        GSmass_DF.to_excel(writer, sheet_name="Gas FID",startcol=22, startrow=4,index=False)
+        GSCTCN_DF.to_excel(writer, sheet_name="Gas FID",startcol=22, startrow=10,index=False)
+
         #Position the gas TCD dataframes in the worksheet
         GS_TCD_BreakdownDF.to_excel(writer, sheet_name="Gas TCD",startcol=1,startrow=4, index=False)
-        sinfo_DF.to_excel(writer, sheet_name="Gas TCD",startcol=1, startrow=1, index=False) 
+        sinfo_DF.to_excel(writer, sheet_name="Gas TCD",startcol=1, startrow=1, index=False)
+
     else:
         pass
 
