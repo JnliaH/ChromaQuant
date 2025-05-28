@@ -207,7 +207,6 @@ def mainMatch(sname,sphase,model):
         # Function can be of any form as long as it returns a floating point value for the estimated MS RT
         print("[matchMain] Matching peaks by retention time...")
         fpmDF = mtsb.matchRT(fpmDF,mDF,peakError=peak_errors['peak-error-RT'])
-        fpmDF = mtsb.matchPeaks(fpmDF,mDF,fit,peak_errors['peak-error-third']) 
 
     # Run the compound type abbreviation assignment function – this function takes a passed matched FID and MS list and assigns
     # compound type abbreviations to each matched entry
