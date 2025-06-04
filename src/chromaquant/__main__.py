@@ -83,6 +83,10 @@ def runUI():
     #Get directories from handling script
     directories = hd.handle(os.path.dirname(os.path.abspath(__file__)))
 
+    """ DOCUMENTS """
+    print("[__main__] Validating documents directory...")
+    
+
     """ DATA SEARCH """
     print("[__main__] Searching for valid data files...")
     #Get a list of all available sample data directories (excluding "old") in the data files directory
