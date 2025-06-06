@@ -33,42 +33,9 @@ def handle(fileDir):
     #Import file information from json file
     with open(os.path.join(fileDir,'properties.json'),'r') as props_f:
         props = json.load(props_f)
-    
+
     #Define file directory
     D_files = props['file-directory']
-    #Define app directory
-    D_app = props['app-directory']
-    #Get current user
-    login = getpass.getuser()
-    
-    #If file directory has default user somewhere, insert current user
-    if "[user]" in D_files:
-        
-        D_files = D_files.replace("[user]",login)
-    
-    #Otherwise, pass
-    else:
-        print("else")
-        pass
-    
-    #If app directory is empty or not equal to fileDir or [user] version, replace D_app
-    if D_app != fileDir or D_app != fileDir.replace(login,"[user]") or D_app == "":
-        D_app = fileDir
-        #Prepare 
-        props['app-directory'] = fileDir.replace(login,"[user]")
-        
-        with open(os.path.join(fileDir,'properties.json'),'w') as props_f:
-            json.dump(props,props_f,indent=4)
-    
-    #Otherwise, pass
-    else:
-        pass
-    
-    #Redefine app directory
-    D_app = fileDir
-    
-    #Print data files directory
-    print("[Handle] Data files directory set to {0}".format(D_files))
     
     #Define resources directory
     D_rsc = os.path.join(D_files,'resources')
