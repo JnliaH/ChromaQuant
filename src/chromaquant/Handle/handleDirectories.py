@@ -27,12 +27,11 @@ import getpass
 
 """ FUNCTIONS """
 
-def handle(fileDir):
+def handle(props):
     #fileDir is the passed absolute directory of the currently running file
-    
-    #Import file information from json file
-    with open(os.path.join(fileDir,'properties.json'),'r') as props_f:
-        props = json.load(props_f)
+
+    #Define app directory
+    D_app = props['app-directory']
 
     #Define file directory
     D_files = props['file-directory']
@@ -53,4 +52,4 @@ def handle(fileDir):
     D_img = os.path.join(D_files,'images')
     
     #Return directories as a dictionary
-    return {'files':D_files,'resources':D_rsc,'theme':D_theme,'rf':D_rf,'data':D_data,'images':D_img}
+    return {'app':D_app,'files':D_files,'resources':D_rsc,'theme':D_theme,'rf':D_rf,'data':D_data,'images':D_img}

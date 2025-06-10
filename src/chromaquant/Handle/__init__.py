@@ -10,4 +10,5 @@ Created 10-19-2024
 """
 
 from .handleDirectories import *
+from .defineDirectories import *
 from .fileChecks import *

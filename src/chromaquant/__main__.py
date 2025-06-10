@@ -75,17 +75,18 @@ version = "0.4.0"
 """ RUNUI FUNCTION """
 
 #Function to run the UI
-def runUI():
+def runUI(file_dir):
 
     """ DIRECTORIES """
     print("[__main__] Defining directories...")
-    print("[__main__] Using Handle package...")
-    #Get directories from handling script
-    directories = hd.handle(os.path.dirname(os.path.abspath(__file__)))
 
-    """ DOCUMENTS """
-    print("[__main__] Validating documents directory...")
-    
+    print("[__main__] Validating directories...")
+    #Check and update app and documents directories
+    props = hd.updateDirectories(file_dir)
+
+    print("[__main__] Unpacking directories...")
+    #Get directories from handling script
+    directories = hd.handle(props)
 
     """ DATA SEARCH """
     print("[__main__] Searching for valid data files...")
@@ -527,4 +528,4 @@ def runUI():
 """ RUN MAIN FUNCTION """
 print("[__main__] Starting UI...")
 if __name__ == "__main__":
-	runUI()
+	runUI(file_dir)
