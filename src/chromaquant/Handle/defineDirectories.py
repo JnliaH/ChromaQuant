@@ -150,7 +150,7 @@ def checkDocuments(D_app,D_files):
     def checkRecursive(D_app,D_files):
 
         #Define required subdirectories as list
-        rqSubList = ["resources","response-factors","data","images"]
+        rqSubList = ["resources","response-factors","data",]
 
         #Define list of booleans to check when printing successful documents folder
         docTF = [False,False,False]
@@ -315,8 +315,8 @@ def setDocuments(D_app,D_files):
             print("[Handle][Define] Data files directory set to {0}".format(self.D_files))
 
             #Save new directories to properties.json
-            #with open(os.path.join(self.fileDir,'properties.json'),'w') as self.props_f:
-            #    json.dump(self.props,self.props_f,indent=4)
+            with open(os.path.join(self.D_app,'properties.json'),'w') as self.props_f:
+                json.dump(self.props,self.props_f,indent=4)
             
             #Print save message
             print("[Handle][Define] Directories saved to properties.json")

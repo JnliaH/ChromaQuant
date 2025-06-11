@@ -38,7 +38,7 @@ def handle(props):
     D_rsc = os.path.join(D_files,'resources')
     
     #Define theme directory
-    D_theme = os.path.join(D_rsc,'forest','forest-light.tcl')
+    D_theme = os.path.join(D_app,'Theme','Forest','forest-light.tcl')
     
     #Define response factors directory
     D_rf = os.path.join(D_files,'response-factors')
@@ -47,7 +47,7 @@ def handle(props):
     D_data = os.path.join(D_files,'data')
     
     #Define images directory
-    D_img = os.path.join(D_files,'images')
+    D_img = os.path.join(D_app,'Theme','Images')
     
     #Return directories as a dictionary
     return {'app':D_app,'files':D_files,'resources':D_rsc,'theme':D_theme,'rf':D_rf,'data':D_data,'images':D_img}
