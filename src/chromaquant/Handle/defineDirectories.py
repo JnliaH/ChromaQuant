@@ -25,12 +25,9 @@ Julia Hancock
 """ PACKAGES """
 import json
 import os
-import getpass
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
-import importlib.util
-import sys
 
 """ FUNCTIONS """
 
@@ -39,44 +36,42 @@ def updateDirectories(fileDir):
     #Import file information from json file
     with open(os.path.join(fileDir,'properties.json'),'r') as props_f:
         props = json.load(props_f)
-
     
+    #Extract files directory
+    D_files = props['file-directory']
+
     #Check the app directory, update as necessary
-    propsMid = checkApp(fileDir,props)
+    D_appOut = checkApp(fileDir,props['app-directory'])
 
     #Check the documents directory, update as necessary using UI
-    propsOut = checkDocuments(fileDir,propsMid)
+    D_filesOut = checkDocuments(D_appOut,D_files)
+
+    #Create propsOut
+    propsOut = {'app-directory':D_appOut,'file-directory':D_filesOut}
 
     return propsOut
 
 
-def checkApp(fileDir,propsIn):
+def checkApp(fileDir,D_app):
     """
     This function is used to check the validity of the app folder
 
     Parameters
     ----------
     fileDir : String
-    Path to source directory
-    propsIn : Dictionary
-        Dictionary containing key-value pairs unpacked from properties.json
+        Path to source directory
+    D_app : String
+        Path to saved apps directory
     Returns
     -------
     None
     """
-
-    #Extract app directory from passed dictionary
-    D_app = propsIn['app-directory']
-    #Initiate propsOut
-    propsOut = propsIn.copy()
 
     #If app directory is empty or not equal to fileDir, replace D_app
     if D_app != fileDir or D_app == "":
 
         #Define app directory as current file directory
         D_app = fileDir
-        #Set app-directory in props
-        propsOut['app-directory'] = D_app
         print("[Handle][Define] App directory updated, not saved")
 
     #Otherwise, pass
@@ -84,99 +79,145 @@ def checkApp(fileDir,propsIn):
         print("[Handle][Define] App directory already valid")
         pass
 
-    return propsOut
+    return D_app
 
-def checkDocuments(fileDir,propsIn):
+def checkDocuments(D_app,D_files):
     """
     This function is used to check the validity of the documents folder to be used for data and resource storage
 
     Parameters
     ----------
-    fileDir : String
-        Path to source directory
-    propsIn : Dictionary
-        Dictionary containing key-value pairs unpacked from properties.json
+    D_app : String
+        Path to saved apps directory
+    D_files : String
+        Path to saved documents directory
     Returns
     -------
     None
     """
     
-    #Define file directory
-    D_files = propsIn['file-directory']
+    def promptUser(msg,error_msg,D_app,D_files):
+        """
+        This function is used to prompt the user to update the documents folder
 
-    #Initialize propsOut
-    propsOut = propsIn.copy()
+        Parameters
+        ----------
+        msg : String
+            Prompt message
+        error_msg : String
+            Error message if user chooses not to update
+        D_app : String
+            Path to saved apps directory
+        D_files : String
+            Path to saved documents directory
+        Returns
+        -------
+        None
+        """
+        
+        def YNBox(msg):
+            #Define response
+            response = False
 
-    #Define required subdirectories as list
-    rqSubList = ["resources","response-factors","data","images"]
+            #Pop up message box
+            response = messagebox.askyesno("Warning",msg)
 
-    #Define list of booleans to check when printing successful documents folder
-    docTF = [False,False,False]
+            return response
+        
+        #Initiate tkinter window
+        promptroot = tk.Tk()
+        promptroot.withdraw()
 
-    #Check if directory exists
-    if os.path.isdir(D_files) and D_files != "":
+        response = YNBox(msg)
 
-        docTF[0] = True
-        pass
-
-    else:
-        print("[Handle][Define] Documents directory does not exist, please create it")
-        D_files = setDocuments(fileDir,propsIn)
-        #If directory is still empty after selection, raise error
-        if D_files == "":
-            raise ImportError("Documents directory does not exist")
+        if response:
+            print("[Handle][Define] Updating documents folder...")
+            #Close prompt UI
+            promptroot.destroy()
+            #Run documents UI
+            D_files = setDocuments(D_app,D_files)
         else:
-            pass
+            print("[Handle][Define] Not updating documents folder")
+            #Close UI
+            promptroot.destroy()
+            #Raise error
+            raise ImportError(error_msg)
+        
+        
+        
+        return D_files
 
-        pass
+    def checkRecursive(D_app,D_files):
 
-    #Get list of subdirectories
-    subList = os.listdir(D_files)
+        #Define required subdirectories as list
+        rqSubList = ["resources","response-factors","data","images"]
 
-    #Check if directory is empty
-    if subList:
-        docTF[1] = True
-        pass
-    else:
-        #Raise error
-        raise ImportError("Documents directory is empty")
+        #Define list of booleans to check when printing successful documents folder
+        docTF = [False,False,False]
 
-    #Check if directory contains every required subfolder
-    if set(rqSubList).issubset(set(subList)):
-        docTF[2] = True
-        pass
-    else:
-        #Create new list of missing elements
-        diff_list = [f"'{x}'" for x in rqSubList if x not in subList]
-        #Create error message
-        error_msg = "Documents directory is missing requiried subdirectories: " + ", ".join(diff_list)
-        #Raise error
-        raise ImportError(error_msg)
+        #Check if directory exists
+        if os.path.isdir(D_files) and D_files != "":
+            docTF[0] = True
 
-    #If no errors or stops, print valid directory statement
-    if all(docTF):
-        print("[Handle][Define] Documents directory already valid")
-    #If needed to select folder, print save statement
-    else:
-        print("[Handle][Define] Documents directory updated")
-        print("[Handle][Define] Directories saved to properties.json")
+        else:
+            print("[Handle][Define] Documents directory does not exist, please create it")
+            D_files = setDocuments(D_app,D_files)
+            #If directory is still nonexistent after selection, raise error
+            if D_files == "":
+                raise ImportError("Documents directory does not exist")
+            else:
+                pass
 
-    #Redefine props
-    propsOut['file-directory'] = D_files
+        #Get list of subdirectories
+        subList = os.listdir(D_files)
 
-    return propsOut
+        #Check if directory is empty
+        if subList:
+            docTF[1] = True
+
+            #Check if directory contains every required subfolder
+            if set(rqSubList).issubset(set(subList)):
+                docTF[2] = True
+
+            else:
+                #Create new list of missing elements
+                diff_list = [f"'{x}'" for x in rqSubList if x not in subList]
+                #Create error message
+                error_msg = "Documents directory is missing requiried subdirectories: " + ", ".join(diff_list)
+                #Prompt user to change directory
+                D_files = promptUser("The selected directory is missing required files, would you like to update it?",error_msg,D_app,D_files)
+
+        else:
+            #Prompt user to change directory
+            D_files = promptUser("The selected directory is empty, would you like to update it?","Documents directory is empty",D_app,D_files)
+            print(D_files)
+
+        #If no errors or stops, print valid directory statement
+        if all(docTF):
+            print("[Handle][Define] Documents directory valid")
+
+        #If at least one stop, rerun recursive function
+        else:
+            D_files = checkRecursive(D_app,D_files)
+
+        return D_files
+    
+    #Run recursive function
+    D_files = checkRecursive(D_app,D_files)
+
+    return D_files
 
 
-def setDocuments(fileDir, propsIn):
+def setDocuments(D_app,D_files):
     """
     This function is used to check the validity of the documents folder to be used for data and resource storage
 
     Parameters
     ----------
-    fileDir : String
-        Path to source directory
-    propsIn : Dictionary
-        Dictionary containing key-value pairs unpacked from properties.json
+    D_app : String
+        Path to saved apps directory
+    D_files : String
+        Path to saved files directory
     Returns
     -------
     None
@@ -184,20 +225,20 @@ def setDocuments(fileDir, propsIn):
 
     class docUI():
 
-        def __init__(self,main,fileDir,propsIn):
+        def __init__(self,main,D_app,D_files):
 
             #Print initialize statement
             print("[Handle][Define][docUI] Documents selection program initiated")
             #Extract passed mainframe
             self.main = main
             #Extract passed file directory
-            self.fileDir = fileDir
+            #self.D_files = fileDir
             #Extract passed properties file
-            self.props = propsIn.copy()
-            #Define file directory
-            self.D_files = self.props['file-directory']
+            #self.props = propsIn.copy()
             #Define app directory
-            self.D_app = self.props['app-directory']
+            self.D_app = D_app
+            #Define file directory
+            self.D_files = D_files
 
             #Configure mainframe
             self.main.title("Documents Selection")
@@ -249,9 +290,6 @@ def setDocuments(fileDir, propsIn):
             self.D_files = self.docPath
             self.updateDocuments()
 
-            #Show save message
-            messagebox.showinfo(title="Directories Saved",message="The app directory was saved as {0} and the file directory was saved as {1}".format(self.D_app,self.D_files))
-
             return None
         
         def saveSelection(self):
@@ -267,19 +305,25 @@ def setDocuments(fileDir, propsIn):
 
         def updateDocuments(self):
             
-            #Set file directory in props
-            self.props['file-directory'] = self.D_files
-
-            #Save new directories to properties.json
-            with open(os.path.join(self.fileDir,'properties.json'),'w') as self.props_f:
-                json.dump(self.props,self.props_f,indent=4)
+            #Create properties dictionary
+            self.props = {'app-directory':self.D_app,'file-directory':self.D_files}
 
             #Print app directory
             print("[Handle][Define] App directory set to {0}".format(self.D_app))
 
             #Print data files directory
             print("[Handle][Define] Data files directory set to {0}".format(self.D_files))
+
+            #Save new directories to properties.json
+            #with open(os.path.join(self.fileDir,'properties.json'),'w') as self.props_f:
+            #    json.dump(self.props,self.props_f,indent=4)
             
+            #Print save message
+            print("[Handle][Define] Directories saved to properties.json")
+            
+            #Show save message
+            messagebox.showinfo(title="Directories Saved",message="The app and documents directory have been updated")
+
             return None
 
         def getFileDirectory(self):
@@ -288,7 +332,7 @@ def setDocuments(fileDir, propsIn):
         
     root = tk.Tk()
 
-    myDocUI = docUI(root,fileDir,propsIn)
+    myDocUI = docUI(root,D_app,D_files)
     root.mainloop()
 
     print("[Handle][Define][docUI] Program terminated")

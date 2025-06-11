@@ -21,9 +21,7 @@ Julia Hancock
 """
 
 """ PACKAGES """
-import json
 import os
-import getpass
 
 """ FUNCTIONS """
 
