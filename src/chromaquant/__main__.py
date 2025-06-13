@@ -83,7 +83,7 @@ def runUI(file_dir):
     print("[__main__] Validating directories...")
     #Check and update app and documents directories
     props = hd.updateDirectories(file_dir)
-
+    print(props)
     print("[__main__] Unpacking directories...")
     #Get directories from handling script
     directories = hd.handle(props)
@@ -482,21 +482,21 @@ def runUI(file_dir):
         def runUPP(self):
             #Function for running the UPP function
             print("[__main__] Running Unknowns Analysis Postprocessing...")
-            ua.mainUAPP(self.var_dict['sampleVar'].get())
+            ua.mainUAPP(self.var_dict['sampleVar'].get(),self.directories)
             print("[__main__] UAPP complete")
             return None
         
         def runMatch(self):
             #Function for running the match function
             print("[__main__] Running FID and MS matching...")
-            mt.mainMatch(self.var_dict['sampleVar'].get(), self.var_dict['fpm_typevar'].get(),self.var_dict['fpm_modelvar'].get())
+            mt.mainMatch(self.var_dict['sampleVar'].get(), self.var_dict['fpm_typevar'].get(),self.var_dict['fpm_modelvar'].get(),self.directories)
             print("[__main__] Matching complete")
             return None
         
         def runQuant(self):
             #Function for running the quantification function
             print("[__main__] Running quantification...")
-            qt.mainQuant(self.var_dict['sampleVar'].get(), self.var_dict['quant_typevar'].get(), self.var_dict['quant_modelvar'].get())
+            qt.mainQuant(self.var_dict['sampleVar'].get(), self.var_dict['quant_typevar'].get(), self.var_dict['quant_modelvar'].get(),self.directories)
             print("[__main__] Quantification complete")
             return None
         

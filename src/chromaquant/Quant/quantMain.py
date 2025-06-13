@@ -67,7 +67,7 @@ quantphases = 'LG'
 
 """ DIRECTORIES """
 
-def mainQuant(sname,quantphases,quantmodel):
+def mainQuant(sname,quantphases,quantmodel,directories):
 
     print("[quantMain] Beginning quantification...")
     
@@ -76,8 +76,6 @@ def mainQuant(sname,quantphases,quantmodel):
     now = datetime.now()
 
     print("[quantMain] Getting directories...")
-    #Get directories from handling script
-    directories = hd.handle(app_dir)
 
     #Data file log directory
     directories['log'] = os.path.join(directories['data'],sname,'log')

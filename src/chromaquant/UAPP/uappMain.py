@@ -69,7 +69,7 @@ mtsb = import_from_path("mtsb",subpack_dir['MatchSub'])
 
 """ PARAMETERS """
 
-def mainUAPP(sname):
+def mainUAPP(sname,directories):
 
     print("[uappMain] Beginning match...")
 
@@ -79,8 +79,6 @@ def mainUAPP(sname):
 
     """ DIRECTORIES """
     print("[uappMain] Getting directories...")
-    #Get directories from handling script
-    directories = hd.handle(app_dir)
 
     #Data file log directory
     directories['log'] = os.path.join(directories['data'],sname,'log')

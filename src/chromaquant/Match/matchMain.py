@@ -112,7 +112,7 @@ def getFitLambda(fit_param):
         return fit
 
 """ MATCH FUNCTION """
-def mainMatch(sname,sphase,model):
+def mainMatch(sname,sphase,model,directories):
 
     print("[matchMain] Beginning match...")
 
@@ -122,8 +122,6 @@ def mainMatch(sname,sphase,model):
 
     """ DIRECTORIES """
     print("[matchMain] Getting directories...")
-    #Get directories from handling script
-    directories = hd.handle(app_dir)
 
     #Data file log directory
     directories['log'] = os.path.join(directories['data'],sname,'log')
