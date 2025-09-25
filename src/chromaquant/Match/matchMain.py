@@ -178,7 +178,7 @@ def mainMatch(sname,sphase,model,directories):
     fpmDF, tf = hd.checkFile(paths[2],paths[0])
 
     # Get dictionary of paths to manual FIDpMS peak labels
-    manualPairsPathDict = analysis_config["FIDpMS-manual-path"]
+    manualPairsPathDict = {key:os.path.join(directories['resources'],analysis_config["FIDpMS-manual-path"][key]) for key in analysis_config["FIDpMS-manual-path"]}
 
     # Import dataframe for each manual pairs resource
     manualPairsDict = {key:pd.read_csv(manualPairsPathDict[key]) for key in manualPairsPathDict}
@@ -237,4 +237,5 @@ def mainMatch(sname,sphase,model,directories):
     return None
 
 #For testing
-#mainMatch('example2','L','R')
+#directories = {}
+#mainMatch('example2','L','R',directories)
