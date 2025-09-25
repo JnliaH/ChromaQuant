@@ -169,13 +169,23 @@ def mainMatch(sname,sphase,model,directories):
     print("[matchMain] Running match functions...")
 
     #Run the file naming function – this function will create paths to all relevant files for matching FID and MS peaks according to sample name and phase
-    print("[matchMain] Getting data pths...")
+    print("[matchMain] Getting data paths...")
     paths = hd.fileNamer(sname,sphase,file_suffix,directories['raw'])
 
     # Run the file checking function – this function will search for an existing FIDpMS file, creating one if it does not exist. 
     # It will then read the file as a pandas DataFrame. The tf Boolean describes whether or not there exist manually-matched peaks.
     print("[matchMain] Checking for FIDpMS file...")
     fpmDF, tf = hd.checkFile(paths[2],paths[0])
+
+    # Get dictionary of paths to manual FIDpMS peak labels
+    manualPairsPathDict = analysis_config["FIDpMS-manual-path"]
+
+    # Import dataframe for each manual pairs resource
+    manualPairsDict = {key:pd.read_csv(manualPairsPathDict[key]) for key in manualPairsPathDict}
+
+    # Run the manual peak matching function to apply labels specified in FIDpMS-manual-match-path
+    for key in manualPairsDict: 
+        fpmDF = mtsb.matchKnownPeaks(fpmDF,manualPairsDict[key])
 
     # Import MS UPP data
     print("[matchMain] Importing mass spectrometry data...")

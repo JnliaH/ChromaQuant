@@ -208,9 +208,9 @@ def matchRT(fpmDF,mDF,peakError=0.06):
     
     return fpmDF
 
-#Function that performs a subset of speculative labeling, using known peaks hard-coded in a file gasPairs_FIDpMS.csv 
-def matchKnownPeaks(fpmDF,mDF,gp_rsc):
-    def matchOne(fpmDF,fpmiter,gp_rsc):
+#Function that performs a subset of speculative labeling, using known peaks hard-coded in specified files
+def matchKnownPeaks(fpmDF,pairs_rsc):
+    def matchOne(fpmDF,fpmiter,pairs_rsc):
         """
         Parameters
         ----------
@@ -218,8 +218,8 @@ def matchKnownPeaks(fpmDF,mDF,gp_rsc):
             Dataframe containing FID and MS peak info
         fpmiter : List
             List containing current index and row in fpmDF of interest in form [i,row]
-        gp_rsc : DataFrame
-            Dataframe containing opened gasPairs resource.
+        pairs_rsc : DataFrame
+            Dataframe containing opened resources.
         peakError : float
             Allowable error between estimated MS RT's and actual MS RT's
 
@@ -233,33 +233,34 @@ def matchKnownPeaks(fpmDF,mDF,gp_rsc):
         fpmi = int(fpmiter[0])
         fpmrow = fpmiter[1]
         
-        #Search the gasPairs resource to see if any known peaks/RT's match the FID peak list
-        for i, row in gp_rsc.iterrows():
-            #Set gp_match to empty string
-            gp_match = pd.Series()
+        #Search the resource to see if any known peaks/RT's match the FID peak list
+        for i, row in pairs_rsc.iterrows():
+            #Set rsc_match to empty string
+            rsc_match = pd.Series()
             #Define error as two times the standard deviation for the FID RT in the gasPeaks resource
-            gp_error = row['Stdev FID RT']*2
+            rsc_error = row['Stdev FID RT']*2
             #Extract the FID RT from the resource
-            gp_FIDRT = row['Average FID RT']
+            rsc_FIDRT = row['Average FID RT']
             #If the current fpmrow FID RT is within the error bounds of an entry in the resource, match it
-            #NOTE: prefers the first match, even if the next match is closer. Most resourceRT's are more than 
+            #NOTE: prefers the first match, even if the next match is closer. Most resource RT's are more than 
             #2*error away from each other
-            if (fpmrow['FID RT'] >= gp_FIDRT - gp_error) and (fpmrow['FID RT'] <= gp_FIDRT + gp_error):
-                gp_match = row
+            if (fpmrow['FID RT'] >= rsc_FIDRT - rsc_error) and (fpmrow['FID RT'] <= rsc_FIDRT + rsc_error):
+                rsc_match = row
                 break
             #Otherwise, pass
             else:
                 pass
         
-        #If gp_match is empty, pass
-        if gp_match.empty:
+        #If rsc_match is empty, pass
+        if rsc_match.empty:
             pass
+
         #Otherwise, add the match info
         else:
             #Add the resource match info to the FIDpMS dataframe
-            fpmDF.at[fpmi,'Compound Name'] = gp_match['Species']
-            fpmDF.at[fpmi,'Formula'] = gp_match['Formula']
-            fpmDF.at[fpmi,'Compound Source'] = 'Automatically assigned using gas pairs provided in resources'
+            fpmDF.at[fpmi,'Compound Name'] = rsc_match['Species']
+            fpmDF.at[fpmi,'Formula'] = rsc_match['Formula']
+            fpmDF.at[fpmi,'Compound Source'] = 'Assigned using manually-specified peak resource'
         
         return fpmDF
     
@@ -273,10 +274,10 @@ def matchKnownPeaks(fpmDF,mDF,gp_rsc):
             #Otherwise..
             else:
                 #Match one FID peak
-                fpmDF = matchOne(fpmDF, [i,row], gp_rsc)
+                fpmDF = matchOne(fpmDF, [i,row], pairs_rsc)
         #Otherwise, if the row's compound name is blank..
         else:
             #Match one FID peak
-            fpmDF = matchOne(fpmDF, [i,row], gp_rsc)
+            fpmDF = matchOne(fpmDF, [i,row], pairs_rsc)
     
     return fpmDF
