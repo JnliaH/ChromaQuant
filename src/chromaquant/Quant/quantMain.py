@@ -41,7 +41,8 @@ app_dir =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #Get absolute directories for subpackages
 subpack_dir = {'Handle':os.path.join(app_dir,'Handle','__init__.py'),
                'Manual':os.path.join(app_dir,'Manual','__init__.py'),
-               'QuantSub':os.path.join(app_dir,'Quant','QuantSub','__init__.py')}
+               'QuantSub':os.path.join(app_dir,'Quant','QuantSub','__init__.py'),
+               'Output':os.path.join(app_dir,'Output','__init__.py')}
 
 #Define function to import from path
 def import_from_path(module_name,path):
@@ -59,13 +60,14 @@ def import_from_path(module_name,path):
 hd = import_from_path("hd",subpack_dir['Handle'])
 mn = import_from_path("mn",subpack_dir['Manual'])
 qtsb = import_from_path("qt",subpack_dir['QuantSub'])
+opt = import_from_path("opt",subpack_dir['Output'])
 
 """ VARIABLES FOR TESTING """
 
 sname = 'example2'
-quantphases = 'LG'
+quantphases = 'L'
 
-""" DIRECTORIES """
+""" FUNCTIONS """
 
 def mainQuant(sname,quantphases,quantmodel,directories):
 
@@ -75,6 +77,8 @@ def mainQuant(sname,quantphases,quantmodel,directories):
     print("[quantMain] Getting current time...")
     now = datetime.now()
 
+    """ DIRECTORIES """
+    
     print("[quantMain] Getting directories...")
 
     #Data file log directory
@@ -348,60 +352,12 @@ def mainQuant(sname,quantphases,quantmodel,directories):
     bfn = sname+"_Breakdown_"+nows+".xlsx"
 
     #Create pandas Excel writers
-    writer = pd.ExcelWriter(hd.fileCheck(os.path.join(directories['break'],bfn)), engine="xlsxwriter")
+    #writer = pd.ExcelWriter(hd.fileCheck(os.path.join(directories['break'],bfn)), engine="xlsxwriter")
 
     #Get dataframe for sample info
     sinfo_DF = pd.DataFrame(sinfo,index=[0])
-        
-    #If the run liquid analysis Boolean is True..
-    if lgTF[0]:
-        #Position the liquid FID dataframes in the worksheet.
-        sinfo_DF.to_excel(writer, sheet_name="Liquid FID",startcol=1, startrow=1, index=False) 
-        LQ_FID_BreakdownDF.to_excel(writer, sheet_name="Liquid FID",startcol=1, startrow=4, index=False)
-        LQCT_DF.to_excel(writer, sheet_name="Liquid FID",startcol=16, startrow=7, index=False)
-        LQCN_DF.to_excel(writer, sheet_name="Liquid FID", startcol=16, startrow=15, index=False)
-        LQmass_DF.to_excel(writer, sheet_name="Liquid FID",startcol=22, startrow=4,index=False)
-        LQCTCN_DF.to_excel(writer, sheet_name="Liquid FID", startcol=20, startrow=10, index=False)
-    else:
-        pass
 
-    #If the run gas analysis Boolean is True..
-    if lgTF[1]:
-
-        #Expand sample info dataframe to include total TCD mass and gas bag volume
-        sinfo_DF.at[0,'Total product (mg)'] = GS_TCD_BreakdownDF['Mass (mg)'].sum()
-        sinfo_DF.at[0,'Gas bag volume with CO2 (mL)'] = V_TC
-
-        #If the Scale Factor method was used...
-        if quantmodel == 'S':
-            #Expand sample info dataframe to include scale factor
-            sinfo_DF.at[0,'Scale Factor'] = SF
-        #Otherwise, pass
-        else:
-            pass
-
-        #Position the gas FID dataframes in the worksheet.
-        sinfo_DF.to_excel(writer, sheet_name="Gas FID",startcol=1, startrow=1, index=False) 
-        GS_FID_BreakdownDF.to_excel(writer, sheet_name="Gas FID",startcol=1, startrow=4, index=False)
-        GSCT_DF.to_excel(writer, sheet_name="Gas FID",startcol=18, startrow=7, index=False)
-        GSCN_DF.to_excel(writer, sheet_name="Gas FID", startcol=18, startrow=15, index=False)
-        GSmass_DF.to_excel(writer, sheet_name="Gas FID",startcol=22, startrow=4,index=False)
-        GSCTCN_DF.to_excel(writer, sheet_name="Gas FID",startcol=22, startrow=10,index=False)
-
-        #Position the gas TCD dataframes in the worksheet
-        GS_TCD_BreakdownDF.to_excel(writer, sheet_name="Gas TCD",startcol=1,startrow=4, index=False)
-        sinfo_DF.to_excel(writer, sheet_name="Gas TCD",startcol=1, startrow=1, index=False)
-
-    else:
-        pass
-
-    #If both the gas and liquid analysis Booleans are True..
-    if lgTF[0] and lgTF[1]:
-        #Position the total product dataframe in the worksheet
-        total_CTCN_DF.to_excel(writer, sheet_name = "Total",startcol=1, startrow=1,index=False)
-
-    #Close the Excel writer
-    writer.close()
+    opt.exportToExcel(sname,sinfo,directories['break'],analysis_config,LQ_FID_BreakdownDF,GS_FID_BreakdownDF,GS_TCD_BreakdownDF)
 
     print("[quantMain] Quantification complete.")
 
@@ -411,5 +367,3 @@ def mainQuant(sname,quantphases,quantmodel,directories):
 
     #Close main function by returning
     return None
-
-#mainQuant(sname,quantphases)
