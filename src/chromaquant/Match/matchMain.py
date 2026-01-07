@@ -32,38 +32,6 @@ import logging
 import scipy
 import importlib.util
 
-""" DIRECTORIES (MANUAL) """
-"""
-testPath = "/Users/connards/Desktop/University/Rorrer Lab/Scripts/chromaquant/src/chromaquant/"
-#Define file directory
-D_files = "/Users/connards/Documents/ChromaQuant"
-
-#Define app directory
-D_app = "/Users/connards/Desktop/University/Rorrer Lab/Scripts/chromaquant/src/chromaquant"
-    
-#Define resources directory
-D_rsc = os.path.join(D_files,'resources')
-    
-#Define theme directory
-D_theme = os.path.join(D_rsc,'forest','forest-light.tcl')
-    
-#Define response factors directory
-D_rf = os.path.join(D_files,'response-factors')
-    
-#Define data directory
-D_data = os.path.join(D_files,'data')
-    
-#Define images directory
-D_img = os.path.join(D_files,'images')
-
-directories = {'files':D_files,'resources':D_rsc,'theme':D_theme,'rf':D_rf,'data':D_data,'images':D_img}
-"""
-
-""" VARIABLES FOR TESTING"""
-
-#sname = 'example2'
-#sphase = 'L'
-
 """ LOCAL PACKAGES """
 
 #Get package directory

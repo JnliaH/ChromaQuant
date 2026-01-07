@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
 ChromaQuant.Handle package initialization
 
@@ -12,3 +11,4 @@ Created 10-19-2024
 from .handleDirectories import *
 from .defineDirectories import *
 from .fileChecks import *
+from .dataframe_processing import *

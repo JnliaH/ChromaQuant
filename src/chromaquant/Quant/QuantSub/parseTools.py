@@ -158,5 +158,3 @@ def insertCN(CTCN_DF):
     CTCN_DF.insert(loc=0, column='Carbon Number', value=CN_list)
 
     return CTCN_DF
-
-#findRecentFile('LRF','.xlsx','/Users/connards/Documents/ChromaQuant/response-factors')

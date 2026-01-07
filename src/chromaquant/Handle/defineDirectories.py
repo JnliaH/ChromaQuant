@@ -339,5 +339,3 @@ def setDocuments(D_app,D_files):
     D_files = myDocUI.getFileDirectory()
 
     return D_files
-
-#updateDirectories("/Users/connards/Desktop/chromaquant/src/chromaquant")
