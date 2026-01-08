@@ -13,62 +13,34 @@ License: BSD 3-Clause License
 
 ---
 
-CLASS DEFINITIONS FOR SIGNAL AND QUANTSIGNAL
+CLASS DEFINITIONS FOR SIGNAL
 
 Julia Hancock
 Started 11-11-2025
 
 """
-import importlib.util
-import logging
+
 import os
 import pandas as pd
-import sys
+from chromaquant import import_local_packages as ilp
+from chromaquant import logging_and_handling as lah
+from .match_tools import match_dataframes
 
-""" LOGGING """
+""" LOGGING AND HANDLING """
 
-# Initialize and format logger
-logger = logging.getLogger(__name__)
-console_handler = logging.StreamHandler()
-logger.addHandler(console_handler)
-formatter = logging.Formatter(
-            "{asctime} - [{name:^8s}][{levelname:^8s}] {message}",
-            style='{',
-            datefmt='%Y-%m-%d %H:%M')
-console_handler.setFormatter(formatter)
-formatter_length = 40
+# Get the logger
+logger = lah.setup_logger()
 
-# Set logger level - NOTE: Change before commit if debugging
-logger.setLevel(logging.DEBUG)
+# Get an error logging decorator
+error_logging = lah.setup_error_logging(logger)
 
 """ LOCAL PACKAGES """
 
-# Get package directory
-app_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 # Get absolute directories for subpackages
-subpack_dir = {'Handle': os.path.join(app_dir, 'Handle', '__init__.py'),
-               'Manual': os.path.join(app_dir, 'Manual', '__init__.py'),
-               'Match': os.path.join(app_dir, 'Match', '__init__.py')}
-
-
-# Define function to import from path
-def import_from_path(module_name, path):
-    # Define spec
-    spec = importlib.util.spec_from_file_location(module_name, path)
-    # Define module
-    module = importlib.util.module_from_spec(spec)
-    # Expand sys.modules dict
-    sys.modules[module_name] = module
-    # Load module
-    spec.loader.exec_module(module)
-    return module
-
+subpack_dir = ilp.get_local_package_directories()
 
 # Import all local packages
-hd = import_from_path("hd", subpack_dir['Handle'])
-mn = import_from_path("mn", subpack_dir['Manual'])
-mt = import_from_path("mt", subpack_dir['Match'])
+hd = ilp.import_from_path("hd", subpack_dir['Handle'])
 
 """ CLASSES """
 
@@ -270,10 +242,10 @@ class Signal:
         """ MATCH DATAFRAMES """
         # Match the local and import data sets
         self.data[match_key] = \
-            mt.match_dataframes(self.data[match_key],
-                                self.data['match_import_data'],
-                                self.match_dict,
-                                self.match_config)
+            match_dataframes(self.data[match_key],
+                             self.data['match_import_data'],
+                             self.match_dict,
+                             self.match_config)
 
         """ ADJUST OUTPUT """
 

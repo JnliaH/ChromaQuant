@@ -27,13 +27,13 @@ import sys
 def get_local_package_directories():
 
     # Get package directory
-    app_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    app_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Get absolute directories for subpackages
     subpack_dir = {'Handle': os.path.join(app_dir, 'Handle', '__init__.py'),
                    'Match': os.path.join(app_dir, 'Match', '__init__.py'),
                    'Signal': os.path.join(app_dir, 'Signal', '__init__.py'),
-                   'Output': os.path.join(app_dir, 'Output', '__init__.py')}
+                   'Results': os.path.join(app_dir, 'Results', '__init__.py')}
 
     return subpack_dir
 

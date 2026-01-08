@@ -69,8 +69,8 @@ ua = import_from_path("ua",subpack_dir['UAPP'])
 
 """ PARAMETERS """
 print("[__main__] Defining parameters...")
-__version__ = "0.4.0"
-version = "0.4.0"
+__version__ = "0.4.1"
+version = "0.4.1"
 
 """ RUNUI FUNCTION """
 

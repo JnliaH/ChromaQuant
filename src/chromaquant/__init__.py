@@ -9,7 +9,7 @@ Created 10-20-2024
 
 """
 
-import import_local_packages as cq_ilp
-import Handle as Handle
-import Signal as Signal
-import Results as Results
+from .import_local_packages import \
+    get_local_package_directories, import_from_path
+from .Signal import Signal
+from .Results import Results

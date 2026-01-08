@@ -40,10 +40,6 @@ Repository = "https://github.com/JnliaH/ChromaQuant"
 
 [tool.hatch.build.targets.sdist]
 include	= [
-	"/forms",
-	"/images",
-	"/resources",
-	"/response-factors",
 	"/src",
 	"CONTRIBUTING.md",
 	"README.md",
@@ -53,12 +49,10 @@ include	= [
 
 exclude = [
 	"/__pycache__",
-	"/appdist",
-	"/build",
-	"/data",
-	"/shells",
-	"/spec",
-	"ChromaQuantIcon.icns",
+	"/dist",
+	"/.venv",
+	"/.conda",
+
 ]
 
 [tool.hatch.version]
@@ -66,9 +60,6 @@ path = "src/chromaquant/__main__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/chromaquant"]
-
-[project.gui-scripts]
-chroma-ui = "chromaquant.__main__:runUI"
 
 [pytest]
 addopts = ["--import-mode=importlib"]

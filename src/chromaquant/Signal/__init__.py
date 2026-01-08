@@ -9,5 +9,5 @@ Created 12-10-2024
 
 """
 
+from .match_tools import *
 from .signal import Signal
-from .signal import QuantSignal
