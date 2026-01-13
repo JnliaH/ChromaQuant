@@ -20,7 +20,6 @@ Started 01-12-2025
 
 """
 
-from .formula_tools import check_cell_name
 from .. import logging_and_handling as lah
 
 """ LOGGING AND HANDLING """
@@ -34,6 +33,7 @@ error_logging = lah.setup_error_logging(logger)
 """ CLASS """
 
 
+# Define the DataSet class
 class DataSet():
 
     def __init__(self, *args, **kwargs):
@@ -45,27 +45,14 @@ class DataSet():
 
         # Initialize class attributes
         self.type = 'table'
+        self._start_cell = '$A$1'
+        self._sheet = 'Sheet1'
 
         # Define the permitted keyword arguments
         self.permitted_kwargs = ['sheet', 'start_cell']
 
         # Get class attributes from passed variable keyword arguments
         self.create_attributes_kwargs(kwargs)
-
-        # Try to check the start cell name
-        try:
-            # If name meets requirements, pass
-            if check_cell_name(self._start_cell):
-                pass
-            # Otherwise, raise error
-            else:
-                raise ValueError(f'Starting cell "{self._start_cell}"'
-                                 ' is not valid')
-
-        # Log if unable to check the start cell name
-        except AttributeError as e:
-            logger.warning(e)
-            pass
 
     # Sheet properties
     # Getter

@@ -13,3 +13,5 @@ from .import_local_packages import \
     get_local_package_directories, import_from_path
 from .Signal import Signal
 from .Results import Results
+from .Results import Table
+from .Results import Value

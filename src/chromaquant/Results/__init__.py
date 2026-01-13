@@ -10,3 +10,6 @@ Created 10-19-2024
 """
 
 from .results import Results
+from .formula import Formula
+from .table import Table
+from .value import Value

@@ -46,7 +46,7 @@ sg = ilp.import_from_path("sg", subpack_dir['Signal'])
 """ CLASS """
 
 
-# Define the results class
+# Define the Results class
 class Results():
 
     def __init__(self, output_key, **kwargs):
@@ -93,30 +93,6 @@ class Results():
 
         # Create a new value entry in the values dictionary
         self.values[value_name] = Value(data, **kwargs)
-
-        return None
-
-    # Function to add a new column to a table
-    @error_logging
-    def add_table_column(self,
-                         table_name,
-                         column_name,
-                         column_values=float('nan')):
-
-        # Get a copy of the table DataFrame
-        output_dataframe = self.tables[table_name]['data'].copy()
-
-        # Set every entry in the column to column_values
-        # If column_values is an iterable, this will iterate
-        # through it, otherwise it will set every entry to
-        # the same value
-        output_dataframe[column_name] = column_values
-
-        # Replace the table DataFrame with the new DataFrame
-        self.tables[table_name]['data'] = output_dataframe.copy()
-
-        # Update the column
-        self.update_table(table_name)
 
         return None
 

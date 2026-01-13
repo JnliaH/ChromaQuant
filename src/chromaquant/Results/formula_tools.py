@@ -26,26 +26,6 @@ from openpyxl.utils import get_column_letter, coordinate_to_tuple
 """ FUNCTIONS """
 
 
-# Function for checking that a passed cell has letters followed by number
-def check_cell_name(cell):
-
-    # Initialize tf
-    tf = False
-
-    # Define the cell format pattern
-    cell_format = '^[A-Za-z]+\\d+$'
-
-    # If the cell matches the expected format, set tf to True
-    if re.match(cell_format, cell):
-        tf = True
-
-    # Otherwise, pass
-    else:
-        pass
-
-    return tf
-
-
 # Function for checking that passed formula starts with '='
 def check_formula_starts_with_equals(formula):
 
