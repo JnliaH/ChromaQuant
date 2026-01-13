@@ -20,11 +20,11 @@ Started 12-10-2025
 
 """
 
-import re
-from openpyxl.utils import get_column_letter, coordinate_to_tuple
 from .. import import_local_packages as ilp
 from .. import logging_and_handling as lah
 from .formula import Formula
+from .table import Table
+from .value import Value
 
 """ LOGGING AND HANDLING """
 
@@ -80,67 +80,19 @@ class Results():
 
     # Function to add a new table to the results
     @error_logging
-    def add_table(self,
-                  table_name,
-                  data_frame,
-                  sheet='Sheet1',
-                  start_cell='A1'):
+    def add_table(self, table_name, data_frame, **kwargs):
 
-        # If cell is a valid format...
-        if self.check_cell_name(start_cell):
-
-            # Get the list of columns
-            col_list = data_frame.columns.tolist()
-            # Create a new table entry in the tables dictionary
-            self.tables[table_name] = {'header':
-                                       {'type': 'table',
-                                        'sheet': sheet,
-                                        'start_cell': start_cell,
-                                        'length': len(data_frame),
-                                        'columns': col_list
-                                       },
-                                       'data': data_frame
-                                       }
-        # Otherwise, raise error
-        else:
-            raise ValueError(f'Starting cell "{start_cell}" is not valid')
-        return None
-
-    # Function for updating a table's column and length headers
-    @error_logging
-    def update_table(self, table_name):
-
-        # Update the length header
-        self.tables[table_name]['header']['length'] = \
-            len(self.tables[table_name]['data'])
-        
-        # Update the column header
-        self.tables[table_name]['header']['columns'] = \
-            self.tables[table_name]['data'].columns.tolist()
+        # Create a new table entry in the tables dictionary
+        self.tables[table_name] = Table(data_frame, **kwargs)
 
         return None
 
     # Function to add a new value to the results
     @error_logging
-    def add_value(self,
-                  value_name,
-                  data,
-                  sheet='Sheet1',
-                  cell='A1'):
+    def add_value(self, value_name, data, **kwargs):
 
-        # If cell is a valid format...
-        if self.check_cell_name(cell):
-            # Create a new value entry in the values dictionary
-            self.values[value_name] = {'header':
-                                       {'type': 'value',
-                                        'sheet': sheet,
-                                        'cell': cell
-                                       },
-                                       'data': data
-                                       }
-        # Otherwise, raise error
-        else:
-            raise ValueError(f'Cell "{cell}" is not valid')
+        # Create a new value entry in the values dictionary
+        self.values[value_name] = Value(data, **kwargs)
 
         return None
 
@@ -168,26 +120,6 @@ class Results():
 
         return None
 
-    # Function for checking that a passed cell has letters followed by number
-    @staticmethod
-    def check_cell_name(cell):
-
-        # Initialize tf
-        tf = False
-
-        # Define the cell format pattern
-        cell_format = '^[A-Za-z]+\\d+$'
-
-        # If the cell matches the expected format, set tf to True
-        if re.match(cell_format, cell):
-            tf = True
-
-        # Otherwise, pass
-        else:
-            pass
-
-        return tf
-
     # Function to add a new Excel formula to a cell or table
     @error_logging
     def add_new_formula(self, formula, value_or_column_name, table=''):
@@ -200,18 +132,19 @@ class Results():
         formula_obj = Formula(formula)
 
         # Create a dictionary containing headers for each value
-        value_headers = {value_name:self.values[value_name]['header']
-                    for value_name in self.values}
+        value_headers = {value_name: self.values[value_name]['header']
+                         for value_name in self.values}
 
         # Create a dictionary containing headers for each table
-        table_headers = {table_name:self.tables[table_name]['header']
-                            for table_name in self.tables}
+        table_headers = {table_name: self.tables[table_name]['header']
+                         for table_name in self.tables}
 
         # If there was no table string...
         if table == '':
 
             # Process the formula inserts
-            formula_obj.process_value_formula_inserts(value_headers, table_headers)
+            formula_obj.process_value_formula_inserts(value_headers,
+                                                      table_headers)
 
             # Set the corresponding value in the values object to new_formula
             self.values[value_or_column_name] = formula_obj.new_formula
@@ -223,12 +156,24 @@ class Results():
             pointers['table'] = table
 
             # Process the formula inserts
-            formula_obj.process_table_formula_inserts(value_headers, table_headers, pointers)
+            formula_obj.process_table_formula_inserts(value_headers,
+                                                      table_headers,
+                                                      pointers)
 
             # Set the corresponding column in the table to new_formula
-            self.tables[table]['data'][value_or_column_name] = formula_obj.new_formula
+            self.tables[table]['data'][value_or_column_name] = \
+                formula_obj.new_formula
 
             # Update the table
             self.update_table(table)
 
         return None
+
+    # Function for creating a formula by introducing an operator
+    # between two references based on those reference's pointers
+    def operation_formula(self, ref_1, ref_2, operator):
+
+        # Initialize formula
+        formula = f'|{ref_1}|{operator}|{ref_2}|'
+
+        return formula

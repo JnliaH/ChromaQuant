@@ -66,13 +66,7 @@ class Signal:
         self.data = {}
 
         # Extract passed keywork arguments
-        for key, value in kwargs.items():
-            # Define a prefix
-            prefix = 'signalkwarg'
-            # Create an attribute name using the defined prefix
-            attribute_name = prefix + '_' + key
-            # Set attribute using name and key-value pair
-            setattr(self, attribute_name, value)
+        self.create_attributes_kwargs('signalkwarg', kwargs)
 
     """ METHODS """
     # Import data
