@@ -5,7 +5,7 @@ COPYRIGHT STATEMENT:
 
 ChromaQuant – A quantification software for complex gas chromatographic data
 
-Copyright (c) 2025, by Julia Hancock
+Copyright (c) 2026, by Julia Hancock
               Affiliation: Dr. Julie Elaine Rorrer
               URL: https://www.rorrerlab.com/
 
@@ -13,10 +13,10 @@ License: BSD 3-Clause License
 
 ---
 
-SUBPACKAGE FOR MATCHING DATAFRAME ROWS ACCORDING TO A PASSED MODEL
+TOOLS FOR MATCHING DATAFRAME ROWS ACCORDING TO A PASSED MODEL
 
 Julia Hancock
-Started 11/13/2025
+Started 11-13-2025
 
 """
 
@@ -24,7 +24,7 @@ Started 11/13/2025
 
 
 # Function that matches one DataFrame's values to another using some comparison
-def match_dataframes(main_DF, second_DF, match_dict, match_config):
+def match_dataframes(main_DF, second_DF, match_config):
 
     # Function that adds data from one row to another
     def add_to_first(first, second, add_columns):
@@ -41,19 +41,19 @@ def match_dataframes(main_DF, second_DF, match_dict, match_config):
 
     # Function that searches through the second_DF
     # for a match to one row in the main_DF
-    def match_one_row(main_row, second_DF, match_dict, match_config):
+    def match_one_row(main_row, second_DF, match_config):
 
         # Create a copy of the passed main_row
         new_main_row = main_row.copy()
 
         # Get the comparison value from the new main row
-        main_comp_value = new_main_row[match_dict['local_comparison']]
+        main_comp_value = new_main_row[match_config['first_comparison']]
 
         # Get the import_include_columns
         import_include_col = match_config['import_include_col']
 
         # Get the comparison header of the second_DF
-        second_comp_header = match_dict['import_comparison']
+        second_comp_header = match_config['second_comparison']
 
         # Get the comparison function
         comp_func = match_config['match_comparison_function']
@@ -139,15 +139,16 @@ def match_dataframes(main_DF, second_DF, match_dict, match_config):
 
         return new_main_row
 
-    # Create a copy of the passed DataFrame
+    # Create a copy of the passed DataFrames
     new_main_DF = main_DF.copy()
+    new_second_DF = second_DF.copy()
 
     # For every row in the main dataframe...
     for i, row in main_DF.iterrows():
 
         # Get the output of the match_one_row function for that row
         new_row = \
-            match_one_row(row, second_DF, match_dict, match_config)
+            match_one_row(row, new_second_DF, match_config)
 
         new_main_DF.loc[i] = new_row
 

@@ -22,14 +22,15 @@ import logging
 from functools import wraps
 
 
-# Function to initialize and format logger
-def setup_logger():
+# Function to format logger
+def setup_logger(logger):
 
-    # Initialize logger
-    logger = logging.getLogger(__name__)
-    console_handler = logging.StreamHandler()
+    # Check if logger has handlers, clear if so
+    if (logger.hasHandlers()):
+        logger.handlers.clear
 
     # Add a handler for the console
+    console_handler = logging.StreamHandler()
     logger.addHandler(console_handler)
 
     # Create a formatter object

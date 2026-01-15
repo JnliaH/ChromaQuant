@@ -23,6 +23,25 @@ Started 11/12/2025
 """ FUNCTIONS """
 
 
+# Function to loop through keys in a passed dictionary and
+# check them against a list of permitted keys or dictionary
+# with permitted keys
+def check_dict_keys(dictionary, permitted):
+
+    # For every key-value pair in the dictionary...
+    for key, value in dictionary.items():
+
+        # If the current key is not permitted, raise an error
+        if key not in permitted:
+            raise ValueError(f'{key} is not a valid argument')
+
+        # Otherwise, pass
+        else:
+            pass
+
+    return None
+
+
 def column_adjust(dataframe, add_col=[], remove_col=[], rename_dict={}):
     """
     Function used to add, remove, or rename

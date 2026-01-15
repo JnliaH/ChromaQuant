@@ -9,7 +9,6 @@ Created 10-20-2024
 
 """
 
-from .Signal import Signal
-from .Results import Results
+from .results import Results
 from .data import Table
 from .data import Value

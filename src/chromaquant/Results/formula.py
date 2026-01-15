@@ -20,6 +20,7 @@ Started 01-07-2026
 
 """
 
+import logging
 import re
 from ..logging_and_handling import setup_logger, setup_error_logging
 from .formula_tools import get_column_letter_from_table, \
@@ -30,8 +31,11 @@ from .formula_tools import get_column_letter_from_table, \
 
 """ LOGGING AND HANDLING """
 
-# Get the logger
-logger = setup_logger()
+# Create a logger
+logger = logging.getLogger(__name__)
+
+# Format the logger
+logger = setup_logger(logger)
 
 # Get an error logging decorator
 error_logging = setup_error_logging(logger)

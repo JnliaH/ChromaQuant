@@ -20,14 +20,18 @@ Started 01-12-2025
 
 """
 
+import logging
 from openpyxl.utils.cell import coordinate_from_string
 from .dataset import DataSet
 from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """
 
-# Get the logger
-logger = setup_logger()
+# Create a logger
+logger = logging.getLogger(__name__)
+
+# Format the logger
+logger = setup_logger(logger)
 
 # Get an error logging decorator
 error_logging = setup_error_logging(logger)
@@ -53,6 +57,24 @@ class Value(DataSet):
         return self._reference
 
     # Redefining properties to include update_value
+    # Data properties
+    # Getter
+    @property
+    def data(self):
+        return self._data
+
+    # Setter
+    @data.setter
+    def data(self, value):
+        self._data = value
+        self.update_value()
+
+    # Deleter
+    @data.deleter
+    def data(self):
+        del self._data
+        self.update_value()
+
     # Sheet properties
     # Getter
     @property

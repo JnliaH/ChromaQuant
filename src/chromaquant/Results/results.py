@@ -20,14 +20,18 @@ Started 12-10-2025
 
 """
 
+import logging
 from ..logging_and_handling import setup_logger, setup_error_logging
 from .formula import Formula
 from ..data import Table, Value
 
 """ LOGGING AND HANDLING """
 
-# Get the logger
-logger = setup_logger()
+# Create a logger
+logger = logging.getLogger(__name__)
+
+# Format the logger
+logger = setup_logger(logger)
 
 # Get an error logging decorator
 error_logging = setup_error_logging(logger)

@@ -20,12 +20,18 @@ Started 01-12-2025
 
 """
 
+import logging
+from openpyxl.utils.cell import coordinate_from_string, \
+                                column_index_from_string
 from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """
 
-# Get the logger
-logger = setup_logger()
+# Create a logger
+logger = logging.getLogger(__name__)
+
+# Format the logger
+logger = setup_logger(logger)
 
 # Get an error logging decorator
 error_logging = setup_error_logging(logger)
@@ -58,7 +64,7 @@ class DataSet():
         self.create_attributes_kwargs(kwargs)
 
     """ PROPERTIES """
-    # Data property
+    # Data properties
     # Getter
     @property
     def data(self):
@@ -129,21 +135,16 @@ class DataSet():
         return None
 
     """ STATIC METHODS """
-    # Method to loop through keys in a passed dictionary and
-    # check them against a list of permitted keys or dictionary
-    # with permitted keys
+
+    # Static method to return the row and column indices of a given cell
     @staticmethod
-    def check_dict_keys(dictionary, permitted):
+    def get_cell_indices(cell):
 
-        # For every key-value pair in the dictionary...
-        for key, value in dictionary.items():
+        # Split the cell string into individual coordinates
+        col_letter, row_index = \
+            coordinate_from_string(cell)
 
-            # If the current key is not permitted, raise an error
-            if key not in permitted:
-                raise ValueError(f'{key} is not a valid argument')
+        # Get the starting column's index from its letter
+        col_index = column_index_from_string(col_letter)
 
-            # Otherwise, pass
-            else:
-                pass
-
-        return None
+        return col_index, row_index
