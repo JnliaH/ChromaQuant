@@ -22,15 +22,15 @@ Started 01-12-2025
 
 from openpyxl.utils.cell import coordinate_from_string
 from .dataset import DataSet
-from .. import logging_and_handling as lah
+from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """
 
 # Get the logger
-logger = lah.setup_logger()
+logger = setup_logger()
 
 # Get an error logging decorator
-error_logging = lah.setup_error_logging(logger)
+error_logging = setup_error_logging(logger)
 
 """ CLASS """
 
@@ -38,22 +38,56 @@ error_logging = lah.setup_error_logging(logger)
 # Define the Value class
 class Value(DataSet):
 
-    def __init__(self, data, *args, **kwargs):
+    def __init__(self, data=float('nan'), *args, **kwargs):
 
         # Run DataSet initialization
-        super().__init__(*args, **kwargs)
-
-        # Initialize data attribute
-        self.data = data
+        super().__init__(data, *args, **kwargs)
 
         # Update the value
         self.update_value()
 
     """ PROPERTIES """
-    # Define the reference property
+    # Define the reference property, ONLY DEFINE GETTER
     @property
     def reference(self):
         return self._reference
+
+    # Redefining properties to include update_value
+    # Sheet properties
+    # Getter
+    @property
+    def sheet(self):
+        return self._sheet
+
+    # Setter
+    @sheet.setter
+    def sheet(self, value):
+        self._sheet = value
+        self.update_value()
+
+    # Deleter
+    @sheet.deleter
+    def sheet(self):
+        del self._sheet
+        self.update_value()
+
+    # Start cell properties
+    # Getter
+    @property
+    def start_cell(self):
+        return self._start_cell
+
+    # Setter
+    @start_cell.setter
+    def start_cell(self, value):
+        self._start_cell = value
+        self.update_value()
+
+    # Deleter
+    @start_cell.deleter
+    def start_cell(self):
+        del self._start_cell
+        self.update_value()
 
     """ METHODS """
     # Method to update the value's reference

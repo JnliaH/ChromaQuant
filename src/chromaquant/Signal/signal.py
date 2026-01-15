@@ -22,25 +22,17 @@ Started 11-11-2025
 
 import os
 import pandas as pd
-from chromaquant import import_local_packages as ilp
-from chromaquant import logging_and_handling as lah
+from ..logging_and_handling import setup_logger, setup_error_logging
 from .match_tools import match_dataframes
+from chromaquant.utils import row_filter, column_adjust
 
 """ LOGGING AND HANDLING """
 
 # Get the logger
-logger = lah.setup_logger()
+logger = setup_logger()
 
 # Get an error logging decorator
-error_logging = lah.setup_error_logging(logger)
-
-""" LOCAL PACKAGES """
-
-# Get absolute directories for subpackages
-subpack_dir = ilp.get_local_package_directories()
-
-# Import all local packages
-hd = ilp.import_from_path("hd", subpack_dir['Handle'])
+error_logging = setup_error_logging(logger)
 
 """ CLASSES """
 
@@ -190,7 +182,8 @@ class Signal:
         try_open_tf, match_data = \
             self.try_open_file(pd.read_csv, self.match_config['output_path'])
 
-        # If a match file already exists, open it and save it to data object
+        # If a match file already exists,
+        # open it and save it to data object **SEE NOTE
         if try_open_tf:
             # NOTE: Commented out potential feature to reopen previous match
             # file if one exists at the output path, untested
@@ -216,22 +209,16 @@ class Signal:
         # Adjust the dataframe according to match_config
         # Filter rows first in case desired filter includes a column
         # that will be renamed or removed
-        self.data[match_key] = hd.row_filter(
+        self.data[match_key] = row_filter(
                                     self.data[match_key],
                                     self.match_config['local_filter_row']
         )
 
         # Add column headers for columns to include from import
-        self.data[match_key] = hd.column_adjust(
+        self.data[match_key] = column_adjust(
                         dataframe=self.data[match_key],
                         add_col=self.match_config['import_include_col']
         )
-
-        # Debug statement to see contents of match_data prior to matching
-        # logger.debug((f"self.data['{match_key}'] set to \n"
-        #             f"{self.data[match_key]}"))
-        # logger.debug((f"self.data['match_import_data'] set to \n"
-        #              f"{self.data['match_import_data']}"))
 
         """ MATCH DATAFRAMES """
         # Match the local and import data sets
@@ -265,7 +252,7 @@ class Signal:
             columns_to_add = list(
                 set(output_cols_keys).difference(set(match_cols))
             )
-            self.data[match_key] = hd.column_adjust(
+            self.data[match_key] = column_adjust(
                             dataframe=self.data[match_key],
                             add_col=columns_to_add,
                             rename_dict=self.match_config['output_cols_dict']
@@ -277,10 +264,6 @@ class Signal:
         # Otherwise, pass
         else:
             pass
-
-        # Debug statement post-matching
-        # logger.debug((f"self.data['{match_key}'] set to \n"
-        #             f"{self.data[match_key]}"))
 
         """ (OPTIONAL) EXPORT TO FILE """
 

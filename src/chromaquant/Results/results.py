@@ -20,28 +20,17 @@ Started 12-10-2025
 
 """
 
-from .. import import_local_packages as ilp
-from .. import logging_and_handling as lah
+from ..logging_and_handling import setup_logger, setup_error_logging
 from .formula import Formula
-from .table import Table
-from .value import Value
+from ..data import Table, Value
 
 """ LOGGING AND HANDLING """
 
 # Get the logger
-logger = lah.setup_logger()
+logger = setup_logger()
 
 # Get an error logging decorator
-error_logging = lah.setup_error_logging(logger)
-
-""" LOCAL PACKAGES """
-
-# Get absolute directories for subpackages
-subpack_dir = ilp.get_local_package_directories()
-
-# Import all local packages
-hd = ilp.import_from_path("hd", subpack_dir['Handle'])
-sg = ilp.import_from_path("sg", subpack_dir['Signal'])
+error_logging = setup_error_logging(logger)
 
 """ CLASS """
 

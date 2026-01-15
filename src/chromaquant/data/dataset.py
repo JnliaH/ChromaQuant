@@ -20,15 +20,15 @@ Started 01-12-2025
 
 """
 
-from .. import logging_and_handling as lah
+from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """
 
 # Get the logger
-logger = lah.setup_logger()
+logger = setup_logger()
 
 # Get an error logging decorator
-error_logging = lah.setup_error_logging(logger)
+error_logging = setup_error_logging(logger)
 
 """ CLASS """
 
@@ -36,7 +36,7 @@ error_logging = lah.setup_error_logging(logger)
 # Define the DataSet class
 class DataSet():
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, data=float('nan'), *args, **kwargs):
 
         # Check if passed any positional arguments, raise error if so
         if args:
@@ -48,11 +48,31 @@ class DataSet():
         self._start_cell = '$A$1'
         self._sheet = 'Sheet1'
 
+        # Initialize data attribute
+        self._data = data
+
         # Define the permitted keyword arguments
         self.permitted_kwargs = ['sheet', 'start_cell']
 
         # Get class attributes from passed variable keyword arguments
         self.create_attributes_kwargs(kwargs)
+
+    """ PROPERTIES """
+    # Data property
+    # Getter
+    @property
+    def data(self):
+        return self._data
+
+    # Setter
+    @data.setter
+    def data(self, value):
+        self._data = value
+
+    # Deleter
+    @data.deleter
+    def data(self):
+        del self._data
 
     # Sheet properties
     # Getter
@@ -64,13 +84,11 @@ class DataSet():
     @sheet.setter
     def sheet(self, value):
         self._sheet = value
-        self.update_table()
 
     # Deleter
     @sheet.deleter
     def sheet(self):
         del self._sheet
-        self.update_table()
 
     # Start cell properties
     # Getter
@@ -82,15 +100,14 @@ class DataSet():
     @start_cell.setter
     def start_cell(self, value):
         self._start_cell = value
-        self.update_table()
 
     # Deleter
     @start_cell.deleter
     def start_cell(self):
         del self._start_cell
-        self.update_table()
 
-    # Function to create instance attributes for each passed keyword argument
+    """ METHODS """
+    # Method to create instance attributes for each passed keyword argument
     def create_attributes_kwargs(self, kwargs):
 
         # For every key-value pair in kwargs...
@@ -108,5 +125,25 @@ class DataSet():
                 # Otherwise, set attribute using key-value pair normally
                 else:
                     setattr(self, key, value)
+
+        return None
+
+    """ STATIC METHODS """
+    # Method to loop through keys in a passed dictionary and
+    # check them against a list of permitted keys or dictionary
+    # with permitted keys
+    @staticmethod
+    def check_dict_keys(dictionary, permitted):
+
+        # For every key-value pair in the dictionary...
+        for key, value in dictionary.items():
+
+            # If the current key is not permitted, raise an error
+            if key not in permitted:
+                raise ValueError(f'{key} is not a valid argument')
+
+            # Otherwise, pass
+            else:
+                pass
 
         return None

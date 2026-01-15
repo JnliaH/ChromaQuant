@@ -21,8 +21,7 @@ Started 01-07-2026
 """
 
 import re
-from chromaquant import import_local_packages as ilp
-from chromaquant import logging_and_handling as lah
+from ..logging_and_handling import setup_logger, setup_error_logging
 from .formula_tools import get_column_letter_from_table, \
                            get_value_reference_string, \
                            get_table_start_coords, \
@@ -32,18 +31,10 @@ from .formula_tools import get_column_letter_from_table, \
 """ LOGGING AND HANDLING """
 
 # Get the logger
-logger = lah.setup_logger()
+logger = setup_logger()
 
 # Get an error logging decorator
-error_logging = lah.setup_error_logging(logger)
-
-""" LOCAL PACKAGES """
-
-# Get absolute directories for subpackages
-subpack_dir = ilp.get_local_package_directories()
-
-# Import all local packages
-hd = ilp.import_from_path("hd", subpack_dir['Handle'])
+error_logging = setup_error_logging(logger)
 
 """ CLASSES """
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-ChromaQuant.Results subpackage initialization
+chromaquant.Results subpackage initialization
 
 Julia Hancock
 Created 10-19-2024
@@ -11,5 +11,3 @@ Created 10-19-2024
 
 from .results import Results
 from .formula import Formula
-from .table import Table
-from .value import Value

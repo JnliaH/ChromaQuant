@@ -30,8 +30,7 @@ def get_local_package_directories():
     app_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Get absolute directories for subpackages
-    subpack_dir = {'Handle': os.path.join(app_dir, 'Handle', '__init__.py'),
-                   'Match': os.path.join(app_dir, 'Match', '__init__.py'),
+    subpack_dir = {'utils': os.path.join(app_dir, 'utils', '__init__.py'),
                    'Signal': os.path.join(app_dir, 'Signal', '__init__.py'),
                    'Results': os.path.join(app_dir, 'Results', '__init__.py')}
 

@@ -19,6 +19,7 @@ Started 1-7-2026
 """
 
 import logging
+from functools import wraps
 
 
 # Function to initialize and format logger
@@ -52,7 +53,8 @@ def setup_error_logging(logger):
     # Decorator to log and handle errors
     def error_logging(f):
 
-        # Define decorated function
+        # Define decorated function (wrapper)
+        @wraps(f)
         def decorated_func(*args, **kwargs):
 
             # Try to get the function's result
@@ -60,13 +62,8 @@ def setup_error_logging(logger):
                 result = f(*args, **kwargs)
                 return result
 
-            # Log value errors
-            except ValueError as e:
-                logger.error(e)
-                raise
-
-            # Log key errors
-            except KeyError as e:
+            # Log errors if they occur
+            except Exception as e:
                 logger.error(e)
                 raise
 
