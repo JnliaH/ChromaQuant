@@ -86,10 +86,6 @@ def match(first_DF, second_DF, comparison, **kwargs):
         else:
             raise ValueError('Unexpected value passed for comparison.')
 
-    # Define default match comparison function
-    def default_comp_function(x):
-        return x
-
     # Define default match configuration values
     match_config = \
         {'do_export': False,
