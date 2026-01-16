@@ -21,10 +21,10 @@ Started 1-15-2026
 """
 
 import logging
+from .match_config import MatchConfig
 from .match_tools import match_dataframes
 from .file_tools import try_open_csv, export_to_csv
-from .dataframe_processing import check_dict_keys, \
-                                  column_adjust, \
+from .dataframe_processing import column_adjust, \
                                   row_filter
 from ..logging_and_handling import setup_logger, setup_error_logging
 
@@ -43,7 +43,7 @@ error_logging = setup_error_logging(logger)
 
 
 # Match function
-def match(first_DF, second_DF, comparison, **kwargs):
+def match(first_DF, second_DF, comparison, match_config=MatchConfig(), **kwargs):
     """Matches two DataFrames by comparing one column from each.
 
     Parameters
@@ -86,35 +86,15 @@ def match(first_DF, second_DF, comparison, **kwargs):
         else:
             raise ValueError('Unexpected value passed for comparison.')
 
-    # Define default match configuration values
-    match_config = \
-        {'do_export': False,
-         'output_path': 'match_results.csv',
-         'local_filter_row': {},
-         'output_rename_dict': {},
-         'output_cols_dict': {},
-         'import_include_col': [],
-         'match_comparison_function': default_comp_function,
-         'match_comparison_error': 0}
-
-    # Check that passed keyword arguments only include those expected
-    # as listed in self.match_config
-    # If the current key is not permitted, raise an error
-    check_dict_keys(kwargs, match_config)
-
-    # Redefine match_config values using passed keyword arguments
-    for key in kwargs:
-        match_config[key] = kwargs[key]
-
     # Add first and second comparison column names to match_config
-    match_config['first_comparison'] = first_comparison
-    match_config['second_comparison'] = second_comparison
+    match_config.first_comparison = first_comparison
+    match_config.second_comparison = second_comparison
 
     """ CREATE OR LOAD MATCH DATAFRAME """
 
     # Check if a match file already exists at the specified path
     try_open_tf, match_data = \
-        try_open_csv(match_config['output_path'])
+        try_open_csv(match_config.output_path)
 
     # If a match file already exists,
     # open it and save it to data object **SEE NOTE
@@ -122,7 +102,7 @@ def match(first_DF, second_DF, comparison, **kwargs):
         # NOTE: Commented out potential feature to reopen previous match
         # file if one exists at the output path, untested
         # logger.info((f'Opening match file at '
-        #            f'{self.match_config['output_path']}'))
+        #            f'{self.match_config.output_path}'))
         # self.data[match_key] = match_data
         logger.warning('Overwriting previous match data.')
 
@@ -131,7 +111,7 @@ def match(first_DF, second_DF, comparison, **kwargs):
         # NOTE: See comment in if statement
         # Create a copy of the locally_defined dataframe
         # self.data[match_key] = \
-        #    self.data[match_dict['local_data_key']].copy()
+        #    self.data[match_dict.local_data_key].copy()
         pass
 
     # Create a copy of the first DF
@@ -144,13 +124,13 @@ def match(first_DF, second_DF, comparison, **kwargs):
     # that will be renamed or removed
     match_data = row_filter(
                     match_data,
-                    match_config['local_filter_row']
+                    match_config.local_filter_row
     )
 
     # Add column headers for columns to include from import
     match_data = column_adjust(
                     dataframe=match_data,
-                    add_col=match_config['import_include_col']
+                    add_col=match_config.import_include_col
     )
 
     """ MATCH DATAFRAMES """
@@ -166,15 +146,15 @@ def match(first_DF, second_DF, comparison, **kwargs):
     match_cols = match_data.columns.tolist()
 
     # If the output_cols_dict is not empty...
-    if match_config['output_cols_dict']:
+    if match_config.output_cols_dict:
 
         # Get the keys for output_cols_dict as list of original columns
         output_cols_keys = list(
-            match_config['output_cols_dict'].keys()
+            match_config.output_cols_dict.keys()
         )
         # Get the values for output_cols_dict as list of new columns
         output_cols_values = list(
-            match_config['output_cols_dict'].values()
+            match_config.output_cols_dict.values()
         )
 
         # Filter the dataframe according to output_cols
@@ -187,7 +167,7 @@ def match(first_DF, second_DF, comparison, **kwargs):
         match_data = column_adjust(
                         dataframe=match_data,
                         add_col=columns_to_add,
-                        rename_dict=match_config['output_cols_dict']
+                        rename_dict=match_config.output_cols_dict
         )
         # Finally, filter
         match_data = \
@@ -200,13 +180,13 @@ def match(first_DF, second_DF, comparison, **kwargs):
     """ (OPTIONAL) EXPORT TO FILE """
 
     # If the do_export value is True, export to output path
-    if match_config['do_export']:
+    if match_config.do_export:
         export_to_csv(
             match_data,
-            match_config['output_path']
+            match_config.output_path
         )
         logger.info('Match results exported to '
-                    f'{match_config['output_path']}')
+                    f'{match_config.output_path}')
 
     # Otherwise, pass
     else:

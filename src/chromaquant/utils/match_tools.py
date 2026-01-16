@@ -47,16 +47,16 @@ def match_dataframes(main_DF, second_DF, match_config):
         new_main_row = main_row.copy()
 
         # Get the comparison value from the new main row
-        main_comp_value = new_main_row[match_config['first_comparison']]
+        main_comp_value = new_main_row[match_config.first_comparison]
 
         # Get the import_include_columns
-        import_include_col = match_config['import_include_col']
+        import_include_col = match_config.import_include_col
 
         # Get the comparison header of the second_DF
-        second_comp_header = match_config['second_comparison']
+        second_comp_header = match_config.second_comparison
 
         # Get the comparison function
-        comp_func = match_config['match_comparison_function']
+        comp_func = match_config.match_comparison_function
 
         # Transform the comparison value into a form expected in the second_DF
         transform_main_comp_value = comp_func(main_comp_value)
@@ -76,10 +76,10 @@ def match_dataframes(main_DF, second_DF, match_config):
                 # Define upper and lower limits
                 transform_main_max = \
                     transform_main_comp_value + \
-                    match_config['match_comparison_error']
+                    match_config.match_comparison_error
                 transform_main_min = \
                     transform_main_comp_value - \
-                    match_config['match_comparison_error']
+                    match_config.match_comparison_error
                 # Get a slice
                 second_DF_matches = \
                     second_DF.loc[(second_DF[second_comp_header]
@@ -93,7 +93,7 @@ def match_dataframes(main_DF, second_DF, match_config):
                     # Add an error to each row
                     second_DF_matches['cq__error'] = \
                         (second_DF_matches[second_comp_header] -
-                            match_config['match_comparison_error'])
+                            match_config.match_comparison_error)
 
                     # Get the index of the row with the smallest error
                     min_error_index = second_DF_matches['cq__error'].idxmin()
