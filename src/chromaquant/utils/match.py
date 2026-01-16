@@ -43,7 +43,10 @@ error_logging = setup_error_logging(logger)
 
 
 # Match function
-def match(first_DF, second_DF, comparison, match_config=MatchConfig(), **kwargs):
+def match(first_DF,
+          second_DF,
+          comparison,
+          match_config=MatchConfig()):
     """Matches two DataFrames by comparing one column from each.
 
     Parameters

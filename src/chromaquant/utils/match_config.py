@@ -20,21 +20,8 @@ Started 01-12-2025
 
 """
 
-import logging
-#from ..logging_and_handling import setup_logger, setup_error_logging
-
-""" LOGGING AND HANDLING """
-
-# Create a logger
-logger = logging.getLogger(__name__)
-
-# Format the logger
-#logger = setup_logger(logger)
-
-# Get an error logging decorator
-#error_logging = setup_error_logging(logger)
-
 """ CLASS """
+
 
 # Define ConfigProperty class
 class ConfigProperty():
@@ -42,7 +29,7 @@ class ConfigProperty():
     # Descriptor __set_name__
     def __set_name__(self, owner, name):
         self.name = '_' + name
-    
+
     # Getter
     def __get__(self, obj, type=None):
         return getattr(obj, self.name)
@@ -54,6 +41,7 @@ class ConfigProperty():
     # Deleter
     def __delete__(self, obj):
         delattr(obj, self.name)
+
 
 # Define MatchConfig class
 class MatchConfig():
