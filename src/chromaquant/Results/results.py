@@ -23,7 +23,6 @@ Started 12-10-2025
 import logging
 from ..logging_and_handling import setup_logger, setup_error_logging
 from .formula import Formula
-from ..data import Table, Value
 
 """ LOGGING AND HANDLING """
 
@@ -42,19 +41,13 @@ error_logging = setup_error_logging(logger)
 # Define the Results class
 class Results():
 
-    def __init__(self, output_key, **kwargs):
+    def __init__(self, **kwargs):
         """
-        __init__ _summary_
 
         Parameters
         ----------
-        output_key : str
-            Key assigned to current object in parent dictionary
 
         """
-
-        # Extract assigned results output key
-        self.output_key = output_key
 
         # Extract passed keywork arguments
         for key, value in kwargs.items():
@@ -73,19 +66,19 @@ class Results():
 
     # Function to add a new table to the results
     @error_logging
-    def add_table(self, table_name, data_frame, **kwargs):
+    def add_table(self, table_name, table_instance):
 
         # Create a new table entry in the tables dictionary
-        self.tables[table_name] = Table(data_frame, **kwargs)
+        self.tables[table_name] = table_instance
 
         return None
 
     # Function to add a new value to the results
     @error_logging
-    def add_value(self, value_name, data, **kwargs):
+    def add_value(self, value_name, value_instance):
 
         # Create a new value entry in the values dictionary
-        self.values[value_name] = Value(data, **kwargs)
+        self.values[value_name] = value_instance
 
         return None
 

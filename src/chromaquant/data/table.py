@@ -166,9 +166,9 @@ class Table(DataSet):
         return None
 
     # Method to match one dataframe to current data
-    def match(self, import_DF, comparison, **kwargs):
+    def match(self, import_DF, comparison, match_config):
 
-        match_data = match(self._data, import_DF, comparison, **kwargs)
+        match_data = match(self._data, import_DF, comparison, match_config)
 
         return match_data
 

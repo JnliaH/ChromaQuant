@@ -121,7 +121,7 @@ class DataSet():
 
             # If the current key is not permitted, raise an error
             if key not in self.permitted_kwargs:
-                raise ValueError(f'{key} is not a valid argument')
+                raise ValueError(f"'{key}' is not a valid argument")
 
             # Otherwise...
             else:

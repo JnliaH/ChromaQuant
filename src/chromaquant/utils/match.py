@@ -93,6 +93,16 @@ def match(first_DF,
     match_config.first_comparison = first_comparison
     match_config.second_comparison = second_comparison
 
+    # If the match_config import_include_col list is empty...
+    if not match_config.import_include_col:
+        # Add all columns from the second dataframe
+        match_config.import_include_col = \
+            [column for column in second_DF.columns.tolist()
+             if column != second_comparison]
+    # Otherwise, pass
+    else:
+        pass
+
     """ CREATE OR LOAD MATCH DATAFRAME """
 
     # Check if a match file already exists at the specified path
