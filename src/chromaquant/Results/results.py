@@ -64,21 +64,25 @@ class Results():
         # Initialize the values dictionary
         self.values = {}
 
+    # TODO: add functions to iterate on existing table/value nicknames
+    # to create new default names if none are provided. Currently,
+    # tables and values will be overwritten if no nickname provided
+
     # Function to add a new table to the results
     @error_logging
-    def add_table(self, table_name, table_instance):
+    def add_table(self, table_instance, table_nickname='table1'):
 
         # Create a new table entry in the tables dictionary
-        self.tables[table_name] = table_instance
+        self.tables[table_nickname] = table_instance
 
         return None
 
     # Function to add a new value to the results
     @error_logging
-    def add_value(self, value_name, value_instance):
+    def add_value(self, value_instance, value_nickname='value1'):
 
         # Create a new value entry in the values dictionary
-        self.values[value_name] = value_instance
+        self.values[value_nickname] = value_instance
 
         return None
 
@@ -86,27 +90,26 @@ class Results():
     @error_logging
     def add_new_formula(self, formula, value_or_column_name, table=''):
 
-        # TODO: CHANGE SO THERE IS NO NEED TO PASS RESULTS OBJECT TO FORMULA
         # Create a pointers dictionary with the value or column name
         pointers = {'key': value_or_column_name}
 
         # Get a Formula object instance
         formula_obj = Formula(formula)
 
-        # Create a dictionary containing headers for each value
-        value_headers = {value_name: self.values[value_name]['header']
-                         for value_name in self.values}
+        # Create a dictionary containing references for each value
+        value_references = {value_name: self.values[value_name].reference
+                            for value_name in self.values}
 
-        # Create a dictionary containing headers for each table
-        table_headers = {table_name: self.tables[table_name]['header']
-                         for table_name in self.tables}
+        # Create a dictionary containing references for each table
+        table_references = {table_name: self.tables[table_name].references
+                            for table_name in self.tables}
 
         # If there was no table string...
         if table == '':
 
             # Process the formula inserts
-            formula_obj.process_value_formula_inserts(value_headers,
-                                                      table_headers)
+            formula_obj.process_value_formula_inserts(value_references,
+                                                      table_references)
 
             # Set the corresponding value in the values object to new_formula
             self.values[value_or_column_name] = formula_obj.new_formula
@@ -118,16 +121,13 @@ class Results():
             pointers['table'] = table
 
             # Process the formula inserts
-            formula_obj.process_table_formula_inserts(value_headers,
-                                                      table_headers,
+            formula_obj.process_table_formula_inserts(value_references,
+                                                      table_references,
                                                       pointers)
 
             # Set the corresponding column in the table to new_formula
-            self.tables[table]['data'][value_or_column_name] = \
+            self.tables[table].data[value_or_column_name] = \
                 formula_obj.new_formula
-
-            # Update the table
-            self.update_table(table)
 
         return None
 

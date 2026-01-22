@@ -62,7 +62,7 @@ class MatchConfig():
     def __init__(self,
                  do_export: bool = False,
                  import_include_col: list = None,
-                 local_filter_row: dict = None,
+                 local_filter_row: dict[str, str | bool | float | int] = None,
                  match_conditions: list[dict[str, str | bool | float |
                                              Callable[[float | int | str,
                                                        pd.DataFrame,

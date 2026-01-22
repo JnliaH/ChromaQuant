@@ -23,11 +23,6 @@ Started 01-07-2026
 import logging
 import re
 from ..logging_and_handling import setup_logger, setup_error_logging
-from .formula_tools import get_column_letter_from_table, \
-                           get_value_reference_string, \
-                           get_table_start_coords, \
-                           replace_insert, \
-                           table_column_to_range
 
 """ LOGGING AND HANDLING """
 
@@ -47,7 +42,7 @@ error_logging = setup_error_logging(logger)
 class Formula:
 
     # Initialize class
-    def __init__(self, formula, *args, **kwargs):
+    def __init__(self, formula):
         """
         __init__
 
@@ -64,14 +59,7 @@ class Formula:
         # Get the formula's cell inserts
         self.get_formula_cell_inserts()
 
-        # Extract passed keywork arguments
-        for key, value in kwargs.items():
-            # Define a prefix
-            prefix = 'signalkwarg'
-            # Create an attribute name using the defined prefix
-            attribute_name = prefix + '_' + key
-            # Set attribute using name and key-value pair
-            setattr(self, attribute_name, value)
+    """ METHODS """
 
     # Function to get cases in a formula where cells need to be inserted
     @error_logging
@@ -149,17 +137,17 @@ class Formula:
     # Function to process table formula inserts
     @error_logging
     def process_table_formula_inserts(self,
-                                      value_headers,
-                                      table_headers,
+                                      value_references,
+                                      table_references,
                                       output_pointers):
         """
         process_table_formula_inserts
 
         Parameters
         ----------
-        value_headers : dict
+        value_references : dict
             Dictionary of headers by value name.
-        table_headers : dict
+        table_references : dict
             Dictionary of headers by table name.
         output_pointers : _type_
             Pointer(s) to where new formulas will go.
@@ -179,17 +167,31 @@ class Formula:
             'Passed output pointers do not point to either a value or table'
         """
 
-        # If the insert list is not None (i.e., there are inserts)
+        # If the insert list is not None (i.e., there are inserts)...
         if self.insert_list is not None:
 
-            # If function was passed a table to output to
+            # If function was passed a table to output to...
             if 'table' in output_pointers \
                  and 'key' in output_pointers:
 
-                # Try to get the output table length:
+                # Try...
                 try:
+
+                    # Get the table pointer
+                    table_pointer = output_pointers['table']
+                    # Get the table length
                     output_table_length = \
-                        table_headers[output_pointers['table']]['length']
+                        table_references[table_pointer][
+                            next(iter(table_references[table_pointer]))
+                            ]['length']
+
+                    # If length is less than one, set to five
+                    if output_table_length < 1:
+                        output_table_length = 5
+
+                    # Otherwise, pass
+                    else:
+                        pass
 
                 # If can't get the length, set to five
                 except KeyError:
@@ -202,9 +204,13 @@ class Formula:
 
                     # Get the length of the longest named table
                     max_table_length = max(
-                        [table_headers[insert['pointers']['table']]['length']
-                            for insert in self.insert_list
-                            if 'table' in insert.get('pointers', {})]
+                        [table_references[
+                            insert['pointers']['table']
+                            ][
+                            insert['pointers']['key']
+                            ]['length']
+                         for insert in self.insert_list
+                         if 'table' in insert.get('pointers', {})]
                     )
 
                     # If the max_table_length is greater than 1, set
@@ -231,8 +237,8 @@ class Formula:
                             table_name = insert['pointers']['table']
                             column_name = insert['pointers']['key']
 
-                            # Get the current table header
-                            insert_table = table_headers[table_name]
+                            # Get the current table reference
+                            table_ref = table_references[table_name]
 
                             # If the insert has range pointer equal to true...
                             if 'range' in insert['pointers'] and \
@@ -242,63 +248,68 @@ class Formula:
                                 # Get a range substring for each
                                 # new entry in the output table
                                 insert['reference'] = \
-                                    table_column_to_range(insert_table,
-                                                          column_name)
+                                    table_ref[column_name]['range']
 
                                 # Replace the insert's raw substring
                                 # for every formula in the new formula list
                                 new_formula = \
-                                    [replace_insert(one_formula,
-                                                    insert['raw'],
-                                                    insert['reference'])
+                                    [self.replace_insert(one_formula,
+                                                         insert['raw'],
+                                                         insert['reference'])
                                      for one_formula in new_formula]
 
                             # Otherwise...
                             else:
 
-                                # Get the table's starting coordinates
-                                start_row, start_column = \
-                                    get_table_start_coords(insert_table)
-
-                                # Get letter for output column
+                                # Get the column letter
                                 column_letter = \
-                                    get_column_letter_from_table(
-                                            insert_table,
-                                            column_name,
-                                            start_column)
+                                    table_ref[column_name]['column_letter']
+                                # Get the column sheet
+                                column_sheet = \
+                                    table_ref[column_name]['sheet']
+                                print(table_ref)
+
+                                # Get the start and end rows
+                                start_row = \
+                                    table_ref[column_name]['start_row']
+                                end_row = \
+                                    table_ref[column_name]['end_row']
 
                                 # Get a list of insert references for each
                                 # row iterated over
                                 insert['reference'] = \
-                                    [f'{column_letter}{row}' for row in
-                                     range(start_row + 1,
-                                           start_row + output_table_length + 1)
+                                    [
+                                        f"'{column_sheet}'!"
+                                        f"${column_letter}${row}"
+                                        for row in
+                                        range(start_row, end_row + 1)
                                      ]
 
                                 # Replace the insert's raw substring
                                 # for every formula in the new formula list
                                 new_formula = \
-                                    [replace_insert(new_formula[i],
-                                                    insert['raw'],
-                                                    insert['reference'][i]
-                                                    )
+                                    [self.replace_insert(new_formula[i],
+                                                         insert['raw'],
+                                                         insert['reference'][i]
+                                                         )
                                      for i in range(output_table_length)]
 
                         # Otherwise, if the insert has a key pointer...
                         elif 'key' in insert['pointers']:
 
+                            # Get the key pointer
+                            key_pointer = insert['pointers']['key']
+
                             # Get the value's reference string
                             insert['reference'] = \
-                                get_value_reference_string(
-                                    value_headers[insert['pointers']['key']]
-                                    )
+                                value_references[key_pointer]['cell']
 
                             # Replace the insert's raw substring
                             # for every formula in the new formula list
                             new_formula = \
-                                [replace_insert(one_formula,
-                                                insert['raw'],
-                                                insert['reference'])
+                                [self.replace_insert(one_formula,
+                                                     insert['raw'],
+                                                     insert['reference'])
                                     for one_formula in new_formula]
 
                         # Otherwise, raise an error
@@ -320,17 +331,18 @@ class Formula:
                     # For every insert...
                     for insert in self.insert_list:
 
+                        # Get the key pointer
+                        key_pointer = insert['pointers']['key']
+
                         # Get the value's reference string
                         insert['reference'] = \
-                            get_value_reference_string(
-                                insert['pointers']['key']
-                            )
+                            value_references[key_pointer]['cell']
 
                         # Replace insert substring with value's reference
                         iterate_formula = \
-                            replace_insert(iterate_formula,
-                                           insert['raw'],
-                                           insert['reference'])
+                            self.replace_insert(iterate_formula,
+                                                insert['raw'],
+                                                insert['reference'])
 
                     # Set the new formula list to be iterate_formula for
                     # every entry in the output_table's column
@@ -340,7 +352,8 @@ class Formula:
                 # Otherwise, raise an exception
                 else:
                     raise ValueError(
-                        'Insert list contains non-key or non-table elements')
+                        'Insert list contains non-key or non-table elements'
+                    )
 
             # Otherwise, raise an error
             else:
@@ -357,16 +370,20 @@ class Formula:
         return None
 
     # Function to process value formula inserts
-    def process_value_formula_inserts(self, value_headers, table_headers):
+    @error_logging
+    def process_value_formula_inserts(self,
+                                      value_references: dict[str, dict],
+                                      table_references: dict[str, dict]
+                                      ):
         """
         process_value_formula_inserts
 
         Parameters
         ----------
-        value_headers : dict
-            Dictionary of headers by value name.
-        table_headers : dict
-            Dictionary of headers by table name.
+        value_references : dict
+            Dictionary of references by value name.
+        table_references : dict
+            Dictionary of references by table name.
 
         Returns
         -------
@@ -393,12 +410,12 @@ class Formula:
                 table_name = insert['pointers']['table']
                 column_name = insert['pointers']['key']
 
-                # Get the table header
-                insert_table = table_headers[table_name]
+                # Get the table reference
+                table_ref = table_references[table_name]
 
                 # Get a range substring and save to insert['reference']
                 insert['reference'] = \
-                    table_column_to_range(insert_table, column_name)
+                    table_ref[column_name]['range']
 
                 # Replace pointer substring with range substring
                 new_formula = \
@@ -409,20 +426,32 @@ class Formula:
             # Otherwise, if insert has a key pointer...
             elif 'key' in insert['pointers']:
 
+                # Get the key pointer
+                key_pointer = insert['pointers']['key']
+
                 # Get the value's reference string
                 insert['reference'] = \
-                    get_value_reference_string(
-                        value_headers[insert['pointers']['key']]
-                        )
+                    value_references[key_pointer]['cell']
 
                 # Replace insert substring with value's reference
                 new_formula = \
-                    replace_insert(new_formula,
-                                   insert['raw'],
-                                   insert['reference'])
+                    self.replace_insert(new_formula,
+                                        insert['raw'],
+                                        insert['reference'])
 
             # Otherwise, raise an error
             else:
                 raise ValueError('Formula missing necessary keys')
 
         return None
+
+    """ STATIC METHODS """
+    # Method to replace formula raw insert with reference
+    @staticmethod
+    def replace_insert(formula, raw, reference):
+
+        # Replace pointer substring with value's reference
+        new_formula = \
+            formula.replace(raw, reference)
+
+        return new_formula

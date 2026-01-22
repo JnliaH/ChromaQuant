@@ -45,11 +45,11 @@ def check_formula_starts_with_equals(formula):
 # Function to get a column letter based on table
 # starting column and column's index within a table
 def get_column_letter_from_table(
-        table_headers, column_name, start_cell_column):
+        table_reference, column_name, start_cell_column):
 
     # Find the column's index within the DataFrame
     column_index = \
-        table_headers['columns'].index(column_name)
+        table_reference['columns'].index(column_name)
 
     # Add the column's index to the starting column
     # and get the column letter equivalent
@@ -60,14 +60,14 @@ def get_column_letter_from_table(
 
 
 # Function to construct value reference string
-def get_value_reference_string(value_header):
+def get_value_reference_string(value_reference):
 
     # Get value's sheet string
     value_sheet = \
-        f"'{value_header['sheet']}'!"
+        f"'{value_reference['sheet']}'!"
     # Get value's cell string
     value_cell = \
-        f"{value_header['cell']}"
+        f"{value_reference['cell']}"
 
     # Get the reference string
     reference = value_sheet + value_cell
@@ -76,10 +76,10 @@ def get_value_reference_string(value_header):
 
 
 # Function to get the starting row and column of a table
-def get_table_start_coords(table_header):
+def get_table_start_coords(table_reference):
 
     # Get the table's starting cell
-    table_start_cell = table_header['start_cell']
+    table_start_cell = table_reference['start_cell']
 
     # Get the starting cell's row and column
     start_row, start_column = \
@@ -99,17 +99,17 @@ def replace_insert(formula, raw, reference):
 
 
 # Function to get a range from passed table pointers
-def table_column_to_range(table, column_key):
+def table_column_to_range(table_reference, column_key):
 
     # Get the starting coordinates
-    start_row, start_column = get_table_start_coords(table)
+    start_row, start_column = get_table_start_coords(table_reference)
 
     # Get letter for output column
     column_letter = \
-        get_column_letter_from_table(table, column_key, start_column)
+        get_column_letter_from_table(table_reference, column_key, start_column)
 
     # Get the final row of the table
-    end_row = start_row + table['length']
+    end_row = start_row + table_reference['length']
 
     # Construct the range string
     column_range = (

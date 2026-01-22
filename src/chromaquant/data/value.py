@@ -126,7 +126,8 @@ class Value(DataSet):
         self._reference = \
             {'column_letter': col_letter,
              'row': row_index,
-             'sheet': self._sheet}
+             'sheet': self._sheet,
+             'cell': f"'{self._sheet}'!${col_letter}${row_index}"}
 
         return None
 

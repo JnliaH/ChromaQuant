@@ -195,6 +195,7 @@ class Table(DataSet):
                  'start_row': start_row_index + 1,
                  'end_row': start_row_index + self.length,
                  'sheet': self._sheet,
+                 'length': self.length,
                  'range': (f"'{self._sheet}'!"
                            f"${col_letter}${start_row_index + 1}:"
                            f"${col_letter}${start_row_index + self.length}")}
