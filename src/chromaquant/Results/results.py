@@ -86,15 +86,16 @@ class Results():
 
         return None
 
-    # Function to add a new Excel formula to a cell or table
+    # Function to add a new Excel formula to a cell or table based
+    # on a passed formula string
     @error_logging
-    def add_new_formula(self, formula, value_or_column_name, table=''):
+    def add_formula(self,
+                    formula: Formula,
+                    value_or_column_name: str,
+                    table: str = ''):
 
         # Create a pointers dictionary with the value or column name
         pointers = {'key': value_or_column_name}
-
-        # Get a Formula object instance
-        formula_obj = Formula(formula)
 
         # Create a dictionary containing references for each value
         value_references = {value_name: self.values[value_name].reference
@@ -108,11 +109,11 @@ class Results():
         if table == '':
 
             # Process the formula inserts
-            formula_obj.process_value_formula_inserts(value_references,
-                                                      table_references)
+            formula.process_value_formula_inserts(value_references,
+                                                  table_references)
 
             # Set the corresponding value in the values object to new_formula
-            self.values[value_or_column_name] = formula_obj.new_formula
+            self.values[value_or_column_name] = formula.new_formula
 
         # Otherwise...
         else:
@@ -121,21 +122,31 @@ class Results():
             pointers['table'] = table
 
             # Process the formula inserts
-            formula_obj.process_table_formula_inserts(value_references,
-                                                      table_references,
-                                                      pointers)
+            formula.process_table_formula_inserts(value_references,
+                                                  table_references,
+                                                  pointers)
 
             # Set the corresponding column in the table to new_formula
             self.tables[table].data[value_or_column_name] = \
-                formula_obj.new_formula
+                formula.new_formula
 
         return None
 
     # Function for creating a formula by introducing an operator
     # between two references based on those reference's pointers
-    def operation_formula(self, ref_1, ref_2, operator):
+    def add_formula_operation(self, pointer_1, pointer_2, operator):
 
-        # Initialize formula
-        formula = f'|{ref_1}|{operator}|{ref_2}|'
+        # Create formula
+        formula = f'|{pointer_1}|{operator}|{pointer_2}|'
 
         return formula
+
+    # Function for creating an addition formula
+    def add_formula_addition(self, pointer_1, pointer_2):
+
+        # Create formula
+        formula = self.add_formula_operation(self, pointer_1, pointer_2, '+')
+
+        return formula
+
+    # Function for creating a

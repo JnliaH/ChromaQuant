@@ -63,3 +63,4 @@ packages = ["src/chromaquant"]
 
 [pytest]
 addopts = ["--import-mode=importlib"]
+testpaths = ["tests"]

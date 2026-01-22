@@ -57,6 +57,7 @@ class Table(DataSet):
 
     """ PROPERTIES """
     # Define the references property
+    # Only give references a getter
     @property
     def references(self):
         return self._references
@@ -72,12 +73,6 @@ class Table(DataSet):
     @data.setter
     def data(self, value):
         self._data = value
-        self.update_table()
-
-    # Deleter
-    @data.deleter
-    def data(self):
-        del self._data
         self.update_table()
 
     # Sheet properties
@@ -221,7 +216,7 @@ class Table(DataSet):
         # NOTE: will not work if there is no valid sheet or start_cell
         try:
             self.update_references()
-        except AttributeError as e:
+        except Exception as e:
             logger.info(e)
             pass
 

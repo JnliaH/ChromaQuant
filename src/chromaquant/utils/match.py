@@ -72,7 +72,8 @@ def match(first_DF,
     if not match_config.import_include_col:
         # Add all columns from the second dataframe
         match_config.import_include_col = \
-            [column for column in second_DF.columns.tolist()]
+            [column for column in second_DF.columns.tolist()
+             if column not in first_DF.columns.tolist()]
     # Otherwise, pass
     else:
         pass
