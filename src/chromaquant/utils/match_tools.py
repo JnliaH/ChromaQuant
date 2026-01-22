@@ -39,105 +39,25 @@ def match_dataframes(main_DF, second_DF, match_config):
 
         return new_first
 
-    # Function that searches through the second_DF
-    # for a match to one row in the main_DF
-    def match_one_row(main_row, second_DF, match_config):
+    # Function that finds all rows in a DataFrame that meet a condition
+    # with respect to some different row
+    def match_one_row_condition(row, DF, match_condition):
 
         # Create a copy of the passed main_row
-        new_main_row = main_row.copy()
+        new_row = row.copy()
 
-        # Get the comparison value from the new main row
-        main_comp_value = new_main_row[match_config.first_comparison]
+        # Get the comparison value from the new row
+        row_value = new_row[match_condition['first_DF_column']]
 
-        # Get the import_include_columns
-        import_include_col = match_config.import_include_col
+        # Get a slice of DF that meets the condition
+        DF_slice = \
+            match_condition['condition'](row_value,
+                                         DF,
+                                         match_condition['second_DF_column'],
+                                         error=match_condition['error'],
+                                         or_equal=match_condition['or_equal'])
 
-        # Get the comparison header of the second_DF
-        second_comp_header = match_config.second_comparison
-
-        # Get the comparison function
-        comp_func = match_config.match_comparison_function
-
-        # Transform the comparison value into a form expected in the second_DF
-        transform_main_comp_value = comp_func(main_comp_value)
-
-        # Get a slice of the second dataframe where main_comp_value
-        # is present in the second dataframe's comparison column
-        second_DF_matches = \
-            second_DF.loc[second_DF[second_comp_header] ==
-                          transform_main_comp_value].copy()
-
-        # If the slice is empty...
-        if second_DF_matches.empty:
-
-            # Try to get a slice of the second dataframe where the transformed
-            # main comparison value is between the specified error margins
-            try:
-                # Define upper and lower limits
-                transform_main_max = \
-                    transform_main_comp_value + \
-                    match_config.match_comparison_error
-                transform_main_min = \
-                    transform_main_comp_value - \
-                    match_config.match_comparison_error
-                # Get a slice
-                second_DF_matches = \
-                    second_DF.loc[(second_DF[second_comp_header]
-                                   >= transform_main_min) &
-                                  (second_DF[second_comp_header]
-                                   <= transform_main_max)].copy()
-
-                # If the slice has more than one row...
-                if len(second_DF_matches) > 1:
-
-                    # Add an error to each row
-                    second_DF_matches['cq__error'] = \
-                        (second_DF_matches[second_comp_header] -
-                            match_config.match_comparison_error)
-
-                    # Get the index of the row with the smallest error
-                    min_error_index = second_DF_matches['cq__error'].idxmin()
-                    second_best_row = second_DF_matches.loc[min_error_index]
-
-                    new_main_row = \
-                        add_to_first(new_main_row,
-                                     second_best_row,
-                                     import_include_col)
-
-                # Otherwise, if the slice contains exactly one row...
-                elif len(second_DF_matches) == 1:
-
-                    # Set the new main row to that single row in
-                    # second_DF_matches
-                    new_main_row = \
-                        add_to_first(new_main_row,
-                                     second_DF_matches.loc[
-                                      second_DF_matches.index.min()],
-                                     import_include_col)
-
-                # Otherwise, pass
-                else:
-                    pass
-
-                # If this does not work, pass
-                # NOTE: This is intended to catch cases where comparison
-                # values are non-numbers
-            except Exception:
-                pass
-
-        # Otherwise...
-        else:
-
-            # Set the new main row to the first row in second_DF_matches
-            # NOTE: This means that exact duplicates are resolved by picking
-            # the one with the first index in second_DF_matches!
-            new_main_row = \
-                add_to_first(new_main_row,
-                             second_DF_matches.loc[
-                                 second_DF_matches.index.min()],
-                             import_include_col)
-
-        return new_main_row
+        return DF_slice
 
     # Create a copy of the passed DataFrames
     new_main_DF = main_DF.copy()
@@ -146,10 +66,56 @@ def match_dataframes(main_DF, second_DF, match_config):
     # For every row in the main dataframe...
     for i, row in main_DF.iterrows():
 
-        # Get the output of the match_one_row function for that row
-        new_row = \
-            match_one_row(row, new_second_DF, match_config)
+        # Get a copy of the second DataFrame
+        second_DF_slice = new_second_DF.copy()
 
-        new_main_DF.loc[i] = new_row
+        # For every condition passed...
+        for condition in match_config.match_conditions:
+
+            # Get a slice of the second DataFrame that meets the condition
+            second_DF_slice = match_one_row_condition(row,
+                                                      second_DF_slice,
+                                                      condition)
+
+        # If the slice is longer than one row...
+        if len(second_DF_slice) > 1:
+
+            # Add the values of some row in the slice to the current row
+            # NOTE: uses the match_config's rule
+            # on handling multiple row matches
+            new_main_row = \
+                add_to_first(row,
+                             match_config.multiple_matches_rule(
+                                 second_DF_slice
+                                 ),
+                             match_config.import_include_col)
+
+        # Otherwise, if the slice is just one row...
+        elif len(second_DF_slice) == 1:
+
+            # Add the values of the first row in the slice to the current row
+            new_main_row = \
+                add_to_first(row,
+                             second_DF_slice.loc[
+                              second_DF_slice.index.min()],
+                             match_config.import_include_col)
+
+        # Otherwise, if the slice is of length zero...
+        elif len(second_DF_slice) == 0:
+
+            # Create a copy of the current row
+            new_main_row = row.copy()
+
+            # For every column to be added from the second DataFrame...
+            for column in match_config.import_include_col:
+                # Add a None entry to that column in the new row
+                new_main_row.at[column] = None
+
+        # Otherwise, raise an error
+        else:
+            raise ValueError('Second slice of unexpected length.')
+
+        # Add the new row to the current index in the main DataFrame
+        new_main_DF.loc[i] = new_main_row
 
     return new_main_DF

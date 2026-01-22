@@ -44,10 +44,10 @@ error_logging = setup_error_logging(logger)
 # Define the Table class
 class Table(DataSet):
 
-    def __init__(self,
-                 data_frame=pd.DataFrame(),
-                 *args,
-                 **kwargs):
+    def __init__(self, data_frame: pd.DataFrame = None, *args, **kwargs):
+
+        # Create a default DataFrame
+        data_frame = data_frame if data_frame is not None else pd.DataFrame()
 
         # Run DataSet initialization
         super().__init__(data_frame, *args, **kwargs)
@@ -166,9 +166,9 @@ class Table(DataSet):
         return None
 
     # Method to match one dataframe to current data
-    def match(self, import_DF, comparison, match_config):
+    def match(self, import_DF, match_config):
 
-        match_data = match(self._data, import_DF, comparison, match_config)
+        match_data = match(self._data, import_DF, match_config)
 
         return match_data
 

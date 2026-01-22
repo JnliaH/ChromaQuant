@@ -42,7 +42,10 @@ error_logging = setup_error_logging(logger)
 # Define the Value class
 class Value(DataSet):
 
-    def __init__(self, data=float('nan'), *args, **kwargs):
+    def __init__(self,
+                 data=float('nan'),
+                 *args,
+                 **kwargs):
 
         # Run DataSet initialization
         super().__init__(data, *args, **kwargs)

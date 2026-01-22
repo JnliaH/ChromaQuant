@@ -45,9 +45,8 @@ error_logging = setup_error_logging(logger)
 # Match function
 def match(first_DF,
           second_DF,
-          comparison,
           match_config=MatchConfig()):
-    """Matches two DataFrames by comparing one column from each.
+    """Matches data from two DataFrames
 
     Parameters
     ----------
@@ -56,6 +55,9 @@ def match(first_DF,
         in second_DF, processed, then returned as match_data.
     second_DF: pandas DataFrame
         A DataFrame containing data to be matched to data in first_DF.
+    match_config: MatchConfig object
+        A MatchConfig instance containing information on how to match
+        the two data sets.
 
     Returns
     -------
@@ -66,39 +68,11 @@ def match(first_DF,
 
     """ EVALUATING ARGUMENTS """
 
-    # Check if comparison is a string
-    try:
-        comparison.split()
-        # If can split comparison, assign both first and second
-        # comparison to this one value
-        first_comparison = comparison
-        second_comparison = comparison
-    # If comparison is not a string
-    except Exception:
-        # If the length is one...
-        if len(comparison) == 1:
-            # Set first and second comparison to this one value
-            first_comparison = comparison[0]
-            second_comparison = comparison[0]
-        # If the length is two...
-        if len(comparison) == 2:
-            # Set the first and second comparison respectively
-            first_comparison = comparison[0]
-            second_comparison = comparison[1]
-        # If the length is neither one or two, raise an error
-        else:
-            raise ValueError('Unexpected value passed for comparison.')
-
-    # Add first and second comparison column names to match_config
-    match_config.first_comparison = first_comparison
-    match_config.second_comparison = second_comparison
-
     # If the match_config import_include_col list is empty...
     if not match_config.import_include_col:
         # Add all columns from the second dataframe
         match_config.import_include_col = \
-            [column for column in second_DF.columns.tolist()
-             if column != second_comparison]
+            [column for column in second_DF.columns.tolist()]
     # Otherwise, pass
     else:
         pass

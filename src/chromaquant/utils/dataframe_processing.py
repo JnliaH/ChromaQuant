@@ -42,6 +42,7 @@ def check_dict_keys(dictionary, permitted):
     return None
 
 
+# Function to add, remove, or rename columns in a DataFrame
 def column_adjust(dataframe, add_col=[], remove_col=[], rename_dict={}):
     """
     Function used to add, remove, or rename
@@ -87,6 +88,7 @@ def column_adjust(dataframe, add_col=[], remove_col=[], rename_dict={}):
     return new_dataframe
 
 
+# Function to filter a DataFrame based on certain values in rows
 def row_filter(dataframe, filter_dict):
     """
     Function used to filter a passed DataFrame
@@ -120,6 +122,7 @@ def row_filter(dataframe, filter_dict):
     return new_dataframe
 
 
+# Function to check whether a column is empty
 def verify_column_not_empty(dataframe, column):
     """
     Function used to test whether a column in a passed
@@ -157,6 +160,7 @@ def verify_column_not_empty(dataframe, column):
     return test_result
 
 
+# Function to test whether certain values exist in a column
 def test_for_column_values(dataframe, column, test_values):
     """
     Function used to test for the presence or absence of
@@ -202,3 +206,17 @@ def test_for_column_values(dataframe, column, test_values):
         pass
 
     return test_result_dict
+
+
+# Function that adds data from one row to another
+def add_columns_from_one_row_to_another(first_row, second_row, add_columns):
+
+    # Create a copy of the passed first_row
+    new_first = first_row.copy()
+
+    # For every column in add_columns...
+    for column in add_columns:
+        # Set the first row's entry to the second row's entry
+        new_first.at[column] = second_row[column]
+
+    return new_first
