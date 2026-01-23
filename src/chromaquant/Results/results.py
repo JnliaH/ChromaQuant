@@ -22,7 +22,7 @@ Started 12-10-2025
 
 import logging
 from ..logging_and_handling import setup_logger, setup_error_logging
-from .formula import Formula
+from ..formula import Formula
 
 """ LOGGING AND HANDLING """
 
@@ -123,22 +123,3 @@ class Results():
             raise KeyError(error_var)
 
         return None
-
-    # Function for creating a formula by introducing an operator
-    # between two references based on those reference's pointers
-    def add_formula_operation(self, pointer_1, pointer_2, operator):
-
-        # Create formula
-        formula = f'|{pointer_1}|{operator}|{pointer_2}|'
-
-        return formula
-
-    # Function for creating an addition formula
-    def add_formula_addition(self, pointer_1, pointer_2):
-
-        # Create formula
-        formula = self.add_formula_operation(self, pointer_1, pointer_2, '+')
-
-        return formula
-
-    # Function for creating a

@@ -13,7 +13,7 @@ License: BSD 3-Clause License
 
 ---
 
-CLASS DEFINITION FOR FORMULA
+COLLECTION OF VARIOUS FORMULA TOOLS
 
 Julia Hancock
 Started 01-07-2026
