@@ -269,7 +269,8 @@ class Formula:
                 pass
 
         # If can't get the length, set to five
-        except KeyError:
+        except Exception:
+            logger.info('Formula output pointer indicates empty column.')
             output_table_length = 5
 
         # If there is at least one table among inserts...

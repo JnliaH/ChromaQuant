@@ -75,6 +75,13 @@ class Table(DataSet):
         self._data = value
         self.update_table()
 
+    # Deleter
+    @data.deleter
+    def data(self):
+        del self._data
+        self._data = pd.DataFrame()
+        self.update_table()
+
     # Sheet properties
     # Getter
     @property
@@ -183,7 +190,6 @@ class Table(DataSet):
                 self.get_column_letter_wrt_start_cell(column,
                                                       self._data,
                                                       start_col_index)
-
             # Update the references object
             self._references[column] = \
                 {'column_letter': col_letter,
@@ -208,7 +214,6 @@ class Table(DataSet):
         # Update the column header
         self.columns = \
             self._data.columns.tolist()
-
         # Initialize the references object
         self._references = {}
 
@@ -216,8 +221,9 @@ class Table(DataSet):
         # NOTE: will not work if there is no valid sheet or start_cell
         try:
             self.update_references()
-        except Exception as e:
-            logger.info(e)
+
+        except Exception:
+            logger.info('Failed to update references.')
             pass
 
         return None

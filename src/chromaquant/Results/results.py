@@ -89,13 +89,7 @@ class Results():
     # Function to add a new Excel formula to a cell or table based
     # on a passed formula string
     @error_logging
-    def add_formula(self,
-                    formula: Formula,
-                    value_or_column_name: str,
-                    table: str = ''):
-
-        # Create a pointers dictionary with the value or column name
-        pointers = {'key': value_or_column_name}
+    def add_formula(self, formula: Formula):
 
         # Create a dictionary containing references for each value
         value_references = {value_name: self.values[value_name].reference
@@ -105,30 +99,28 @@ class Results():
         table_references = {table_name: self.tables[table_name].references
                             for table_name in self.tables}
 
-        # If there was no table string...
-        if table == '':
+        # Get the new formulas
+        formula.insert_references(value_references, table_references)
 
-            # Process the formula inserts
-            formula.process_value_formula_inserts(value_references,
-                                                  table_references)
-
-            # Set the corresponding value in the values object to new_formula
-            self.values[value_or_column_name] = formula.new_formula
-
-        # Otherwise...
-        else:
-
-            # Add a table key-value pair to pointers
-            pointers['table'] = table
-
-            # Process the formula inserts
-            formula.process_table_formula_inserts(value_references,
-                                                  table_references,
-                                                  pointers)
+        # If there is a 'table' and 'key' in the formula's pointer...
+        if 'table' in formula.pointer and 'key' in formula.pointer:
 
             # Set the corresponding column in the table to new_formula
-            self.tables[table].data[value_or_column_name] = \
-                formula.new_formula
+            self.tables[formula.pointer['table']].data[
+                formula.pointer['key']] = \
+                formula.referenced_formulas
+
+        # Otherwise, if there is a 'key' in the formula's pointer...
+        elif 'key' in formula.pointer:
+
+            # Set the corresponding value to new_formula
+            self.values[formula.pointer['key']].data = \
+                formula.referenced_formulas
+
+        # Otherwise, raise an error
+        else:
+            error_var = "Formula object has no 'key' or 'table' in its pointer"
+            raise KeyError(error_var)
 
         return None
 
