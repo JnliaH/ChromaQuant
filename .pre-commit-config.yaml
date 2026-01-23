@@ -1,0 +1,13 @@
+repos:
+- repo: local
+  hooks:
+    - id: pytest
+      name: Pre-Commit Testing
+      description: This hook runs tests before any commit.
+      entry: pytest
+      language: system
+      pass_filenames: false
+      always_run: true
+      verbose: true
+      args:
+        - "-v"
