@@ -141,7 +141,7 @@ class Value(DataSet):
         # NOTE: will not work if there is no valid sheet or start_cell
         try:
             self.update_reference()
-        except AttributeError as e:
+        except Exception as e:
             logger.info(e)
             pass
 

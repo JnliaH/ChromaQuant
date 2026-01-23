@@ -13,7 +13,7 @@ License: BSD 3-Clause License
 
 ---
 
-UNIT TESTING FOR FORMULA
+UNIT TESTING FOR RESULTS
 
 Julia Hancock
 Started 01-23-2026
@@ -25,7 +25,7 @@ import chromaquant as cq
 """ TEST CLASS """
 
 
-class TestResults():
+class TestResults:
 
     # Test adding Tables to Results
     def test_add_table(self):
