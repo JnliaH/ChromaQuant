@@ -88,10 +88,8 @@ class TestResults():
         # Create a Table
         SomeTable = cq.Table(sheet='Some Sheet', start_cell='B4')
         # Add data to Table
-        # TODO: FIND A WAY TO ALLOW FOR DIRECT ASSIGNMENT USING PANDAS LOGIC
-        # THAT DOES NOT BYPASS THE SETTER
-        SomeTable.add_table_column('A', [1, 2, 3])
-        SomeTable.add_table_column('B', [4, 5, 6])
+        SomeTable.data['A'] = [1, 2, 3]
+        SomeTable.data['B'] = [4, 5, 6]
         # Create a Value
         SomeValue = cq.Value(20, sheet='Some Sheet', start_cell='B2')
 

@@ -60,6 +60,7 @@ class Table(DataSet):
     # Only give references a getter
     @property
     def references(self):
+        self.update_table()
         return self._references
 
     # Redefining properties to include update_table
