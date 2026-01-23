@@ -121,3 +121,44 @@ class TestResults:
             pass
 
         assert test_result
+
+    # Test getting pointers for Tables and Values
+    def test_pointer(self):
+
+        # Create test result
+        test_result = False
+
+        # Create expected pointers
+        expected_table = '|table: Some Table, key: Some Column|'
+        expected_value = '|key: Some Value|'
+        # Create an instance of Results
+        SomeResults = cq.Results()
+
+        # Create a Table
+        SomeTable = cq.Table()
+
+        # Add a column to the Table
+        SomeTable.data['Some Column'] = [1, 2, 3]
+
+        # Create a Value
+        SomeValue = cq.Value()
+
+        # Add Table to Results
+        SomeResults.add_table(SomeTable, 'Some Table')
+
+        # Add Value to Results
+        SomeResults.add_value(SomeValue, 'Some Value')
+
+        # Get pointers for the Table and Value
+        table_pointer = SomeResults.pointer('Some Column', 'Some Table')
+        value_pointer = SomeResults.pointer('Some Value')
+
+        # Check that the pointers match expected
+        if table_pointer == expected_table and value_pointer == expected_value:
+            # If so, set test_result to True
+            test_result = True
+        # Otherwise, set test_result to False
+        else:
+            test_result = False
+
+        assert test_result

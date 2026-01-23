@@ -68,25 +68,8 @@ class Results():
     # to create new default names if none are provided. Currently,
     # tables and values will be overwritten if no nickname provided
 
-    # Function to add a new table to the results
-    @error_logging
-    def add_table(self, table_instance, table_nickname='table1'):
-
-        # Create a new table entry in the tables dictionary
-        self.tables[table_nickname] = table_instance
-
-        return None
-
-    # Function to add a new value to the results
-    @error_logging
-    def add_value(self, value_instance, value_nickname='value1'):
-
-        # Create a new value entry in the values dictionary
-        self.values[value_nickname] = value_instance
-
-        return None
-
-    # Function to add a new Excel formula to a cell or table based
+    """ METHODS """
+    # Method to add a new Excel formula to a cell or table based
     # on a passed formula string
     @error_logging
     def add_formula(self, formula: Formula):
@@ -123,3 +106,46 @@ class Results():
             raise KeyError(error_var)
 
         return None
+
+    # Method to add a new table to the results
+    @error_logging
+    def add_table(self, table_instance, table_nickname='table1'):
+
+        # Create a new table entry in the tables dictionary
+        self.tables[table_nickname] = table_instance
+
+        return None
+
+    # Method to add a new value to the results
+    @error_logging
+    def add_value(self, value_instance, value_nickname='value1'):
+
+        # Create a new value entry in the values dictionary
+        self.values[value_nickname] = value_instance
+
+        return None
+
+    """ STATIC METHODS """
+    # Method to get a DataSet's pointer
+    @staticmethod
+    def pointer(key, table='', range='False'):
+
+        # If table is not provided...
+        if table == '':
+            # Set dataset_pointer to a Value's pointer
+            dataset_pointer = f'|key: {key}|'
+
+        # Otherwise...
+        else:
+
+            # If range is True...
+            if range is True:
+                # Set dataset_pointer to a Table's column range pointer
+                dataset_pointer = f'|table: {table}, key: {key}, range: True|'
+
+            # Otherwise...
+            else:
+                # Set dataset_pointer to Table's column pointer
+                dataset_pointer = f'|table: {table}, key: {key}|'
+
+        return dataset_pointer

@@ -49,7 +49,7 @@ def FORMULA_BINARY_OPERATION(pointer_1: dict[str, str],
                              formula_pointer: dict[str, str] = None):
 
     # Get a formula string
-    formula_string = f'|{pointer_1}|{operator}|{pointer_2}|'
+    formula_string = f'{pointer_1}{operator}{pointer_2}'
 
     # Get a Formula instance using CREATE_FORMULA_FROM_STRING
     formula = CREATE_FORMULA_FROM_STRING(formula_string, formula_pointer)
@@ -60,7 +60,6 @@ def FORMULA_BINARY_OPERATION(pointer_1: dict[str, str],
 # Create formula for binary addition
 def FORMULA_ADDITION(pointer_1: dict[str, str],
                      pointer_2: dict[str, str],
-                     operator: str,
                      formula_pointer: dict[str, str] = None):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
@@ -73,3 +72,42 @@ def FORMULA_ADDITION(pointer_1: dict[str, str],
 
 
 # Create formula for binary subtraction
+def FORMULA_SUBTRACTION(pointer_1: dict[str, str],
+                        pointer_2: dict[str, str],
+                        formula_pointer: dict[str, str] = None):
+
+    # Get a Formula instance using FORMULA_BINARY_OPERATION
+    formula = FORMULA_BINARY_OPERATION(pointer_1,
+                                       pointer_2,
+                                       '-',
+                                       formula_pointer)
+
+    return formula
+
+
+# Create formula for binary multiplication
+def FORMULA_MULTIPLICATION(pointer_1: dict[str, str],
+                           pointer_2: dict[str, str],
+                           formula_pointer: dict[str, str] = None):
+
+    # Get a Formula instance using FORMULA_BINARY_OPERATION
+    formula = FORMULA_BINARY_OPERATION(pointer_1,
+                                       pointer_2,
+                                       '*',
+                                       formula_pointer)
+
+    return formula
+
+
+# Create formula for binary division
+def FORMULA_DIVISION(pointer_1: dict[str, str],
+                     pointer_2: dict[str, str],
+                     formula_pointer: dict[str, str] = None):
+
+    # Get a Formula instance using FORMULA_BINARY_OPERATION
+    formula = FORMULA_BINARY_OPERATION(pointer_1,
+                                       pointer_2,
+                                       '/',
+                                       formula_pointer)
+
+    return formula
