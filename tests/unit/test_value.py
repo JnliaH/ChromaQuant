@@ -64,8 +64,8 @@ class TestValue:
         # Try to set property values
         try:
             SomeValue.data = 10
-            SomeValue.sheet = ''
-            SomeValue.start_cell = ''
+            SomeValue.sheet = 'Some Sheet'
+            SomeValue.start_cell = '$A$1'
             # Set test_result to True if above lines worked
             test_result = True
 
@@ -82,7 +82,8 @@ class TestValue:
         # Create test result
         test_result = False
         # Create a Value
-        SomeValue = cq.Value()
+        SomeValue = cq.Value(sheet='Some Sheet',
+                             start_cell='A1')
 
         # Try to set property values
         try:

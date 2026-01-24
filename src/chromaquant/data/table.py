@@ -22,7 +22,9 @@ Started 01-12-2025
 
 import logging
 import pandas as pd
-from openpyxl.utils.cell import get_column_letter
+from openpyxl.utils.cell import get_column_letter, \
+                                coordinate_from_string, \
+                                column_index_from_string
 from .dataset import DataSet
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..utils import match
@@ -44,13 +46,18 @@ error_logging = setup_error_logging(logger)
 # Define the Table class
 class Table(DataSet):
 
-    def __init__(self, data_frame: pd.DataFrame = None, *args, **kwargs):
+    def __init__(self,
+                 data_frame: pd.DataFrame = None,
+                 start_cell: str = '',
+                 sheet: str = ''):
 
         # Create a default DataFrame
         data_frame = data_frame if data_frame is not None else pd.DataFrame()
 
         # Run DataSet initialization
-        super().__init__(data_frame, *args, **kwargs)
+        super().__init__(data=data_frame,
+                         start_cell=start_cell,
+                         sheet=sheet)
 
         # Update the table
         self.update_table()
@@ -92,6 +99,8 @@ class Table(DataSet):
     # Setter
     @sheet.setter
     def sheet(self, value):
+        if value == '':
+            raise ValueError('Table sheet cannot be an empty string.')
         self._sheet = value
         self.update_table()
 
@@ -110,13 +119,21 @@ class Table(DataSet):
     # Setter
     @start_cell.setter
     def start_cell(self, value):
-        self._start_cell = value
+        try:
+            start_column_letter, self.start_row = \
+                coordinate_from_string(value)
+            self.start_column = \
+                column_index_from_string(start_column_letter)
+            self._start_cell = value
+        except Exception as e:
+            raise ValueError(f'Passed start cell is not valid: {e}')
         self.update_table()
 
     # Deleter
     @start_cell.deleter
     def start_cell(self):
         del self._start_cell
+        del self.start_row, self.start_column
         self.update_table()
 
     """ METHODS """
@@ -179,10 +196,6 @@ class Table(DataSet):
     @error_logging
     def update_references(self):
 
-        # Get the indices for the start cell
-        start_col_index, start_row_index = \
-            self.get_cell_indices(self._start_cell)
-
         # For every column in columns...
         for column in self.columns:
 
@@ -190,17 +203,17 @@ class Table(DataSet):
             col_letter = \
                 self.get_column_letter_wrt_start_cell(column,
                                                       self._data,
-                                                      start_col_index)
+                                                      self.start_column)
             # Update the references object
             self._references[column] = \
                 {'column_letter': col_letter,
-                 'start_row': start_row_index + 1,
-                 'end_row': start_row_index + self.length,
+                 'start_row': self.start_row + 1,
+                 'end_row': self.start_row + self.length,
                  'sheet': self._sheet,
                  'length': self.length,
                  'range': (f"'{self._sheet}'!"
-                           f"${col_letter}${start_row_index + 1}:"
-                           f"${col_letter}${start_row_index + self.length}")}
+                           f"${col_letter}${self.start_row + 1}:"
+                           f"${col_letter}${self.start_row + self.length}")}
 
         return None
 

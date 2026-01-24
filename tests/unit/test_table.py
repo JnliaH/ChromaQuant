@@ -65,8 +65,8 @@ class TestTable:
         # Try to set property values
         try:
             SomeTable.data = pd.DataFrame()
-            SomeTable.sheet = ''
-            SomeTable.start_cell = ''
+            SomeTable.sheet = 'Some Sheet'
+            SomeTable.start_cell = '$A$1'
             # Set test_result to True if above lines worked
             test_result = True
 

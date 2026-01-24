@@ -162,3 +162,53 @@ class TestResults:
             test_result = False
 
         assert test_result
+
+    # Test reporting Results
+    def test_report_results(self):
+
+        # Create test result
+        test_result = False
+
+        # Try to do the following...
+        try:
+            # Create new Tables and Values
+            TableOne = cq.Table(sheet='First Sheet', start_cell='C13')
+            TableTwo = cq.Table(sheet='First Sheet', start_cell='$B$2')
+            TableThree = cq.Table(sheet='Second Sheet', start_cell='B4')
+            ValueOne = cq.Value(sheet='First Sheet', start_cell='$B$8')
+            ValueTwo = cq.Value(sheet='Second Sheet', start_cell='B1')
+
+            # Add data to new Tables and Values
+            TableOne.data['A'] = [1, 2, 3]
+            TableOne.data['B'] = [4, 5, 6]
+            TableTwo.data['C'] = [7, 8, 9]
+            TableTwo.data['D'] = [10, 11, 12]
+            TableTwo.data['E'] = [13, 14, 15]
+            TableThree.data['F'] = [16, 17, 18]
+            ValueOne.data = 19
+            ValueTwo.data = 20
+
+            # Create new Results
+            ResultsOne = cq.Results()
+
+            # Add Tables and Values to Results
+            ResultsOne.add_table(TableOne, 'Table One')
+            ResultsOne.add_table(TableTwo, 'Table Two')
+            ResultsOne.add_table(TableThree, 'Table Three')
+            ResultsOne.add_value(ValueOne, 'Value One')
+            ResultsOne.add_value(ValueTwo, 'Value Two')
+
+            # Report Results
+            ResultsOne.report_results('./tests/unit/report.xlsx')
+
+            # Set test_result to True
+            test_result = True
+
+        # If an Exception is raised...
+        except Exception as e:
+            raise Exception(f'A test report could not be generated: {e}')
+
+        assert test_result
+
+
+TestResults().test_report_results()

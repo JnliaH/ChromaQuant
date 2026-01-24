@@ -21,7 +21,8 @@ Started 01-12-2025
 """
 
 import logging
-from openpyxl.utils.cell import coordinate_from_string
+from openpyxl.utils.cell import coordinate_from_string, \
+                                column_index_from_string
 from .dataset import DataSet
 from ..logging_and_handling import setup_logger, setup_error_logging
 
@@ -44,11 +45,13 @@ class Value(DataSet):
 
     def __init__(self,
                  data=float('nan'),
-                 *args,
-                 **kwargs):
+                 start_cell: str = '',
+                 sheet: str = ''):
 
         # Run DataSet initialization
-        super().__init__(data, *args, **kwargs)
+        super().__init__(data=data,
+                         start_cell=start_cell,
+                         sheet=sheet)
 
         # Update the value
         self.update_value()
@@ -87,6 +90,8 @@ class Value(DataSet):
     # Setter
     @sheet.setter
     def sheet(self, value):
+        if value == '':
+            raise ValueError('Table sheet cannot be an empty string.')
         self._sheet = value
         self.update_value()
 
@@ -105,13 +110,21 @@ class Value(DataSet):
     # Setter
     @start_cell.setter
     def start_cell(self, value):
-        self._start_cell = value
+        try:
+            start_column_letter, self.start_row = \
+                coordinate_from_string(self._start_cell)
+            self.start_column = \
+                column_index_from_string(start_column_letter)
+            self._start_cell = value
+        except Exception as e:
+            raise ValueError(f'Passed start cell is not valid: {e}')
         self.update_value()
 
     # Deleter
     @start_cell.deleter
     def start_cell(self):
         del self._start_cell
+        del self.start_row, self.start_column
         self.update_value()
 
     """ METHODS """

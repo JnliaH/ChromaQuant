@@ -42,26 +42,22 @@ error_logging = setup_error_logging(logger)
 # Define the DataSet class
 class DataSet():
 
-    def __init__(self, data=float('nan'), *args, **kwargs):
-
-        # Check if passed any positional arguments, raise error if so
-        if args:
-            raise TypeError('Variable positional arguments are not'
-                            'permitted when creating an instance of Table ')
+    def __init__(self,
+                 data=float('nan'),
+                 start_cell: str = '',
+                 sheet: str = ''):
 
         # Initialize class attributes
         self.type = 'table'
-        self._start_cell = '$A$1'
-        self._sheet = 'Sheet1'
+        self._start_cell = start_cell if start_cell != '' else '$A$1'
+        self._sheet = sheet if sheet != '' else 'Sheet1'
+        start_column_letter, self.start_row = \
+            coordinate_from_string(self._start_cell)
+        self.start_column = \
+            column_index_from_string(start_column_letter)
 
         # Initialize data attribute
         self._data = data
-
-        # Define the permitted keyword arguments
-        self.permitted_kwargs = ['sheet', 'start_cell']
-
-        # Get class attributes from passed variable keyword arguments
-        self.create_attributes_kwargs(kwargs)
 
     """ PROPERTIES """
     # Data properties
@@ -111,28 +107,6 @@ class DataSet():
     @start_cell.deleter
     def start_cell(self):
         del self._start_cell
-
-    """ METHODS """
-    # Method to create instance attributes for each passed keyword argument
-    def create_attributes_kwargs(self, kwargs):
-
-        # For every key-value pair in kwargs...
-        for key, value in kwargs.items():
-
-            # If the current key is not permitted, raise an error
-            if key not in self.permitted_kwargs:
-                raise ValueError(f"'{key}' is not a valid argument")
-
-            # Otherwise...
-            else:
-                # If the key is 'sheet' or 'start_cell', add leading underscore
-                if key == 'sheet' or key == 'start_cell':
-                    setattr(self, f'_{key}', value)
-                # Otherwise, set attribute using key-value pair normally
-                else:
-                    setattr(self, key, value)
-
-        return None
 
     """ STATIC METHODS """
 

@@ -21,6 +21,9 @@ Started 12-10-2025
 """
 
 import logging
+import openpyxl
+import pandas as pd
+from .reporting_tools import report_table, report_value
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
 
@@ -122,6 +125,36 @@ class Results():
 
         # Create a new value entry in the values dictionary
         self.values[value_nickname] = value_instance
+
+        return None
+
+    # Method to write passed Results to Excel
+    @error_logging
+    def report_results(self,
+                       path: str = 'report.xlsx'):
+
+        # Write Tables
+        # NOTE: Uses pandas ExcelWriter with xlsxwriter
+        # With the writer open...
+        with pd.ExcelWriter(path, engine='xlsxwriter') as writer:
+
+            # For every Table in Results...
+            for table_nickname, table in self.tables.items():
+                # Write the Table to Excel
+                report_table(path, table, writer)
+
+        # Write Values
+        # NOTE: Uses custom openpyxl writer
+        # Reopen the Excel workbook
+        workbook = openpyxl.load_workbook(filename=path)
+
+        # For every Value in Results...
+        for value_nickname, value in self.values.items():
+            # Write the Value to Excel
+            report_value(path, value, workbook, value_nickname)
+
+        # Save and close the Excel workbook
+        workbook.save(path)
 
         return None
 
