@@ -26,8 +26,8 @@ from .formula import Formula
 
 
 # Create formula using formula string and (optionally) pointer
-def CREATE_FORMULA_FROM_STRING(formula_string,
-                               formula_pointer):
+def CREATE_FORMULA_FROM_STRING(formula_string: str,
+                               formula_pointer: dict[str, str] = None):
 
     # If formula pointer is passed...
     if formula_pointer is not None:
@@ -38,6 +38,30 @@ def CREATE_FORMULA_FROM_STRING(formula_string,
     else:
         # Create Formula without pointer
         formula = Formula(formula_string)
+
+    return formula
+
+
+# Wrap existing formula in IFERROR()
+def FORMULA_IF_ERROR(formula: Formula):
+
+    # Get the formula string
+    formula_string = formula.formula_string
+
+    # If there is an equals sign at the beginning...
+    if formula_string[0] == '=':
+        # Remove the equals sign
+        formula_string = formula_string[1:]
+
+    # Otherwise, pass
+    else:
+        pass
+
+    # Wrap the formula string in IFERROR()
+    formula_string = '=IFERROR(' + formula_string + ', "")'
+
+    # Set the formula string in Formula again
+    formula.formula_string = formula_string
 
     return formula
 

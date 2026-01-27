@@ -21,8 +21,7 @@ Started 01-12-2025
 """
 
 import logging
-from openpyxl.utils.cell import coordinate_from_string, \
-                                column_index_from_string
+from openpyxl.utils import get_column_letter
 from .dataset import DataSet
 from ..logging_and_handling import setup_logger, setup_error_logging
 
@@ -60,6 +59,7 @@ class Value(DataSet):
     # Define the reference property, ONLY DEFINE GETTER
     @property
     def reference(self):
+        self.update_value()
         return self._reference
 
     # Redefining properties to include update_value
@@ -111,10 +111,9 @@ class Value(DataSet):
     @start_cell.setter
     def start_cell(self, value):
         try:
-            start_column_letter, self.start_row = \
-                coordinate_from_string(self._start_cell)
-            self.start_column = \
-                column_index_from_string(start_column_letter)
+            # Get the cell's absolute indices
+            self.start_column, self.start_row = self.get_cell_indices(value)
+            # Set the starting cell
             self._start_cell = value
         except Exception as e:
             raise ValueError(f'Passed start cell is not valid: {e}')
@@ -131,16 +130,24 @@ class Value(DataSet):
     # Method to update the value's reference
     def update_reference(self):
 
-        # Get the column and row for the start cell
-        col_letter, row_index = \
-            coordinate_from_string(self._start_cell)
+        # Get the column letter, adjusting from absolute
+        column_letter = get_column_letter(self.start_column + 1)
 
+        # Get the Value name cell
+        name_cell = \
+            f"'{self._sheet}'!${column_letter}${self.start_row + 1}"
+        # Get the Value data cell
+        data_cell = \
+            f"'{self._sheet}'!${column_letter}${self.start_row + 2}"
+
+        # Get the Value data cell
         # Update the reference object
         self._reference = \
-            {'column_letter': col_letter,
-             'row': row_index,
+            {'column_letter': column_letter,
+             'row': self.start_row + 1,
              'sheet': self._sheet,
-             'cell': f"'{self._sheet}'!${col_letter}${row_index}"}
+             'name_cell': name_cell,
+             'data_cell': data_cell}
 
         return None
 

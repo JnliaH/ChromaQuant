@@ -351,13 +351,13 @@ class Formula:
                             table_ref[column_name]['end_row']
 
                         # Get a list of insert references for each
-                        # row iterated over
+                        # row iterated over, adjusted to ignore header
                         insert['reference'] = \
                             [
                                 f"'{column_sheet}'!"
                                 f"${column_letter}${row}"
                                 for row in
-                                range(start_row, end_row + 1)
+                                range(start_row + 1, end_row + 2)
                                 ]
 
                         # Replace the insert's raw substring
@@ -375,9 +375,9 @@ class Formula:
                     # Get the key pointer
                     key_pointer = insert['pointers']['key']
 
-                    # Get the value's reference string
+                    # Get the value's data reference string
                     insert['reference'] = \
-                        self.value_references[key_pointer]['cell']
+                        self.value_references[key_pointer]['data_cell']
 
                     # Replace the insert's raw substring
                     # for every formula in the new formula list
@@ -411,7 +411,7 @@ class Formula:
 
                 # Get the value's reference string
                 insert['reference'] = \
-                    self.value_references[key_pointer]['cell']
+                    self.value_references[key_pointer]['data_cell']
 
                 # Replace insert substring with value's reference
                 iterate_formula = \
@@ -488,7 +488,7 @@ class Formula:
 
                 # Get the value's reference string
                 insert['reference'] = \
-                    self.value_references[key_pointer]['cell']
+                    self.value_references[key_pointer]['data_cell']
 
                 # Replace insert substring with value's reference
                 new_formula = \

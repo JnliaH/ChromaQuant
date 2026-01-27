@@ -80,7 +80,7 @@ class TestResults:
         test_result = False
 
         # Create expected formula
-        expected_formula = "=SUM('Some Sheet'!$C$5:$C$7)*'Some Sheet'!$B$2"
+        expected_formula = "=SUM('Some Sheet'!$C$5:$C$7)*'Some Sheet'!$B$3"
 
         # Create an instance of Results
         SomeResults = cq.Results()
@@ -209,6 +209,3 @@ class TestResults:
             raise Exception(f'A test report could not be generated: {e}')
 
         assert test_result
-
-
-TestResults().test_report_results()

@@ -28,8 +28,7 @@ from ..data import Table, Value
 
 
 # Function to write a Table to Excel
-def report_table(path: str,
-                 table: Table,
+def report_table(table: Table,
                  writer: ExcelWriter):
 
     # Write the passed DataFrame to passed path
@@ -43,24 +42,30 @@ def report_table(path: str,
 
 
 # Function to write a Value to Excel
-def report_value(path: str,
-                 value: Value,
+def report_value(value: Value,
                  workbook: Workbook,
                  value_nickname: str = ''):
+
+    # If Value's sheet does not exist in workbook...
+    if value.sheet not in workbook.sheetnames:
+        # Create it
+        workbook.create_sheet(value.sheet)
+
+    # Otherwise, pass
+    else:
+        pass
 
     # Open the Value's sheet
     sheet = workbook[value.sheet]
 
-    # If value nickname is an empty string...
-    if value_nickname == '':
-        # Write the Value's data to its start cell
-        sheet.cell(value.start_row, value.start_column, value=value.data)
+    # Write the Value's name to its start cell, adjusting from absolute
+    sheet.cell(value.start_row + 1,
+               value.start_column + 1,
+               value=value_nickname)
 
-    # Otherwise...
-    else:
-        # Write the Value's name to its start cell
-        sheet.cell(value.start_row, value.start_column, value=value_nickname)
-        # Write the Value's data to the cell below
-        sheet.cell(value.start_row + 1, value.start_column, value=value.data)
+    # Write the Value's data to the cell below, adjusting from absolute
+    sheet.cell(value.start_row + 2,
+               value.start_column + 1,
+               value=value.data)
 
     return None

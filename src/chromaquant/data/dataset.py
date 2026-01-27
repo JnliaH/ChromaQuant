@@ -51,15 +51,18 @@ class DataSet():
         self.type = 'table'
         self._start_cell = start_cell if start_cell != '' else '$A$1'
         self._sheet = sheet if sheet != '' else 'Sheet1'
-        start_column_letter, self.start_row = \
-            coordinate_from_string(self._start_cell)
-        self.start_column = \
-            column_index_from_string(start_column_letter)
+        self.start_column, self.start_row = \
+            self.get_cell_indices(self._start_cell)
 
         # Initialize data attribute
         self._data = data
 
     """ PROPERTIES """
+    # Define the reference property, ONLY DEFINE GETTER
+    @property
+    def reference(self):
+        return self._reference
+
     # Data properties
     # Getter
     @property
@@ -110,15 +113,19 @@ class DataSet():
 
     """ STATIC METHODS """
 
-    # Static method to return the row and column indices of a given cell
+    # Static method to get the absolute indices of a cell
     @staticmethod
     def get_cell_indices(cell):
 
-        # Split the cell string into individual coordinates
-        col_letter, row_index = \
+        # Split the coordinate
+        column_index, row_index = \
             coordinate_from_string(cell)
 
-        # Get the starting column's index from its letter
-        col_index = column_index_from_string(col_letter)
+        # Get the absolute row by subtracting one
+        row_index = row_index - 1
 
-        return col_index, row_index
+        # Get the column index from the string, adjusting to get absolute
+        column_index = \
+            column_index_from_string(column_index) - 1
+
+        return column_index, row_index

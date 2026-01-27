@@ -82,7 +82,7 @@ class Results():
                             for value_name in self.values}
 
         # Create a dictionary containing references for each table
-        table_references = {table_name: self.tables[table_name].references
+        table_references = {table_name: self.tables[table_name].reference
                             for table_name in self.tables}
 
         # Get the new formulas
@@ -141,7 +141,7 @@ class Results():
             # For every Table in Results...
             for table_nickname, table in self.tables.items():
                 # Write the Table to Excel
-                report_table(path, table, writer)
+                report_table(table, writer)
 
         # Write Values
         # NOTE: Uses custom openpyxl writer
@@ -151,7 +151,7 @@ class Results():
         # For every Value in Results...
         for value_nickname, value in self.values.items():
             # Write the Value to Excel
-            report_value(path, value, workbook, value_nickname)
+            report_value(value, workbook, value_nickname)
 
         # Save and close the Excel workbook
         workbook.save(path)

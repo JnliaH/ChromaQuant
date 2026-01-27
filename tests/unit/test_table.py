@@ -38,12 +38,12 @@ class TestTable:
 
         # Try to get property values
         try:
-            references = SomeTable.references
+            reference = SomeTable.reference
             data = SomeTable.data
             sheet = SomeTable.sheet
             start_cell = SomeTable.start_cell
             # Clear variables
-            del references, data, sheet, start_cell
+            del reference, data, sheet, start_cell
             # Set test_result to True if above lines worked
             test_result = True
 

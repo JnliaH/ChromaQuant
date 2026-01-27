@@ -22,9 +22,7 @@ Started 01-12-2025
 
 import logging
 import pandas as pd
-from openpyxl.utils.cell import get_column_letter, \
-                                coordinate_from_string, \
-                                column_index_from_string
+from openpyxl.utils.cell import get_column_letter
 from .dataset import DataSet
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..utils import match
@@ -63,12 +61,12 @@ class Table(DataSet):
         self.update_table()
 
     """ PROPERTIES """
-    # Define the references property
-    # Only give references a getter
+    # Define the reference property
+    # Only give reference a getter
     @property
-    def references(self):
+    def reference(self):
         self.update_table()
-        return self._references
+        return self._reference
 
     # Redefining properties to include update_table
     # Data properties
@@ -119,12 +117,13 @@ class Table(DataSet):
     # Setter
     @start_cell.setter
     def start_cell(self, value):
+        # Try...
         try:
-            start_column_letter, self.start_row = \
-                coordinate_from_string(value)
-            self.start_column = \
-                column_index_from_string(start_column_letter)
+            # Get the cell's absolute indices
+            self.start_column, self.start_row = self.get_cell_indices(value)
+            # Set the starting cell
             self._start_cell = value
+        # If an exception occurs...
         except Exception as e:
             raise ValueError(f'Passed start cell is not valid: {e}')
         self.update_table()
@@ -192,28 +191,38 @@ class Table(DataSet):
 
         return match_data
 
-    # Method to update column references
+    # Method to update column reference
     @error_logging
-    def update_references(self):
+    def update_reference(self):
 
         # For every column in columns...
         for column in self.columns:
 
-            # Get the current column's letter
+            # Get the start cell's column letter, adjusting from absolute
             col_letter = \
                 self.get_column_letter_wrt_start_cell(column,
                                                       self._data,
-                                                      self.start_column)
-            # Update the references object
-            self._references[column] = \
+                                                      self.start_column + 1)
+
+            # Get a start row, adjusting from absolute
+            start_row = self.start_row + 1
+
+            # Get an end row, adjusting from absolute
+            end_row = self.start_row + 1 + self.length
+
+            # Get a range reference, adjusting from absolute
+            column_range = (f"'{self._sheet}'!"
+                            f"${col_letter}${start_row + 1}:"
+                            f"${col_letter}${end_row}")
+
+            # Update the reference object
+            self._reference[column] = \
                 {'column_letter': col_letter,
-                 'start_row': self.start_row + 1,
-                 'end_row': self.start_row + self.length,
+                 'start_row': start_row,
+                 'end_row': end_row,
                  'sheet': self._sheet,
                  'length': self.length,
-                 'range': (f"'{self._sheet}'!"
-                           f"${col_letter}${self.start_row + 1}:"
-                           f"${col_letter}${self.start_row + self.length}")}
+                 'range': column_range}
 
         return None
 
@@ -228,16 +237,16 @@ class Table(DataSet):
         # Update the column header
         self.columns = \
             self._data.columns.tolist()
-        # Initialize the references object
-        self._references = {}
+        # Initialize the reference object
+        self._reference = {}
 
-        # Try to update the references
+        # Try to update the reference
         # NOTE: will not work if there is no valid sheet or start_cell
         try:
-            self.update_references()
+            self.update_reference()
 
         except Exception:
-            logger.info('Failed to update references.')
+            logger.info('Failed to update reference.')
             pass
 
         return None

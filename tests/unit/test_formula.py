@@ -57,7 +57,7 @@ def test_formula():
                               "='Some Sheet'!$A$2:$A$8",
                               "='Some Sheet'!$A$2:$A$8"]
 
-    third_expected_result = "='Some Other Sheet'!$A$1"
+    third_expected_result = "='Some Other Sheet'!$A$2"
     fourth_expected_result = "='Some Sheet'!$A$2:$A$8"
 
     """ CONSTANTS FOR TESTING """
@@ -65,8 +65,8 @@ def test_formula():
     # Table references
     table_references = {'Some Table':
                         {'Some Key': {'column_letter': 'A',
-                                      'start_row': 2,
-                                      'end_row': 11,
+                                      'start_row': 1,
+                                      'end_row': 10,
                                       'sheet': 'Some Sheet',
                                       'length': 10,
                                       'range': "'Some Sheet'!$A$2:$A$8"},
@@ -76,7 +76,8 @@ def test_formula():
     value_references = {'Some Value': {'column_letter': 'A',
                                        'row': 1,
                                        'sheet': 'Some Other Sheet',
-                                       'cell': "'Some Other Sheet'!$A$1"}}
+                                       'name_cell': "'Some Other Sheet'!$A$1",
+                                       'data_cell': "'Some Other Sheet'!$A$2"}}
 
     # First formula for table output
     first_table_formula = '=|table: Some Table, key: Some Key, range: False|'
