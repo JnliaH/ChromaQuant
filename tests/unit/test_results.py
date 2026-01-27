@@ -122,8 +122,8 @@ class TestResults:
 
         assert test_result
 
-    # Test getting pointers for Tables and Values
-    def test_pointer(self):
+    # Test getting inserts for Tables and Values
+    def test_get_insert(self):
 
         # Create test result
         test_result = False
@@ -150,8 +150,8 @@ class TestResults:
         SomeResults.add_value(SomeValue, 'Some Value')
 
         # Get pointers for the Table and Value
-        table_pointer = SomeResults.pointer('Some Column', 'Some Table')
-        value_pointer = SomeResults.pointer('Some Value')
+        table_pointer = SomeResults.get_insert('Some Column', 'Some Table')
+        value_pointer = SomeResults.get_insert('Some Value')
 
         # Check that the pointers match expected
         if table_pointer == expected_table and value_pointer == expected_value:

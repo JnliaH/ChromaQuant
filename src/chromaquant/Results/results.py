@@ -159,9 +159,9 @@ class Results():
         return None
 
     """ STATIC METHODS """
-    # Method to get a DataSet's pointer
+    # Method to get a formula insert for a DataSet's pointer
     @staticmethod
-    def pointer(key, table='', range='False'):
+    def get_insert(key, table='', range='False'):
 
         # If table is not provided...
         if table == '':

@@ -42,6 +42,16 @@ def CREATE_FORMULA_FROM_STRING(formula_string: str,
     return formula
 
 
+# Create formula by wrapping existing formula in stated Excel formula
+def WRAP_FORMULA_STRING(inner_formula_string, wrapping_formula_string):
+
+    # Get a new formula string
+    formula_string = \
+        f'={wrapping_formula_string}({inner_formula_string})'
+
+    return formula_string
+
+
 # Wrap existing formula in IFERROR()
 def FORMULA_IF_ERROR(formula: Formula):
 
@@ -67,13 +77,28 @@ def FORMULA_IF_ERROR(formula: Formula):
 
 
 # Create formula for binary operations
-def FORMULA_BINARY_OPERATION(pointer_1: dict[str, str],
-                             pointer_2: dict[str, str],
+def FORMULA_BINARY_OPERATION(left_hand_side: str,
+                             right_hand_side: str,
                              operator: str,
                              formula_pointer: dict[str, str] = None):
 
+    # Get a list of sides
+    side_list = [left_hand_side, right_hand_side]
+
+    # For each passed side of the operator...
+    for i in range(len(side_list)):
+
+        # If the side starts with equals...
+        if side_list[i][0] == '=':
+            # Remove the equals sign
+            side_list[i] = side_list[i][1:]
+
+        # Otherwise, pass
+        else:
+            pass
+
     # Get a formula string
-    formula_string = f'{pointer_1}{operator}{pointer_2}'
+    formula_string = f'=({side_list[0]}{operator}{side_list[1]})'
 
     # Get a Formula instance using CREATE_FORMULA_FROM_STRING
     formula = CREATE_FORMULA_FROM_STRING(formula_string, formula_pointer)
@@ -82,13 +107,13 @@ def FORMULA_BINARY_OPERATION(pointer_1: dict[str, str],
 
 
 # Create formula for binary addition
-def FORMULA_ADDITION(pointer_1: dict[str, str],
-                     pointer_2: dict[str, str],
+def FORMULA_ADDITION(left_hand_side: str,
+                     right_hand_side: str,
                      formula_pointer: dict[str, str] = None):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
-    formula = FORMULA_BINARY_OPERATION(pointer_1,
-                                       pointer_2,
+    formula = FORMULA_BINARY_OPERATION(left_hand_side,
+                                       right_hand_side,
                                        '+',
                                        formula_pointer)
 
@@ -96,13 +121,13 @@ def FORMULA_ADDITION(pointer_1: dict[str, str],
 
 
 # Create formula for binary subtraction
-def FORMULA_SUBTRACTION(pointer_1: dict[str, str],
-                        pointer_2: dict[str, str],
+def FORMULA_SUBTRACTION(left_hand_side: str,
+                        right_hand_side: str,
                         formula_pointer: dict[str, str] = None):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
-    formula = FORMULA_BINARY_OPERATION(pointer_1,
-                                       pointer_2,
+    formula = FORMULA_BINARY_OPERATION(left_hand_side,
+                                       right_hand_side,
                                        '-',
                                        formula_pointer)
 
@@ -110,13 +135,13 @@ def FORMULA_SUBTRACTION(pointer_1: dict[str, str],
 
 
 # Create formula for binary multiplication
-def FORMULA_MULTIPLICATION(pointer_1: dict[str, str],
-                           pointer_2: dict[str, str],
+def FORMULA_MULTIPLICATION(left_hand_side: str,
+                           right_hand_side: str,
                            formula_pointer: dict[str, str] = None):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
-    formula = FORMULA_BINARY_OPERATION(pointer_1,
-                                       pointer_2,
+    formula = FORMULA_BINARY_OPERATION(left_hand_side,
+                                       right_hand_side,
                                        '*',
                                        formula_pointer)
 
@@ -124,13 +149,13 @@ def FORMULA_MULTIPLICATION(pointer_1: dict[str, str],
 
 
 # Create formula for binary division
-def FORMULA_DIVISION(pointer_1: dict[str, str],
-                     pointer_2: dict[str, str],
+def FORMULA_DIVISION(left_hand_side: str,
+                     right_hand_side: str,
                      formula_pointer: dict[str, str] = None):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
-    formula = FORMULA_BINARY_OPERATION(pointer_1,
-                                       pointer_2,
+    formula = FORMULA_BINARY_OPERATION(left_hand_side,
+                                       right_hand_side,
                                        '/',
                                        formula_pointer)
 
