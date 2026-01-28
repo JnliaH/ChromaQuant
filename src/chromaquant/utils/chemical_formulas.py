@@ -78,7 +78,7 @@ def get_molecular_weight(formula: str | list):
         formula.split()
 
         # If it is a string, get the weight
-        weight = ChemFormula(formula).weight
+        weight = ChemFormula(formula).formula_weight
 
     # If an AttributeError occurs (formula is a list)...
     except AttributeError:
@@ -93,7 +93,7 @@ def get_molecular_weight(formula: str | list):
             try:
 
                 # Append the weight of the current formula
-                weight.append(ChemFormula(single_formula).weight)
+                weight.append(ChemFormula(single_formula).formula_weight)
 
             # If there is a ValueError (e.g., formula contains None or NaN)...
             except ValueError:

@@ -25,10 +25,21 @@ import chromaquant as cq
 """ PATHS """
 
 # Define paths for example data
-path_FID_integration = \
+path_lq_FID_integration = \
     './examples/example_data/example_liquid_FID_integration.csv'
-path_MS_components = \
+path_lq_MS_components = \
     './examples/example_data/example_MS_components.csv'
+path_lq_FID_RFs = \
+    './examples/example_data/example_FID_response_factors.csv'
+
+""" SHEETS AND CELLS """
+# Define sheets for liquids and gas
+liquid_sheet = 'Liquids Analysis'
+gas_sheet = 'Gas Analysis'
+# Define starting cells for liquid tables and values
+liquid_table_cell = '$B$5'
+liquid_IS_area_cell = '$B$2'
+liquid_IS_mass_cell = '$C$2'
 
 """ DATASET CREATION """
 
@@ -36,14 +47,26 @@ path_MS_components = \
 # signal collected when analyzing a liquid sample
 lq_FID_integration = cq.Table()
 # Read a .csv to add data to this table
-lq_FID_integration.import_csv_data(path_FID_integration)
+lq_FID_integration.import_csv_data(path_lq_FID_integration)
 
 # Create a table for a liquid components table from a Mass Spectrometer
 lq_MS_components = cq.Table()
 # Read a .csv to add data to this table
-lq_MS_components.import_csv_data(path_MS_components)
+lq_MS_components.import_csv_data(path_lq_MS_components)
 
-""" MATCHING """
+# Create a table for liquid response factors
+lq_FID_RF = cq.Table()
+# Read a .csv to add data to this table
+lq_FID_RF.import_csv_data(path_lq_FID_RFs)
+
+# Create values for the internal standard area and mass
+IS_area = cq.Value(sheet=liquid_sheet,
+                   start_cell=liquid_IS_area_cell)
+IS_mass = cq.Value(data=30,
+                   sheet=liquid_sheet,
+                   start_cell=liquid_IS_mass_cell)
+
+""" MATCHING FID TO MS """
 
 # Create a match configuration for liquids FID-MS
 match_config_lq_FIDpMS = cq.MatchConfig()
@@ -78,9 +101,122 @@ lq_FIDpMS = lq_FID_integration.match(lq_MS_components.data,
                                      match_config_lq_FIDpMS)
 
 # Create a new liquids table with the match results
-liquids = cq.Table(lq_FIDpMS)
+liquids_table = cq.Table(lq_FIDpMS,
+                         sheet=liquid_sheet,
+                         start_cell=liquid_table_cell)
+
+""" ADDING CARBON NUMBER AND MOLECULAR WEIGHT """
 
 # Add a carbon number count column
-liquids.add_element_count_column('Formula', 'C', 'Carbon Number')
+liquids_table.add_element_count_column('Formula', 'C', 'Carbon Number')
 
-print(liquids)
+# Add a molecular weight column
+liquids_table.add_molecular_weight_column('Formula', 'Molecular Weight')
+
+""" MATCHING RESPONSE FACTORS """
+
+# Create a match configuration for liquid response factors
+match_config_lq_RF = cq.MatchConfig()
+
+# Add a match condition
+match_config_lq_RF.add_match_condition(condition=cq.MatchConfig.IS_EQUAL,
+                                       comparison='Compound')
+
+# Add columns to include from second DataFrame
+match_config_lq_RF.import_include_col = ['Sample Set', 'Response Factor']
+
+# Match response factors to liquids FIDpMS
+liquids_table.data = liquids_table.match(lq_FID_RF.data,
+                                         match_config_lq_RF)
+
+""" ASSIGNING INTERPOLATED RESPONSE FACTORS """
+
+
+# Define a function for assigning interpolated response factors
+def RF_by_carbon_number(CN):
+    return 0.0000496*CN**3 - 0.003*CN**2 + 0.0506*CN + 0.731
+
+
+# For every row in the liquids data...
+for i, row in liquids_table.data.iterrows():
+
+    # If the Response Factor is None...
+    if row['Response Factor'] is None:
+
+        # Get the carbon number
+        CN = row['Carbon Number']
+
+        # If the carbon number is not zero...
+        if CN != 0:
+
+            # Get an interpolated response factor
+            RF = RF_by_carbon_number(CN)
+
+            # Set the row's response factor to RF
+            liquids_table.data.at[i, 'Response Factor'] = RF
+
+            # Set the row's Sample Set to Interpolated
+            liquids_table.data.at[i, 'Sample Set'] = 'Interpolated'
+
+        # Otherwise, pass
+        else:
+            pass
+
+    # Otherwise, pass
+    else:
+        pass
+
+""" LIQUIDS RESULTS """
+
+# Define Results instance for liquids analysis
+liquids = cq.Results()
+
+# Add the liquids table
+liquids.add_table(liquids_table, 'Liquids Analysis')
+
+# Add the internal standard values
+liquids.add_value(IS_area, 'Internal Standard Area')
+liquids.add_value(IS_mass, 'Internal Standard Mass (mg)')
+
+# Get inserts for the liquids analysis table Compound and Area columns
+compound_column_insert = liquids.get_insert('Compound',
+                                            'Liquids Analysis',
+                                            True)
+area_column_insert = liquids.get_insert('Area',
+                                        'Liquids Analysis',
+                                        True)
+
+# Create a formula string for the area cell
+IS_area_formula_string = (f"=INDEX({area_column_insert}, MATCH("
+                          f"'Hexane, 3-methyl-', "
+                          f"{compound_column_insert}, 0))")
+
+# Create a Formula instance for the area cell
+IS_area_formula = cq.Formula(IS_area_formula_string,
+                             liquids.get_pointer('Internal Standard Area'))
+
+# Add the area cell Formula to liquids analysis
+liquids.add_formula(IS_area_formula)
+
+# Create an area ratio Formula
+area_ratio_formula = cq.formula.FORMULA_DIVISION(
+    liquids.get_insert('Area', 'Liquids Analysis'),
+    liquids.get_insert('Internal Standard Area'),
+    liquids.get_pointer('Ai/As', 'Liquids Analysis')
+)
+
+# Add the area ratio Formula to the liquids analysis
+liquids.add_formula(area_ratio_formula)
+
+# Create a mass Formula
+mass_formula = cq.formula.FORMULA_MULTIPLICATION(
+    liquids.get_insert('Internal Standard Mass (mg)'),
+    cq.formula.FORMULA_DIVISION(
+        liquids.get_insert('Ai/As', 'Liquids Analysis'),
+        liquids.get_insert('Response Factor', 'Liquids Analysis')
+    ).formula_string,
+    liquids.get_pointer('Mass (mg)', 'Liquids Analysis')
+)
+
+# Add the mass Formula to the liquids analysis
+liquids.add_formula(mass_formula)

@@ -161,24 +161,48 @@ class Results():
     """ STATIC METHODS """
     # Method to get a formula insert for a DataSet's pointer
     @staticmethod
-    def get_insert(key, table='', range='False'):
+    def get_insert(key, table='', range=False):
 
         # If table is not provided...
         if table == '':
-            # Set dataset_pointer to a Value's pointer
-            dataset_pointer = f'|key: {key}|'
+            # Set insert to a Value's insert
+            dataset_insert = f'|key: {key}|'
 
         # Otherwise...
         else:
 
             # If range is True...
             if range is True:
-                # Set dataset_pointer to a Table's column range pointer
-                dataset_pointer = f'|table: {table}, key: {key}, range: True|'
+                # Set insert to a Table's column range insert
+                dataset_insert = f'|table: {table}, key: {key}, range: True|'
 
             # Otherwise...
             else:
-                # Set dataset_pointer to Table's column pointer
-                dataset_pointer = f'|table: {table}, key: {key}|'
+                # Set insert to Table's column insert
+                dataset_insert = f'|table: {table}, key: {key}|'
+
+        return dataset_insert
+
+    # Method to get a DataSet's pointer
+    @staticmethod
+    def get_pointer(key, table='', range=False):
+
+        # If table is not provided...
+        if table == '':
+            # Get value pointer
+            dataset_pointer = {'key': key}
+
+        # Otherwise...
+        else:
+
+            # If range is True...
+            if range is True:
+                # Set pointer to a Table's column range pointer
+                dataset_pointer = {'key': key, 'table': table, 'range': 'True'}
+
+            # Otherwise...
+            else:
+                # Set pointer to Table's column pointer
+                dataset_pointer = {'key': key, 'table': table}
 
         return dataset_pointer
