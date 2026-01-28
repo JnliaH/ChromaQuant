@@ -25,7 +25,8 @@ import pandas as pd
 from openpyxl.utils.cell import get_column_letter
 from .dataset import DataSet
 from ..logging_and_handling import setup_logger, setup_error_logging
-from ..utils import match
+from ..match import match
+from ..utils import get_molecular_weight, get_number_element_atoms
 
 """ LOGGING AND HANDLING """
 
@@ -55,7 +56,8 @@ class Table(DataSet):
         # Run DataSet initialization
         super().__init__(data=data_frame,
                          start_cell=start_cell,
-                         sheet=sheet)
+                         sheet=sheet,
+                         type='Table')
 
         # Update the table
         self.update_table()
@@ -150,6 +152,66 @@ class Table(DataSet):
 
         # Update the table
         self.update_table()
+
+        return None
+
+    # Method to add a new column to a table by passing a list
+    # returned from a function, useful for Python operations on
+    # one or more columns in the DataFrame
+    @error_logging
+    def add_table_column_from_function(self,
+                                       column_name,
+                                       function,
+                                       *args,
+                                       **kwargs):
+
+        # Get the output of a function using passed arguments
+        function_output = function(*args, **kwargs)
+
+        # Add the function output as a column to the table
+        self.add_table_column(column_name, function_output)
+
+        return None
+
+    # Method to add a molecular weight column based
+    # on another column with chemical formulas
+    @error_logging
+    def add_molecular_weight_column(self,
+                                    formula_column_name: str,
+                                    new_column_name: str = 'Molecular weight'):
+
+        # Get the formula column as a list
+        formula_list = self._data[formula_column_name].tolist()
+
+        # Create a new molecular weight column by passing this
+        # formula column and the molecular weight function
+        self.add_table_column_from_function(new_column_name,
+                                            get_molecular_weight,
+                                            formula=formula_list)
+
+        return None
+
+    # Method to add an element count column based
+    # on another column with chemical formulas
+    @error_logging
+    def add_element_count_column(self,
+                                 formula_column_name: str,
+                                 element: str,
+                                 new_column_name: str = ''):
+
+        # Get a new column name based on the element if empty
+        new_column_name = \
+            element if new_column_name == '' else new_column_name
+
+        # Get the formula column as a list
+        formula_list = self._data[formula_column_name].tolist()
+
+        # Create a new molecular weight column by passing this
+        # formula column and the molecular weight function
+        self.add_table_column_from_function(new_column_name,
+                                            get_number_element_atoms,
+                                            formula=formula_list,
+                                            element=element)
 
         return None
 

@@ -54,7 +54,8 @@ class MatchConfig():
     import_include_col = ConfigProperty()
     local_filter_row = ConfigProperty()
     match_conditions = ConfigProperty()
-    multiple_matches_rule = ConfigProperty()
+    multiple_hits_rule = ConfigProperty()
+    multiple_hits_column = ConfigProperty()
     output_cols_dict = ConfigProperty()
     output_path = ConfigProperty()
 
@@ -69,8 +70,9 @@ class MatchConfig():
                                                        float | int | str],
                                                       pd.DataFrame
                                                       ]]] = None,
-                 multiple_matches_rule: Callable[[pd.DataFrame],
-                                                 pd.Series] = None,
+                 multiple_hits_rule:
+                 Callable[[pd.DataFrame], pd.Series] = None,
+                 multiple_hits_column: str = 'default',
                  output_cols_dict: dict = None,
                  output_path: str = 'match_results.csv'):
 
@@ -97,8 +99,9 @@ class MatchConfig():
             if local_filter_row is not None else {}
         self.match_conditions = match_conditions \
             if match_conditions is not None else []
-        self.multiple_matches_rule = multiple_matches_rule \
-            if multiple_matches_rule is not None else self.SELECT_FIRST_ROW
+        self.multiple_hits_rule = multiple_hits_rule \
+            if multiple_hits_rule is not None else self.SELECT_FIRST_ROW
+        self.multiple_hits_column = multiple_hits_column
         self.output_cols_dict = output_cols_dict\
             if output_cols_dict is not None else {}
         self.output_path = output_path
@@ -107,10 +110,11 @@ class MatchConfig():
 
     # Method to add a new match condition
     def add_match_condition(self,
-                            condition,
-                            comparison,
-                            error=0,
-                            or_equal=False):
+                            condition: Callable[[pd.DataFrame, str],
+                                                pd.Series],
+                            comparison: str | list,
+                            error: int | float = 0,
+                            or_equal: bool = False):
 
         # Check if comparison is a string
         try:
@@ -244,9 +248,40 @@ class MatchConfig():
     # Method that gets the first row of a slice, used as the default
     # method of selecting one row of a slice that meets match conditions
     @staticmethod
-    def SELECT_FIRST_ROW(DF):
+    def SELECT_FIRST_ROW(DF: pd.DataFrame,
+                         column_name: str):
 
         # Get the first row of the DataFrame
         first_row = DF.loc[DF.index.min()]
 
         return first_row
+
+    # Method that selects the row with the smallest value in a given column
+    # NOTE: will return the first occurrence of the smallest value if multiple
+    # values share the same minimum
+    @staticmethod
+    def SELECT_LOWEST_VALUE(DF: pd.DataFrame,
+                            column_name: str):
+
+        # Get the minimum value
+        min_value_index = DF[column_name].idxmin()
+
+        # Get the row with the smallest value
+        min_value = DF.loc[min_value_index]
+
+        return min_value
+
+    # Method that selects the row with the largest value in a given column
+    # NOTE: will return the first occurrence of the largest value if multiple
+    # values share the same maximum
+    @staticmethod
+    def SELECT_HIGHEST_VALUE(DF: pd.DataFrame,
+                             column_name: str):
+
+        # Get the maximum value
+        max_value_index = DF[column_name].idxmax()
+
+        # Get the row with the largest value
+        max_value = DF.loc[max_value_index]
+
+        return max_value

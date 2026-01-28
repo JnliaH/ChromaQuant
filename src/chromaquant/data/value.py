@@ -50,7 +50,8 @@ class Value(DataSet):
         # Run DataSet initialization
         super().__init__(data=data,
                          start_cell=start_cell,
-                         sheet=sheet)
+                         sheet=sheet,
+                         type='Value')
 
         # Update the value
         self.update_value()

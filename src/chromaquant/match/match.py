@@ -23,9 +23,9 @@ Started 1-15-2026
 import logging
 from .match_config import MatchConfig
 from .match_tools import match_dataframes
-from .file_tools import try_open_csv, export_to_csv
-from .dataframe_processing import column_adjust, \
-                                  row_filter
+from ..utils.file_tools import try_open_csv, export_to_csv
+from ..utils.dataframe_processing import column_adjust, \
+                                         row_filter
 from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """

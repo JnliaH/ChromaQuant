@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 
 COPYRIGHT STATEMENT:
@@ -57,6 +58,19 @@ def match_dataframes(main_DF, second_DF, match_config):
                                          error=match_condition['error'],
                                          or_equal=match_condition['or_equal'])
 
+        # Try...
+        try:
+            # Add a column to the slice containing the error
+            # between the actual and expected values
+            DF_slice[f'{match_condition['second_DF_column']} Error'] = \
+                [abs(DF_slice.at[i, match_condition['second_DF_column']])
+                 - row_value for i, row_i in DF_slice.iterrows()]
+
+        # If a TypeError occurs, add an empty column
+        except TypeError:
+            DF_slice[f'{match_condition['second_DF_column']} Error'] = \
+                [0 for i, row_i in DF_slice.iterrows()]
+
         return DF_slice
 
     # Create a copy of the passed DataFrames
@@ -69,6 +83,9 @@ def match_dataframes(main_DF, second_DF, match_config):
         # Get a copy of the second DataFrame
         second_DF_slice = new_second_DF.copy()
 
+        # Initialize an index for number of conditions applied
+        j = 0
+
         # For every condition passed...
         for condition in match_config.match_conditions:
 
@@ -77,17 +94,23 @@ def match_dataframes(main_DF, second_DF, match_config):
                                                       second_DF_slice,
                                                       condition)
 
+            # Increment j
+            j += 1
+
         # If the slice is longer than one row...
         if len(second_DF_slice) > 1:
+
+            # Get the name of the column used in selecting one hit of multiple
+            column_name = match_config.multiple_hits_column
 
             # Add the values of some row in the slice to the current row
             # NOTE: uses the match_config's rule
             # on handling multiple row matches
             new_main_row = \
                 add_to_first(row,
-                             match_config.multiple_matches_rule(
-                                 second_DF_slice
-                                 ),
+                             match_config.multiple_hits_rule(
+                                 DF=second_DF_slice,
+                                 column_name=column_name),
                              match_config.import_include_col)
 
         # Otherwise, if the slice is just one row...

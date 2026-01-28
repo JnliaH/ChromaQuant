@@ -42,13 +42,15 @@ error_logging = setup_error_logging(logger)
 # Define the DataSet class
 class DataSet():
 
+    # Initialize
     def __init__(self,
                  data=float('nan'),
                  start_cell: str = '',
-                 sheet: str = ''):
+                 sheet: str = '',
+                 type: str = 'DataSet'):
 
         # Initialize class attributes
-        self.type = 'table'
+        self.type = type
         self._start_cell = start_cell if start_cell != '' else '$A$1'
         self._sheet = sheet if sheet != '' else 'Sheet1'
         self.start_column, self.start_row = \
@@ -56,6 +58,10 @@ class DataSet():
 
         # Initialize data attribute
         self._data = data
+
+    # Define the object representation by including its data
+    def __repr__(self):
+        return f"Contents of chromaquant.{self.type} Object:\n{self._data}"
 
     """ PROPERTIES """
     # Define the reference property, ONLY DEFINE GETTER

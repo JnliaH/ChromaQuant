@@ -11,6 +11,6 @@ Created 10-20-2024
 
 from .results import Results
 from .formula import Formula
-from .utils import MatchConfig
+from .match import MatchConfig
 from .data import Table
 from .data import Value
