@@ -14,3 +14,4 @@ from .formula import Formula
 from .match import MatchConfig
 from .data import Table
 from .data import Value
+from .data import Breakdown

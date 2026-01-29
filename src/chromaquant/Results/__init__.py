@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-chromaquant.Results subpackage initialization
+ChromaQuant.results module initialization
 
 Julia Hancock
 Created 10-19-2024

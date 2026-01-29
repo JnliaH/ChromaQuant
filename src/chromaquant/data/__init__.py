@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-ChromaQuant.data package initialization
+ChromaQuant.data module initialization
 
 Julia Hancock
 Created 10-19-2024
@@ -11,3 +11,4 @@ Created 10-19-2024
 
 from .table import Table
 from .value import Value
+from .breakdown import Breakdown
