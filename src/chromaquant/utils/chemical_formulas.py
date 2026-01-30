@@ -26,8 +26,8 @@ from chemformula import ChemFormula
 
 
 # Function to get the number of atoms of a given element from a formula
-def get_number_element_atoms(formula: str | list,
-                             element: str):
+def get_number_element_atoms(formula: str | list[str],
+                             element: str) -> list[int] | int:
 
     # Try...
     try:
@@ -39,7 +39,7 @@ def get_number_element_atoms(formula: str | list,
         chemFormDict = ChemFormula(formula).element
 
         # Get the number of atoms of the passed element
-        number_element_atoms = chemFormDict[element]
+        number_element_atoms: int | list[int] = chemFormDict[element]
 
     # If an AttributeError occurs (formula is a list)...
     except AttributeError:
@@ -70,7 +70,7 @@ def get_number_element_atoms(formula: str | list,
 
 
 # Function to get the molecular weight from a chemical formula
-def get_molecular_weight(formula: str | list):
+def get_molecular_weight(formula: str | list[str]) -> float | list[float]:
 
     # Try...
     try:
@@ -78,7 +78,7 @@ def get_molecular_weight(formula: str | list):
         formula.split()
 
         # If it is a string, get the weight
-        weight = ChemFormula(formula).formula_weight
+        weight: float | list[float] = ChemFormula(formula).formula_weight
 
     # If an AttributeError occurs (formula is a list)...
     except AttributeError:

@@ -22,6 +22,7 @@ Started 01-12-2025
 
 import logging
 from openpyxl.utils import get_column_letter
+from typing import Any
 from .dataset import DataSet
 from ..logging_and_handling import setup_logger, setup_error_logging
 
@@ -43,7 +44,7 @@ error_logging = setup_error_logging(logger)
 class Value(DataSet):
 
     def __init__(self,
-                 data=float('nan'),
+                 data: Any = float('nan'),
                  start_cell: str = '',
                  sheet: str = ''):
 
@@ -52,6 +53,9 @@ class Value(DataSet):
                          start_cell=start_cell,
                          sheet=sheet,
                          type='Value')
+
+        # Create a default pointer
+        self.pointer = {}
 
         # Update the value
         self.update_value()
@@ -67,12 +71,12 @@ class Value(DataSet):
     # Data properties
     # Getter
     @property
-    def data(self):
+    def data(self) -> Any:
         return self._data
 
     # Setter
     @data.setter
-    def data(self, value):
+    def data(self, value: Any):
         self._data = value
         self.update_value()
 
@@ -85,12 +89,12 @@ class Value(DataSet):
     # Sheet properties
     # Getter
     @property
-    def sheet(self):
+    def sheet(self) -> str:
         return self._sheet
 
     # Setter
     @sheet.setter
-    def sheet(self, value):
+    def sheet(self, value: str):
         if value == '':
             raise ValueError('Table sheet cannot be an empty string.')
         self._sheet = value
@@ -105,12 +109,12 @@ class Value(DataSet):
     # Start cell properties
     # Getter
     @property
-    def start_cell(self):
+    def start_cell(self) -> str:
         return self._start_cell
 
     # Setter
     @start_cell.setter
-    def start_cell(self, value):
+    def start_cell(self, value: str):
         try:
             # Get the cell's absolute indices
             self.start_column, self.start_row = self.get_cell_indices(value)

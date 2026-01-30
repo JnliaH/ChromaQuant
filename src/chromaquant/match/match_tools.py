@@ -21,14 +21,22 @@ Started 11-13-2025
 
 """
 
+from pandas import DataFrame, Series
+from typing import Any
+from .match_config import MatchConfig
+
 """ FUNCTIONS """
 
 
 # Function that matches one DataFrame's values to another using some comparison
-def match_dataframes(main_DF, second_DF, match_config):
+def match_dataframes(main_DF: DataFrame,
+                     second_DF: DataFrame,
+                     match_config: MatchConfig) -> DataFrame:
 
     # Function that adds data from one row to another
-    def add_to_first(first, second, add_columns):
+    def add_to_first(first: Series,
+                     second: Series,
+                     add_columns: list[str]):
 
         # Create a copy of the passed first_row
         new_first = first.copy()
@@ -42,7 +50,9 @@ def match_dataframes(main_DF, second_DF, match_config):
 
     # Function that finds all rows in a DataFrame that meet a condition
     # with respect to some different row
-    def match_one_row_condition(row, DF, match_condition):
+    def match_one_row_condition(row: Series,
+                                DF: DataFrame,
+                                match_condition: dict[str, Any]):
 
         # Create a copy of the passed main_row
         new_row = row.copy()
@@ -109,8 +119,8 @@ def match_dataframes(main_DF, second_DF, match_config):
             new_main_row = \
                 add_to_first(row,
                              match_config.multiple_hits_rule(
-                                 DF=second_DF_slice,
-                                 column_name=column_name),
+                                 second_DF_slice,
+                                 column_name),
                              match_config.import_include_col)
 
         # Otherwise, if the slice is just one row...

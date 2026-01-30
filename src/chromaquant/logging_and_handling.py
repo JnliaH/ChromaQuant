@@ -20,10 +20,12 @@ Started 1-7-2026
 
 import logging
 from functools import wraps
+from collections.abc import Callable
+from typing import Any
 
 
 # Function to format logger
-def setup_logger(logger):
+def setup_logger(logger: logging.Logger) -> logging.Logger:
 
     # Check if logger has handlers, clear if so
     if (logger.hasHandlers()):
@@ -49,14 +51,15 @@ def setup_logger(logger):
 
 
 # Function that sets up a decorator to log errors while handling them
-def setup_error_logging(logger):
+def setup_error_logging(logger: logging.Logger) -> \
+   Callable[[Callable[..., Any]], Callable[..., Any]]:
 
     # Decorator to log and handle errors
-    def error_logging(f):
+    def error_logging(f: Callable[..., Any]) -> Callable[..., Any]:
 
         # Define decorated function (wrapper)
         @wraps(f)
-        def decorated_func(*args, **kwargs):
+        def decorated_func(*args: Any, **kwargs: Any) -> Callable[..., Any]:
 
             # Try to get the function's result
             try:

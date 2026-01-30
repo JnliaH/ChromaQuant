@@ -21,6 +21,7 @@ Started 01-12-2025
 """
 
 import pandas as pd
+from typing import Any
 from collections.abc import Callable
 
 """ CLASS """
@@ -62,18 +63,14 @@ class MatchConfig():
     # Initialize
     def __init__(self,
                  do_export: bool = False,
-                 import_include_col: list = None,
-                 local_filter_row: dict[str, str | bool | float | int] = None,
-                 match_conditions: list[dict[str, str | bool | float |
-                                             Callable[[float | int | str,
-                                                       pd.DataFrame,
-                                                       float | int | str],
-                                                      pd.DataFrame
-                                                      ]]] = None,
+                 import_include_col: list[str] | None = None,
+                 local_filter_row:
+                 dict[str, str | bool | float | int] | None = None,
+                 match_conditions: list[dict[str, Any]] | None = None,
                  multiple_hits_rule:
-                 Callable[[pd.DataFrame], pd.Series] = None,
+                 Callable[[pd.DataFrame, str], pd.Series] | None = None,
                  multiple_hits_column: str = 'default',
-                 output_cols_dict: dict = None,
+                 output_cols_dict: dict[str, str] | None = None,
                  output_path: str = 'match_results.csv'):
 
         # Expected structure of match_conditions:
@@ -112,7 +109,7 @@ class MatchConfig():
     def add_match_condition(self,
                             condition: Callable[[pd.DataFrame, str],
                                                 pd.Series],
-                            comparison: str | list,
+                            comparison: str | list[str],
                             error: int | float = 0,
                             or_equal: bool = False):
 
@@ -157,7 +154,11 @@ class MatchConfig():
     # Method to get a slice of a DataFrame where one of its
     # column's values are equal to some value
     @staticmethod
-    def IS_EQUAL(value, DF, DF_column_name, error=0, or_equal=False):
+    def IS_EQUAL(value: Any,
+                 DF: pd.DataFrame,
+                 DF_column_name: str,
+                 error: float | int = 0,
+                 or_equal: bool = False) -> pd.DataFrame:
 
         # Get a slice where the comparisons are exactly equal
         DF_slice = DF.loc[DF[DF_column_name] == value].copy()
@@ -187,7 +188,11 @@ class MatchConfig():
     # column's values are less than some value
     # (i.e., a value is *greater than* the DataFrame value)
     @staticmethod
-    def GREATER_THAN(value, DF, DF_column_name, error=0, or_equal=False):
+    def GREATER_THAN(value: Any,
+                     DF: pd.DataFrame,
+                     DF_column_name: str,
+                     error: float | int = 0,
+                     or_equal: bool = False) -> pd.DataFrame:
 
         # Try to get a slice with condition
         try:
@@ -218,7 +223,11 @@ class MatchConfig():
     # column's values are greater than some value
     # (i.e., a value is *less than* the DataFrame value)
     @staticmethod
-    def LESS_THAN(value, DF, DF_column_name, error=0, or_equal=False):
+    def LESS_THAN(value: Any,
+                  DF: pd.DataFrame,
+                  DF_column_name: str,
+                  error: float | int = 0,
+                  or_equal: bool = False) -> pd.DataFrame:
 
         # Try to get a slice with condition
         try:
@@ -249,7 +258,7 @@ class MatchConfig():
     # method of selecting one row of a slice that meets match conditions
     @staticmethod
     def SELECT_FIRST_ROW(DF: pd.DataFrame,
-                         column_name: str):
+                         column_name: str) -> pd.Series:
 
         # Get the first row of the DataFrame
         first_row = DF.loc[DF.index.min()]
@@ -261,27 +270,27 @@ class MatchConfig():
     # values share the same minimum
     @staticmethod
     def SELECT_LOWEST_VALUE(DF: pd.DataFrame,
-                            column_name: str):
+                            column_name: str) -> pd.Series:
 
         # Get the minimum value
         min_value_index = DF[column_name].idxmin()
 
         # Get the row with the smallest value
-        min_value = DF.loc[min_value_index]
+        min_value_row = DF.loc[min_value_index]
 
-        return min_value
+        return min_value_row
 
     # Method that selects the row with the largest value in a given column
     # NOTE: will return the first occurrence of the largest value if multiple
     # values share the same maximum
     @staticmethod
     def SELECT_HIGHEST_VALUE(DF: pd.DataFrame,
-                             column_name: str):
+                             column_name: str) -> pd.Series:
 
         # Get the maximum value
         max_value_index = DF[column_name].idxmax()
 
         # Get the row with the largest value
-        max_value = DF.loc[max_value_index]
+        max_value_row = DF.loc[max_value_index]
 
-        return max_value
+        return max_value_row

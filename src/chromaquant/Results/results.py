@@ -23,9 +23,11 @@ Started 12-10-2025
 import logging
 import openpyxl
 import pandas as pd
+from ..data import Table, Value
 from .reporting_tools import report_table, report_value
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
+from typing import Any
 
 """ LOGGING AND HANDLING """
 
@@ -44,28 +46,16 @@ error_logging = setup_error_logging(logger)
 # Define the Results class
 class Results():
 
-    def __init__(self, **kwargs):
+    def __init__(self):
         """
 
-        Parameters
-        ----------
-
         """
-
-        # Extract passed keywork arguments
-        for key, value in kwargs.items():
-            # Define a prefix
-            prefix = 'results_kwarg'
-            # Create an attribute name using the defined prefix
-            attribute_name = prefix + '_' + key
-            # Set attribute using name and key-value pair
-            setattr(self, attribute_name, value)
 
         # Initialize the tables dictionary
-        self.tables = {}
+        self.tables: dict[str, Table] = {}
 
         # Initialize the values dictionary
-        self.values = {}
+        self.values: dict[str, Value] = {}
 
     # TODO: add functions to iterate on existing table/value nicknames
     # to create new default names if none are provided. Currently,
@@ -78,8 +68,8 @@ class Results():
     def add_formula(self, formula: Formula):
 
         # Create a dictionary containing references for each value
-        value_references = {value_name: self.values[value_name].reference
-                            for value_name in self.values}
+        value_references: dict[str, dict[str, Any]] = \
+            {value_name: self.values[value_name].reference for value_name in self.values}
 
         # Create a dictionary containing references for each table
         table_references = {table_name: self.tables[table_name].reference
@@ -112,16 +102,22 @@ class Results():
 
     # Method to add a new table to the results
     @error_logging
-    def add_table(self, table_instance, table_nickname='table1'):
+    def add_table(self,
+                  table_instance: Table,
+                  table_nickname: str = 'table1'):
 
         # Create a new table entry in the tables dictionary
         self.tables[table_nickname] = table_instance
+
+        # Create a pointer for the table
 
         return None
 
     # Method to add a new value to the results
     @error_logging
-    def add_value(self, value_instance, value_nickname='value1'):
+    def add_value(self,
+                  value_instance: Value,
+                  value_nickname: str = 'value1'):
 
         # Create a new value entry in the values dictionary
         self.values[value_nickname] = value_instance
@@ -161,7 +157,9 @@ class Results():
     """ STATIC METHODS """
     # Method to get a formula insert for a DataSet's pointer
     @staticmethod
-    def get_insert(key, table='', range=False):
+    def get_insert(key: str,
+                   table: str = '',
+                   range: bool = False) -> str:
 
         # If table is not provided...
         if table == '':
@@ -185,7 +183,9 @@ class Results():
 
     # Method to get a DataSet's pointer
     @staticmethod
-    def get_pointer(key, table='', range=False):
+    def get_pointer(key: str,
+                    table: str = '',
+                    range: bool = False) -> dict[str, str]:
 
         # If table is not provided...
         if table == '':

@@ -23,6 +23,7 @@ Started 01-12-2025
 import logging
 from openpyxl.utils.cell import coordinate_from_string, \
                                 column_index_from_string
+from typing import Any
 from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """
@@ -44,7 +45,8 @@ class DataSet():
 
     # Initialize
     def __init__(self,
-                 data=float('nan'),
+                 name: str = '',
+                 data: Any = float('nan'),
                  start_cell: str = '',
                  sheet: str = '',
                  type: str = 'DataSet'):
@@ -53,6 +55,7 @@ class DataSet():
         self.type = type
         self._start_cell = start_cell if start_cell != '' else '$A$1'
         self._sheet = sheet if sheet != '' else 'Sheet1'
+        self._reference: dict[str, Any] = {}
         self.start_column, self.start_row = \
             self.get_cell_indices(self._start_cell)
 
@@ -66,34 +69,34 @@ class DataSet():
     """ PROPERTIES """
     # Define the reference property, ONLY DEFINE GETTER
     @property
-    def reference(self):
+    def reference(self) -> dict[str, Any]:
         return self._reference
 
     # Data properties
     # Getter
     @property
-    def data(self):
+    def data(self) -> Any:
         return self._data
 
     # Setter
     @data.setter
-    def data(self, value):
+    def data(self, value: Any) -> None:
         self._data = value
 
     # Deleter
     @data.deleter
-    def data(self):
+    def data(self) -> None:
         del self._data
 
     # Sheet properties
     # Getter
     @property
-    def sheet(self):
+    def sheet(self) -> str:
         return self._sheet
 
     # Setter
     @sheet.setter
-    def sheet(self, value):
+    def sheet(self, value: str):
         self._sheet = value
 
     # Deleter
@@ -104,12 +107,12 @@ class DataSet():
     # Start cell properties
     # Getter
     @property
-    def start_cell(self):
+    def start_cell(self) -> str:
         return self._start_cell
 
     # Setter
     @start_cell.setter
-    def start_cell(self, value):
+    def start_cell(self, value: str):
         self._start_cell = value
 
     # Deleter
@@ -121,7 +124,7 @@ class DataSet():
 
     # Static method to get the absolute indices of a cell
     @staticmethod
-    def get_cell_indices(cell):
+    def get_cell_indices(cell: str) -> tuple[int, int]:
 
         # Split the coordinate
         column_index, row_index = \

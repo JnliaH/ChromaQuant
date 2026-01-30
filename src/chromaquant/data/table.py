@@ -20,12 +20,14 @@ Started 01-12-2026
 
 """
 
+from collections.abc import Callable
 import logging
 import pandas as pd
+from typing import Any
 from openpyxl.utils.cell import get_column_letter
 from .dataset import DataSet
 from ..logging_and_handling import setup_logger, setup_error_logging
-from ..match import match
+from ..match import match, MatchConfig
 from ..utils import get_molecular_weight, get_number_element_atoms
 
 """ LOGGING AND HANDLING """
@@ -46,7 +48,8 @@ error_logging = setup_error_logging(logger)
 class Table(DataSet):
 
     def __init__(self,
-                 data_frame: pd.DataFrame = None,
+                 name: str = '',
+                 data_frame: pd.DataFrame | None = None,
                  start_cell: str = '',
                  sheet: str = ''):
 
@@ -54,10 +57,14 @@ class Table(DataSet):
         data_frame = data_frame if data_frame is not None else pd.DataFrame()
 
         # Run DataSet initialization
-        super().__init__(data=data_frame,
+        super().__init__(name=name,
+                         data=data_frame,
                          start_cell=start_cell,
                          sheet=sheet,
                          type='Table')
+
+        # Create a default pointer
+        self.pointer: dict[str, dict[str, str]] = {}
 
         # Update the table
         self.update_table()
@@ -74,12 +81,12 @@ class Table(DataSet):
     # Data properties
     # Getter
     @property
-    def data(self):
+    def data(self) -> pd.DataFrame | None:
         return self._data
 
     # Setter
     @data.setter
-    def data(self, value):
+    def data(self, value: pd.DataFrame | None):
         self._data = value
         self.update_table()
 
@@ -93,12 +100,12 @@ class Table(DataSet):
     # Sheet properties
     # Getter
     @property
-    def sheet(self):
+    def sheet(self) -> str:
         return self._sheet
 
     # Setter
     @sheet.setter
-    def sheet(self, value):
+    def sheet(self, value: str):
         if value == '':
             raise ValueError('Table sheet cannot be an empty string.')
         self._sheet = value
@@ -113,12 +120,12 @@ class Table(DataSet):
     # Start cell properties
     # Getter
     @property
-    def start_cell(self):
+    def start_cell(self) -> str:
         return self._start_cell
 
     # Setter
     @start_cell.setter
-    def start_cell(self, value):
+    def start_cell(self, value: str):
         # Try...
         try:
             # Get the cell's absolute indices
@@ -141,8 +148,8 @@ class Table(DataSet):
     # Method to add a new column to a table
     @error_logging
     def add_table_column(self,
-                         column_name,
-                         column_values=float('nan')):
+                         column_name: str,
+                         column_values: Any = float('nan')):
 
         # Set every entry in the column to column_values
         # If column_values is an iterable, this will iterate
@@ -160,10 +167,10 @@ class Table(DataSet):
     # one or more columns in the DataFrame
     @error_logging
     def add_table_column_from_function(self,
-                                       column_name,
-                                       function,
-                                       *args,
-                                       **kwargs):
+                                       column_name: str,
+                                       function: Callable[..., list[Any]],
+                                       *args: Any,
+                                       **kwargs: Any):
 
         # Get the output of a function using passed arguments
         function_output = function(*args, **kwargs)
@@ -217,7 +224,7 @@ class Table(DataSet):
 
     # Method to import data
     @error_logging
-    def import_csv_data(self, path, **kwargs):
+    def import_csv_data(self, path: str, **kwargs: Any):
         """Reads .csv at passed path and sets self._data to result.
 
         Parameters
@@ -247,13 +254,13 @@ class Table(DataSet):
         return None
 
     # Method to match one dataframe to current data
-    def match(self, import_DF, match_config):
+    def match(self,
+              import_DF: pd.DataFrame,
+              match_config: MatchConfig) -> pd.DataFrame:
 
-        match_data = match(self._data, import_DF, match_config)
+        return match(self._data, import_DF, match_config)
 
-        return match_data
-
-    # Method to update column reference
+    # Method to update column references
     @error_logging
     def update_reference(self):
 
@@ -297,7 +304,7 @@ class Table(DataSet):
             len(self._data)
 
         # Update the column header
-        self.columns = \
+        self.columns: list[str] = \
             self._data.columns.tolist()
         # Initialize the reference object
         self._reference = {}
@@ -317,7 +324,9 @@ class Table(DataSet):
     # Static method to get the letter coordinate of a column in a DataFrame
     # with respect to a starting column index
     @staticmethod
-    def get_column_letter_wrt_start_cell(column, df, start_col_index):
+    def get_column_letter_wrt_start_cell(column: str,
+                                         df: pd.DataFrame,
+                                         start_col_index: int) -> str:
 
         # Get the current column's letter
         col_letter = \
