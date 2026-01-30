@@ -69,7 +69,8 @@ class Results():
 
         # Create a dictionary containing references for each value
         value_references: dict[str, dict[str, Any]] = \
-            {value_name: self.values[value_name].reference for value_name in self.values}
+            {value_name: self.values[value_name].reference
+             for value_name in self.values}
 
         # Create a dictionary containing references for each table
         table_references = {table_name: self.tables[table_name].reference
