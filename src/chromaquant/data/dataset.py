@@ -24,6 +24,7 @@ import logging
 from openpyxl.utils.cell import coordinate_from_string, \
                                 column_index_from_string
 from typing import Any
+import uuid
 from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """
@@ -45,13 +46,12 @@ class DataSet():
 
     # Initialize
     def __init__(self,
-                 name: str = '',
                  data: Any = float('nan'),
                  start_cell: str = '',
                  sheet: str = '',
                  type: str = 'DataSet'):
 
-        # Initialize class attributes
+        # Initialize instance attributes
         self.type = type
         self._start_cell = start_cell if start_cell != '' else '$A$1'
         self._sheet = sheet if sheet != '' else 'Sheet1'
@@ -61,6 +61,9 @@ class DataSet():
 
         # Initialize data attribute
         self._data = data
+
+        # Create unique ID for the instance
+        self.id = str(uuid.uuid4())
 
     # Define the object representation by including its data
     def __repr__(self):

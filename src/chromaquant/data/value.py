@@ -54,9 +54,6 @@ class Value(DataSet):
                          sheet=sheet,
                          type='Value')
 
-        # Create a default pointer
-        self.pointer = {}
-
         # Update the value
         self.update_value()
 

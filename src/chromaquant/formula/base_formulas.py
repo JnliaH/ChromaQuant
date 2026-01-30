@@ -26,18 +26,10 @@ from .formula import Formula
 
 
 # Create formula using formula string and (optionally) pointer
-def CREATE_FORMULA_FROM_STRING(formula_string: str,
-                               formula_pointer: dict[str, str] = None):
+def CREATE_FORMULA_FROM_STRING(formula_string: str):
 
-    # If formula pointer is passed...
-    if formula_pointer is not None:
-        # Create Formula with pointer
-        formula = Formula(formula_string, formula_pointer)
-
-    # Otherwise...
-    else:
-        # Create Formula without pointer
-        formula = Formula(formula_string)
+    # Create Formula without pointer
+    formula = Formula(formula_string)
 
     return formula
 
@@ -79,8 +71,7 @@ def FORMULA_IF_ERROR(formula: Formula):
 # Create formula for binary operations
 def FORMULA_BINARY_OPERATION(left_hand_side: str,
                              right_hand_side: str,
-                             operator: str,
-                             formula_pointer: dict[str, str] = None):
+                             operator: str):
 
     # Get a list of sides
     side_list = [left_hand_side, right_hand_side]
@@ -101,62 +92,54 @@ def FORMULA_BINARY_OPERATION(left_hand_side: str,
     formula_string = f'=({side_list[0]}{operator}{side_list[1]})'
 
     # Get a Formula instance using CREATE_FORMULA_FROM_STRING
-    formula = CREATE_FORMULA_FROM_STRING(formula_string, formula_pointer)
+    formula = CREATE_FORMULA_FROM_STRING(formula_string)
 
     return formula
 
 
 # Create formula for binary addition
 def FORMULA_ADDITION(left_hand_side: str,
-                     right_hand_side: str,
-                     formula_pointer: dict[str, str] = None):
+                     right_hand_side: str):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
     formula = FORMULA_BINARY_OPERATION(left_hand_side,
                                        right_hand_side,
-                                       '+',
-                                       formula_pointer)
+                                       '+')
 
     return formula
 
 
 # Create formula for binary subtraction
 def FORMULA_SUBTRACTION(left_hand_side: str,
-                        right_hand_side: str,
-                        formula_pointer: dict[str, str] = None):
+                        right_hand_side: str):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
     formula = FORMULA_BINARY_OPERATION(left_hand_side,
                                        right_hand_side,
-                                       '-',
-                                       formula_pointer)
+                                       '-')
 
     return formula
 
 
 # Create formula for binary multiplication
 def FORMULA_MULTIPLICATION(left_hand_side: str,
-                           right_hand_side: str,
-                           formula_pointer: dict[str, str] = None):
+                           right_hand_side: str):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
     formula = FORMULA_BINARY_OPERATION(left_hand_side,
                                        right_hand_side,
-                                       '*',
-                                       formula_pointer)
+                                       '*')
 
     return formula
 
 
 # Create formula for binary division
 def FORMULA_DIVISION(left_hand_side: str,
-                     right_hand_side: str,
-                     formula_pointer: dict[str, str] = None):
+                     right_hand_side: str):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
     formula = FORMULA_BINARY_OPERATION(left_hand_side,
                                        right_hand_side,
-                                       '/',
-                                       formula_pointer)
+                                       '/')
 
     return formula

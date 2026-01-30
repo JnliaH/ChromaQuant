@@ -27,7 +27,6 @@ from ..data import Table, Value
 from .reporting_tools import report_table, report_value
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
-from typing import Any
 
 """ LOGGING AND HANDLING """
 
@@ -51,77 +50,96 @@ class Results():
 
         """
 
-        # Initialize the tables dictionary
-        self.tables: dict[str, Table] = {}
+        # Initialize the tables list
+        self.tables: list[Table] = []
 
-        # Initialize the values dictionary
-        self.values: dict[str, Value] = {}
+        # Initialize the values list
+        self.values: list[Value] = []
 
-    # TODO: add functions to iterate on existing table/value nicknames
-    # to create new default names if none are provided. Currently,
-    # tables and values will be overwritten if no nickname provided
+        # Initialize the DataSet references dictionary
+        self.dataset_references = {}
 
     """ METHODS """
+    # Method to update all dataset references
+    @error_logging
+    def update_references(self):
+
+        # Add table references for each table
+        for table in self.tables:
+            self.dataset_references[table.id] = table.reference
+
+        # Add value references for each value
+        for value in self.values:
+            self.dataset_references[value.id] = value.reference
+
+        return None
+
     # Method to add a new Excel formula to a cell or table based
     # on a passed formula string
     @error_logging
     def add_formula(self, formula: Formula):
 
-        # Create a dictionary containing references for each value
-        value_references: dict[str, dict[str, Any]] = \
-            {value_name: self.values[value_name].reference
-             for value_name in self.values}
-
-        # Create a dictionary containing references for each table
-        table_references = {table_name: self.tables[table_name].reference
-                            for table_name in self.tables}
+        # Update dataset references
+        self.update_references()
 
         # Get the new formulas
-        formula.insert_references(value_references, table_references)
+        formula.insert_references(self.dataset_references)
 
-        # If there is a 'table' and 'key' in the formula's pointer...
-        if 'table' in formula.pointer and 'key' in formula.pointer:
+        # If there is a 'table' and 'key' in the formula's attributes...
+        if formula.table_pointer != '' and formula.key_pointer != '':
 
-            # Set the corresponding column in the table to new_formula
-            self.tables[formula.pointer['table']].data[
-                formula.pointer['key']] = \
-                formula.referenced_formulas
+            # For every table...
+            for i in range(len(self.tables)):
+
+                # If the table id is equal to the formula's...
+                if self.tables[i].id == formula.table_pointer:
+
+                    # Add the new formulas to the pointed column
+                    self.tables[i].data[formula.key_pointer] = \
+                        formula.referenced_formulas
+
+                # Otherwise, pass
+                else:
+                    pass
 
         # Otherwise, if there is a 'key' in the formula's pointer...
-        elif 'key' in formula.pointer:
+        elif formula.output_key != '':
 
-            # Set the corresponding value to new_formula
-            self.values[formula.pointer['key']].data = \
-                formula.referenced_formulas
+            # For every key...
+            for i in range(len(self.values)):
+
+                # If the table id is equal to the formula's...
+                if self.values[i].id == formula.key_pointer:
+
+                    # Add the new formulas to the pointed column
+                    self.values[i].data = \
+                        formula.referenced_formulas
+
+                # Otherwise, pass
+                else:
+                    pass
 
         # Otherwise, raise an error
         else:
-            error_var = "Formula object has no 'key' or 'table' in its pointer"
-            raise KeyError(error_var)
+            raise KeyError("Formula has no defined output location.")
 
         return None
 
     # Method to add a new table to the results
     @error_logging
-    def add_table(self,
-                  table_instance: Table,
-                  table_nickname: str = 'table1'):
+    def add_table(self, table: Table):
 
-        # Create a new table entry in the tables dictionary
-        self.tables[table_nickname] = table_instance
-
-        # Create a pointer for the table
+        # Add the table to the tables list
+        self.tables.append(table)
 
         return None
 
     # Method to add a new value to the results
     @error_logging
-    def add_value(self,
-                  value_instance: Value,
-                  value_nickname: str = 'value1'):
+    def add_value(self, value: Value):
 
-        # Create a new value entry in the values dictionary
-        self.values[value_nickname] = value_instance
+        # Add the value to the values list
+        self.values.append(value)
 
         return None
 
@@ -136,7 +154,7 @@ class Results():
         with pd.ExcelWriter(path, engine='xlsxwriter') as writer:
 
             # For every Table in Results...
-            for table_nickname, table in self.tables.items():
+            for table in self.tables:
                 # Write the Table to Excel
                 report_table(table, writer)
 
@@ -146,9 +164,9 @@ class Results():
         workbook = openpyxl.load_workbook(filename=path)
 
         # For every Value in Results...
-        for value_nickname, value in self.values.items():
+        for value in self.values:
             # Write the Value to Excel
-            report_value(value, workbook, value_nickname)
+            report_value(value, workbook)
 
         # Save and close the Excel workbook
         workbook.save(path)

@@ -65,24 +65,22 @@ class TestFormula:
 
         """ CONSTANTS FOR TESTING """
 
-        # Table references
-        table_references = {'Some Table':
-                            {'Some Key': {'column_letter': 'A',
-                                          'start_row': 1,
-                                          'end_row': 10,
-                                          'sheet': 'Some Sheet',
-                                          'length': 10,
-                                          'range': "'Some Sheet'!$A$2:$A$8"},
-                             }}
-
-        # Value references
-        value_references = {'Some Value': {'column_letter': 'A',
-                                           'row': 1,
-                                           'sheet': 'Some Other Sheet',
-                                           'name_cell':
-                                           "'Some Other Sheet'!$A$1",
-                                           'data_cell':
-                                           "'Some Other Sheet'!$A$2"}}
+        # DataSet References
+        dataset_references = {'Some Table':
+                              {'Some Key': {'column_letter': 'A',
+                                            'start_row': 1,
+                                            'end_row': 10,
+                                            'sheet': 'Some Sheet',
+                                            'length': 10,
+                                            'range':
+                                            "'Some Sheet'!$A$2:$A$8"}},
+                              'Some Value': {'column_letter': 'A',
+                                             'row': 1,
+                                             'sheet': 'Some Other Sheet',
+                                             'name_cell':
+                                             "'Some Other Sheet'!$A$1",
+                                             'data_cell':
+                                             "'Some Other Sheet'!$A$2"}}
 
         # First formula for table output
         first_table_formula = \
@@ -125,12 +123,15 @@ class TestFormula:
         # For every test...
         for test in test_list:
             # Initialize a formula object
-            test_formula = cq.Formula(pointer=test['pointer'])
+            test_formula = cq.Formula()
+            # Add pointers
+            test_formula.key_pointer = test['pointer']['key']
+            if 'table' in test['pointer']:
+                test_formula.table_pointer = test['pointer']['table']
             # Add a formula
             test_formula.formula_string = test['formula']
             # Insert references into this formula
-            test_formula.insert_references(table_references=table_references,
-                                           value_references=value_references)
+            test_formula.insert_references(dataset_references)
             # Get the referenced formula from the previous step
             test['result'] = test_formula.referenced_formulas
 
@@ -184,32 +185,28 @@ class TestFormula:
         value_insert = '|key: Value 1|'
 
         # Create table and value references
-        table_references = {'Some Table':
-                            {'Column 1': {
+        dataset_references = {'Some Table':
+                              {'Column 1': {
                                 'column_letter': 'A',
                                 'start_row': 1,
                                 'end_row': 5,
                                 'sheet': 'Some Sheet',
                                 'length': 4,
                                 'range': "'Some Sheet'!$A$2:$A$5"}},
-                            'Some Other Table':
-                            {'Column 1': {
+                              'Some Other Table':
+                              {'Column 1': {
                                 'column_letter': 'D',
                                 'start_row': 1,
                                 'end_row': 5,
                                 'sheet': 'Some Sheet',
                                 'length': 4,
-                                'range': "'Some Sheet'!$D$2:$D$5"}}}
-
-        value_references = {'Value 1':
-                            {'column_letter': 'G',
-                                'row': 1,
-                                'sheet': 'Some Sheet',
-                                'name_cell': "'Some Sheet'!$G$1",
-                                'data_cell': "'Some Sheet'!$G$2"}}
-
-        # Create a pointer
-        formula_pointer = {'table': 'Some Other Table', 'key': 'Column 2'}
+                                'range': "'Some Sheet'!$D$2:$D$5"}},
+                              'Value 1':
+                              {'column_letter': 'G',
+                               'row': 1,
+                               'sheet': 'Some Sheet',
+                               'name_cell': "'Some Sheet'!$G$1",
+                               'data_cell': "'Some Sheet'!$G$2"}}
 
         # Create a formula string by wrapping the range insert in SUM()
         formula_sum_string = cq.formula.WRAP_FORMULA_STRING(table_1_insert,
@@ -221,10 +218,13 @@ class TestFormula:
 
         # Create a formula using addition to previous formula
         formula = cq.formula.FORMULA_ADDITION(formula_sum_string,
-                                              formula_division.formula_string,
-                                              formula_pointer)
+                                              formula_division.formula_string)
+
+        # Add pointers to the formula
+        formula.key_pointer = 'Column 2'
+        formula.table_pointer = 'Some Other Table'
         # Insert references for formula
-        formula.insert_references(value_references, table_references)
+        formula.insert_references(dataset_references)
 
         # If the first referenced formula is equal to expected...
         if formula.referenced_formulas[0] == expected_formula:

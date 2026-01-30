@@ -22,7 +22,11 @@ Started 01-07-2026
 
 import logging
 import re
+from typing import Any, TYPE_CHECKING
 from ..logging_and_handling import setup_logger, setup_error_logging
+
+if TYPE_CHECKING:
+    from ..data import Table
 
 """ LOGGING AND HANDLING """
 
@@ -43,7 +47,8 @@ class Formula:
 
     """ SPECIAL METHODS """
     # Initialize class
-    def __init__(self, formula: str = '', pointer: dict[str, str] = None):
+    def __init__(self,
+                 formula: str = ''):
         """__init__ summary
 
         Parameters
@@ -65,9 +70,9 @@ class Formula:
         else:
             self._formula = None
 
-        # Extract the pointer if passed
-        self._pointer = \
-            pointer if pointer is not None else {}
+        # Get blank attributes for key and table pointers
+        self.key_pointer = ''
+        self.table_pointer = ''
 
     # Object representation method, allows for direct access to formula
     def __repr__(self):
@@ -93,25 +98,22 @@ class Formula:
         del self._formula
         del self.insert_list
 
-    # Pointer properties
-    # Pointer getter
-    @property
-    def pointer(self):
-        return self._pointer
-
-    # Pointer setter
-    @pointer.setter
-    def pointer(self, value):
-        self._pointer = value
-
-    # Pointer deleter
-    @pointer.deleter
-    def pointer(self):
-        del self._pointer
-
     """ METHODS """
+    # Method to set formula pointer values
+    @error_logging
+    def point_to(self,
+                 key_or_column: str,
+                 table: Table):
 
-    # Function to get cases in a formula where cells need to be inserted
+        # Set the key pointer
+        self.key_pointer = key_or_column
+
+        # Set the table pointer
+        self.table_pointer = table.id
+
+        return None
+
+    # Method to get cases in a formula where cells need to be inserted
     @error_logging
     def get_formula_cell_inserts(self):
 
@@ -164,7 +166,7 @@ class Formula:
                         # Otherwise, raise error
                         else:
                             raise ValueError('At least one pointer contains an'
-                                             'unexpected number of colons')
+                                             ' unexpected number of colons')
 
                     # Remove the pipe key-value pairs
                     del insert_list[i]['pipe']
@@ -187,30 +189,23 @@ class Formula:
     # Method to replace formula inserts with references
     @error_logging
     def insert_references(self,
-                          value_references: dict[str, dict] = None,
-                          table_references: dict[str, dict] = None):
+                          dataset_references: dict[str, dict[Any]]):
 
-        # Set the value_references to an attribute
-        self.value_references = \
-            value_references if value_references is not None else {}
-
-        # Set the table_references to an attribute
-        self.table_references = \
-            table_references if table_references is not None else {}
+        # Get a dataset references attribute
+        self.dataset_references = dataset_references
 
         # If the insert list is not None (i.e., there are inserts)...
         if self.insert_list is not None:
 
             # If function was passed a table to output to...
-            if 'table' in self._pointer \
-               and 'key' in self._pointer:
+            if self.table_pointer != '' and self.key_pointer != '':
 
                 # Get the list of referenced formulas
                 self.referenced_formulas = \
                     self.process_table_formula_inserts()
 
             # Otherwise, if the function was passed a value to output to...
-            elif 'key' in self._pointer:
+            elif self.key_pointer != '':
 
                 # Get the list of referenced formulas
                 self.referenced_formulas = \
@@ -254,10 +249,10 @@ class Formula:
             # Get the table length
             # NOTE: USES THE LENGTH FROM THE FIRST COLUMN IN THE TABLE
             output_table_length = \
-                self.table_references[
-                    self._pointer['table']
+                self.dataset_references[
+                    self.table_pointer
                     ][
-                    next(iter(self.table_references[self._pointer['table']]))
+                    next(iter(self.table_pointer[self.table_pointer]))
                     ]['length']
 
             # If length is less than one, set to five
@@ -280,7 +275,7 @@ class Formula:
 
             # Get the length of the longest named table
             max_table_length = max(
-                [self.table_references[
+                [self.dataset_references[
                     insert['pointers']['table']
                     ][
                     insert['pointers']['key']
@@ -310,11 +305,11 @@ class Formula:
                    and 'key' in insert['pointers']:
 
                     # Get the insert's table and key pointers
-                    table_name = insert['pointers']['table']
+                    table_id = insert['pointers']['table']
                     column_name = insert['pointers']['key']
 
                     # Get the current table reference
-                    table_ref = self.table_references[table_name]
+                    table_ref = self.dataset_references[table_id]
 
                     # If the insert has range pointer equal to true...
                     if 'range' in insert['pointers'] and \
@@ -373,11 +368,11 @@ class Formula:
                 elif 'key' in insert['pointers']:
 
                     # Get the key pointer
-                    key_pointer = insert['pointers']['key']
+                    key_id = insert['pointers']['key']
 
                     # Get the value's data reference string
                     insert['reference'] = \
-                        self.value_references[key_pointer]['data_cell']
+                        self.dataset_references[key_id]['data_cell']
 
                     # Replace the insert's raw substring
                     # for every formula in the new formula list
@@ -407,11 +402,11 @@ class Formula:
             for insert in self.insert_list:
 
                 # Get the key pointer
-                key_pointer = insert['pointers']['key']
+                key_id = insert['pointers']['key']
 
                 # Get the value's reference string
                 insert['reference'] = \
-                    self.value_references[key_pointer]['data_cell']
+                    self.dataset_references[key_id]['data_cell']
 
                 # Replace insert substring with value's reference
                 iterate_formula = \
@@ -464,11 +459,11 @@ class Formula:
                and 'key' in insert['pointers']:
 
                 # Get the insert's table and key pointers
-                table_name = insert['pointers']['table']
+                table_id = insert['pointers']['table']
                 column_name = insert['pointers']['key']
 
                 # Get the table reference
-                table_ref = self.table_references[table_name]
+                table_ref = self.dataset_references[table_id]
 
                 # Get a range substring and save to insert['reference']
                 insert['reference'] = \
@@ -484,11 +479,11 @@ class Formula:
             elif 'key' in insert['pointers']:
 
                 # Get the key pointer
-                key_pointer = insert['pointers']['key']
+                key_id = insert['pointers']['key']
 
                 # Get the value's reference string
                 insert['reference'] = \
-                    self.value_references[key_pointer]['data_cell']
+                    self.dataset_references[key_id]['data_cell']
 
                 # Replace insert substring with value's reference
                 new_formula = \

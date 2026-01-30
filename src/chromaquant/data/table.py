@@ -26,6 +26,7 @@ import pandas as pd
 from typing import Any
 from openpyxl.utils.cell import get_column_letter
 from .dataset import DataSet
+from ..formula import Formula
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..match import match, MatchConfig
 from ..utils import get_molecular_weight, get_number_element_atoms
@@ -48,7 +49,6 @@ error_logging = setup_error_logging(logger)
 class Table(DataSet):
 
     def __init__(self,
-                 name: str = '',
                  data_frame: pd.DataFrame | None = None,
                  start_cell: str = '',
                  sheet: str = ''):
@@ -57,14 +57,10 @@ class Table(DataSet):
         data_frame = data_frame if data_frame is not None else pd.DataFrame()
 
         # Run DataSet initialization
-        super().__init__(name=name,
-                         data=data_frame,
+        super().__init__(data=data_frame,
                          start_cell=start_cell,
                          sheet=sheet,
                          type='Table')
-
-        # Create a default pointer
-        self.pointer: dict[str, dict[str, str]] = {}
 
         # Update the table
         self.update_table()
@@ -221,6 +217,30 @@ class Table(DataSet):
                                             element=element)
 
         return None
+
+    # Method to add a formula column to the DataFrame
+    @error_logging
+    def add_formula(self,
+                    formula: Formula,
+                    ):
+
+        return None
+
+    # Method to get the insert string for a given column
+    @error_logging
+    def insert(self, column: str, range: bool = False) -> str:
+
+        # If range is True...
+        if range is True:
+            # Set insert to a Table's column range insert
+            insert = f'|table: {self.id}, key: {column}, range: True|'
+
+        # Otherwise...
+        else:
+            # Set insert to Table's column insert
+            insert = f'|table: {self.id}, key: {column}|'
+
+        return insert
 
     # Method to import data
     @error_logging

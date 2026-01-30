@@ -38,11 +38,17 @@ class TestResults:
         SomeTable = cq.Table()
 
         # Add the Table to Results
-        SomeResults.add_table(SomeTable, 'Some Table')
+        SomeResults.add_table(SomeTable)
 
         # Check if the Table in Results is the same as original Table
-        if SomeResults.tables['Some Table'] == SomeTable:
-            test_result = True
+        for table in SomeResults.tables:
+            if table.id == SomeTable.id:
+                if table == SomeTable:
+                    test_result = True
+                else:
+                    pass
+            else:
+                pass
 
         # If it is not, pass
         else:
@@ -61,11 +67,17 @@ class TestResults:
         SomeValue = cq.Value(10)
 
         # Add the Value to Results
-        SomeResults.add_value(SomeValue, 'Some Value')
+        SomeResults.add_value(SomeValue)
 
-        # Check if the Table in Results is the same as original Table
-        if SomeResults.values['Some Value'].data == SomeValue.data:
-            test_result = True
+        # Check if the Value in Results is the same as original Value
+        for value in SomeResults.values:
+            if value.id == SomeValue.id:
+                if value == SomeValue:
+                    test_result = True
+                else:
+                    pass
+            else:
+                pass
 
         # If it is not, pass
         else:
@@ -94,28 +106,35 @@ class TestResults:
         SomeValue = cq.Value(20, sheet='Some Sheet', start_cell='B2')
 
         # Add Table to Results
-        SomeResults.add_table(SomeTable, 'Some Table')
+        SomeResults.add_table(SomeTable)
         # Add Value to Results
-        SomeResults.add_value(SomeValue, 'Some Value')
+        SomeResults.add_value(SomeValue)
 
-        # Create a pointer for a new formula
-        new_formula_pointer = {'table': 'Some Table', 'key': 'C'}
         # Create a new formula string
         new_formula_string = \
-            '=SUM(|table: Some Table, key: B, range: true|)*|key: Some Value|'
+            (f'=SUM(|table: {SomeTable.id}, key: B, range: true|)'
+             f'*|key: {SomeValue.id}|')
 
         # Create a Formula
         SomeFormula = \
-            cq.Formula(new_formula_string, new_formula_pointer)
+            cq.Formula(new_formula_string)
+
+        # Add pointers to Formula
+        SomeFormula.point_to('C', SomeTable)
 
         # Add the Formula to the Results
         SomeResults.add_formula(SomeFormula)
 
         # If the expected formula matches the new Results formula...
-        if SomeResults.tables['Some Table'].data.at[0, 'C'] \
-           == expected_formula:
-            # Set the test_result to True
-            test_result = True
+        for table in SomeResults.tables:
+            if table.id == SomeTable.id:
+                if table.data.at[0, 'C'] == expected_formula:
+                    # Set the test_result to True
+                    test_result = True
+                else:
+                    pass
+            else:
+                pass
         # Otherwise, pass
         else:
             pass
@@ -144,10 +163,10 @@ class TestResults:
         SomeValue = cq.Value()
 
         # Add Table to Results
-        SomeResults.add_table(SomeTable, 'Some Table')
+        SomeResults.add_table(SomeTable)
 
         # Add Value to Results
-        SomeResults.add_value(SomeValue, 'Some Value')
+        SomeResults.add_value(SomeValue)
 
         # Get pointers for the Table and Value
         table_pointer = SomeResults.get_insert('Some Column', 'Some Table')
@@ -192,11 +211,11 @@ class TestResults:
             ResultsOne = cq.Results()
 
             # Add Tables and Values to Results
-            ResultsOne.add_table(TableOne, 'Table One')
-            ResultsOne.add_table(TableTwo, 'Table Two')
-            ResultsOne.add_table(TableThree, 'Table Three')
-            ResultsOne.add_value(ValueOne, 'Value One')
-            ResultsOne.add_value(ValueTwo, 'Value Two')
+            ResultsOne.add_table(TableOne)
+            ResultsOne.add_table(TableTwo)
+            ResultsOne.add_table(TableThree)
+            ResultsOne.add_value(ValueOne)
+            ResultsOne.add_value(ValueTwo)
 
             # Report Results
             ResultsOne.report_results('./tests/unit/report.xlsx')
