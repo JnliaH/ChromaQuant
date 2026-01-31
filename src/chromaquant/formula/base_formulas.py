@@ -26,16 +26,19 @@ from .formula import Formula
 
 
 # Create formula using formula string and (optionally) pointer
-def CREATE_FORMULA_FROM_STRING(formula_string: str):
+def CREATE_FORMULA_FROM_STRING(formula_string: str,
+                               key_pointer: str = '',
+                               table_pointer: str = ''):
 
-    # Create Formula without pointer
-    formula = Formula(formula_string)
+    # Create Formula
+    formula = Formula(formula_string, key_pointer, table_pointer)
 
     return formula
 
 
 # Create formula by wrapping existing formula in stated Excel formula
-def WRAP_FORMULA_STRING(inner_formula_string, wrapping_formula_string):
+def WRAP_FORMULA_STRING(inner_formula_string: str,
+                        wrapping_formula_string: str):
 
     # Get a new formula string
     formula_string = \
@@ -71,7 +74,9 @@ def FORMULA_IF_ERROR(formula: Formula):
 # Create formula for binary operations
 def FORMULA_BINARY_OPERATION(left_hand_side: str,
                              right_hand_side: str,
-                             operator: str):
+                             operator: str,
+                             key_pointer: str = '',
+                             table_pointer: str = ''):
 
     # Get a list of sides
     side_list = [left_hand_side, right_hand_side]
@@ -92,54 +97,72 @@ def FORMULA_BINARY_OPERATION(left_hand_side: str,
     formula_string = f'=({side_list[0]}{operator}{side_list[1]})'
 
     # Get a Formula instance using CREATE_FORMULA_FROM_STRING
-    formula = CREATE_FORMULA_FROM_STRING(formula_string)
+    formula = CREATE_FORMULA_FROM_STRING(formula_string,
+                                         key_pointer,
+                                         table_pointer)
 
     return formula
 
 
 # Create formula for binary addition
 def FORMULA_ADDITION(left_hand_side: str,
-                     right_hand_side: str):
+                     right_hand_side: str,
+                     key_pointer: str = '',
+                     table_pointer: str = ''):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
     formula = FORMULA_BINARY_OPERATION(left_hand_side,
                                        right_hand_side,
-                                       '+')
+                                       '+',
+                                       key_pointer,
+                                       table_pointer)
 
     return formula
 
 
 # Create formula for binary subtraction
 def FORMULA_SUBTRACTION(left_hand_side: str,
-                        right_hand_side: str):
+                        right_hand_side: str,
+                        key_pointer: str = '',
+                        table_pointer: str = ''):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
     formula = FORMULA_BINARY_OPERATION(left_hand_side,
                                        right_hand_side,
-                                       '-')
+                                       '-',
+                                       key_pointer,
+                                       table_pointer)
 
     return formula
 
 
 # Create formula for binary multiplication
 def FORMULA_MULTIPLICATION(left_hand_side: str,
-                           right_hand_side: str):
+                           right_hand_side: str,
+                           key_pointer: str = '',
+                           table_pointer: str = ''):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
     formula = FORMULA_BINARY_OPERATION(left_hand_side,
                                        right_hand_side,
-                                       '*')
+                                       '*',
+                                       key_pointer,
+                                       table_pointer)
 
     return formula
 
 
 # Create formula for binary division
 def FORMULA_DIVISION(left_hand_side: str,
-                     right_hand_side: str):
+                     right_hand_side: str,
+                     key_pointer: str = '',
+                     table_pointer: str = ''):
 
     # Get a Formula instance using FORMULA_BINARY_OPERATION
     formula = FORMULA_BINARY_OPERATION(left_hand_side,
                                        right_hand_side,
-                                       '/')
+                                       '/',
+                                       key_pointer,
+                                       table_pointer)
 
     return formula

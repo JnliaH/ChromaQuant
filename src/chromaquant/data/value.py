@@ -129,7 +129,17 @@ class Value(DataSet):
         self.update_value()
 
     """ METHODS """
+    # Method to get the Value insert string
+    @error_logging
+    def insert(self) -> str:
+
+        # Define insert
+        insert = f'|key: {self.id}|'
+
+        return insert
+
     # Method to update the value's reference
+    @error_logging
     def update_reference(self):
 
         # Get the column letter, adjusting from absolute
@@ -154,6 +164,7 @@ class Value(DataSet):
         return None
 
     # Method to update the value
+    @error_logging
     def update_value(self):
 
         # Initialize the reference object

@@ -172,51 +172,49 @@ for i, row in liquids_table.data.iterrows():
 liquids = cq.Results()
 
 # Add the liquids table
-liquids.add_table(liquids_table, 'Liquids Analysis')
+liquids.add_table(liquids_table)
 
 # Add the internal standard values
-liquids.add_value(IS_area, 'Internal Standard Area')
-liquids.add_value(IS_mass, 'Internal Standard Mass (mg)')
-
-# Get inserts for the liquids analysis table Compound and Area columns
-compound_column_insert = liquids.get_insert('Compound',
-                                            'Liquids Analysis',
-                                            True)
-area_column_insert = liquids.get_insert('Area',
-                                        'Liquids Analysis',
-                                        True)
+liquids.add_value(IS_area)
+liquids.add_value(IS_mass)
 
 # Create a formula string for the area cell
-IS_area_formula_string = (f"=INDEX({area_column_insert}, MATCH("
+IS_area_formula_string = (f"=INDEX({liquids_table.insert('Area')}, MATCH("
                           f"'Hexane, 3-methyl-', "
-                          f"{compound_column_insert}, 0))")
+                          f"{liquids_table.insert('Compound')}, 0))")
 
 # Create a Formula instance for the area cell
-IS_area_formula = cq.Formula(IS_area_formula_string,
-                             liquids.get_pointer('Internal Standard Area'))
+IS_area_formula = cq.Formula(IS_area_formula_string)
+
+# Add pointers to Formula
+IS_area_formula.point_to(IS_area.id)
 
 # Add the area cell Formula to liquids analysis
 liquids.add_formula(IS_area_formula)
 
 # Create an area ratio Formula
 area_ratio_formula = cq.formula.FORMULA_DIVISION(
-    liquids.get_insert('Area', 'Liquids Analysis'),
-    liquids.get_insert('Internal Standard Area'),
-    liquids.get_pointer('Ai/As', 'Liquids Analysis')
+    liquids_table.insert('Area'),
+    IS_area.insert()
 )
+
+# Add pointers to Formula
+area_ratio_formula.point_to('Ai/As', liquids_table.id)
 
 # Add the area ratio Formula to the liquids analysis
 liquids.add_formula(area_ratio_formula)
 
 # Create a mass Formula
 mass_formula = cq.formula.FORMULA_MULTIPLICATION(
-    liquids.get_insert('Internal Standard Mass (mg)'),
+    IS_area.insert(),
     cq.formula.FORMULA_DIVISION(
-        liquids.get_insert('Ai/As', 'Liquids Analysis'),
-        liquids.get_insert('Response Factor', 'Liquids Analysis')
+        liquids_table.insert('Ai/As'),
+        liquids_table.insert('Response Factor')
     ).formula_string,
-    liquids.get_pointer('Mass (mg)', 'Liquids Analysis')
+    liquids_table.insert('Mass (mg)')
 )
 
 # Add the mass Formula to the liquids analysis
 liquids.add_formula(mass_formula)
+
+print(liquids_table)

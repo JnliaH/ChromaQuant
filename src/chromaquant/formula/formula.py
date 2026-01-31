@@ -22,11 +22,8 @@ Started 01-07-2026
 
 import logging
 import re
-from typing import Any, TYPE_CHECKING
+from typing import Any
 from ..logging_and_handling import setup_logger, setup_error_logging
-
-if TYPE_CHECKING:
-    from ..data import Table
 
 """ LOGGING AND HANDLING """
 
@@ -48,7 +45,9 @@ class Formula:
     """ SPECIAL METHODS """
     # Initialize class
     def __init__(self,
-                 formula: str = ''):
+                 formula: str = '',
+                 key_pointer: str = '',
+                 table_pointer: str = ''):
         """__init__ summary
 
         Parameters
@@ -70,9 +69,8 @@ class Formula:
         else:
             self._formula = None
 
-        # Get blank attributes for key and table pointers
-        self.key_pointer = ''
-        self.table_pointer = ''
+        # Add passed pointers, even if blank
+        self.point_to(key_pointer, table_pointer)
 
     # Object representation method, allows for direct access to formula
     def __repr__(self):
@@ -102,14 +100,14 @@ class Formula:
     # Method to set formula pointer values
     @error_logging
     def point_to(self,
-                 key_or_column: str,
-                 table: Table):
+                 key_or_column_id: str,
+                 table_id: str = ''):
 
         # Set the key pointer
-        self.key_pointer = key_or_column
+        self.key_pointer = key_or_column_id
 
         # Set the table pointer
-        self.table_pointer = table.id
+        self.table_pointer = table_id
 
         return None
 

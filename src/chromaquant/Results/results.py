@@ -59,6 +59,9 @@ class Results():
         # Initialize the DataSet references dictionary
         self.dataset_references = {}
 
+        # Create an empty cache for added formulas
+        self._formula_cache = {'table': [], 'value': []}
+
     """ METHODS """
     # Method to update all dataset references
     @error_logging
@@ -94,6 +97,10 @@ class Results():
                 # If the table id is equal to the formula's...
                 if self.tables[i].id == formula.table_pointer:
 
+                    # Add a formula to the cache
+                    self._formula_cache['table'] = \
+                        [formula.table_pointer, formula.key_pointer, formula]
+
                     # Add the new formulas to the pointed column
                     self.tables[i].data[formula.key_pointer] = \
                         formula.referenced_formulas
@@ -103,13 +110,17 @@ class Results():
                     pass
 
         # Otherwise, if there is a 'key' in the formula's pointer...
-        elif formula.output_key != '':
+        elif formula.key_pointer != '':
 
             # For every key...
             for i in range(len(self.values)):
 
                 # If the table id is equal to the formula's...
                 if self.values[i].id == formula.key_pointer:
+
+                    # Add a formula to the cache
+                    self._formula_cache['value'] = \
+                        [formula.key_pointer, formula]
 
                     # Add the new formulas to the pointed column
                     self.values[i].data = \
@@ -172,56 +183,3 @@ class Results():
         workbook.save(path)
 
         return None
-
-    """ STATIC METHODS """
-    # Method to get a formula insert for a DataSet's pointer
-    @staticmethod
-    def get_insert(key: str,
-                   table: str = '',
-                   range: bool = False) -> str:
-
-        # If table is not provided...
-        if table == '':
-            # Set insert to a Value's insert
-            dataset_insert = f'|key: {key}|'
-
-        # Otherwise...
-        else:
-
-            # If range is True...
-            if range is True:
-                # Set insert to a Table's column range insert
-                dataset_insert = f'|table: {table}, key: {key}, range: True|'
-
-            # Otherwise...
-            else:
-                # Set insert to Table's column insert
-                dataset_insert = f'|table: {table}, key: {key}|'
-
-        return dataset_insert
-
-    # Method to get a DataSet's pointer
-    @staticmethod
-    def get_pointer(key: str,
-                    table: str = '',
-                    range: bool = False) -> dict[str, str]:
-
-        # If table is not provided...
-        if table == '':
-            # Get value pointer
-            dataset_pointer = {'key': key}
-
-        # Otherwise...
-        else:
-
-            # If range is True...
-            if range is True:
-                # Set pointer to a Table's column range pointer
-                dataset_pointer = {'key': key, 'table': table, 'range': 'True'}
-
-            # Otherwise...
-            else:
-                # Set pointer to Table's column pointer
-                dataset_pointer = {'key': key, 'table': table}
-
-        return dataset_pointer
