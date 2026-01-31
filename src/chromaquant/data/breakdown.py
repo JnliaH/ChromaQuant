@@ -138,12 +138,12 @@ class Breakdown(DataSet):
         # Create an index for the current header cell
         header_cell_index = 0
 
+        # Get the start cell's absolute indices
+        absolute_start_col, absolute_start_row = \
+            self.get_cell_indices(self.start_cell)
+
         # For every group...
         for group in unique_groups:
-
-            # Get the start cell's absolute indices
-            absolute_start_col, absolute_start_row = \
-                self.get_cell_indices(self.start_cell)
 
             # Get the current header's column and row
             start_col = \
@@ -174,9 +174,116 @@ class Breakdown(DataSet):
 
     # Method to create a two-dimensional breakdown
     def create_2D(self,
-                  group_by_1,
-                  group_by_2,
-                  data_column):
+                  table: Table,
+                  group_by_col_1: str,
+                  group_by_col_2: str,
+                  summarize_column: str,
+                  groups_to_summarize: dict[str, list[str]] = None):
+
+        # Create an empty dictionary to contain lists of unique groups
+        unique_groups = {group_by_col_1: [], group_by_col_2: []}
+
+        # If groups_to_summarize is not none...
+        if groups_to_summarize is not None:
+
+            # Get a list of booleans based on whether each key
+            # in groups_to_summarize matches a group_by_col
+            check_groups_list = [True if group_col in
+                                 [group_by_col_1, group_by_col_2]
+                                 else False for group_col in
+                                 groups_to_summarize]
+
+            # If groups to summarize is longer than two or contains a string
+            # that is not equal to either column string...
+            if len(groups_to_summarize) > 2 or not all(check_groups_list):
+
+                # Raise an error
+                raise ValueError('Unexpected keys in groups_to_summarize.')
+
+            # Otherwise, pass
+            else:
+                pass
+
+        # Create an empty dictionary if groups_to_summarize is None
+        groups_to_summarize = \
+            groups_to_summarize if groups_to_summarize is not None else {}
+
+        # For every entry in unique_groups...
+        for group_col in unique_groups:
+
+            # If the group column is present in groups_to_summarize...
+            if group_col in groups_to_summarize:
+
+                # Set unique_groups[group_col] to a shallow
+                # copy of groups_to_summarize entry
+                unique_groups[group_col] = groups_to_summarize[group_col][:]
+
+            # Otherwise...
+            else:
+                # Set unique_groups[group_col] to a list of unique values
+                # in the group by column
+                unique_groups[group_col] = table.data[group_col].unique()
+
+                # Sort the list
+                unique_groups[group_col].sort()
+
+        # Create a new column for group_2 (row headers)
+        self.data[group_by_col_2] = [group for group in unique_groups[1]]
+
+        # Get the start cell's absolute indices
+        absolute_start_col, absolute_start_row = \
+            self.get_cell_indices(self.start_cell)
+
+        # Create column index to track current column
+        column_index = 0
+
+        # For every group in unique_groups group_by_1 (treat as columns)...
+        for group_1 in unique_groups[0]:
+
+            # Get the current column header's column and row
+            column_start_col = \
+                get_column_letter(absolute_start_col + 2 +
+                                  column_index)
+            column_start_row = \
+                absolute_start_row + 2
+
+            # Get the current column header cell
+            column_header_cell = f'{column_start_col}${column_start_row}'
+
+            # Create row index to track current row
+            row_index = 0
+
+            # For every group in unique_groups group_by_2 (treat as rows)...
+            for group_2 in unique_groups[1]:
+
+                # Get the current row header's column and row
+                row_start_col = \
+                    get_column_letter(absolute_start_col + 1)
+                row_start_row = \
+                    absolute_start_row + 3 + row_index
+
+                # Get the current row header cell
+                row_header_cell = f'${row_start_col}{row_start_row}'
+
+                # Define the criteria dictionary
+                criteria = {column_header_cell: group_1,
+                            row_header_cell: group_2}
+
+                # Get a formula string
+                formula_string = \
+                    self.create_conditional_aggregate_formula(table,
+                                                              criteria,
+                                                              summarize_column
+                                                              )
+
+                # Add the formula string to the current group entry
+                self.data.at[row_index, group_1] = [formula_string]
+
+                # Iterate the row cell index
+                row_index += 1
+
+            # Iterate the header cell index
+            column_index += 1
 
         return None
 

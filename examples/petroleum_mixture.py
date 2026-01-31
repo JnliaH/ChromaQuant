@@ -41,6 +41,7 @@ liquid_table_cell = '$B$5'
 liquid_IS_area_cell = '$B$2'
 liquid_IS_mass_cell = '$C$2'
 liquid_breakdown_cell = '$T$5'
+liquid_2D_breakdown_cell = '$T$10'
 
 """ DATASET CREATION """
 
@@ -74,6 +75,10 @@ liquids_table = cq.Table()
 liquids_CN_breakdown = cq.Breakdown(liquid_breakdown_cell,
                                     'Liquids Analysis')
 
+# Create a 2D breakdown for liquids
+liquids_2D_breakdown = cq.Breakdown(liquid_2D_breakdown_cell,
+                                    'Liquids Analysis')
+
 # Define Results instance for liquids analysis
 liquids = cq.Results(sheet=liquid_sheet,
                      start_cell=liquid_table_cell)
@@ -86,7 +91,10 @@ liquids.add_value(IS_area)
 liquids.add_value(IS_mass)
 
 # Add the liquids carbon number breakdown
+liquids.add_breakdown(liquids_CN_breakdown)
 
+# Add the liquids 2D breakdown
+liquids.add_breakdown(liquids_2D_breakdown)
 
 """ MATCHING FID TO MS """
 
@@ -231,9 +239,16 @@ liquids.add_formula(mass_formula)
 # Define carbon numbers to cover
 CN_range = ['1', '2', '3', '4', '5', '6', '7', '8']
 
+# Create a 1D carbon number breakdown
 liquids_CN_breakdown.create_1D(liquids_table,
                                'Carbon Number',
                                'Mass (mg)',
                                CN_range)
 
+# Create a 2D carbon number-compound breakdown
+liquids_2D_breakdown.create_2D(liquids_table,
+                               'Carbon Number',
+                               'Compound',
+                               'Mass (mg)',
+                               )
 print(liquids_CN_breakdown)
