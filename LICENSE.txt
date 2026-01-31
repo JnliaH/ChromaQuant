@@ -1,7 +1,7 @@
 
 ChromaQuant – A quantification software for complex gas chromatographic data
 
-Copyright (c) 2024, by Julia Hancock
+Copyright (c) 2026, by Julia Hancock
               Affiliation: Dr. Julie Elaine Rorrer
 	      URL: https://www.rorrerlab.com/
 

@@ -23,7 +23,7 @@ Started 12-10-2025
 import logging
 import openpyxl
 import pandas as pd
-from ..data import Table, Value
+from ..data import Table, Value, Breakdown
 from .reporting_tools import report_table, report_value
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
@@ -56,6 +56,9 @@ class Results():
         # Initialize the values list
         self.values: list[Value] = []
 
+        # Initialize the breakdowns list
+        self.breakdowns: list[Breakdown] = []
+
         # Initialize the DataSet references dictionary
         self.dataset_references = {}
 
@@ -74,6 +77,15 @@ class Results():
         # Add value references for each value
         for value in self.values:
             self.dataset_references[value.id] = value.reference
+
+        return None
+
+    # Method to add a new Breakdown to the results
+    @error_logging
+    def add_breakdown(self, breakdown: Breakdown):
+
+        # Add the breakdown to the breakdowns list
+        self.breakdowns.append(breakdown)
 
         return None
 

@@ -40,6 +40,7 @@ gas_sheet = 'Gas Analysis'
 liquid_table_cell = '$B$5'
 liquid_IS_area_cell = '$B$2'
 liquid_IS_mass_cell = '$C$2'
+liquid_breakdown_cell = '$T$5'
 
 """ DATASET CREATION """
 
@@ -65,6 +66,27 @@ IS_area = cq.Value(sheet=liquid_sheet,
 IS_mass = cq.Value(data=30,
                    sheet=liquid_sheet,
                    start_cell=liquid_IS_mass_cell)
+
+# Create a table for liquids analysis
+liquids_table = cq.Table()
+
+# Create a 1D breakdown by carbon number
+liquids_CN_breakdown = cq.Breakdown(liquid_breakdown_cell,
+                                    'Liquids Analysis')
+
+# Define Results instance for liquids analysis
+liquids = cq.Results(sheet=liquid_sheet,
+                     start_cell=liquid_table_cell)
+
+# Add the liquids table
+liquids.add_table(liquids_table)
+
+# Add the internal standard values
+liquids.add_value(IS_area)
+liquids.add_value(IS_mass)
+
+# Add the liquids carbon number breakdown
+
 
 """ MATCHING FID TO MS """
 
@@ -100,10 +122,8 @@ match_config_lq_FIDpMS.multiple_hits_column = 'Match Factor'
 lq_FIDpMS = lq_FID_integration.match(lq_MS_components.data,
                                      match_config_lq_FIDpMS)
 
-# Create a new liquids table with the match results
-liquids_table = cq.Table(lq_FIDpMS,
-                         sheet=liquid_sheet,
-                         start_cell=liquid_table_cell)
+# Set results to liquids_table data attribute
+liquids_table.data = lq_FIDpMS
 
 """ ADDING CARBON NUMBER AND MOLECULAR WEIGHT """
 
@@ -168,16 +188,6 @@ for i, row in liquids_table.data.iterrows():
 
 """ LIQUIDS RESULTS """
 
-# Define Results instance for liquids analysis
-liquids = cq.Results()
-
-# Add the liquids table
-liquids.add_table(liquids_table)
-
-# Add the internal standard values
-liquids.add_value(IS_area)
-liquids.add_value(IS_mass)
-
 # Create a formula string for the area cell
 IS_area_formula_string = (f"=INDEX({liquids_table.insert('Area')}, MATCH("
                           f"'Hexane, 3-methyl-', "
@@ -211,10 +221,19 @@ mass_formula = cq.formula.FORMULA_MULTIPLICATION(
         liquids_table.insert('Ai/As'),
         liquids_table.insert('Response Factor')
     ).formula_string,
-    liquids_table.insert('Mass (mg)')
+    'Mass (mg)',
+    liquids_table.id
 )
 
 # Add the mass Formula to the liquids analysis
 liquids.add_formula(mass_formula)
 
-print(liquids_table)
+# Define carbon numbers to cover
+CN_range = ['1', '2', '3', '4', '5', '6', '7', '8']
+
+liquids_CN_breakdown.create_1D(liquids_table,
+                               'Carbon Number',
+                               'Mass (mg)',
+                               CN_range)
+
+print(liquids_CN_breakdown)

@@ -157,7 +157,6 @@ class Breakdown(DataSet):
             # Define the criteria dictionary
             criteria = {header_cell: group}
 
-            print(criteria)
             # Get a formula string
             formula_string = \
                 self.create_conditional_aggregate_formula(table,
@@ -167,6 +166,9 @@ class Breakdown(DataSet):
 
             # Add the formula string to the current group entry
             self.data[group] = [formula_string]
+
+            # Iterate the header cell index
+            header_cell_index += 1
 
         return None
 
