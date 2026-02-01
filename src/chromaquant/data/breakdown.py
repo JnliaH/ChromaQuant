@@ -23,6 +23,9 @@ Started 01-28-2026
 import logging
 from openpyxl.utils import get_column_letter
 from pandas import DataFrame
+from typing import Any, TYPE_CHECKING
+if TYPE_CHECKING:
+    from ..results import Results
 from .dataset import DataSet
 from .table import Table
 from ..logging_and_handling import setup_logger, setup_error_logging
@@ -48,7 +51,8 @@ class Breakdown(DataSet):
     def __init__(self,
                  start_cell: str = '',
                  sheet: str = '',
-                 conditional_aggregate: str = 'SUMIFS'):
+                 conditional_aggregate: str = 'SUMIFS',
+                 results: Results = None):
 
         # Run DataSet initialization
         super().__init__(data=DataFrame(),
@@ -62,6 +66,7 @@ class Breakdown(DataSet):
                                                'AVERAGEIFS',
                                                'MINIFS',
                                                'MAXIFS']
+        self._breakdown_cache = {}
 
         # If the conditional aggregate is not equal to an expected value...
         if conditional_aggregate not in self.allowed_conditional_aggregates:
@@ -71,6 +76,75 @@ class Breakdown(DataSet):
         # Otherwise, assign to an attribute
         else:
             self.conditional_aggregate = conditional_aggregate
+
+    """ PROPERTIES """
+    # Data properties - GETTER ONLY
+    # Getter
+    @property
+    def data(self) -> Any:
+        return self._data
+
+    # Setter
+    @data.setter
+    def data(self, value: DataFrame | None):
+        self._data = value
+
+    # Deleter
+    @data.deleter
+    def data(self):
+        del self._data
+        self._data = DataFrame()
+
+    # Sheet properties
+    # Getter
+    @property
+    def sheet(self) -> str:
+        return self._sheet
+
+    # Setter
+    @sheet.setter
+    def sheet(self, value: str):
+        if value == '':
+            raise ValueError('Breakdown sheet cannot be an empty string.')
+        self._sheet = value
+        if self._mediator is not None:
+            self._mediator.update_datasets()
+
+    # Deleter
+    @sheet.deleter
+    def sheet(self):
+        del self._sheet
+        if self._mediator is not None:
+            self._mediator.update_datasets()
+
+    # Start cell properties
+    # Getter
+    @property
+    def start_cell(self) -> str:
+        return self._start_cell
+
+    # Setter
+    @start_cell.setter
+    def start_cell(self, value: str):
+        # Try...
+        try:
+            # Get the cell's absolute indices
+            self.start_column, self.start_row = self.get_cell_indices(value)
+            # Set the starting cell
+            self._start_cell = value
+        # If an exception occurs...
+        except Exception as e:
+            raise ValueError(f'Passed start cell is not valid: {e}')
+        if self._mediator is not None:
+            self._mediator.update_datasets()
+
+    # Deleter
+    @start_cell.deleter
+    def start_cell(self):
+        del self._start_cell
+        del self.start_row, self.start_column
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     """ METHODS """
     # Method to create a conditional aggregate formula based on criteria
@@ -127,7 +201,10 @@ class Breakdown(DataSet):
         # Otherwise...
         else:
             # Get a list of unique values in Table in the group by column
-            unique_groups = table.data[group_by_column].unique()
+            # NOTE: IGNORES NONE
+            unique_groups = [group for group in
+                             table.data[group_by_column].unique()
+                             if group is not None]
 
             # Sort the list of unique groups
             unique_groups.sort()
@@ -165,10 +242,21 @@ class Breakdown(DataSet):
                                                           )
 
             # Add the formula string to the current group entry
-            self.data[group] = [formula_string]
+            self.data[group] = formula_string
 
             # Iterate the header cell index
             header_cell_index += 1
+
+        # Set the breakdown cache
+        self._breakdown_cache = {'function': self.create_1D,
+                                 'arguments': {'table':
+                                               table,
+                                               'group_by_column':
+                                               group_by_column,
+                                               'summarize_column':
+                                               summarize_column,
+                                               'groups_to_summarize':
+                                               groups_to_summarize}}
 
         return None
 
@@ -222,13 +310,16 @@ class Breakdown(DataSet):
             else:
                 # Set unique_groups[group_col] to a list of unique values
                 # in the group by column
-                unique_groups[group_col] = table.data[group_col].unique()
+                unique_groups[group_col] = [group for group in
+                                            table.data[group_col].unique()
+                                            if group is not None]
 
                 # Sort the list
                 unique_groups[group_col].sort()
 
         # Create a new column for group_2 (row headers)
-        self.data[group_by_col_2] = [group for group in unique_groups[1]]
+        self.data[group_by_col_2] = \
+            [group for group in unique_groups[group_by_col_2]]
 
         # Get the start cell's absolute indices
         absolute_start_col, absolute_start_row = \
@@ -238,7 +329,7 @@ class Breakdown(DataSet):
         column_index = 0
 
         # For every group in unique_groups group_by_1 (treat as columns)...
-        for group_1 in unique_groups[0]:
+        for group_1 in unique_groups[group_by_col_1]:
 
             # Get the current column header's column and row
             column_start_col = \
@@ -254,7 +345,7 @@ class Breakdown(DataSet):
             row_index = 0
 
             # For every group in unique_groups group_by_2 (treat as rows)...
-            for group_2 in unique_groups[1]:
+            for group_2 in unique_groups[group_by_col_2]:
 
                 # Get the current row header's column and row
                 row_start_col = \
@@ -277,13 +368,26 @@ class Breakdown(DataSet):
                                                               )
 
                 # Add the formula string to the current group entry
-                self.data.at[row_index, group_1] = [formula_string]
+                self.data.at[row_index, group_1] = formula_string
 
                 # Iterate the row cell index
                 row_index += 1
 
             # Iterate the header cell index
             column_index += 1
+
+        # Set the breakdown cache
+        self._breakdown_cache = {'function': self.create_1D,
+                                 'arguments': {'table':
+                                               table,
+                                               'group_by_col_1':
+                                               group_by_col_1,
+                                               'group_by_col_2':
+                                               group_by_col_2,
+                                               'summarize_column':
+                                               summarize_column,
+                                               'groups_to_summarize':
+                                               groups_to_summarize}}
 
         return None
 

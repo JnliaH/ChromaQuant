@@ -23,7 +23,9 @@ Started 01-12-2026
 from collections.abc import Callable
 import logging
 import pandas as pd
-from typing import Any
+from typing import Any, TYPE_CHECKING
+if TYPE_CHECKING:
+    from ..results import Results
 from openpyxl.utils.cell import get_column_letter
 from .dataset import DataSet
 from ..formula import Formula
@@ -51,7 +53,8 @@ class Table(DataSet):
     def __init__(self,
                  data_frame: pd.DataFrame | None = None,
                  start_cell: str = '',
-                 sheet: str = ''):
+                 sheet: str = '',
+                 results: Results = None):
 
         # Create a default DataFrame
         data_frame = data_frame if data_frame is not None else pd.DataFrame()
@@ -106,12 +109,16 @@ class Table(DataSet):
             raise ValueError('Table sheet cannot be an empty string.')
         self._sheet = value
         self.update_table()
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Deleter
     @sheet.deleter
     def sheet(self):
         del self._sheet
         self.update_table()
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Start cell properties
     # Getter
@@ -132,6 +139,8 @@ class Table(DataSet):
         except Exception as e:
             raise ValueError(f'Passed start cell is not valid: {e}')
         self.update_table()
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Deleter
     @start_cell.deleter
@@ -139,6 +148,8 @@ class Table(DataSet):
         del self._start_cell
         del self.start_row, self.start_column
         self.update_table()
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     """ METHODS """
     # Method to add a new column to a table

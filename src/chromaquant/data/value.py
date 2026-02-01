@@ -22,7 +22,9 @@ Started 01-12-2025
 
 import logging
 from openpyxl.utils import get_column_letter
-from typing import Any
+from typing import Any, TYPE_CHECKING
+if TYPE_CHECKING:
+    from ..results import Results
 from .dataset import DataSet
 from ..logging_and_handling import setup_logger, setup_error_logging
 
@@ -46,7 +48,8 @@ class Value(DataSet):
     def __init__(self,
                  data: Any = float('nan'),
                  start_cell: str = '',
-                 sheet: str = ''):
+                 sheet: str = '',
+                 results: Results = None):
 
         # Run DataSet initialization
         super().__init__(data=data,
@@ -82,7 +85,6 @@ class Value(DataSet):
     def data(self):
         del self._data
         self.update_value()
-
     # Sheet properties
     # Getter
     @property
@@ -96,12 +98,16 @@ class Value(DataSet):
             raise ValueError('Table sheet cannot be an empty string.')
         self._sheet = value
         self.update_value()
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Deleter
     @sheet.deleter
     def sheet(self):
         del self._sheet
         self.update_value()
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Start cell properties
     # Getter
@@ -120,6 +126,8 @@ class Value(DataSet):
         except Exception as e:
             raise ValueError(f'Passed start cell is not valid: {e}')
         self.update_value()
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Deleter
     @start_cell.deleter
@@ -127,6 +135,8 @@ class Value(DataSet):
         del self._start_cell
         del self.start_row, self.start_column
         self.update_value()
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     """ METHODS """
     # Method to get the Value insert string

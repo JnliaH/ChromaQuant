@@ -63,27 +63,15 @@ class Results():
         self.dataset_references = {}
 
         # Create an empty cache for added formulas
-        self._formula_cache = {'table': [], 'value': []}
+        self._formula_cache = []
 
     """ METHODS """
-    # Method to update all dataset references
-    @error_logging
-    def update_references(self):
-
-        # Add table references for each table
-        for table in self.tables:
-            self.dataset_references[table.id] = table.reference
-
-        # Add value references for each value
-        for value in self.values:
-            self.dataset_references[value.id] = value.reference
-
-        return None
-
     # Method to add a new Breakdown to the results
     @error_logging
     def add_breakdown(self, breakdown: Breakdown):
 
+        # Set the breakdown's mediator to the current object
+        breakdown.mediator = self
         # Add the breakdown to the breakdowns list
         self.breakdowns.append(breakdown)
 
@@ -97,6 +85,9 @@ class Results():
         # Update dataset references
         self.update_references()
 
+        # Add a formula to the cache
+        self._formula_cache.append(formula)
+
         # Get the new formulas
         formula.insert_references(self.dataset_references)
 
@@ -108,10 +99,6 @@ class Results():
 
                 # If the table id is equal to the formula's...
                 if self.tables[i].id == formula.table_pointer:
-
-                    # Add a formula to the cache
-                    self._formula_cache['table'] = \
-                        [formula.table_pointer, formula.key_pointer, formula]
 
                     # Add the new formulas to the pointed column
                     self.tables[i].data[formula.key_pointer] = \
@@ -129,10 +116,6 @@ class Results():
 
                 # If the table id is equal to the formula's...
                 if self.values[i].id == formula.key_pointer:
-
-                    # Add a formula to the cache
-                    self._formula_cache['value'] = \
-                        [formula.key_pointer, formula]
 
                     # Add the new formulas to the pointed column
                     self.values[i].data = \
@@ -193,5 +176,37 @@ class Results():
 
         # Save and close the Excel workbook
         workbook.save(path)
+
+        return None
+
+    # Method to update all datasets
+    @error_logging
+    def update_datasets(self):
+
+        # For every formula in the formula cache...
+        for formula in self._formula_cache:
+            # Add a formula to results
+            self.add_formula(formula)
+
+        # For every breakdown...
+        for breakdown in self.breakdowns:
+            # Get the method used to construct the breakdown
+            breakdown_constructor = breakdown._breakdown_cache['function']
+            # Reformulate the breakdown based on its cache
+            breakdown_constructor(**breakdown._breakdown_cache['arguments'])
+
+        return None
+
+    # Method to update all dataset references
+    @error_logging
+    def update_references(self):
+
+        # Add table references for each table
+        for table in self.tables:
+            self.dataset_references[table.id] = table.reference
+
+        # Add value references for each value
+        for value in self.values:
+            self.dataset_references[value.id] = value.reference
 
         return None

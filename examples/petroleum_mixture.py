@@ -80,8 +80,7 @@ liquids_2D_breakdown = cq.Breakdown(liquid_2D_breakdown_cell,
                                     'Liquids Analysis')
 
 # Define Results instance for liquids analysis
-liquids = cq.Results(sheet=liquid_sheet,
-                     start_cell=liquid_table_cell)
+liquids = cq.Results()
 
 # Add the liquids table
 liquids.add_table(liquids_table)
@@ -251,4 +250,12 @@ liquids_2D_breakdown.create_2D(liquids_table,
                                'Compound',
                                'Mass (mg)',
                                )
-print(liquids_CN_breakdown)
+print(liquids_2D_breakdown)
+
+
+# Try to change the start_cell of the liquids_table
+liquids_table.start_cell = '$B$10'
+
+print(liquids_2D_breakdown)
+# Export the results to .csv
+# liquids.report_results('./examples/example_data/report.xlsx')

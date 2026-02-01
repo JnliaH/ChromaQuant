@@ -23,7 +23,9 @@ Started 01-12-2025
 import logging
 from openpyxl.utils.cell import coordinate_from_string, \
                                 column_index_from_string
-from typing import Any
+from typing import Any, TYPE_CHECKING
+if TYPE_CHECKING:
+    from ..results import Results
 import uuid
 from ..logging_and_handling import setup_logger, setup_error_logging
 
@@ -42,14 +44,15 @@ error_logging = setup_error_logging(logger)
 
 
 # Define the DataSet class
-class DataSet():
+class DataSet:
 
     # Initialize
     def __init__(self,
                  data: Any = float('nan'),
                  start_cell: str = '',
                  sheet: str = '',
-                 type: str = 'DataSet'):
+                 type: str = 'DataSet',
+                 results: Results = None):
 
         # Initialize instance attributes
         self.type = type
@@ -64,6 +67,9 @@ class DataSet():
 
         # Create unique ID for the instance
         self.id = str(uuid.uuid4())
+
+        # Add a mediator attribute
+        self._mediator = results
 
     # Define the object representation by including its data
     def __repr__(self):
@@ -122,6 +128,17 @@ class DataSet():
     @start_cell.deleter
     def start_cell(self):
         del self._start_cell
+
+    # Mediator properties
+    # Getter
+    @property
+    def mediator(self) -> str:
+        return self._mediator
+
+    # Setter
+    @mediator.setter
+    def mediator(self, mediator: Results):
+        self._mediator = mediator
 
     """ STATIC METHODS """
 
