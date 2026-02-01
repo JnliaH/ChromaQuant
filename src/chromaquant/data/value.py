@@ -85,6 +85,7 @@ class Value(DataSet):
     def data(self):
         del self._data
         self.update_value()
+
     # Sheet properties
     # Getter
     @property
