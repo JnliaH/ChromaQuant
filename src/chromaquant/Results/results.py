@@ -24,7 +24,7 @@ import logging
 import openpyxl
 import pandas as pd
 from ..data import Table, Value, Breakdown
-from .reporting_tools import report_table, report_value
+from .reporting_tools import report_breakdown, report_table, report_value
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
 
@@ -163,6 +163,11 @@ class Results():
             for table in self.tables:
                 # Write the Table to Excel
                 report_table(table, writer)
+
+            # For every Breakdown in Results...
+            for breakdown in self.breakdowns:
+                # Write the Breakdown to Excel
+                report_breakdown(breakdown, writer)
 
         # Write Values
         # NOTE: Uses custom openpyxl writer

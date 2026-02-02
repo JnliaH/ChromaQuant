@@ -40,8 +40,8 @@ gas_sheet = 'Gas Analysis'
 liquid_table_cell = '$B$5'
 liquid_IS_area_cell = '$B$2'
 liquid_IS_mass_cell = '$C$2'
-liquid_breakdown_cell = '$T$5'
-liquid_2D_breakdown_cell = '$T$10'
+liquid_breakdown_cell = '$O$5'
+liquid_2D_breakdown_cell = '$O$10'
 
 """ DATASET CREATION """
 
@@ -241,7 +241,6 @@ liquids.add_formula(mass_formula)
 # Define carbon numbers to cover
 CN_range = ['1', '2', '3', '4', '5', '6', '7', '8']
 
-"""
 # Create a 1D carbon number breakdown
 liquids_CN_breakdown.create_1D(liquids_table,
                                'Carbon Number',
@@ -255,7 +254,6 @@ liquids_2D_breakdown.create_2D(liquids_table,
                                'Mass (mg)',
                                )
 print(liquids_2D_breakdown.data.at[1, 0])
-"""
 
 
 # Try to change the start_cell of the liquids_table

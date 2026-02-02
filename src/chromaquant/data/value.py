@@ -56,14 +56,12 @@ class Value(DataSet):
         super().__init__(data=data,
                          start_cell=start_cell,
                          sheet=sheet,
-                         type='Value')
+                         type='Value',
+                         header=header,
+                         results=results)
 
         # Update the value
         self.update_value()
-
-        # Set attributes
-        self.header = header
-        self._mediator = results
 
     """ PROPERTIES """
     # Define the reference property, ONLY DEFINE GETTER

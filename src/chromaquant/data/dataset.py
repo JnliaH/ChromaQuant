@@ -52,12 +52,14 @@ class DataSet:
                  start_cell: str = '',
                  sheet: str = '',
                  type: str = 'DataSet',
+                 header: str = '',
                  results: Results = None):
 
         # Initialize instance attributes
         self.type = type
         self._start_cell = start_cell if start_cell != '' else '$A$1'
         self._sheet = sheet if sheet != '' else 'Sheet1'
+        self._header = header
         self._reference: dict[str, Any] = {}
         self.start_column, self.start_row = \
             self.get_cell_indices(self._start_cell)
@@ -128,6 +130,22 @@ class DataSet:
     @start_cell.deleter
     def start_cell(self):
         del self._start_cell
+
+    # Header properties
+    # Getter
+    @property
+    def header(self) -> str:
+        return self._header
+
+    # Setter
+    @header.setter
+    def header(self, value: str):
+        self._header = value
+
+    # Deleter
+    @header.deleter
+    def header(self):
+        del self._header
 
     # Mediator properties
     # Getter

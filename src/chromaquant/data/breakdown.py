@@ -52,12 +52,15 @@ class Breakdown(DataSet):
                  start_cell: str = '',
                  sheet: str = '',
                  conditional_aggregate: str = 'SUMIFS',
+                 header: str = '',
                  results: Results = None):
 
         # Run DataSet initialization
         super().__init__(data=DataFrame(),
                          start_cell=start_cell,
-                         sheet=sheet)
+                         sheet=sheet,
+                         header=header,
+                         results=results)
 
         # Create attributes
         self.data = DataFrame()
@@ -179,7 +182,7 @@ class Breakdown(DataSet):
             # Add criteria range to formula_template
             formula_template += f', {cell_or_range}'
             # Add criteria to formula_template
-            formula_template += f', "{criteria[cell_or_range]}"'
+            formula_template += f', {criteria[cell_or_range]}'
 
         # Get the final formula by wrapping in the passed conditional aggregate
         formula = f'={self.conditional_aggregate}({formula_template})'
@@ -232,7 +235,7 @@ class Breakdown(DataSet):
             header_cell = f'{start_col}${start_row}'
 
             # Define the criteria dictionary
-            criteria = {header_cell: group}
+            criteria = {table.reference[group_by_column]['range']: header_cell}
 
             # Get a formula string
             formula_string = \
@@ -357,8 +360,10 @@ class Breakdown(DataSet):
                 row_header_cell = f'${row_start_col}{row_start_row}'
 
                 # Define the criteria dictionary
-                criteria = {column_header_cell: group_1,
-                            row_header_cell: group_2}
+                criteria = {table.reference[group_by_col_1]['range']:
+                            column_header_cell,
+                            table.reference[group_by_col_2]['range']:
+                            row_header_cell}
 
                 # Get a formula string
                 formula_string = \

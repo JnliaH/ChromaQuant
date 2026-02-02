@@ -54,6 +54,7 @@ class Table(DataSet):
                  data_frame: pd.DataFrame | None = None,
                  start_cell: str = '',
                  sheet: str = '',
+                 header: str = '',
                  results: Results = None):
 
         # Create a default DataFrame
@@ -63,7 +64,9 @@ class Table(DataSet):
         super().__init__(data=data_frame,
                          start_cell=start_cell,
                          sheet=sheet,
-                         type='Table')
+                         header=header,
+                         type='Table',
+                         results=results)
 
         # Update the table
         self.update_table()

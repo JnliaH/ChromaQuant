@@ -22,20 +22,42 @@ Started 1-24-2025
 
 from openpyxl import Workbook
 from pandas import ExcelWriter
-from ..data import Table, Value
+from ..data import Breakdown, Table, Value
 
 """ FUNCTIONS """
+
+
+# Function to write a Breakdown to Excel
+def report_breakdown(breakdown: Breakdown,
+                     writer: ExcelWriter):
+
+    # Get the start row based on whether there is a header or not
+    start_row = \
+        breakdown.start_row if breakdown.header == '' \
+        else breakdown.start_row + 1
+
+    # Write the passed DataFrame to passed path
+    breakdown.data.to_excel(writer,
+                            sheet_name=breakdown.sheet,
+                            startcol=breakdown.start_column,
+                            startrow=start_row,
+                            index=False)
 
 
 # Function to write a Table to Excel
 def report_table(table: Table,
                  writer: ExcelWriter):
 
+    # Get the start row based on whether there is a header or not
+    start_row = \
+        table.start_row if table.header == '' \
+        else table.start_row + 1
+
     # Write the passed DataFrame to passed path
     table.data.to_excel(writer,
                         sheet_name=table.sheet,
                         startcol=table.start_column,
-                        startrow=table.start_row,
+                        startrow=start_row,
                         index=False)
 
     return None
