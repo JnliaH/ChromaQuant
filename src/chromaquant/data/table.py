@@ -307,16 +307,35 @@ class Table(DataSet):
                                                       self._data,
                                                       self.start_column + 1)
 
-            # Get a start row, adjusting from absolute
-            start_row = self.start_row + 1
+            # Get a Boolean indicating whether the Table has a header
+            has_header = False if self.header == '' else True
 
-            # Get an end row, adjusting from absolute
-            end_row = self.start_row + 1 + self.length
+            # If there is a header...
+            if has_header:
 
-            # Get a range reference, adjusting from absolute
-            column_range = (f"'{self._sheet}'!"
-                            f"${col_letter}${start_row + 1}:"
-                            f"${col_letter}${end_row}")
+                # Get a start row, adjusting from absolute
+                start_row = self.start_row + 3
+
+                # Get an end row, adjusting from absolute
+                end_row = self.start_row + 2 + self.length
+
+                # Get a range reference, adjusting from absolute
+                column_range = (f"'{self._sheet}'!"
+                                f"${col_letter}${start_row}:"
+                                f"${col_letter}${end_row}")
+
+            # If there isn't a header...
+            else:
+                # Get a start row, adjusting from absolute
+                start_row = self.start_row + 2
+
+                # Get an end row, adjusting from absolute
+                end_row = self.start_row + 1 + self.length
+
+                # Get a range reference, adjusting from absolute
+                column_range = (f"'{self._sheet}'!"
+                                f"${col_letter}${start_row}:"
+                                f"${col_letter}${end_row}")
 
             # Update the reference object
             self._reference[column] = \

@@ -68,8 +68,8 @@ IS_area = cq.Value(sheet=liquid_sheet,
 IS_mass = cq.Value(data=30,
                    sheet=liquid_sheet,
                    start_cell=liquid_IS_mass_cell,
-                   header='Internal Standard Mass (mg)')
-
+                   )
+# header='Internal Standard Mass (mg)'
 # Create a table for liquids analysis
 liquids_table = cq.Table(sheet='Liquids Analysis',
                          start_cell='$B$5')
@@ -211,7 +211,7 @@ IS_area_formula.point_to(IS_area.id)
 
 # Add the area cell Formula to liquids analysis
 liquids.add_formula(IS_area_formula)
-print(IS_area)
+
 # Create an area ratio Formula
 area_ratio_formula = cq.formula.FORMULA_DIVISION(
     liquids_table.insert('Area'),
@@ -226,7 +226,7 @@ liquids.add_formula(area_ratio_formula)
 
 # Create a mass Formula
 mass_formula = cq.formula.FORMULA_MULTIPLICATION(
-    IS_area.insert(),
+    IS_mass.insert(),
     cq.formula.FORMULA_DIVISION(
         liquids_table.insert('Ai/As'),
         liquids_table.insert('Response Factor')
@@ -249,12 +249,13 @@ liquids_CN_breakdown.create_1D(liquids_table,
 
 # Create a 2D carbon number-compound breakdown
 liquids_2D_breakdown.create_2D(liquids_table,
-                               'Carbon Number',
                                'Compound',
+                               'Carbon Number',
                                'Mass (mg)',
                                )
-print(liquids_2D_breakdown.data.at[1, 0])
 
+# Try to change the header of the breakdown
+liquids_2D_breakdown.header = 'Distribution Matrix'
 
 # Try to change the start_cell of the liquids_table
 # liquids_table.start_cell = '$B$10'

@@ -23,6 +23,7 @@ Started 1-24-2025
 from openpyxl import Workbook
 from pandas import ExcelWriter
 from ..data import Breakdown, Table, Value
+from ..data.dataset import DataSet
 
 """ FUNCTIONS """
 
@@ -42,6 +43,31 @@ def report_breakdown(breakdown: Breakdown,
                             startcol=breakdown.start_column,
                             startrow=start_row,
                             index=False)
+
+
+# Function to write a header to Excel
+def report_header(dataset: DataSet,
+                  workbook: Workbook):
+
+    # If the dataset has a blank header...
+    if dataset.header == '':
+        # Don't report header
+        return None
+
+    # If dataset's sheet does not exist in workbook...
+    if dataset.sheet not in workbook.sheetnames:
+        # Create it
+        workbook.create_sheet(dataset.sheet)
+
+    # Open the dataset's sheet
+    sheet = workbook[dataset.sheet]
+
+    # Write the header to the start cell (adjusted from absolute)
+    sheet.cell(dataset.start_row + 1,
+               dataset.start_column + 1,
+               value=dataset.header)
+
+    return None
 
 
 # Function to write a Table to Excel
@@ -72,20 +98,16 @@ def report_value(value: Value,
         # Create it
         workbook.create_sheet(value.sheet)
 
-    # Otherwise, pass
-    else:
-        pass
-
     # Open the Value's sheet
     sheet = workbook[value.sheet]
 
-    # Write the Value's name to its start cell, adjusting from absolute
-    sheet.cell(value.start_row + 1,
-               value.start_column + 1,
-               value=value.header)
+    # Get the start row based on whether there is a header or not
+    start_row = \
+        value.start_row + 1 if value.header == '' \
+        else value.start_row + 2
 
     # Write the Value's data to the cell below, adjusting from absolute
-    sheet.cell(value.start_row + 2,
+    sheet.cell(start_row,
                value.start_column + 1,
                value=value.data)
 

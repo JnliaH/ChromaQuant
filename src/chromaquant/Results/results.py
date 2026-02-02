@@ -24,7 +24,8 @@ import logging
 import openpyxl
 import pandas as pd
 from ..data import Table, Value, Breakdown
-from .reporting_tools import report_breakdown, report_table, report_value
+from .reporting_tools import report_breakdown, report_header, \
+                             report_table, report_value
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
 
@@ -178,6 +179,18 @@ class Results():
         for value in self.values:
             # Write the Value to Excel
             report_value(value, workbook)
+            # Write the Value header
+            report_header(value, workbook)
+
+        # For every Table in Results...
+        for table in self.tables:
+            # Write the Table header
+            report_header(table, workbook)
+
+        # For every Breakdown in Results...
+        for breakdown in self.breakdowns:
+            # Write the Breakdown header
+            report_header(breakdown, workbook)
 
         # Save and close the Excel workbook
         workbook.save(path)
@@ -188,8 +201,14 @@ class Results():
     @error_logging
     def update_datasets(self):
 
+        # Get a shallow copy of the formula cache
+        formula_cache_copy = self._formula_cache[:]
+
+        # Clear the formula cache
+        self._formula_cache = []
+
         # For every formula in the formula cache...
-        for formula in self._formula_cache:
+        for formula in formula_cache_copy:
             # Add a formula to results
             self.add_formula(formula)
 

@@ -49,7 +49,7 @@ class Value(DataSet):
                  data: Any = float('nan'),
                  start_cell: str = '',
                  sheet: str = '',
-                 header: str = 'Value',
+                 header: str = '',
                  results: Results = None):
 
         # Run DataSet initialization
@@ -159,21 +159,41 @@ class Value(DataSet):
         # Get the column letter, adjusting from absolute
         column_letter = get_column_letter(self.start_column + 1)
 
-        # Get the Value name cell
-        name_cell = \
-            f"'{self._sheet}'!${column_letter}${self.start_row + 1}"
-        # Get the Value data cell
-        data_cell = \
-            f"'{self._sheet}'!${column_letter}${self.start_row + 2}"
+        # Get a Boolean indicating whether the Table has a header
+        has_header = False if self.header == '' else True
 
-        # Get the Value data cell
-        # Update the reference object
-        self._reference = \
-            {'column_letter': column_letter,
-             'row': self.start_row + 1,
-             'sheet': self._sheet,
-             'name_cell': name_cell,
-             'data_cell': data_cell}
+        # If there is a header...
+        if has_header:
+
+            # Get the Value name cell
+            name_cell = \
+                f"'{self._sheet}'!${column_letter}${self.start_row + 1}"
+
+            # Get the Value data cell
+            data_cell = \
+                f"'{self._sheet}'!${column_letter}${self.start_row + 2}"
+
+            # Update the reference object
+            self._reference = \
+                {'column_letter': column_letter,
+                 'row': self.start_row + 1,
+                 'sheet': self._sheet,
+                 'name_cell': name_cell,
+                 'data_cell': data_cell}
+
+        # If there isn't a header...
+        else:
+
+            # Get the Value data cell
+            data_cell = \
+                f"'{self._sheet}'!${column_letter}${self.start_row + 1}"
+
+            # Update the reference object
+            self._reference = \
+                {'column_letter': column_letter,
+                 'row': self.start_row + 1,
+                 'sheet': self._sheet,
+                 'data_cell': data_cell}
 
         return None
 

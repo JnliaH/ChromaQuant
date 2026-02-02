@@ -108,7 +108,11 @@ class DataSet:
     # Setter
     @sheet.setter
     def sheet(self, value: str):
+        if value == '':
+            raise ValueError('Table sheet cannot be an empty string.')
         self._sheet = value
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Deleter
     @sheet.deleter
@@ -124,12 +128,21 @@ class DataSet:
     # Setter
     @start_cell.setter
     def start_cell(self, value: str):
-        self._start_cell = value
+        try:
+            # Get the cell's absolute indices
+            self.start_column, self.start_row = self.get_cell_indices(value)
+            # Set the starting cell
+            self._start_cell = value
+        except Exception as e:
+            raise ValueError(f'Passed start cell is not valid: {e}')
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Deleter
     @start_cell.deleter
     def start_cell(self):
         del self._start_cell
+        del self.start_row, self.start_column
 
     # Header properties
     # Getter
@@ -141,11 +154,15 @@ class DataSet:
     @header.setter
     def header(self, value: str):
         self._header = value
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Deleter
     @header.deleter
     def header(self):
         del self._header
+        if self._mediator is not None:
+            self._mediator.update_datasets()
 
     # Mediator properties
     # Getter

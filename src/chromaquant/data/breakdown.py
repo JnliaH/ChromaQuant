@@ -117,8 +117,6 @@ class Breakdown(DataSet):
     @sheet.deleter
     def sheet(self):
         del self._sheet
-        if self._mediator is not None:
-            self._mediator.update_datasets()
 
     # Start cell properties
     # Getter
@@ -146,8 +144,6 @@ class Breakdown(DataSet):
     def start_cell(self):
         del self._start_cell
         del self.start_row, self.start_column
-        if self._mediator is not None:
-            self._mediator.update_datasets()
 
     """ METHODS """
     # Method to create a conditional aggregate formula based on criteria
@@ -382,7 +378,7 @@ class Breakdown(DataSet):
             column_index += 1
 
         # Set the breakdown cache
-        self._breakdown_cache = {'function': self.create_1D,
+        self._breakdown_cache = {'function': self.create_2D,
                                  'arguments': {'table':
                                                table,
                                                'group_by_col_1':
