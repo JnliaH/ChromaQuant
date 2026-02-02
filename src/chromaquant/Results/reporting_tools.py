@@ -43,8 +43,7 @@ def report_table(table: Table,
 
 # Function to write a Value to Excel
 def report_value(value: Value,
-                 workbook: Workbook,
-                 value_nickname: str = ''):
+                 workbook: Workbook):
 
     # If Value's sheet does not exist in workbook...
     if value.sheet not in workbook.sheetnames:
@@ -61,7 +60,7 @@ def report_value(value: Value,
     # Write the Value's name to its start cell, adjusting from absolute
     sheet.cell(value.start_row + 1,
                value.start_column + 1,
-               value=value_nickname)
+               value=value.header)
 
     # Write the Value's data to the cell below, adjusting from absolute
     sheet.cell(value.start_row + 2,

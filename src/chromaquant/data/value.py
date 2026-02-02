@@ -49,6 +49,7 @@ class Value(DataSet):
                  data: Any = float('nan'),
                  start_cell: str = '',
                  sheet: str = '',
+                 header: str = 'Value',
                  results: Results = None):
 
         # Run DataSet initialization
@@ -59,6 +60,10 @@ class Value(DataSet):
 
         # Update the value
         self.update_value()
+
+        # Set attributes
+        self.header = header
+        self._mediator = results
 
     """ PROPERTIES """
     # Define the reference property, ONLY DEFINE GETTER

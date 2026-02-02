@@ -63,13 +63,16 @@ lq_FID_RF.import_csv_data(path_lq_FID_RFs)
 
 # Create values for the internal standard area and mass
 IS_area = cq.Value(sheet=liquid_sheet,
-                   start_cell=liquid_IS_area_cell)
+                   start_cell=liquid_IS_area_cell,
+                   header='Internal Standard Area')
 IS_mass = cq.Value(data=30,
                    sheet=liquid_sheet,
-                   start_cell=liquid_IS_mass_cell)
+                   start_cell=liquid_IS_mass_cell,
+                   header='Internal Standard Mass (mg)')
 
 # Create a table for liquids analysis
-liquids_table = cq.Table()
+liquids_table = cq.Table(sheet='Liquids Analysis',
+                         start_cell='$B$5')
 
 # Create a 1D breakdown by carbon number
 liquids_CN_breakdown = cq.Breakdown(liquid_breakdown_cell,
@@ -197,9 +200,9 @@ for i, row in liquids_table.data.iterrows():
 
 # Create a formula string for the area cell
 IS_area_formula_string = (f"=INDEX({liquids_table.insert('Area')}, MATCH("
-                          f"'Hexane, 3-methyl-', "
+                          f'"Hexane, 3-methyl-", '
                           f"{liquids_table.insert('Compound')}, 0))")
-
+print(IS_area_formula_string)
 # Create a Formula instance for the area cell
 IS_area_formula = cq.Formula(IS_area_formula_string)
 
@@ -208,7 +211,7 @@ IS_area_formula.point_to(IS_area.id)
 
 # Add the area cell Formula to liquids analysis
 liquids.add_formula(IS_area_formula)
-
+print(IS_area)
 # Create an area ratio Formula
 area_ratio_formula = cq.formula.FORMULA_DIVISION(
     liquids_table.insert('Area'),
@@ -238,6 +241,7 @@ liquids.add_formula(mass_formula)
 # Define carbon numbers to cover
 CN_range = ['1', '2', '3', '4', '5', '6', '7', '8']
 
+"""
 # Create a 1D carbon number breakdown
 liquids_CN_breakdown.create_1D(liquids_table,
                                'Carbon Number',
@@ -250,12 +254,13 @@ liquids_2D_breakdown.create_2D(liquids_table,
                                'Compound',
                                'Mass (mg)',
                                )
-print(liquids_2D_breakdown)
+print(liquids_2D_breakdown.data.at[1, 0])
+"""
 
 
 # Try to change the start_cell of the liquids_table
-liquids_table.start_cell = '$B$10'
+# liquids_table.start_cell = '$B$10'
 
-print(liquids_2D_breakdown)
+# print(liquids_2D_breakdown)
 # Export the results to .csv
-# liquids.report_results('./examples/example_data/report.xlsx')
+liquids.report_results('./examples/example_data/report.xlsx')

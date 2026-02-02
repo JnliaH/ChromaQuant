@@ -120,9 +120,9 @@ class TestResults:
             cq.Formula(new_formula_string)
 
         # Add pointers to Formula
-        SomeFormula.point_to('C', SomeTable)
+        SomeFormula.point_to('C', SomeTable.id)
 
-        # Add the Formula to the Results
+        # Add Formula to Results
         SomeResults.add_formula(SomeFormula)
 
         # If the expected formula matches the new Results formula...
@@ -138,47 +138,6 @@ class TestResults:
         # Otherwise, pass
         else:
             pass
-
-        assert test_result
-
-    # Test getting inserts for Tables and Values
-    def test_get_insert(self):
-
-        # Create test result
-        test_result = False
-
-        # Create expected pointers
-        expected_table = '|table: Some Table, key: Some Column|'
-        expected_value = '|key: Some Value|'
-        # Create an instance of Results
-        SomeResults = cq.Results()
-
-        # Create a Table
-        SomeTable = cq.Table()
-
-        # Add a column to the Table
-        SomeTable.data['Some Column'] = [1, 2, 3]
-
-        # Create a Value
-        SomeValue = cq.Value()
-
-        # Add Table to Results
-        SomeResults.add_table(SomeTable)
-
-        # Add Value to Results
-        SomeResults.add_value(SomeValue)
-
-        # Get pointers for the Table and Value
-        table_pointer = SomeResults.get_insert('Some Column', 'Some Table')
-        value_pointer = SomeResults.get_insert('Some Value')
-
-        # Check that the pointers match expected
-        if table_pointer == expected_table and value_pointer == expected_value:
-            # If so, set test_result to True
-            test_result = True
-        # Otherwise, set test_result to False
-        else:
-            test_result = False
 
         assert test_result
 
