@@ -31,7 +31,7 @@ from .dataset import DataSet
 from ..formula import Formula
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..match import match, MatchConfig
-from ..utils import get_molecular_weight, get_number_element_atoms
+from ..utils import get_molecular_weight, get_number_element_atoms, Categories
 
 """ LOGGING AND HANDLING """
 
@@ -194,7 +194,7 @@ class Table(DataSet):
     @error_logging
     def add_category_column(self,
                             column_name: str,
-                            category,
+                            categories: Categories,
                             new_column_name: str = 'Category'):
 
         return None
