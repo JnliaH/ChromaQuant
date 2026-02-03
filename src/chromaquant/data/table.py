@@ -197,6 +197,20 @@ class Table(DataSet):
                             categories: Categories,
                             new_column_name: str = 'Category'):
 
+        # Get the column to be categorized as a list
+        column_as_list = self._data[column_name].tolist()
+
+        # Replace None with empty strings if any exist in column
+        column_as_list = ['' if value is None else value
+                          for value in column_as_list]
+
+        # Get a list of categories based on the column list
+        category_list = \
+            [categories.categorizer(value) for value in column_as_list]
+
+        # Add the new column
+        self.add_table_column(new_column_name, category_list)
+
         return None
 
     # Method to add a molecular weight column based

@@ -54,7 +54,7 @@ class Categories:
     """ METHODS """
     # Method to categorize by finding when tested value is equal to keyword,
     # selecting first applicable category if more than one apply
-    def IS_EQUAL(self, test_value):
+    def IS_EQUAL(self, test_value: str | int | float) -> str:
 
         # For every category in categories...
         for category in self._categories:
@@ -76,13 +76,14 @@ class Categories:
 
     # Method to categorize by finding when keyword is a substring of a tested
     # value, selecting first applicable category if more than one apply
-    def IS_IN(self, test_value):
+    def IS_IN(self, test_value: str) -> str:
 
         # Try to get the lowercase of the test_value and all keywords
         try:
             test_value.lower()
-            test_keyword_list = [keyword.lower() for keyword in
-                                 list(self._categories.values())]
+            test_keyword_list = [keyword.lower() for keyword_list in
+                                 list(self._categories.values()) for
+                                 keyword in keyword_list]
             del test_keyword_list
 
         # Raise error if AttributeError occurs

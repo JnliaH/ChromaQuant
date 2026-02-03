@@ -21,6 +21,7 @@ Started 01-27-2026
 """
 
 import chromaquant as cq
+import json
 
 """ PATHS """
 
@@ -33,18 +34,23 @@ path_lq_FID_RFs = \
     './examples/example_data/example_FID_response_factors.csv'
 
 """ SHEETS AND CELLS """
-# Define sheets for liquids and gas
+# Define sheets for liquids
 liquid_sheet = 'Liquids Analysis'
-gas_sheet = 'Gas Analysis'
+
 # Define starting cells for liquid tables and values
 liquid_table_cell = '$B$5'
 liquid_IS_area_cell = '$B$2'
 liquid_IS_mass_cell = '$C$2'
-liquid_breakdown_cell = '$O$5'
-liquid_2D_breakdown_cell = '$O$10'
+liquid_breakdown_cell = '$P$5'
+liquid_2D_breakdown_cell = '$P$10'
+
+""" GETTING CONFIGURATION FROM FILE """
+
+# Read example_config.json
+with open('./examples/example_data/example_config.json', 'r') as config_file:
+    config_dict = json.load(config_file)
 
 """ DATASET CREATION """
-
 # Create a table for integration results from a Flame Ionization Detector
 # signal collected when analyzing a liquid sample
 lq_FID_integration = cq.Table()
@@ -82,24 +88,7 @@ liquids_CN_breakdown = cq.Breakdown(liquid_breakdown_cell,
 liquids_2D_breakdown = cq.Breakdown(liquid_2D_breakdown_cell,
                                     'Liquids Analysis')
 
-# Define Results instance for liquids analysis
-liquids = cq.Results()
-
-# Add the liquids table
-liquids.add_table(liquids_table)
-
-# Add the internal standard values
-liquids.add_value(IS_area)
-liquids.add_value(IS_mass)
-
-# Add the liquids carbon number breakdown
-liquids.add_breakdown(liquids_CN_breakdown)
-
-# Add the liquids 2D breakdown
-liquids.add_breakdown(liquids_2D_breakdown)
-
 """ MATCHING FID TO MS """
-
 # Create a match configuration for liquids FID-MS
 match_config_lq_FIDpMS = cq.MatchConfig()
 
@@ -134,6 +123,23 @@ lq_FIDpMS = lq_FID_integration.match(lq_MS_components.data,
 
 # Set results to liquids_table data attribute
 liquids_table.data = lq_FIDpMS
+
+""" ADDING DATA TO RESULTS """
+# Define Results instance for liquids analysis
+liquids = cq.Results()
+
+# Add the liquids table
+liquids.add_table(liquids_table)
+
+# Add the internal standard values
+liquids.add_value(IS_area)
+liquids.add_value(IS_mass)
+
+# Add the liquids carbon number breakdown
+liquids.add_breakdown(liquids_CN_breakdown)
+
+# Add the liquids 2D breakdown
+liquids.add_breakdown(liquids_2D_breakdown)
 
 """ ADDING CARBON NUMBER AND MOLECULAR WEIGHT """
 
@@ -196,13 +202,33 @@ for i, row in liquids_table.data.iterrows():
     else:
         pass
 
-""" LIQUIDS RESULTS """
+""" ADDING COMPOUND TYPES """
+
+# Create new Categories instance
+hydrocarbon_categories = cq.utils.Categories()
+
+# Add categories for each compound type
+hydrocarbon_categories['Aromatics'] = config_dict['A']
+hydrocarbon_categories['Alkenes'] = config_dict['E']
+hydrocarbon_categories['Cycloalkanes'] = config_dict['C']
+hydrocarbon_categories['Branched Alkanes'] = config_dict['B']
+hydrocarbon_categories['Linear Alkanes'] = config_dict['L']
+
+# Set the categorizer function
+hydrocarbon_categories.categorizer = hydrocarbon_categories.IS_IN
+
+# Add compound types to the liquids table
+liquids_table.add_category_column('Compound',
+                                  hydrocarbon_categories,
+                                  'Compound Type')
+
+""" QUANTIFICATION """
 
 # Create a formula string for the area cell
 IS_area_formula_string = (f"=INDEX({liquids_table.insert('Area')}, MATCH("
                           f'"Hexane, 3-methyl-", '
                           f"{liquids_table.insert('Compound')}, 0))")
-print(IS_area_formula_string)
+
 # Create a Formula instance for the area cell
 IS_area_formula = cq.Formula(IS_area_formula_string)
 
