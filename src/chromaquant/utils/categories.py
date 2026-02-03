@@ -42,12 +42,12 @@ class Categories:
         self.ignore_case = True
 
     # Define get_item to get internal categories
-    def __get_item__(self, key):
+    def __getitem__(self, key):
         # Get category
         return self._categories[key]
 
     # Define set_item to set internal categories
-    def __set_item__(self, key, value):
+    def __setitem__(self, key, value):
         # Set category
         self._categories[key] = value
 
@@ -72,7 +72,7 @@ class Categories:
                 else:
                     pass
 
-        return None
+        return ''
 
     # Method to categorize by finding when keyword is a substring of a tested
     # value, selecting first applicable category if more than one apply
@@ -123,4 +123,4 @@ class Categories:
                     else:
                         pass
 
-        return None
+        return ''

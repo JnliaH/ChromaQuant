@@ -92,7 +92,7 @@ class TestResults:
         test_result = False
 
         # Create expected formula
-        expected_formula = "=SUM('Some Sheet'!$C$5:$C$7)*'Some Sheet'!$B$3"
+        expected_formula = "=SUM('Some Sheet'!$C$5:$C$7)*'Some Sheet'!$B$2"
 
         # Create an instance of Results
         SomeResults = cq.Results()
@@ -128,6 +128,7 @@ class TestResults:
         # If the expected formula matches the new Results formula...
         for table in SomeResults.tables:
             if table.id == SomeTable.id:
+
                 if table.data.at[0, 'C'] == expected_formula:
                     # Set the test_result to True
                     test_result = True
