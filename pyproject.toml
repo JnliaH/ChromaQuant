@@ -4,6 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "chromaquant"
+version = "1.0.0"
 dynamic = ["version"]
 description = "Analytical platform for gas chromatography"
 readme = "README.md"
@@ -54,9 +55,6 @@ exclude = [
 	"/.conda",
 
 ]
-
-[tool.hatch.version]
-path = "src/chromaquant/__main__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/chromaquant"]

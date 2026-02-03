@@ -11,3 +11,4 @@ Created 10-19-2024
 from .file_tools import *
 from .dataframe_processing import *
 from .chemical_formulas import *
+from .categories import Categories

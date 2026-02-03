@@ -190,6 +190,15 @@ class Table(DataSet):
 
         return None
 
+    # Method to add a category column based on the contents of another column
+    @error_logging
+    def add_category_column(self,
+                            column_name: str,
+                            category,
+                            new_column_name: str = 'Category'):
+
+        return None
+
     # Method to add a molecular weight column based
     # on another column with chemical formulas
     @error_logging

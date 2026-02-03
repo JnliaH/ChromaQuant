@@ -22,7 +22,7 @@ Started 01-22-2026
 
 import chromaquant as cq
 
-""" TEST FUNCTION """
+""" TEST CLASS """
 
 
 class TestFormula:

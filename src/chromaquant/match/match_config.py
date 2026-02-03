@@ -13,10 +13,10 @@ License: BSD 3-Clause License
 
 ---
 
-CLASS DEFINITION FOR TABLES
+CLASS DEFINITION FOR MATCH CONFIGURATION
 
 Julia Hancock
-Started 01-12-2025
+Started 01-12-2026
 
 """
 
