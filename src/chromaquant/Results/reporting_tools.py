@@ -21,6 +21,7 @@ Started 1-24-2025
 """
 
 from openpyxl import Workbook
+from openpyxl.styles import Alignment
 from pandas import ExcelWriter
 from ..data import Breakdown, Table, Value
 from ..data.dataset import DataSet
@@ -63,9 +64,28 @@ def report_header(dataset: DataSet,
     sheet = workbook[dataset.sheet]
 
     # Write the header to the start cell (adjusted from absolute)
-    sheet.cell(dataset.start_row + 1,
-               dataset.start_column + 1,
-               value=dataset.header)
+    cell = sheet.cell(dataset.start_row + 1,
+                      dataset.start_column + 1,
+                      value=dataset.header)
+
+    # Center the header cell
+    cell.alignment = Alignment(horizontal='center')
+
+    # Try to get the number of columns in the DataSet's data,
+    # only working for Table, Breakdown
+    try:
+        num_cols = dataset.data.shape[1]
+
+        # If this works, merge the header cell with adjacent cells
+        # to center the header across the DataFrame
+        sheet.merge_cells(start_row=dataset.start_row + 1,
+                          start_column=dataset.start_column + 1,
+                          end_row=dataset.start_row + 1,
+                          end_column=dataset.start_column + num_cols)
+
+    # If this does not work, pass
+    except AttributeError:
+        pass
 
     return None
 

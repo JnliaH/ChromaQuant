@@ -68,8 +68,8 @@ class TestFormula:
         # DataSet References
         dataset_references = {'Some Table':
                               {'Some Key': {'column_letter': 'A',
-                                            'start_row': 1,
-                                            'end_row': 10,
+                                            'start_row': 2,
+                                            'end_row': 11,
                                             'sheet': 'Some Sheet',
                                             'length': 10,
                                             'range':
@@ -188,7 +188,7 @@ class TestFormula:
         dataset_references = {'Some Table':
                               {'Column 1': {
                                 'column_letter': 'A',
-                                'start_row': 1,
+                                'start_row': 2,
                                 'end_row': 5,
                                 'sheet': 'Some Sheet',
                                 'length': 4,
@@ -196,7 +196,7 @@ class TestFormula:
                               'Some Other Table':
                               {'Column 1': {
                                 'column_letter': 'D',
-                                'start_row': 1,
+                                'start_row': 2,
                                 'end_row': 5,
                                 'sheet': 'Some Sheet',
                                 'length': 4,

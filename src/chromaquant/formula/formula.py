@@ -350,7 +350,7 @@ class Formula:
                                 f"'{column_sheet}'!"
                                 f"${column_letter}${row}"
                                 for row in
-                                range(start_row + 1, end_row + 2)
+                                range(start_row, end_row + 1)
                                 ]
 
                         # Replace the insert's raw substring

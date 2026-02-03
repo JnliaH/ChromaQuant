@@ -207,12 +207,17 @@ for i, row in liquids_table.data.iterrows():
 # Create new Categories instance
 hydrocarbon_categories = cq.utils.Categories()
 
+# Get a dictionary of abbreviations and compound types
+compound_type_dict = {'A': 'Aromatics',
+                      'E': 'Alkenes',
+                      'C': 'Cycloalkanes',
+                      'B': 'Branched Alkanes',
+                      'L': 'Linear Alkanes'}
+
 # Add categories for each compound type
-hydrocarbon_categories['Aromatics'] = config_dict['A']
-hydrocarbon_categories['Alkenes'] = config_dict['E']
-hydrocarbon_categories['Cycloalkanes'] = config_dict['C']
-hydrocarbon_categories['Branched Alkanes'] = config_dict['B']
-hydrocarbon_categories['Linear Alkanes'] = config_dict['L']
+for abbreviation in compound_type_dict:
+    hydrocarbon_categories[compound_type_dict[abbreviation]] = \
+        config_dict[abbreviation]
 
 # Set the categorizer function
 hydrocarbon_categories.categorizer = hydrocarbon_categories.IS_IN
@@ -239,9 +244,11 @@ IS_area_formula.point_to(IS_area.id)
 liquids.add_formula(IS_area_formula)
 
 # Create an area ratio Formula
-area_ratio_formula = cq.formula.FORMULA_DIVISION(
-    liquids_table.insert('Area'),
-    IS_area.insert()
+area_ratio_formula = cq.formula.FORMULA_IF_ERROR(
+    cq.formula.FORMULA_DIVISION(
+        liquids_table.insert('Area'),
+        IS_area.insert()
+    )
 )
 
 # Add pointers to Formula
@@ -251,21 +258,23 @@ area_ratio_formula.point_to('Ai/As', liquids_table.id)
 liquids.add_formula(area_ratio_formula)
 
 # Create a mass Formula
-mass_formula = cq.formula.FORMULA_MULTIPLICATION(
-    IS_mass.insert(),
-    cq.formula.FORMULA_DIVISION(
-        liquids_table.insert('Ai/As'),
-        liquids_table.insert('Response Factor')
-    ).formula_string,
-    'Mass (mg)',
-    liquids_table.id
+mass_formula = cq.formula.FORMULA_IF_ERROR(
+    cq.formula.FORMULA_MULTIPLICATION(
+        IS_mass.insert(),
+        cq.formula.FORMULA_DIVISION(
+            liquids_table.insert('Ai/As'),
+            liquids_table.insert('Response Factor')
+        ).formula_string,
+        'Mass (mg)',
+        liquids_table.id
+    )
 )
 
 # Add the mass Formula to the liquids analysis
 liquids.add_formula(mass_formula)
 
 # Define carbon numbers to cover
-CN_range = ['1', '2', '3', '4', '5', '6', '7', '8']
+CN_range = [1, 2, 3, 4, 5, 6, 7, 8]
 
 # Create a 1D carbon number breakdown
 liquids_CN_breakdown.create_1D(liquids_table,
@@ -275,10 +284,13 @@ liquids_CN_breakdown.create_1D(liquids_table,
 
 # Create a 2D carbon number-compound breakdown
 liquids_2D_breakdown.create_2D(liquids_table,
-                               'Compound',
+                               'Compound Type',
                                'Carbon Number',
                                'Mass (mg)',
-                               )
+                               {'Carbon Number':
+                                CN_range,
+                                'Compound Type':
+                                list(compound_type_dict.values())})
 
 # Try to change the header of the breakdown
 liquids_2D_breakdown.header = 'Distribution Matrix'
