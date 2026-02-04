@@ -295,5 +295,11 @@ liquids_2D_breakdown.create_2D(liquids_table,
 # Try to change the header of the breakdown
 liquids_2D_breakdown.header = 'Distribution Matrix'
 
+# Change the header of the liquids analysis table
+liquids_table.header = 'Liquids Analysis'
+
+# Change the header of the internal standard mass
+IS_mass.header = 'Internal Standard Mass (mg)'
+
 # Export the results to .csv
 liquids.report_results('./examples/example_data/report.xlsx')
