@@ -124,23 +124,6 @@ lq_FIDpMS = lq_FID_integration.match(lq_MS_components.data,
 # Set results to liquids_table data attribute
 liquids_table.data = lq_FIDpMS
 
-""" ADDING DATA TO RESULTS """
-# Define Results instance for liquids analysis
-liquids = cq.Results()
-
-# Add the liquids table
-liquids.add_table(liquids_table)
-
-# Add the internal standard values
-liquids.add_value(IS_area)
-liquids.add_value(IS_mass)
-
-# Add the liquids carbon number breakdown
-liquids.add_breakdown(liquids_CN_breakdown)
-
-# Add the liquids 2D breakdown
-liquids.add_breakdown(liquids_2D_breakdown)
-
 """ ADDING CARBON NUMBER AND MOLECULAR WEIGHT """
 
 # Add a carbon number count column
@@ -227,6 +210,23 @@ liquids_table.add_category_column('Compound',
                                   hydrocarbon_categories,
                                   'Compound Type')
 
+""" ADDING DATA TO RESULTS """
+# Define Results instance for liquids analysis
+liquids = cq.Results()
+
+# Add the liquids table
+liquids.add_table(liquids_table)
+
+# Add the internal standard values
+liquids.add_value(IS_area)
+liquids.add_value(IS_mass)
+
+# Add the liquids carbon number breakdown
+liquids.add_breakdown(liquids_CN_breakdown)
+
+# Add the liquids 2D breakdown
+liquids.add_breakdown(liquids_2D_breakdown)
+
 """ QUANTIFICATION """
 
 # Create a formula string for the area cell
@@ -295,9 +295,5 @@ liquids_2D_breakdown.create_2D(liquids_table,
 # Try to change the header of the breakdown
 liquids_2D_breakdown.header = 'Distribution Matrix'
 
-# Try to change the start_cell of the liquids_table
-# liquids_table.start_cell = '$B$10'
-
-# print(liquids_2D_breakdown)
 # Export the results to .csv
 liquids.report_results('./examples/example_data/report.xlsx')
