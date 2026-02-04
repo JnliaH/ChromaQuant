@@ -23,9 +23,11 @@ Started 12-10-2025
 import logging
 import openpyxl
 import pandas as pd
+from pandas.io.formats import excel
 from ..data import Table, Value, Breakdown
 from .reporting_tools import report_breakdown, report_header, \
-                             report_table, report_value
+                             report_table, report_value, \
+                             set_default_format
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
 
@@ -136,6 +138,9 @@ class Results():
     @error_logging
     def add_table(self, table: Table):
 
+        # Add a self-reference to the table
+        table.mediator = self
+
         # Add the table to the tables list
         self.tables.append(table)
 
@@ -144,6 +149,9 @@ class Results():
     # Method to add a new value to the results
     @error_logging
     def add_value(self, value: Value):
+
+        # Add a self-reference to the value
+        value.mediator = self
 
         # Add the value to the values list
         self.values.append(value)
@@ -154,6 +162,9 @@ class Results():
     @error_logging
     def report_results(self,
                        path: str = 'report.xlsx'):
+
+        # Set the ExcelFormatter to have no header style for pandas
+        excel.ExcelFormatter.header_style = None
 
         # Write Tables
         # NOTE: Uses pandas ExcelWriter with xlsxwriter
@@ -191,6 +202,9 @@ class Results():
         for breakdown in self.breakdowns:
             # Write the Breakdown header
             report_header(breakdown, workbook)
+
+        # Set the default format for all cells
+        set_default_format(workbook)
 
         # Save and close the Excel workbook
         workbook.save(path)

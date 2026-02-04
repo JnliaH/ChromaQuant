@@ -22,6 +22,7 @@ Started 1-24-2025
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
+from openpyxl.utils import get_column_letter
 from pandas import ExcelWriter
 from ..data import Breakdown, Table, Value
 from ..data.dataset import DataSet
@@ -130,5 +131,60 @@ def report_value(value: Value,
     sheet.cell(start_row,
                value.start_column + 1,
                value=value.data)
+
+    return None
+
+
+# Function to remove a Table or Breakdown's column header borders
+def remove_borders(table_or_breakdown: Table | Breakdown,
+                   workbook: Workbook):
+
+    # Open the dataset's sheet
+    sheet = workbook[table_or_breakdown.sheet]
+
+    # If the dataset has a header...
+    if table_or_breakdown.header != '':
+
+        # Set the starting row to the start_row plus 2
+        start_row = table_or_breakdown.start_row + 2
+
+    # Otherwise, set the starting row to the start_row plus 1
+    else:
+        start_row = table_or_breakdown.start_row + 1
+
+    # For every column in the index...
+    for column_index in range(
+       table_or_breakdown.start_column,
+       table_or_breakdown.start_column +
+       len(table_or_breakdown.data.columns) + 1):
+
+        # Get the current cell
+        cell = sheet.cell(start_row,
+                          column_index + 1)
+
+        # Set the cell's border to None
+        cell.border = None
+
+    return None
+
+
+# Function to set all cells in a workbook to a default format
+def set_default_format(workbook: Workbook):
+
+    # For every worksheet in the workbook...
+    for sheet in workbook.worksheets:
+        # For every column in the sheet...
+        for column in sheet.iter_cols():
+            # Get the maximum length of all values in the column
+            column_width = max(len(str(cell.value)) for cell in column)
+            # If the column_width is above 25, set to 25
+            column_width = 25 if column_width > 25 else column_width
+            # If the column_width is less than 8, set to 8
+            column_width = 8 if column_width < 8 else column_width
+            # Get the column's index
+            col_index = column[0].column
+            # Set the column's width to the minimum required to fit all values
+            sheet.column_dimensions[get_column_letter(col_index)].width = \
+                column_width
 
     return None

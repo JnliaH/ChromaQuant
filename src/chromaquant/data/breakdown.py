@@ -63,13 +63,14 @@ class Breakdown(DataSet):
                          results=results)
 
         # Create attributes
-        self.data = DataFrame()
+        self._data = DataFrame()
         self.allowed_conditional_aggregates = ['SUMIFS',
                                                'COUNTIFS',
                                                'AVERAGEIFS',
                                                'MINIFS',
                                                'MAXIFS']
         self._breakdown_cache = {}
+        self.length = len(self._data)
 
         # If the conditional aggregate is not equal to an expected value...
         if conditional_aggregate not in self.allowed_conditional_aggregates:
@@ -209,7 +210,7 @@ class Breakdown(DataSet):
             unique_groups.sort()
 
         # Create an empty 1D DataFrame using the unique groups
-        self.data = DataFrame({group: [None] for group in unique_groups})
+        self._data = DataFrame({group: [None] for group in unique_groups})
 
         # Create an index for the current header cell
         header_cell_index = 0
@@ -241,10 +242,13 @@ class Breakdown(DataSet):
                                                           )
 
             # Add the formula string to the current group entry
-            self.data[group] = formula_string
+            self._data[group] = formula_string
 
             # Iterate the header cell index
             header_cell_index += 1
+
+        # Set the data length
+        self.length = len(self._data)
 
         # Set the breakdown cache
         self._breakdown_cache = {'function': self.create_1D,
@@ -317,7 +321,7 @@ class Breakdown(DataSet):
                 unique_groups[group_col].sort()
 
         # Create a new column for group_2 (row headers)
-        self.data[group_by_col_2] = \
+        self._data[group_by_col_2] = \
             [group for group in unique_groups[group_by_col_2]]
 
         # Get the start cell's absolute indices
@@ -369,13 +373,16 @@ class Breakdown(DataSet):
                                                               )
 
                 # Add the formula string to the current group entry
-                self.data.at[row_index, group_1] = formula_string
+                self._data.at[row_index, group_1] = formula_string
 
                 # Iterate the row cell index
                 row_index += 1
 
             # Iterate the header cell index
             column_index += 1
+
+        # Set the data length
+        self.length = len(self._data)
 
         # Set the breakdown cache
         self._breakdown_cache = {'function': self.create_2D,

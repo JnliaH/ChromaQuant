@@ -78,7 +78,7 @@ IS_mass = cq.Value(data=30,
 # header='Internal Standard Mass (mg)'
 # Create a table for liquids analysis
 liquids_table = cq.Table(sheet='Liquids Analysis',
-                         start_cell='$B$5')
+                         start_cell=liquid_table_cell)
 
 # Create a 1D breakdown by carbon number
 liquids_CN_breakdown = cq.Breakdown(liquid_breakdown_cell,
@@ -300,6 +300,9 @@ liquids_table.header = 'Liquids Analysis'
 
 # Change the header of the internal standard mass
 IS_mass.header = 'Internal Standard Mass (mg)'
+
+# Change the header of the 1D breakdown
+liquids_CN_breakdown.header = 'Carbon Number Breakdown'
 
 # Export the results to .csv
 liquids.report_results('./examples/example_data/report.xlsx')
