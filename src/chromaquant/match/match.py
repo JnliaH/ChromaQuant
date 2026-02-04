@@ -92,7 +92,8 @@ def match(first_DF,
         # logger.info((f'Opening match file at '
         #            f'{self.match_config.output_path}'))
         # self.data[match_key] = match_data
-        logger.warning('Overwriting previous match data.')
+        # logger.warning('Overwriting previous match data.')
+        pass
 
     # Otherwise, pass
     else:
@@ -173,8 +174,8 @@ def match(first_DF,
             match_data,
             match_config.output_path
         )
-        logger.info('Match results exported to '
-                    f'{match_config.output_path}')
+        # logger.info('Match results exported to '
+        #            f'{match_config.output_path}')
 
     # Otherwise, pass
     else:

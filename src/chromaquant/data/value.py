@@ -209,7 +209,7 @@ class Value(DataSet):
         try:
             self.update_reference()
         except Exception as e:
-            logger.info(e)
+            # logger.info(e)
             pass
 
         return None

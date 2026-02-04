@@ -391,7 +391,7 @@ class Table(DataSet):
             self.update_reference()
 
         except Exception:
-            logger.info('Failed to update reference.')
+            # logger.info('Failed to update reference.')
             pass
 
         return None

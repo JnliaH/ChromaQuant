@@ -87,7 +87,7 @@ def try_open_file(func, path, *args, **kwargs):
 
     # If cannot open file, log and set tf to False
     except Exception as e:
-        logger.info(f'Could not open {path}, got {e}')
+        # logger.info(f'Could not open {path}, got {e}')
         data = []
         tf = False
 
