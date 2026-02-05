@@ -16,7 +16,7 @@ License: BSD 3-Clause License
 UNIT TESTING FOR CATEGORIES
 
 Julia Hancock
-Started 02-02-2026
+Started 2-02-2026
 
 """
 

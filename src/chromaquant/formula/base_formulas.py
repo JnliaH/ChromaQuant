@@ -16,7 +16,7 @@ License: BSD 3-Clause License
 COLLECTION OF SIMPLE FORMULAS
 
 Julia Hancock
-Started 01-23-2026
+Started 1-23-2026
 
 """
 

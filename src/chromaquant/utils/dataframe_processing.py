@@ -5,7 +5,7 @@ COPYRIGHT STATEMENT:
 
 ChromaQuant – A quantification software for complex gas chromatographic data
 
-Copyright (c) 2025, by Julia Hancock
+Copyright (c) 2026, by Julia Hancock
               Affiliation: Dr. Julie Elaine Rorrer
               URL: https://www.rorrerlab.com/
 
@@ -16,7 +16,7 @@ License: BSD 3-Clause License
 SUBPACKAGE FOR ADJUSTING AND TESTING DATAFRAMES
 
 Julia Hancock
-Started 11/12/2025
+Started 11-12-2025
 
 """
 

@@ -16,7 +16,7 @@ License: BSD 3-Clause License
 CLASS DEFINITION FOR TABLES
 
 Julia Hancock
-Started 01-12-2026
+Started 1-12-2026
 
 """
 

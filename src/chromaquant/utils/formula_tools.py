@@ -16,7 +16,7 @@ License: BSD 3-Clause License
 COLLECTION OF VARIOUS FORMULA TOOLS
 
 Julia Hancock
-Started 01-07-2026
+Started 1-07-2026
 
 """
 

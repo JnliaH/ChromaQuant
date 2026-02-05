@@ -13,10 +13,10 @@ License: BSD 3-Clause License
 
 ---
 
-CLASS DEFINITION FOR BREAKDOWN
+CLASS DEFINITION FOR BREAKDOWNS
 
 Julia Hancock
-Started 01-28-2026
+Started 1-28-2026
 
 """
 
