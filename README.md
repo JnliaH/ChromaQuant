@@ -1,4 +1,7 @@
 <h1>ChromaQuant</h1>
+
+![Static Badge](https://img.shields.io/badge/Rorrer-Lab-Blue?labelColor=32006e&color=85754d&link=https%3A%2F%2Fwww.rorrerlab.com%2F)   ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/JnliaH/chromaquant)   ![PyPI - Downloads](https://img.shields.io/pypi/dm/chromaquant)
+
 <i>A solution for automated gas chromatographic peak assignment and quantification</i>
 
 <h4>Introduction</h4>
