@@ -32,6 +32,32 @@ from .match_config import MatchConfig
 def match_dataframes(main_DF: DataFrame,
                      second_DF: DataFrame,
                      match_config: MatchConfig) -> DataFrame:
+    """Matches data from two DataFrames by following a passed MatchConfig
+
+    Parameters
+    ----------
+    main_DF : DataFrame
+        A DataFrame with data to be matched,
+        will serve as basis for returned results
+    second_DF : DataFrame
+        Another DataFrame with data to be matched
+    match_config : MatchConfig
+        A MatchConfig with parameters for matching, including information
+        about columns to match by and columns to include in results
+
+    Returns
+    -------
+    DataFrame
+        A DataFrame containing data from main_DF plus some added data
+        from second_DF as defined in match_config
+
+    Raises
+    ------
+    ValueError
+        If a DataFrame slice created from matching is of unexpected length,
+        specifically a negative value.
+
+    """
 
     # Function that adds data from one row to another
     def add_to_first(first: Series,

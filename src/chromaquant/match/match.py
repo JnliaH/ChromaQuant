@@ -55,7 +55,7 @@ def match(first_DF,
         in second_DF, processed, then returned as match_data.
     second_DF: pandas DataFrame
         A DataFrame containing data to be matched to data in first_DF.
-    match_config: MatchConfig object
+    match_config: MatchConfig
         A MatchConfig instance containing information on how to match
         the two data sets.
 

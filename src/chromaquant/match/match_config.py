@@ -28,7 +28,16 @@ from collections.abc import Callable
 
 
 # Define ConfigProperty class
-class ConfigProperty():
+class ConfigProperty:
+    """
+    Descriptor to define multiple property attributes for MatchConfig
+
+    Returns
+    -------
+    Any
+        Attribute associated with property
+
+    """
 
     # Descriptor __set_name__
     def __set_name__(self, owner, name):
@@ -48,7 +57,22 @@ class ConfigProperty():
 
 
 # Define MatchConfig class
-class MatchConfig():
+class MatchConfig:
+    """
+    Class used to define how data from two Pandas DataFrames should be matched
+
+    Returns
+    -------
+    Any
+        Value associated with each value attribute of the class from getter
+
+    Raises
+    ------
+    ValueError
+        If more than two strings are passed in a list for the comparison
+        parameter when adding a match condition.
+
+    """
 
     # Create class instances of ConfigProperty for every property
     do_export = ConfigProperty()
@@ -69,20 +93,59 @@ class MatchConfig():
                  match_conditions: list[dict[str, Any]] | None = None,
                  multiple_hits_rule:
                  Callable[[pd.DataFrame, str], pd.Series] | None = None,
-                 multiple_hits_column: str = 'default',
+                 multiple_hits_column: str = '',
                  output_cols_dict: dict[str, str] | None = None,
                  output_path: str = 'match_results.csv'):
+        """__init__ _summary_
 
-        # Expected structure of match_conditions:
-        # self.match_conditions = [{
-        #                          'condition': self.IS_EQUAL,
-        #                          NOTE: or another condition
-        #                          'first_DF_column': {STRING},
-        #                          'second_DF_column': {STRING},
-        #                          'error': {FLOAT},
-        #                          'or_equal': {BOOLEAN}
-        #                          },
-        #                         ...]
+        Parameters
+        ----------
+        do_export : bool, optional
+            True if match results should be exported to .csv, by default False.
+        import_include_col : list[str] | None, optional
+            List of columns to include in second DataFrame in addition to
+            columns from first DataFrame, by default None.
+        local_filter_row : dict[str, str  |  bool  |  float  |  int] | None,
+                           optional
+            Dictonary containing name of column used to filter first dataframe
+            as key and row value to filter by as value, by default None
+        match_conditions : list[dict[str, Any]] | None, optional
+            List of conditions by which to match the dataframes (See Notes),
+            by default None
+        multiple_hits_rule : Callable[[DataFrame, str], Series] | None,
+                             optional
+            Function that selects one Series (hit) from a DataFrame
+            (multiple hits) with some built-in options like "SELECT_FIRST_ROW",
+            by default None
+        multiple_hits_column : str, optional
+            Name of column by which to apply the multiple hits rule,
+            by default ''
+        output_cols_dict : dict[str, str] | None, optional
+            Dictionary containing keys set to column names as written in
+            matched datasets and values set to column names as desired in
+            output DataFrame, by default None
+        output_path : str, optional
+            Path to output file including file name and extension,
+            by default 'match_results.csv'
+
+        Returns
+        -------
+        Any
+            Value associated with each value attribute of the class from getter
+
+        Notes
+        -------
+        Expected structure of match_conditions:
+        [{
+            'condition': self.IS_EQUAL,
+            'first_DF_column': str,
+            'second_DF_column': str,
+            'error': float,
+            'or_equal': bool
+            },
+        ...]
+
+        """
 
         # Define default match comparison function
         def default_comp_function(x):
@@ -159,6 +222,34 @@ class MatchConfig():
                  DF_column_name: str,
                  error: float | int = 0,
                  or_equal: bool = False) -> pd.DataFrame:
+        """
+        Returns slice of a Dataframe where one of its column's
+        values are equal to some value.
+
+        Parameters
+        ----------
+        value : Any
+            A value of any type, checked whether equal to any rows in DF.
+        DF : Pandas DataFrame
+            A Pandas DataFrame to compare against value.
+        DF_column_name : str
+            The name of the column in the DataFrame whose values
+            are compared against value.
+        error : float | int, optional
+            A float or integer defining acceptable error for float or
+            integer value, by default 0.
+        or_equal : bool, optional
+            True if value can be equal to values in DataFrame column
+            (NOT USED BY THIS METHOD BUT KEPT FOR PARALLELISM WITH
+            ALTERNATIVE MATCH CONDITIONS), by default False.
+
+        Returns
+        -------
+        pd.DataFrame
+            Slice of DataFrame where values in a given column are equal
+            to a given value, optionally within a given error.
+
+        """
 
         # Get a slice where the comparisons are exactly equal
         DF_slice = DF.loc[DF[DF_column_name] == value].copy()
@@ -193,6 +284,33 @@ class MatchConfig():
                      DF_column_name: str,
                      error: float | int = 0,
                      or_equal: bool = False) -> pd.DataFrame:
+        """
+        Returns slice of a Dataframe where a passed value is greater
+        than one of its column's values.
+
+        Parameters
+        ----------
+        value : Any
+            A value of any type, checked whether greater than any rows in DF.
+        DF : Pandas DataFrame
+            A Pandas DataFrame to compare against value.
+        DF_column_name : str
+            The name of the column in the DataFrame whose values
+            are compared against value.
+        error : float | int, optional
+            A float or integer defining acceptable error for float or
+            integer value (NOT USED BY THIS METHOD), by default 0.
+        or_equal : bool, optional
+            True if value can be equal to values in DataFrame column,
+            by default False.
+
+        Returns
+        -------
+        pd.DataFrame
+            Slice of DataFrame where values in a given column are less than
+            a given value.
+
+        """
 
         # Try to get a slice with condition
         try:
@@ -228,6 +346,33 @@ class MatchConfig():
                   DF_column_name: str,
                   error: float | int = 0,
                   or_equal: bool = False) -> pd.DataFrame:
+        """
+        Returns slice of a Dataframe where a passed value is less
+        than one of its column's values.
+
+        Parameters
+        ----------
+        value : Any
+            A value of any type, checked whether less than any rows in DF.
+        DF : Pandas DataFrame
+            A Pandas DataFrame to compare against value.
+        DF_column_name : str
+            The name of the column in the DataFrame whose values
+            are compared against value.
+        error : float | int, optional
+            A float or integer defining acceptable error for float or
+            integer value (NOT USED BY THIS METHOD), by default 0.
+        or_equal : bool, optional
+            True if value can be equal to values in DataFrame column,
+            by default False.
+
+        Returns
+        -------
+        pd.DataFrame
+            Slice of DataFrame where values in a given column are greater
+            than a given value.
+
+        """
 
         # Try to get a slice with condition
         try:
@@ -259,6 +404,21 @@ class MatchConfig():
     @staticmethod
     def SELECT_FIRST_ROW(DF: pd.DataFrame,
                          column_name: str) -> pd.Series:
+        """Multiple hits rule to select first row of DataFrame.
+
+        Parameters
+        ----------
+        DF : pd.DataFrame
+            DataFrame to apply multiple hits rule to.
+        column_name : str
+            Name of column to consider in rule.
+
+        Returns
+        -------
+        pd.Series
+            A row from the passed DF.
+
+        """
 
         # Get the first row of the DataFrame
         first_row = DF.loc[DF.index.min()]
@@ -271,6 +431,22 @@ class MatchConfig():
     @staticmethod
     def SELECT_LOWEST_VALUE(DF: pd.DataFrame,
                             column_name: str) -> pd.Series:
+        """Multiple hits rule to select row of DataFrame
+        where column has lowest value
+
+        Parameters
+        ----------
+        DF : pd.DataFrame
+            DataFrame to apply multiple hits rule to.
+        column_name : str
+            Name of column to consider in rule.
+
+        Returns
+        -------
+        pd.Series
+            A row from the passed DF.
+
+        """
 
         # Get the minimum value
         min_value_index = DF[column_name].idxmin()
@@ -286,6 +462,22 @@ class MatchConfig():
     @staticmethod
     def SELECT_HIGHEST_VALUE(DF: pd.DataFrame,
                              column_name: str) -> pd.Series:
+        """Multiple hits rule to select row of DataFrame
+        where column has highest value
+
+        Parameters
+        ----------
+        DF : pd.DataFrame
+            DataFrame to apply multiple hits rule to.
+        column_name : str
+            Name of column to consider in rule.
+
+        Returns
+        -------
+        pd.Series
+            A row from the passed DF.
+
+        """
 
         # Get the maximum value
         max_value_index = DF[column_name].idxmax()
