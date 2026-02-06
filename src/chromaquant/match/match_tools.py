@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 
-COPYRIGHT STATEMENT:
+TOOLS FOR MATCHING DATAFRAME ROWS ACCORDING TO A PASSED MODEL
+
+..COPYRIGHT STATEMENT:
 
 ChromaQuant – A quantification software for complex gas chromatographic data
 
@@ -11,10 +13,6 @@ Copyright (c) 2026, by Julia Hancock
               URL: https://www.rorrerlab.com/
 
 License: BSD 3-Clause License
-
----
-
-TOOLS FOR MATCHING DATAFRAME ROWS ACCORDING TO A PASSED MODEL
 
 Julia Hancock
 Started 11-13-2025

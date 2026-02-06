@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
+
+CLASS DEFINITION FOR MATCH CONFIGURATION
+
+..COPYRIGHT STATEMENT:
 
 ChromaQuant – A quantification software for complex gas chromatographic data
 
@@ -10,10 +13,6 @@ Copyright (c) 2026, by Julia Hancock
               URL: https://www.rorrerlab.com/
 
 License: BSD 3-Clause License
-
----
-
-CLASS DEFINITION FOR MATCH CONFIGURATION
 
 Julia Hancock
 Started 1-12-2026

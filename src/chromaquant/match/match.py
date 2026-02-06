@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 """
 
-COPYRIGHT STATEMENT:
+MATCH FUNCTION FOR DATAFRAME COMPARISONS
+
+..COPYRIGHT STATEMENT:
 
 ChromaQuant – A quantification software for complex gas chromatographic data
 
@@ -10,10 +12,6 @@ Copyright (c) 2026, by Julia Hancock
               URL: https://www.rorrerlab.com/
 
 License: BSD 3-Clause License
-
----
-
-MATCH FUNCTION FOR DATAFRAME COMPARISONS
 
 Julia Hancock
 Started 1-15-2026
