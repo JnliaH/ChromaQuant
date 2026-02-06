@@ -96,7 +96,8 @@ class MatchConfig:
                  multiple_hits_column: str = '',
                  output_cols_dict: dict[str, str] | None = None,
                  output_path: str = 'match_results.csv'):
-        """__init__ _summary_
+        """
+        Initialize a MatchConfig instance.
 
         Parameters
         ----------
