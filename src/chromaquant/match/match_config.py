@@ -23,15 +23,6 @@ from collections.abc import Callable
 
 # Define ConfigProperty class
 class ConfigProperty:
-    """
-    Descriptor to define multiple property attributes for MatchConfig
-
-    Returns
-    -------
-    Any
-        Attribute associated with property
-
-    """
 
     # Descriptor __set_name__
     def __set_name__(self, owner, name):
@@ -53,7 +44,37 @@ class ConfigProperty:
 # Define MatchConfig class
 class MatchConfig:
     """
-    Class used to define how data from two Pandas DataFrames should be matched
+    Class used to define how data from two Pandas DataFrames should be matched.
+
+    Parameters
+    ----------
+    do_export : bool, optional
+        True if match results should be exported to .csv, by default False.
+    import_include_col : list[str] | None, optional
+        List of columns to include in second DataFrame in addition to
+        columns from first DataFrame, by default None.
+    local_filter_row : dict[str, str  |  bool  |  float  |  int] | None,
+                        optional
+        Dictonary containing name of column used to filter first dataframe
+        as key and row value to filter by as value, by default None
+    match_conditions : list[dict[str, Any]] | None, optional
+        List of conditions by which to match the dataframes (See Notes),
+        by default None
+    multiple_hits_rule : Callable[[DataFrame, str], Series] | None,
+                            optional
+        Function that selects one Series (hit) from a DataFrame
+        (multiple hits) with some built-in options like "SELECT_FIRST_ROW",
+        by default None
+    multiple_hits_column : str, optional
+        Name of column by which to apply the multiple hits rule,
+        by default ''
+    output_cols_dict : dict[str, str] | None, optional
+        Dictionary containing keys set to column names as written in
+        matched datasets and values set to column names as desired in
+        output DataFrame, by default None
+    output_path : str, optional
+        Path to output file including file name and extension,
+        by default 'match_results.csv'
 
     Returns
     -------
@@ -64,7 +85,23 @@ class MatchConfig:
     ------
     ValueError
         If more than two strings are passed in a list for the comparison
-        parameter when adding a match condition.
+        parameter when adding a match condition in add_match_condition.
+
+    Notes
+    -------
+    Expected structure of match_conditions:
+
+    [{
+        'condition': cq.MatchConfig.IS_EQUAL,
+        'first_DF_column': str,
+        'second_DF_column': str,
+        'error': float,
+        'or_equal': bool
+        },
+    ...]
+
+    The condition can be replaced with GREATER_THAN, LESS_THAN, or any
+    user-defined function with the same arguments and return pattern.
 
     """
 
@@ -86,61 +123,11 @@ class MatchConfig:
                  dict[str, str | bool | float | int] | None = None,
                  match_conditions: list[dict[str, Any]] | None = None,
                  multiple_hits_rule:
-                 Callable[[pd.DataFrame, str], pd.Series] | None = None,
+                 Callable[[Any, pd.DataFrame, str, float | int, bool],
+                          pd.Series] | None = None,
                  multiple_hits_column: str = '',
                  output_cols_dict: dict[str, str] | None = None,
                  output_path: str = 'match_results.csv'):
-        """
-        Initialize a MatchConfig instance.
-
-        Parameters
-        ----------
-        do_export : bool, optional
-            True if match results should be exported to .csv, by default False.
-        import_include_col : list[str] | None, optional
-            List of columns to include in second DataFrame in addition to
-            columns from first DataFrame, by default None.
-        local_filter_row : dict[str, str  |  bool  |  float  |  int] | None,
-                           optional
-            Dictonary containing name of column used to filter first dataframe
-            as key and row value to filter by as value, by default None
-        match_conditions : list[dict[str, Any]] | None, optional
-            List of conditions by which to match the dataframes (See Notes),
-            by default None
-        multiple_hits_rule : Callable[[DataFrame, str], Series] | None,
-                             optional
-            Function that selects one Series (hit) from a DataFrame
-            (multiple hits) with some built-in options like "SELECT_FIRST_ROW",
-            by default None
-        multiple_hits_column : str, optional
-            Name of column by which to apply the multiple hits rule,
-            by default ''
-        output_cols_dict : dict[str, str] | None, optional
-            Dictionary containing keys set to column names as written in
-            matched datasets and values set to column names as desired in
-            output DataFrame, by default None
-        output_path : str, optional
-            Path to output file including file name and extension,
-            by default 'match_results.csv'
-
-        Returns
-        -------
-        Any
-            Value associated with each value attribute of the class from getter
-
-        Notes
-        -------
-        Expected structure of match_conditions:
-        [{
-            'condition': self.IS_EQUAL,
-            'first_DF_column': str,
-            'second_DF_column': str,
-            'error': float,
-            'or_equal': bool
-            },
-        ...]
-
-        """
 
         # Define default match comparison function
         def default_comp_function(x):
@@ -171,6 +158,33 @@ class MatchConfig:
                             comparison: str | list[str],
                             error: int | float = 0,
                             or_equal: bool = False):
+        """
+        Adds a new match condition to the MatchConfig instance.
+
+        Parameters
+        ----------
+        condition : Callable(Any, pd.DataFrame, str, float | int, bool) -> pd.Series
+            A condition that accepts a comparison value of any type, a
+            DataFrame to compare the value against, the name of the column
+            containing values to compare to the comparison value, and optional
+            parameters for the error and whether to use inclusive inequalities
+            (e.g., greater than or equal to), respectively.
+        comparison : str or list[str]
+            The name of the columns to compare across two DataFrames (if the
+            name of the column is the same for both) or a list of two column
+            names to compare (if the column names are different).
+        error : float | int, optional
+            A value by which one DataFrame's data can vary but still be matched
+            to another DataFrame's data.
+        or_equal : bool, optional
+            True if inclusive inequalities can be used (e.g., >= or <=) and
+            False if they cannot be used (e.g., > or <).
+
+        Returns
+        -------
+        None
+
+        """
 
         # Check if comparison is a string
         try:

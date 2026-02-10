@@ -1,5 +1,5 @@
-chromaquant
-===========
+src
+===
 
 .. toctree::
    :maxdepth: 4
