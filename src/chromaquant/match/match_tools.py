@@ -1,21 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 
 TOOLS FOR MATCHING DATAFRAME ROWS ACCORDING TO A PASSED MODEL
 
-..COPYRIGHT STATEMENT:
-
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
-Julia Hancock
-Started 11-13-2025
+This submodule contains a function used in the match.py submodule
+to match two DataFrames by comparing values from columns for each
+(see match.py).
 
 """
 

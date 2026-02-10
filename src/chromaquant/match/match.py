@@ -1,20 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 
 MATCH FUNCTION FOR DATAFRAME COMPARISONS
 
-..COPYRIGHT STATEMENT:
-
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
-Julia Hancock
-Started 1-15-2026
+This submodule contains a function used in matching two Pandas DataFrames
+based on a passed MatchConfig object (see match_config.py). It is used in
+Table instances to match a DataFrame to the data contained in some Table.
+This is useful for signal matching, response factor assignment, and other
+related operations.
 
 """
 

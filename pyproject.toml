@@ -39,23 +39,6 @@ dependencies = [
 [project.urls]
 Repository = "https://github.com/JnliaH/ChromaQuant"
 
-[tool.hatch.build.targets.sdist]
-include	= [
-	"/src",
-	"CONTRIBUTING.md",
-	"README.md",
-	"LICENSE.txt",
-	"LICENSES_bundled.txt",
-]
-
-exclude = [
-	"/__pycache__",
-	"/dist",
-	"/.venv",
-	"/.conda",
-
-]
-
 [tool.hatch.build.targets.wheel]
 packages = ["src/chromaquant"]
 

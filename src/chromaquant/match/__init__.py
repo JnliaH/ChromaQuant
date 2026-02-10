@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ChromaQuant.match module initialization
+ChromaQuant.match module
 
-Julia Hancock
-Created 10-19-2024
+This module provides a function for matching two Pandas DataFrames (match)
+and a class for defining the parameters by which to match (MatchConfig).
 
 """
 

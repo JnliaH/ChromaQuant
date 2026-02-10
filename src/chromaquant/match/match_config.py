@@ -4,18 +4,13 @@
 
 CLASS DEFINITION FOR MATCH CONFIGURATION
 
-..COPYRIGHT STATEMENT:
+This submodule contains the class definition for MatchConfig. Objects of
+type MatchConfig are intended to contain user-specified parameters for
+DataFrame matching (see match.py). Users can specify parameters such as
+columns to include in a primary DataFrame from a second (import_include_col)
+or where to output data (output_path). These objects can then be passed to
+the match function from match.py or Table.match from a Table object.
 
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
-Julia Hancock
-Started 1-12-2026
 
 """
 
@@ -152,19 +147,20 @@ class MatchConfig:
             return x
 
         # Set descriptor values
-        self.do_export = do_export
-        self.import_include_col = import_include_col \
+        self.do_export: bool = do_export
+        self.import_include_col: list[str] = import_include_col \
             if import_include_col is not None else []
-        self.local_filter_row = local_filter_row \
-            if local_filter_row is not None else {}
-        self.match_conditions = match_conditions \
+        self.local_filter_row: dict[str, str | bool | float | int] = \
+            local_filter_row if local_filter_row is not None else {}
+        self.match_conditions: list[Any] = match_conditions \
             if match_conditions is not None else []
-        self.multiple_hits_rule = multiple_hits_rule \
-            if multiple_hits_rule is not None else self.SELECT_FIRST_ROW
-        self.multiple_hits_column = multiple_hits_column
-        self.output_cols_dict = output_cols_dict\
+        self.multiple_hits_rule: Callable[[pd.DataFrame, str], pd.Series] = \
+            multiple_hits_rule if multiple_hits_rule is not None \
+            else self.SELECT_FIRST_ROW
+        self.multiple_hits_column: str = multiple_hits_column
+        self.output_cols_dict: dict = output_cols_dict\
             if output_cols_dict is not None else {}
-        self.output_path = output_path
+        self.output_path: str = output_path
 
     """ METHODS """
 
