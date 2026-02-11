@@ -15,7 +15,7 @@ release = '0.5.0'
 
 # -- General configuration ---------------------------------------------------
 
-root_doc = 'source/index'
+root_doc = 'index'
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'sphinx_rtd_theme']
@@ -31,7 +31,7 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {"navigation_depth": 3,
                       "collapse_navigation": False}
-html_static_path = ['source/_static']
+html_static_path = ['_static']
 
 
 # -- Custom CSS --------------------------------------------------------------
