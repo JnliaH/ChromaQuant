@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 
-MATCH FUNCTION FOR DATAFRAME COMPARISONS
-
 This submodule contains a function used in matching two Pandas DataFrames
 based on a passed MatchConfig object (see match_config.py). It is used in
 Table instances to match a DataFrame to the data contained in some Table.

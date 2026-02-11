@@ -1,22 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
 
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-TOOLS FOR EXCEL REPORTING
-
-Julia Hancock
-Started 1-24-2026
+This submodule contains functions used in Excel reporting, particularly
+by the Results class (see Results).
 
 """
 
@@ -33,7 +20,21 @@ from ..data.dataset import DataSet
 # Function to write a Breakdown to Excel
 def report_breakdown(breakdown: Breakdown,
                      writer: ExcelWriter):
+    """
+    Writes a Pandas Breakdown to Excel using passed writer.
 
+    Parameters
+    ----------
+    breakdown : Breakdown
+        Pandas Breakdown to export.
+    writer : ExcelWriter
+        Pandas ExcelWriter used in exporting.
+
+    Returns
+    ----------
+    None
+
+    """
     # Get the start row based on whether there is a header or not
     start_row = \
         breakdown.start_row if breakdown.header == '' \
@@ -50,6 +51,21 @@ def report_breakdown(breakdown: Breakdown,
 # Function to write a header to Excel
 def report_header(dataset: DataSet,
                   workbook: Workbook):
+    """
+    Writes a DataSet's header to Excel.
+
+    Parameters
+    ----------
+    dataset : DataSet
+        Dataset to export the header of.
+    workbook : Workbook
+        Active openpyxl workbook.
+
+    Returns
+    -------
+    None
+
+    """
 
     # If the dataset has a blank header...
     if dataset.header == '':
@@ -94,6 +110,21 @@ def report_header(dataset: DataSet,
 # Function to write a Table to Excel
 def report_table(table: Table,
                  writer: ExcelWriter):
+    """
+    Writes a Table to Excel.
+
+    Parameters
+    ----------
+    table: Table
+        Table to export.
+    writer : ExcelWriter
+        Pandas ExcelWriter used in exporting.
+
+    Returns
+    -------
+    None
+
+    """
 
     # Get the start row based on whether there is a header or not
     start_row = \
@@ -113,6 +144,21 @@ def report_table(table: Table,
 # Function to write a Value to Excel
 def report_value(value: Value,
                  workbook: Workbook):
+    """
+    Writes a Value to Excel.
+
+    Parameters
+    ----------
+    value: Value
+        Value to export.
+    workbook : Workbook
+        Active openpyxl workbook.
+
+    Returns
+    -------
+    None
+
+    """
 
     # If Value's sheet does not exist in workbook...
     if value.sheet not in workbook.sheetnames:
@@ -138,6 +184,21 @@ def report_value(value: Value,
 # Function to remove a Table or Breakdown's column header borders
 def remove_borders(table_or_breakdown: Table | Breakdown,
                    workbook: Workbook):
+    """
+    Removes borders around a Table or Breakdown's column headers.
+
+    Parameters
+    ----------
+    table_or_breakdown : Table | Breakdown
+        Table or Breakdown instance.
+    workbook : Workbook
+        Active openpyxl workbook.
+
+    Returns
+    -------
+    None
+
+    """
 
     # Open the dataset's sheet
     sheet = workbook[table_or_breakdown.sheet]
@@ -170,6 +231,19 @@ def remove_borders(table_or_breakdown: Table | Breakdown,
 
 # Function to set all cells in a workbook to a default format
 def set_default_format(workbook: Workbook):
+    """
+    Sets all cells in an active openpyxl workbook to a default format.
+
+    Parameters
+    ----------
+    workbook : Workbook
+        Active openpyxl workbook.
+
+    Returns
+    -------
+    None
+
+    """
 
     # For every worksheet in the workbook...
     for sheet in workbook.worksheets:

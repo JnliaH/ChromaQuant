@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 
-TOOLS FOR MATCHING DATAFRAME ROWS ACCORDING TO A PASSED MODEL
-
 This submodule contains a function used in the match.py submodule
 to match two DataFrames by comparing values from columns for each
 (see match.py).

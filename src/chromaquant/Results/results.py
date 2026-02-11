@@ -1,22 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
 
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-CLASS DEFINITION FOR PROCESSING AND EXPORTING RESULTS
-
-Julia Hancock
-Started 12-10-2025
+This submodule contains the Results class definition.
 
 """
 
@@ -47,11 +33,13 @@ error_logging = setup_error_logging(logger)
 
 # Define the Results class
 class Results():
+    """
+    Results objects can contain references to created DataSets, create
+    formulas and update extant ones following changes to relevant DataSets,
+    and report results to Excel.
+    """
 
     def __init__(self):
-        """
-
-        """
 
         # Initialize the tables list
         self.tables: list[Table] = []
@@ -72,6 +60,18 @@ class Results():
     # Method to add a new Breakdown to the results
     @error_logging
     def add_breakdown(self, breakdown: Breakdown):
+        """
+        Adds an reference to an instance of Breakdown to self.
+
+        Parameters
+        ----------
+        breakdown : Breakdown
+            A Breakdown instance to add to Results.
+
+        Returns
+        -------
+        None
+        """
 
         # Set the breakdown's mediator to the current object
         breakdown.mediator = self
@@ -84,6 +84,25 @@ class Results():
     # on a passed formula string
     @error_logging
     def add_formula(self, formula: Formula):
+        """
+        Adds Formula to Results and its formula strings to DataSets of self.
+
+        This method takes a Formula object, inserts references into its formula
+        strings using the Results' DataSet references, then adds the resulting
+        processed formulas to the DataSet pointed to in Formula. This method
+        also adds a entry to the Results' formula cache, allowing for dynamic
+        formula updating.
+
+        Parameters
+        ----------
+        formula : Formula
+            A Formula instance to add to Results. It is expected that this
+            instance contains a pointer to a DataSet for foroutput resulting formulas to
+
+        Returns
+        -------
+        None
+        """
 
         # Update dataset references
         self.update_references()
@@ -137,6 +156,18 @@ class Results():
     # Method to add a new table to the results
     @error_logging
     def add_table(self, table: Table):
+        """
+        Adds an reference to an instance of Table to self.
+
+        Parameters
+        ----------
+        table : Table
+            A Table instance to add to Results.
+
+        Returns
+        -------
+        None
+        """
 
         # Add a self-reference to the table
         table.mediator = self
@@ -149,6 +180,17 @@ class Results():
     # Method to add a new value to the results
     @error_logging
     def add_value(self, value: Value):
+        """Adds an reference to an instance of Value to self.
+
+        Parameters
+        ----------
+        value : Value
+            A Value instance to add to Results.
+
+        Returns
+        -------
+        None
+        """
 
         # Add a self-reference to the value
         value.mediator = self
@@ -162,7 +204,18 @@ class Results():
     @error_logging
     def report_results(self,
                        path: str = 'report.xlsx'):
+        """
+        Reports Results to an Excel file.
 
+        Parameters
+        ----------
+        path : str, optional
+            Path to report, by default 'report.xlsx'
+
+        Returns
+        -------
+        None
+        """
         # Set the ExcelFormatter to have no header style for pandas
         excel.ExcelFormatter.header_style = None
 
@@ -214,6 +267,13 @@ class Results():
     # Method to update all datasets
     @error_logging
     def update_datasets(self):
+        """
+        Update all datasets, used if one DataSet is changed.
+
+        Returns
+        -------
+        None
+        """
 
         # Get a shallow copy of the formula cache
         formula_cache_copy = self._formula_cache[:]
@@ -238,6 +298,13 @@ class Results():
     # Method to update all dataset references
     @error_logging
     def update_references(self):
+        """
+        Update Value and Table references, used before formula creation.
+
+        Returns
+        -------
+        None
+        """
 
         # Add table references for each table
         for table in self.tables:

@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-ChromaQuant.results module initialization
 
-Julia Hancock
-Created 10-19-2024
+This module allows users to create instances of class Results. These
+objects are used in DataSet compilation, formula creation and management,
+and reporting to Excel.
 
 """
 

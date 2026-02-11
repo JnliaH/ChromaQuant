@@ -1,10 +1,10 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# -- Change project source directory -----------------------------------------
+
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../../src'))
 
 # -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'ChromaQuant'
 copyright = '2026, Julia Hancock'
@@ -12,7 +12,6 @@ author = 'Julia Hancock'
 release = '0.5.0'
 
 # -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
 	'sphinx.ext.autodoc',
@@ -20,13 +19,22 @@ extensions = [
     'sphinx_rtd_theme',
 ]
 autosummary_generate = True
+autodoc_default_options = {
+    'members': True,
+    'undoc-members': False
+}
 templates_path = ['_templates']
 exclude_patterns = []
 
-
-
 # -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
+html_theme_options = {
+	"navigation_depth": 3,
+	"collapse_navigation": False
+}
+html_static_path = ['../source/_static']
+
+# -- Custom CSS --------------------------------------------------------------
+def setup(app):
+    app.add_css_file('chromaquant.css')

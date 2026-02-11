@@ -6,12 +6,12 @@ build:
     python: "3.14"
 
 sphinx:
-  configuration: docs/conf.py
+  configuration: docs/config/conf.py
   fail_on_warning: true
 
 python:
   install:
-    - requirements: docs/requirements.txt
+    - requirements: docs/source/requirements.txt
     - method: pip
       path: .
       extra_requirements:

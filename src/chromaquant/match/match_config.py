@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 
-CLASS DEFINITION FOR MATCH CONFIGURATION
-
 This submodule contains the class definition for MatchConfig. Objects of
 type MatchConfig are intended to contain user-specified parameters for
 DataFrame matching (see match.py). Users can specify parameters such as
@@ -50,28 +48,37 @@ class MatchConfig:
     ----------
     do_export : bool, optional
         True if match results should be exported to .csv, by default False.
+
     import_include_col : list[str] | None, optional
         List of columns to include in second DataFrame in addition to
         columns from first DataFrame, by default None.
+
     local_filter_row : dict[str, str  |  bool  |  float  |  int] | None,
                         optional
+
         Dictonary containing name of column used to filter first dataframe
         as key and row value to filter by as value, by default None
+
     match_conditions : list[dict[str, Any]] | None, optional
         List of conditions by which to match the dataframes (See Notes),
         by default None
+
     multiple_hits_rule : Callable[[DataFrame, str], Series] | None,
                             optional
+
         Function that selects one Series (hit) from a DataFrame
         (multiple hits) with some built-in options like "SELECT_FIRST_ROW",
         by default None
+
     multiple_hits_column : str, optional
         Name of column by which to apply the multiple hits rule,
         by default ''
+
     output_cols_dict : dict[str, str] | None, optional
         Dictionary containing keys set to column names as written in
         matched datasets and values set to column names as desired in
         output DataFrame, by default None
+
     output_path : str, optional
         Path to output file including file name and extension,
         by default 'match_results.csv'
@@ -89,16 +96,16 @@ class MatchConfig:
 
     Notes
     -------
-    Expected structure of match_conditions:
+    The expected structure of match_conditions is as follows::
 
-    [{
-        'condition': cq.MatchConfig.IS_EQUAL,
-        'first_DF_column': str,
-        'second_DF_column': str,
-        'error': float,
-        'or_equal': bool
-        },
-    ...]
+        [{
+            'condition': cq.MatchConfig.IS_EQUAL,
+            'first_DF_column': str,
+            'second_DF_column': str,
+            'error': float,
+            'or_equal': bool
+            },
+        ...]
 
     The condition can be replaced with GREATER_THAN, LESS_THAN, or any
     user-defined function with the same arguments and return pattern.
@@ -169,13 +176,16 @@ class MatchConfig:
             containing values to compare to the comparison value, and optional
             parameters for the error and whether to use inclusive inequalities
             (e.g., greater than or equal to), respectively.
+
         comparison : str or list[str]
             The name of the columns to compare across two DataFrames (if the
             name of the column is the same for both) or a list of two column
             names to compare (if the column names are different).
+
         error : float | int, optional
             A value by which one DataFrame's data can vary but still be matched
             to another DataFrame's data.
+
         or_equal : bool, optional
             True if inclusive inequalities can be used (e.g., >= or <=) and
             False if they cannot be used (e.g., > or <).
@@ -240,14 +250,18 @@ class MatchConfig:
         ----------
         value : Any
             A value of any type, checked whether equal to any rows in DF.
+
         DF : Pandas DataFrame
             A Pandas DataFrame to compare against value.
+
         DF_column_name : str
             The name of the column in the DataFrame whose values
             are compared against value.
+
         error : float | int, optional
             A float or integer defining acceptable error for float or
             integer value, by default 0.
+
         or_equal : bool, optional
             True if value can be equal to values in DataFrame column
             (NOT USED BY THIS METHOD BUT KEPT FOR PARALLELISM WITH
@@ -302,14 +316,18 @@ class MatchConfig:
         ----------
         value : Any
             A value of any type, checked whether greater than any rows in DF.
+
         DF : Pandas DataFrame
             A Pandas DataFrame to compare against value.
+
         DF_column_name : str
             The name of the column in the DataFrame whose values
             are compared against value.
+
         error : float | int, optional
             A float or integer defining acceptable error for float or
             integer value (NOT USED BY THIS METHOD), by default 0.
+
         or_equal : bool, optional
             True if value can be equal to values in DataFrame column,
             by default False.
@@ -364,14 +382,18 @@ class MatchConfig:
         ----------
         value : Any
             A value of any type, checked whether less than any rows in DF.
+
         DF : Pandas DataFrame
             A Pandas DataFrame to compare against value.
+
         DF_column_name : str
             The name of the column in the DataFrame whose values
             are compared against value.
+
         error : float | int, optional
             A float or integer defining acceptable error for float or
             integer value (NOT USED BY THIS METHOD), by default 0.
+
         or_equal : bool, optional
             True if value can be equal to values in DataFrame column,
             by default False.
@@ -420,6 +442,7 @@ class MatchConfig:
         ----------
         DF : pd.DataFrame
             DataFrame to apply multiple hits rule to.
+
         column_name : str
             Name of column to consider in rule.
 
@@ -448,6 +471,7 @@ class MatchConfig:
         ----------
         DF : pd.DataFrame
             DataFrame to apply multiple hits rule to.
+
         column_name : str
             Name of column to consider in rule.
 
@@ -479,6 +503,7 @@ class MatchConfig:
         ----------
         DF : pd.DataFrame
             DataFrame to apply multiple hits rule to.
+
         column_name : str
             Name of column to consider in rule.
 
