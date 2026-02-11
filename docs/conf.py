@@ -15,7 +15,7 @@ release = '0.5.0'
 
 # -- General configuration ---------------------------------------------------
 
-root_doc = 'index'
+root_doc = 'source/index'
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'sphinx_rtd_theme']
