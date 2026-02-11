@@ -1,18 +1,9 @@
-chromaquant.results.results
+Results
 ===========================
 
 .. automodule:: chromaquant.results.results
-
-   
-   .. rubric:: Module Attributes
-
-   .. autosummary::
-   
-      error_logging
+   :members:
+   :exclude-members: error_logging
    
    .. rubric:: Classes
-
-   .. autosummary::
-   
-      Results
    

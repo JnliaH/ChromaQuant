@@ -1,9 +1,8 @@
-﻿chromaquant.data
+﻿Data Module
 ================
 
 .. automodule:: chromaquant.data
 
-   
 .. rubric:: Modules
 
 .. autosummary::

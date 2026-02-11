@@ -1,4 +1,4 @@
-﻿chromaquant.results
+﻿Results Module
 ===================
 
 .. automodule:: chromaquant.results

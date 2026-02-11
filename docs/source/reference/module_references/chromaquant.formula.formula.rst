@@ -1,18 +1,9 @@
-chromaquant.formula.formula
+Formula
 ===========================
 
 .. automodule:: chromaquant.formula.formula
+   :members:
+   :exclude-members: error_logging
 
-   
-   .. rubric:: Module Attributes
-
-   .. autosummary::
-   
-      error_logging
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-   
-      Formula
+   .. rubric:: Class Definition
    

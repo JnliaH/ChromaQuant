@@ -1,18 +1,9 @@
-chromaquant.data.table
+Table
 ======================
 
 .. automodule:: chromaquant.data.table
+   :members:
+   :exclude-members: error_logging
 
-   
-   .. rubric:: Module Attributes
-
-   .. autosummary::
-   
-      error_logging
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-   
-      Table
+   .. rubric:: Class Definition
    

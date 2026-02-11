@@ -1,18 +1,9 @@
-chromaquant.data.breakdown
+﻿Breakdown
 ==========================
 
 .. automodule:: chromaquant.data.breakdown
+   :members:
+   :exclude-members: error_logging
 
-   
-   .. rubric:: Module Attributes
-
-   .. autosummary::
-   
-      error_logging
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-   
-      Breakdown
+   .. rubric:: Class Definition
    

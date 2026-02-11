@@ -1,18 +1,9 @@
-chromaquant.data.value
+Value
 ======================
 
 .. automodule:: chromaquant.data.value
+   :members:
+   :exclude-members: error_logging
 
-   
-   .. rubric:: Module Attributes
-
-   .. autosummary::
-   
-      error_logging
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-   
-      Value
+   .. rubric:: Class Definition
    

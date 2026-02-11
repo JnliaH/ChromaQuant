@@ -1,4 +1,4 @@
-chromaquant.match.match
+Match Function
 =======================
 
 .. currentmodule:: chromaquant.match

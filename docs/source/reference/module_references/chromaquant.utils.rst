@@ -1,4 +1,4 @@
-﻿chromaquant.utils
+﻿Utilities Module
 =================
 
 .. automodule:: chromaquant.utils

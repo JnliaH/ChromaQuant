@@ -1,13 +1,8 @@
-chromaquant.match.match\_config
+﻿MatchConfig
 ===============================
 
 .. automodule:: chromaquant.match.match_config
-
+   :members:
+   :exclude-members: ConfigProperty, error_logging
    
-   .. rubric:: Classes
-
-   .. autosummary::
-   
-      ConfigProperty
-      MatchConfig
-   
+   .. rubric:: Class Definition

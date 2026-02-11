@@ -1,4 +1,4 @@
-chromaquant.results.reporting\_tools
+Reporting Tools
 ====================================
 
 .. automodule:: chromaquant.results.reporting_tools

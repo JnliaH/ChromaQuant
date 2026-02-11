@@ -1,4 +1,4 @@
-chromaquant.utils.formula\_tools
+Formula Tools
 ================================
 
 .. automodule:: chromaquant.utils.formula_tools

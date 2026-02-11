@@ -1,18 +1,8 @@
-chromaquant.data.dataset
+DataSet
 ========================
 
 .. automodule:: chromaquant.data.dataset
-
+   :members:
+   :exclude-members: error_logging
    
-   .. rubric:: Module Attributes
-
-   .. autosummary::
-   
-      error_logging
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-   
-      DataSet
-   
+   .. rubric:: Class Definition

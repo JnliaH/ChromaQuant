@@ -1,4 +1,4 @@
-chromaquant.formula.base\_formulas
+Base Formulas
 ==================================
 
 .. automodule:: chromaquant.formula.base_formulas

@@ -1,4 +1,4 @@
-﻿chromaquant.match
+﻿Match Module
 =================
 
 .. automodule:: chromaquant.match

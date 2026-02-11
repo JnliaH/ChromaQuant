@@ -1,4 +1,4 @@
-﻿chromaquant.formula
+﻿Formula Module
 ===================
 
 .. automodule:: chromaquant.formula

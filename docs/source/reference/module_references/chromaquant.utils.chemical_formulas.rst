@@ -1,4 +1,4 @@
-chromaquant.utils.chemical\_formulas
+Chemical Formula Operations
 ====================================
 
 .. automodule:: chromaquant.utils.chemical_formulas

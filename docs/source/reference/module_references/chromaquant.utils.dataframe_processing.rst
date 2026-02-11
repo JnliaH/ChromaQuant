@@ -1,4 +1,4 @@
-chromaquant.utils.dataframe\_processing
+DataFrame Processing Tools
 =======================================
 
 .. automodule:: chromaquant.utils.dataframe_processing
