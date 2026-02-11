@@ -1,22 +1,8 @@
 #!/usr/bin/env python
 """
 
-COPYRIGHT STATEMENT:
-
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-TOOLS FOR FILE IMPORTING AND EXPORTING
-
-Julia Hancock
-Started 1-16-2026
+The Chemical Formulas submodule contains functions that allow the user to
+extract information out of chemical formulas (e.g., molecular weight).
 
 """
 

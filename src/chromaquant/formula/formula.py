@@ -1,22 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
 
-ChromaQuant – A quantification software for complex gas chromatographic data
+The Formula class enables users to create formulas through a series of
+processing steps. First, users add a string with or without inserts from
+DataSets to a Formula instance. Then, users can use insert_references to
+replace these string inserts with cell references. Resulting formulas can
+refer to any combination of individual cells or ranges of cells.
 
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-CLASS DEFINITION FOR FORMULA
-
-Julia Hancock
-Started 1-07-2026
 
 """
 

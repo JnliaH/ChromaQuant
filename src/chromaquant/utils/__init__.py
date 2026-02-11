@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ChromaQuant.utils module initialization
 
-Julia Hancock
-Created 10-19-2024
+The Utilities module contains various tools which may be used either
+internally by the ChromaQuant package or externally by the user.
 
 """
 

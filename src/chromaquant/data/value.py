@@ -1,22 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
 
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-CLASS DEFINITION FOR VALUES
-
-Julia Hancock
-Started 1-12-2026
+The Value class allows users to create objects to store one-dimensional
+data (e.g., floats, integers, strings).
 
 """
 

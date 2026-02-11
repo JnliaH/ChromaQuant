@@ -1,22 +1,9 @@
 #!/usr/bin/env python
 """
 
-COPYRIGHT STATEMENT:
-
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-SUBPACKAGE FOR ADJUSTING AND TESTING DATAFRAMES
-
-Julia Hancock
-Started 11-12-2025
+The DataFrame Processing submodule contains a number of functions used
+internally (e.g., by the Match module) to perform certain operations on
+Pandas DataFrames like adding new columns or filtering rows by some value.
 
 """
 

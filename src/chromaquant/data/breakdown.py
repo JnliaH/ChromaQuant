@@ -1,22 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
 
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-CLASS DEFINITION FOR BREAKDOWNS
-
-Julia Hancock
-Started 1-28-2026
+The Breakdown class is used to conditionally aggregate data from
+a Table instance. It enables users to construct 1D and 2D DataFrames
+that can then be used in reporting or as desired.
 
 """
 

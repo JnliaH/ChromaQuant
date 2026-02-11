@@ -2,22 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 
-COPYRIGHT STATEMENT:
-
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-TOOLS FOR FILE IMPORTING AND EXPORTING
-
-Julia Hancock
-Started 1-16-2026
+The File Tools module contains a number of tools used internally to open or
+write to data files.
 
 """
 

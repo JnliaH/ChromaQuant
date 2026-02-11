@@ -1,22 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
 
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-CLASS DEFINITION FOR TABLES
-
-Julia Hancock
-Started 1-12-2026
+The Table class is used to create objects that can store and operate on
+two-dimensional data. This data is stored in a Pandas DataFrame, which
+can be accessed and changed directly using the .data attribute. It also
+contains some methods allowing users to add entire columns, either by
+user definition or by operating on an extant column.
 
 """
 

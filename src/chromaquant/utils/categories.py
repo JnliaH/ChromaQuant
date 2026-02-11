@@ -1,22 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
 
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-CLASS DEFINITION FOR CATEGORIES
-
-Julia Hancock
-Started 2-02-2026
+The Categories class is used to define categories by which DataSets (in
+particular, Tables) can be categorized. Users add categories as dictionaries
+where the key is a string describing the category and the value is a list of
+values that should be assigned the category. The user selects a categorizer
+(either IS_EQUAL or IS_IN) to determine whether values should be exact matches
+to category values or whether they can have category values as substrings.
 
 """
 

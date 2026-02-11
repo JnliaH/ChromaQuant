@@ -1,22 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
 
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-CLASS DEFINITION FOR DATASETS
-
-Julia Hancock
-Started 1-12-2026
+The DataSet class serves as the parent class for the Value, Table,
+and Breakdown classes. It contains simple property definitions for
+the starting cell, worksheet, data, and header. It also defines the
+behavior of DataSets as mediated objects when assigned a mediator
+like a Results instance.
 
 """
 

@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """
-ChromaQuant.formula module initialization
 
-Julia Hancock
-Created 10-19-2024
+The Formula module contains the Formula class and some basic formula
+patterns for use in Excel report formula creation.
 
 """
 

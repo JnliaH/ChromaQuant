@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 """
-ChromaQuant.data module initialization
 
-Julia Hancock
-Created 10-19-2024
+This module contains class definitions for a number of data management
+structures. These data classes can be used for operations including
+DataFrame matching, chemical formula operations, conditional aggregation
+and more.
 
 """
 

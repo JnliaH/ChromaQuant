@@ -1,20 +1,10 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-COPYRIGHT STATEMENT:
 
-ChromaQuant – A quantification software for complex gas chromatographic data
-
-Copyright (c) 2026, by Julia Hancock
-              Affiliation: Dr. Julie Elaine Rorrer
-              URL: https://www.rorrerlab.com/
-
-License: BSD 3-Clause License
-
----
-
-FUNCTIONS FOR IMPORTING LOCAL PACKAGES
-
-Julia Hancock
-Started 1-7-2026
+The Import Local Packages module is used internally to import subpackages into
+the main package and other subpackages. It will be deprecated in future
+versions.
 
 """
 
