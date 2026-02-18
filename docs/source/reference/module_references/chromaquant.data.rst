@@ -9,7 +9,7 @@
    :toctree:
    :recursive:
 
-   breakdown
    dataset
-   table
    value
+   table
+   breakdown

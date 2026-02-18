@@ -1,10 +1,10 @@
-ChromaQuant Documentation
+Home
 =========================
 
+Welcome to the ChromaQuant documentation home page. Please visit any of the following pages for more information about the package:
+
 .. toctree::
-   :maxdepth: 3
-   :caption: Contents:
-   :hidden:
+   :maxdepth: 1
 
    intro
    getting-started

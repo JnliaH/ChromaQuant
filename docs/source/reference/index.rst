@@ -1,4 +1,4 @@
-Reference
+API Reference
 =========================
 .. autosummary::
     :toctree: module_references

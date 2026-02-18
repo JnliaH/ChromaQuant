@@ -5,5 +5,3 @@ Results
    :members:
    :exclude-members: error_logging
    
-   .. rubric:: Classes
-   

@@ -387,15 +387,13 @@ class Breakdown(DataSet):
 
         return None
 
-    def merge_1D(self,
-                 breakdown_list):
+    def merge_datasets(self,
+                       breakdown_list: list[DataSet]):
+
+        # Verify that each DataSet is of the same dimensions
 
         return None
 
-    def merge_2D(self,
-                 breakdown_list):
-
-        return None
 
     """ STATIC METHODS """
 
