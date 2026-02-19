@@ -16,7 +16,16 @@ to category values or whether they can have category values as substrings.
 
 # Define categories class
 class Categories:
+    """
+    Class that is used to define categories by which Tables can be
+    categorized.
 
+    Raises
+    ------
+    AttributeError
+        If the IS_IN method is used for non-string values or keywords.
+
+    """
     # Initialize
     def __init__(self):
 
@@ -46,6 +55,20 @@ class Categories:
     # Method to categorize by finding when tested value is equal to keyword,
     # selecting first applicable category if more than one apply
     def IS_EQUAL(self, test_value: str | int | float) -> str:
+        """
+        A categorizer that finds when a tested value is equal to a keyword.
+
+        Parameters
+        ----------
+        test_value : str | int | float
+            Value to categorize.
+
+        Returns
+        -------
+        category : str
+            The applicable category for the test_value.
+
+        """
 
         # For every category in categories...
         for category in self._categories:

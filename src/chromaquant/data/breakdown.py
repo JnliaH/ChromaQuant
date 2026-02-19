@@ -34,6 +34,48 @@ error_logging = setup_error_logging(logger)
 
 # Class definition for Breakdown
 class Breakdown(DataSet):
+    """
+    Class used to conditionally aggregate data from a Table
+
+    Parameters
+    ----------
+    start_cell : str, optional
+        Reference to cell in Excel where data will be reported,
+        referring to the top-left of report range. Must be a
+        valid Excel cell (e.g., 'A1', '$B$2').
+
+    sheet : str, optional
+        Name of Excel worksheet (sheet within workbook) where data will
+        be reported.
+
+    conditional_aggregate: str, optional
+        String representation of the desired conditional aggregate formula.
+        Options area 'SUMIFS', 'COUNTIFS', 'AVERAGEIFS', 'MINIFS', and
+        'MAXIFS'. Default is 'SUMIFS'.
+
+    header: str, optional
+        Header to add above a dataset, equivalent to a title.
+
+    results: Results, optional
+        Results object that mediates this DataSet.
+
+    Raises
+    ------
+    ValueError
+        If a conditional_aggregate is passed that is not a valid option.
+    ValueError
+        If sheet is set to a blank string.
+    ValueError
+        If start_cell is set to an invalid Excel cell.
+    ValueError
+        If no summarize_column is provided for conditional aggregates
+        besides COUNTIFS when creating a conditional aggregate formula.
+    ValueError
+        If more than two key-value pairs are in groups_to_summarize or
+        a key does not match a passed group by column when creating a
+        2D breakdown.
+
+    """
 
     # Initialize
     def __init__(self,
@@ -74,6 +116,10 @@ class Breakdown(DataSet):
     # Getter
     @property
     def data(self) -> Any:
+        """
+        Get, set, or delete data stored in the DataSet. Common types include
+        str, bool, int, float, list, dict, or pandas DataFrame.
+        """
         return self._data
 
     # Setter
@@ -91,6 +137,9 @@ class Breakdown(DataSet):
     # Getter
     @property
     def sheet(self) -> str:
+        """
+        Get, set, or delete the name of the Excel worksheet to report to.
+        """
         return self._sheet
 
     # Setter
@@ -111,6 +160,9 @@ class Breakdown(DataSet):
     # Getter
     @property
     def start_cell(self) -> str:
+        """
+        Get, set, or delete the Excel reference where data will be reported.
+        """
         return self._start_cell
 
     # Setter
@@ -136,11 +188,41 @@ class Breakdown(DataSet):
 
     """ METHODS """
     # Method to create a conditional aggregate formula based on criteria
-    def create_conditional_aggregate_formula(self,
-                                             table: Table,
-                                             criteria: dict[str, str],
-                                             summarize_column: str = ''
-                                             ):
+    def _create_conditional_aggregate_formula(self,
+                                              table: Table,
+                                              criteria: dict[str, str],
+                                              summarize_column: str = ''
+                                              ) -> str:
+        """
+        Method that creates a conditional aggregate formula by referencing
+        passed Table and criteria.
+
+        Parameters
+        ----------
+        table : Table
+            An instance of Table.
+
+        criteria : dict[str, str]
+            A dictionary containing one or two key-value pairs where the keys
+            are ranges in the DataFrame to aggregate and the values are cell
+            references used in the conditional statement.
+
+        summarize_column : str, optional
+            Name of the column to summarize. Optional for COUNTIFS but required
+            for other conditional aggregate formulas, by default ''.
+
+        Returns
+        -------
+        formula: str
+            The resulting conditional aggregate formula.
+
+        Raises
+        ------
+        ValueError
+            If no summarize_column is provided for conditional aggregates
+            besides COUNTIFS.
+
+        """
 
         # Create a blank formula template
         formula_template = ''
@@ -180,6 +262,30 @@ class Breakdown(DataSet):
                   group_by_column: str,
                   summarize_column: str,
                   groups_to_summarize: list[str] = None):
+        """
+        Method to create a one-dimensional breakdown.
+
+        Parameters
+        ----------
+        table : Table
+            An instance of Table.
+
+        group_by_column : str
+            The name of the column by which to aggregate results.
+
+        summarize_column : str
+            The name of the column to summarize.
+
+        groups_to_summarize : list[str], optional
+            An optional list of groups to include in the breakdown,
+            overwriting the default list created that includes all
+            groups present in the current Table, by default None.
+
+        Returns
+        -------
+        None
+
+        """
 
         # If groups_to_summarize is not none...
         if groups_to_summarize is not None:
@@ -224,10 +330,10 @@ class Breakdown(DataSet):
 
             # Get a formula string
             formula_string = \
-                self.create_conditional_aggregate_formula(table,
-                                                          criteria,
-                                                          summarize_column
-                                                          )
+                self._create_conditional_aggregate_formula(table,
+                                                           criteria,
+                                                           summarize_column
+                                                           )
 
             # Add the formula string to the current group entry
             self._data[group] = formula_string
@@ -258,6 +364,39 @@ class Breakdown(DataSet):
                   group_by_col_2: str,
                   summarize_column: str,
                   groups_to_summarize: dict[str, list[str]] = None):
+        """
+        Method to create a two-dimensional breakdown.
+
+        Parameters
+        ----------
+        table : Table
+            An instance of Table.
+
+        group_by_col_1 : str
+            The name of the first column by which to aggregate results.
+
+        group_by_col_2 : str
+            The name of the second column by which to aggregate results.
+
+        summarize_column : str
+            The name of the column to summarize.
+
+        groups_to_summarize : dict[str, list[str]], optional
+            An optional dictionary of groups to include in the breakdown.
+            The key in each pair is the name of a passed group-by column
+            and the value is a list of groups to include in the breakdown.
+            This overwrites the default list created that includes all
+            groups present in the current Table under the passed group-by
+            columns, by default None.
+
+        Returns
+        -------
+        ValueError
+            If more than two key-value pairs are in groups_to_summarize or
+            a key does not match a passed group by column when creating a
+            2D breakdown.
+
+        """
 
         # Create an empty dictionary to contain lists of unique groups
         unique_groups = {group_by_col_1: [], group_by_col_2: []}
@@ -283,9 +422,9 @@ class Breakdown(DataSet):
             else:
                 pass
 
-        # Create an empty dictionary if groups_to_summarize is None
-        groups_to_summarize = \
-            groups_to_summarize if groups_to_summarize is not None else {}
+        # Otherwise, create an empty dictionary
+        else:
+            groups_to_summarize = {}
 
         # For every entry in unique_groups...
         for group_col in unique_groups:
@@ -355,10 +494,10 @@ class Breakdown(DataSet):
 
                 # Get a formula string
                 formula_string = \
-                    self.create_conditional_aggregate_formula(table,
-                                                              criteria,
-                                                              summarize_column
-                                                              )
+                    self._create_conditional_aggregate_formula(table,
+                                                               criteria,
+                                                               summarize_column
+                                                               )
 
                 # Add the formula string to the current group entry
                 self._data.at[row_index, group_1] = formula_string
@@ -394,12 +533,30 @@ class Breakdown(DataSet):
 
         return None
 
-
     """ STATIC METHODS """
 
     # Base conditional aggregate method
     @staticmethod
-    def _wrap_conditional_aggregate(inner, outer):
+    def _wrap_conditional_aggregate(inner: str,
+                                    outer: str) -> str:
+        """
+        Static method that returns a basic formula string for Excel using
+        passed inner and outer parts.
+
+        Parameters
+        ----------
+        inner : str
+            Component of the formula string defining the Excel formula to
+            use (e.g., 'SUM' for '=SUM($A$1:$A$10)')
+        outer : str
+            Component of the formula string to include within a formula's
+            arguments (e.g., '$A$1:$A$10' for '=SUM($A$1:$A$10)').
+
+        Returns
+        -------
+        formula_string: str
+            Complete formula string.
+        """
 
         # If the inner starts with an equals sign...
         if inner[0] == '=':

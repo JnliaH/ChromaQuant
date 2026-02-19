@@ -35,6 +35,45 @@ error_logging = setup_error_logging(logger)
 
 # Define the DataSet class
 class DataSet:
+    """
+    Class used to store data alongside reporting information.
+
+    Parameters
+    ----------
+    data : Any, optional
+        Data to be stored.
+
+    start_cell : str, optional
+        Reference to cell in Excel where data will be reported. If data
+        contains more than one item, refers to the top-left of report
+        range. Must be a valid Excel cell (e.g., 'A1', '$B$2').
+
+    sheet : str, optional
+        Name of Excel worksheet (sheet within workbook) where data will
+        be reported.
+
+    type: str, optional
+        Type of DataSet, used by child classes to identify their type.
+
+    header: str, optional
+        Header to add above a dataset, equivalent to a title.
+
+    results: Results, optional
+        Results object that mediates this DataSet.
+
+    Raises
+    ------
+    ValueError
+        If sheet is set to a blank string.
+    ValueError
+        If start_cell is set to an invalid Excel cell.
+
+    Notes
+    -------
+    This class is primarily internal, and its child classes (e.g., Table)
+    are the primary API for users to interact with.
+
+    """
 
     # Initialize
     def __init__(self,
@@ -71,12 +110,20 @@ class DataSet:
     # Define the reference property, ONLY DEFINE GETTER
     @property
     def reference(self) -> dict[str, Any]:
+        """
+        Get the current reference object for the DataSet. Unable to set
+        or delete this value as it is managed internally.
+        """
         return self._reference
 
     # Data properties
     # Getter
     @property
     def data(self) -> Any:
+        """
+        Get, set, or delete data stored in the DataSet. Common types include
+        str, bool, int, float, list, dict, or pandas DataFrame.
+        """
         return self._data
 
     # Setter
@@ -93,13 +140,16 @@ class DataSet:
     # Getter
     @property
     def sheet(self) -> str:
+        """
+        Get, set, or delete the name of the Excel worksheet to report to.
+        """
         return self._sheet
 
     # Setter
     @sheet.setter
     def sheet(self, value: str):
         if value == '':
-            raise ValueError('Table sheet cannot be an empty string.')
+            raise ValueError('Worksheet cannot be an empty string.')
         self._sheet = value
         if self._mediator is not None:
             self._mediator.update_datasets()
@@ -113,6 +163,9 @@ class DataSet:
     # Getter
     @property
     def start_cell(self) -> str:
+        """
+        Get, set, or delete the Excel reference where data will be reported.
+        """
         return self._start_cell
 
     # Setter
@@ -138,6 +191,9 @@ class DataSet:
     # Getter
     @property
     def header(self) -> str:
+        """
+        Get, set, or delete the header to add above a dataset.
+        """
         return self._header
 
     # Setter
@@ -158,6 +214,10 @@ class DataSet:
     # Getter
     @property
     def mediator(self) -> str:
+        """
+        Get or set the mediator object that controls the interactions
+        between this DataSet and colleague objects.
+        """
         return self._mediator
 
     # Setter
@@ -170,6 +230,22 @@ class DataSet:
     # Static method to get the absolute indices of a cell
     @staticmethod
     def get_cell_indices(cell: str) -> tuple[int, int]:
+        """
+        Static method that returns the absolute indices of a cell.
+
+        Parameters
+        ----------
+        cell : str
+            Cell reference (e.g., 'A1', '$B$2').
+
+        Returns
+        -------
+        column_index: int
+            Absolute index of the reference column (e.g., 2 for 'C1').
+        row_index: int
+            Absolute index of the reference row (e.g., 0 for 'C1').
+
+        """
 
         # Split the coordinate
         column_index, row_index = \

@@ -39,6 +39,37 @@ error_logging = setup_error_logging(logger)
 
 # Define the Table class
 class Table(DataSet):
+    """
+    Class used to store data alongside reporting information.
+
+    Parameters
+    ----------
+    data_frame : pandas DataFrame, optional
+        Data to be stored.
+
+    start_cell : str, optional
+        Reference to cell in Excel where data will be reported,
+        referring to the top-left of report range. Must be a
+        valid Excel cell (e.g., 'A1', '$B$2').
+
+    sheet : str, optional
+        Name of Excel worksheet (sheet within workbook) where data will
+        be reported.
+
+    header: str, optional
+        Header to add above a dataset, equivalent to a title.
+
+    results: Results, optional
+        Results object that mediates this DataSet.
+
+    Raises
+    ------
+    ValueError
+        If sheet is set to a blank string.
+    ValueError
+        If start_cell is set to an invalid Excel cell.
+
+    """
 
     def __init__(self,
                  data_frame: pd.DataFrame | None = None,
@@ -59,14 +90,18 @@ class Table(DataSet):
                          results=results)
 
         # Update the table
-        self.update_table()
+        self._update_table()
 
     """ PROPERTIES """
     # Define the reference property
     # Only give reference a getter
     @property
     def reference(self):
-        self.update_table()
+        """
+        Get the current reference object for the DataSet. Unable to set
+        or delete this value as it is managed internally.
+        """
+        self._update_table()
         return self._reference
 
     # Redefining properties to include update_table
@@ -74,25 +109,32 @@ class Table(DataSet):
     # Getter
     @property
     def data(self) -> pd.DataFrame | None:
+        """
+        Get, set, or delete data stored in the DataSet. Common types include
+        str, bool, int, float, list, dict, or pandas DataFrame.
+        """
         return self._data
 
     # Setter
     @data.setter
     def data(self, value: pd.DataFrame | None):
         self._data = value
-        self.update_table()
+        self._update_table()
 
     # Deleter
     @data.deleter
     def data(self):
         del self._data
         self._data = pd.DataFrame()
-        self.update_table()
+        self._update_table()
 
     # Sheet properties
     # Getter
     @property
     def sheet(self) -> str:
+        """
+        Get, set, or delete the name of the Excel worksheet to report to.
+        """
         return self._sheet
 
     # Setter
@@ -101,7 +143,7 @@ class Table(DataSet):
         if value == '':
             raise ValueError('Table sheet cannot be an empty string.')
         self._sheet = value
-        self.update_table()
+        self._update_table()
         if self._mediator is not None:
             self._mediator.update_datasets()
 
@@ -109,7 +151,7 @@ class Table(DataSet):
     @sheet.deleter
     def sheet(self):
         del self._sheet
-        self.update_table()
+        self._update_table()
         if self._mediator is not None:
             self._mediator.update_datasets()
 
@@ -117,6 +159,9 @@ class Table(DataSet):
     # Getter
     @property
     def start_cell(self) -> str:
+        """
+        Get, set, or delete the Excel reference where data will be reported.
+        """
         return self._start_cell
 
     # Setter
@@ -131,7 +176,7 @@ class Table(DataSet):
         # If an exception occurs...
         except Exception as e:
             raise ValueError(f'Passed start cell is not valid: {e}')
-        self.update_table()
+        self._update_table()
         if self._mediator is not None:
             self._mediator.update_datasets()
 
@@ -140,7 +185,7 @@ class Table(DataSet):
     def start_cell(self):
         del self._start_cell
         del self.start_row, self.start_column
-        self.update_table()
+        self._update_table()
         if self._mediator is not None:
             self._mediator.update_datasets()
 
@@ -150,6 +195,22 @@ class Table(DataSet):
     def add_table_column(self,
                          column_name: str,
                          column_values: Any = float('nan')):
+        """
+        Method to add values to a column, either existing or new.
+
+        Parameters
+        ----------
+        column_name : str
+            The name of the existing or new column to reference.
+        column_values : Any, optional
+            The value(s) to add to the column. Can be an iterable
+            like a list or a single value.
+
+        Returns
+        -------
+        None
+
+        """
 
         # Set every entry in the column to column_values
         # If column_values is an iterable, this will iterate
@@ -158,7 +219,7 @@ class Table(DataSet):
         self._data[column_name] = column_values
 
         # Update the table
-        self.update_table()
+        self._update_table()
 
         return None
 
@@ -168,9 +229,26 @@ class Table(DataSet):
     @error_logging
     def add_table_column_from_function(self,
                                        column_name: str,
-                                       function: Callable[..., list[Any]],
+                                       function: Callable[..., Any],
                                        *args: Any,
                                        **kwargs: Any):
+        """
+        Method to add a column to the Table using a passed function.
+
+        Parameters
+        ----------
+        column_name : str
+            The name of the new column.
+        function : Callable[..., Any]
+            A function that accepts the arbitrary positional and keyword
+            arguments passed to add_table_column_from_function and returns
+            a single value or iterable to add to a column.
+
+        Returns
+        -------
+        None
+
+        """
 
         # Get the output of a function using passed arguments
         function_output = function(*args, **kwargs)
@@ -186,6 +264,23 @@ class Table(DataSet):
                             column_name: str,
                             categories: Categories,
                             new_column_name: str = 'Category'):
+        """
+        Method to add a categories column to the Table using passed Categories
+
+        Parameters
+        ----------
+        column_name : str
+            The name of the column to base categories on.
+        categories : Categories
+            A Categories object used apply categories.
+        new_column_name : str, optional
+            The name of the column to store new categories in.
+
+        Returns
+        -------
+        None
+
+        """
 
         # Get the column to be categorized as a list
         column_as_list = self._data[column_name].tolist()
@@ -209,6 +304,21 @@ class Table(DataSet):
     def add_molecular_weight_column(self,
                                     formula_column_name: str,
                                     new_column_name: str = 'Molecular weight'):
+        """
+        Method to add a molecular weight column to the Table
+
+        Parameters
+        ----------
+        formula_column_name : str
+            The name of the column containing chemical formulas.
+        new_column_name : str, optional
+            The name of the column to store molecular weights in.
+
+        Returns
+        -------
+        None
+
+        """
 
         # Get the formula column as a list
         formula_list = self._data[formula_column_name].tolist()
@@ -228,6 +338,21 @@ class Table(DataSet):
                                  formula_column_name: str,
                                  element: str,
                                  new_column_name: str = ''):
+        """
+        Method to add a molecular weight column to the Table
+
+        Parameters
+        ----------
+        formula_column_name : str
+            The name of the column containing chemical formulas.
+        new_column_name : str, optional
+            The name of the column to store molecular weights in.
+
+        Returns
+        -------
+        None
+
+        """
 
         # Get a new column name based on the element if empty
         new_column_name = \
@@ -256,6 +381,16 @@ class Table(DataSet):
     # Method to get the insert string for a given column
     @error_logging
     def insert(self, column: str, range: bool = False) -> str:
+        """
+        Method that returns a unique identifier within a string insert. Used
+        when composing dynamic formulas for reporting to Excel.
+
+        Returns
+        -------
+        insert: str
+            Formula insert containing unique Table identifier.
+
+        """
 
         # If range is True...
         if range is True:
@@ -272,7 +407,8 @@ class Table(DataSet):
     # Method to import data
     @error_logging
     def import_csv_data(self, path: str, **kwargs: Any):
-        """Reads .csv at passed path and sets self._data to result.
+        """
+        Reads .csv at passed path and sets self._data to result.
 
         Parameters
         ----------
@@ -304,21 +440,44 @@ class Table(DataSet):
     def match(self,
               import_DF: pd.DataFrame,
               match_config: MatchConfig) -> pd.DataFrame:
+        """
+        Method to match a passed DataFrame to the current Table's data.
+
+        Parameters
+        ----------
+        import_DF : pd.DataFrame
+            DataFrame to match to current data.
+        match_config : MatchConfig
+            MatchConfig object defining rules for matching process.
+
+        Returns
+        -------
+        match_DF : pd.DataFrame
+            Resulting DataFrame from matching.
+        """
 
         return match(self._data, import_DF, match_config)
 
     # Method to update column references
     @error_logging
-    def update_reference(self):
+    def _update_reference(self):
+        """
+        Method that updates the Table's reference dictionary.
+
+        Returns
+        -------
+        None
+
+        """
 
         # For every column in columns...
         for column in self.columns:
 
             # Get the start cell's column letter, adjusting from absolute
             col_letter = \
-                self.get_column_letter_wrt_start_cell(column,
-                                                      self._data,
-                                                      self.start_column + 1)
+                self._get_column_letter_wrt_start_cell(column,
+                                                       self._data,
+                                                       self.start_column + 1)
 
             # Get a Boolean indicating whether the Table has a header
             has_header = False if self.header == '' else True
@@ -363,7 +522,15 @@ class Table(DataSet):
 
     # Method for updating otherwise static Table attributes
     @error_logging
-    def update_table(self):
+    def _update_table(self):
+        """
+        Method that updates the current Table.
+
+        Returns
+        -------
+        None
+
+        """
 
         # Update the length header
         self.length = \
@@ -378,7 +545,7 @@ class Table(DataSet):
         # Try to update the reference
         # NOTE: will not work if there is no valid sheet or start_cell
         try:
-            self.update_reference()
+            self._update_reference()
 
         except Exception:
             # logger.info('Failed to update reference.')
@@ -390,13 +557,32 @@ class Table(DataSet):
     # Static method to get the letter coordinate of a column in a DataFrame
     # with respect to a starting column index
     @staticmethod
-    def get_column_letter_wrt_start_cell(column: str,
-                                         df: pd.DataFrame,
-                                         start_col_index: int) -> str:
+    def _get_column_letter_wrt_start_cell(column_name: str,
+                                          df: pd.DataFrame,
+                                          start_col_index: int) -> str:
+        """
+        Static method that returns the column letter of a column with respect
+        to that column's location within a DataFrame.
+
+        Parameters
+        ----------
+        column_name : str
+            The name of the column to get the index of.
+        df : pd.DataFrame
+            The DataFrame containing the column of interest.
+        start_col_index : int
+            The index within the Excel report where the top left of the
+            DataFrame will be located.
+
+        Returns
+        -------
+        column_letter: str
+            The letter of the column of interest.
+        """
 
         # Get the current column's letter
-        col_letter = \
+        column_letter = \
             get_column_letter(start_col_index +
-                              df.columns.get_loc(column))
+                              df.columns.get_loc(column_name))
 
-        return col_letter
+        return column_letter

@@ -83,11 +83,6 @@ class MatchConfig:
         Path to output file including file name and extension,
         by default 'match_results.csv'
 
-    Returns
-    -------
-    Any
-        Value associated with each value attribute of the class from getter
-
     Raises
     ------
     ValueError
