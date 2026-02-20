@@ -7,6 +7,6 @@ Welcome to the ChromaQuant documentation home page. Please visit any of the foll
    :maxdepth: 1
 
    intro
-   getting-started
-   examples
+   getting-started/index
+   examples/index
    reference/index
