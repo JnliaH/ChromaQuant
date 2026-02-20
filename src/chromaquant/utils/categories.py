@@ -56,7 +56,8 @@ class Categories:
     # selecting first applicable category if more than one apply
     def IS_EQUAL(self, test_value: str | int | float) -> str:
         """
-        A categorizer that finds when a tested value is equal to a keyword.
+        A categorizer that finds when a tested value is equal to a keyword,
+        returning the first applicable category if more than one apply.
 
         Parameters
         ----------
@@ -91,6 +92,21 @@ class Categories:
     # Method to categorize by finding when keyword is a substring of a tested
     # value, selecting first applicable category if more than one apply
     def IS_IN(self, test_value: str) -> str:
+        """
+        A categorizer that finds when a tested value is contains a keyword,
+        returning the first applicable category if more than one apply.
+
+        Parameters
+        ----------
+        test_value : str
+            Value to categorize.
+
+        Returns
+        -------
+        category : str
+            The applicable category for the test_value.
+
+        """
 
         # Try to get the lowercase of the test_value and all keywords
         try:

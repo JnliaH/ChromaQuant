@@ -15,6 +15,20 @@ from typing import Any
 
 # Function to format logger
 def setup_logger(logger: logging.Logger) -> logging.Logger:
+    """
+    Function that formats a logger.
+
+    Parameters
+    ----------
+    logger : logging.Logger
+        Logger to format.
+
+    Returns
+    -------
+    new_logger: logging.Logger
+        Logger post-formatting.
+
+    """
 
     # Check if logger has handlers, clear if so
     if (logger.hasHandlers()):
@@ -42,13 +56,45 @@ def setup_logger(logger: logging.Logger) -> logging.Logger:
 # Function that sets up a decorator to log errors while handling them
 def setup_error_logging(logger: logging.Logger) -> \
    Callable[[Callable[..., Any]], Callable[..., Any]]:
+    """
+    Function that creates a decorator to log errors while handling them.
+
+    Returns
+    -------
+    decorator: Callable[[Callable[..., Any]], Callable[..., Any]]
+        Decorator used to wrap functions.
+
+    """
 
     # Decorator to log and handle errors
     def error_logging(f: Callable[..., Any]) -> Callable[..., Any]:
+        """
+        Decorator for logging and handling.
+
+        Parameters
+        ----------
+        f : Callable[..., Any]
+            Function to decorate.
+
+        Returns
+        -------
+        decorated_func : Callable[..., Any]
+            Decorated function.
+
+        """
 
         # Define decorated function (wrapper)
         @wraps(f)
-        def decorated_func(*args: Any, **kwargs: Any) -> Callable[..., Any]:
+        def decorated_func(*args: Any, **kwargs: Any) -> Any:
+            """
+            Decorated function.
+
+            Returns
+            -------
+            result : Any
+                Result from function.
+
+            """
 
             # Try to get the function's result
             try:

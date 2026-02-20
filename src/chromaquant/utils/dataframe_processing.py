@@ -7,13 +7,38 @@ Pandas DataFrames like adding new columns or filtering rows by some value.
 
 """
 
+from typing import Any
+from pandas import DataFrame, Series
+
 """ FUNCTIONS """
 
 
 # Function to loop through keys in a passed dictionary and
 # check them against a list of permitted keys or dictionary
 # with permitted keys
-def check_dict_keys(dictionary, permitted):
+def check_dict_keys(dictionary: dict[Any, Any], permitted: list[Any]):
+    """
+    Function that checks all keys in a passed dictionary against a list
+    of permissible keys.
+
+    Parameters
+    ----------
+    dictionary : dict[Any, Any]
+        The dictionary containing keys to be checked against permitted.
+    permitted : list[Any]
+        A list of permitted keys.
+
+    Returns
+    -------
+    None.
+
+    Raises
+    ------
+    ValueError
+        If at least one key in the dictionary is not in the list of
+        permitted keys.
+
+    """
 
     # For every key-value pair in the dictionary...
     for key, value in dictionary.items():
@@ -30,7 +55,10 @@ def check_dict_keys(dictionary, permitted):
 
 
 # Function to add, remove, or rename columns in a DataFrame
-def column_adjust(dataframe, add_col=[], remove_col=[], rename_dict={}):
+def column_adjust(dataframe: DataFrame,
+                  add_col: list[str] = [],
+                  remove_col: list[str] = [],
+                  rename_dict: dict[str, str] = {}) -> DataFrame:
     """
     Function used to add, remove, or rename
     columns in a passed DataFrame
@@ -39,17 +67,17 @@ def column_adjust(dataframe, add_col=[], remove_col=[], rename_dict={}):
     ----------
     dataframe : pandas.DataFrame
         DataFrame to have columns adjusted.
-    add_col : list, optional
+    add_col : list[str], optional
         List of column headers to add, by default [].
-    remove_col : list, optional
+    remove_col : list[str], optional
         List of column headers to remove, by default [].
-    rename_dict : list, optional
+    rename_dict : dict, optional
         Dictionary of headers to rename as keys and
         new headers as values, by default {}.
 
     Returns
     -------
-    pandas.DataFrame
+    new_dataframe : pandas.DataFrame
         DataFrame post-adjustments.
     """
 
@@ -76,25 +104,25 @@ def column_adjust(dataframe, add_col=[], remove_col=[], rename_dict={}):
 
 
 # Function to filter a DataFrame based on certain values in rows
-def row_filter(dataframe, filter_dict):
+def row_filter(dataframe: DataFrame, filter_dict: dict) -> DataFrame:
     """
     Function used to filter a passed DataFrame
     such that it only contains certain values
-    in specific columns
-    ...
+    in specific columns.
 
     Parameters
     ----------
     dataframe : pandas.DataFrame
         DataFrame to have rows filtered.
-    filter_dict : _type_
+    filter_dict : dict
         Dictionary containing column names as keys and desired cell values
-        as values
+        as values.
 
     Returns
     -------
-    pandas.dataframe
+    new_dataframe : pandas.dataframe
         Dataframe post-filtering.
+
     """
 
     # Define a new dataframe
@@ -110,25 +138,24 @@ def row_filter(dataframe, filter_dict):
 
 
 # Function to check whether a column is empty
-def verify_column_not_empty(dataframe, column):
+def verify_column_not_empty(dataframe: DataFrame, column: str) -> bool:
     """
     Function used to test whether a column in a passed
-    DataFrame is empty
-
-    ...
+    DataFrame is empty.
 
     Parameters
     ----------
     dataframe : pandas.DataFrame
-        DataFrame containing column to be tested
+        DataFrame containing column to be tested.
     column : str
-        Header of a column which may or may not contain values
+        Header of a column which may or may not contain values.
 
     Returns
     -------
-    bool
+    test_result : bool
         Result of the conditional test: True if the column is
-        not empty and False if the column is empty
+        not empty and False if the column is empty.
+
     """
 
     # Define a default test result
@@ -148,27 +175,30 @@ def verify_column_not_empty(dataframe, column):
 
 
 # Function to test whether certain values exist in a column
-def test_for_column_values(dataframe, column, test_values):
+def test_for_column_values(dataframe: DataFrame,
+                           column_name: str,
+                           test_values: list[Any]) -> dict[Any, bool]:
     """
     Function used to test for the presence or absence of
-    passed values in some column of a given DataFrame
+    passed values in some column of a given DataFrame.
 
     Parameters
     ----------
     dataframe : pandas.DataFrame
-        _description_
+        A DataFrame containing a column with a name matching column_name.
 
-    column : _type_
-        _description_
+    column : str
+        The name of a column of interest.
 
-    test_values : _type_
-
-        _description_
+    test_values : list[Any]
+        A list of values to be searched for in the column of interest.
 
     Returns
     -------
-    _type_
-        _description_
+    test_result_dict: dict[Any, bool]
+        A dictionary containing passed test_values as keys and bools
+        indicating the presence or absence of each test value in the
+        column of interest.
 
     """
 
@@ -176,13 +206,13 @@ def test_for_column_values(dataframe, column, test_values):
     test_result_dict = {test_value: False for test_value in test_values}
 
     # If the dataframe is not empty...
-    if verify_column_not_empty(dataframe, column):
+    if verify_column_not_empty(dataframe, column_name):
 
         # For each test value in the test_values list...
         for value in test_values:
 
             # If the column contains the test value at at least one row...
-            if value in dataframe.loc[column].values.tolist():
+            if value in dataframe.loc[column_name].values.tolist():
 
                 # Set the test_result_dict entry to True
                 test_result_dict[value] = True
@@ -199,7 +229,30 @@ def test_for_column_values(dataframe, column, test_values):
 
 
 # Function that adds data from one row to another
-def add_columns_from_one_row_to_another(first_row, second_row, add_columns):
+def add_columns_from_one_row_to_another(first_row: Series,
+                                        second_row: Series,
+                                        add_columns: list[str]) -> Series:
+    """
+    Function that adds data from one row to another using a list of column
+    names.
+
+    Parameters
+    ----------
+    first_row : pandas.Series
+        A row (or Series) to have data appended to it.
+    second_row : pandas.Series
+        A row (or Series) containing data to be added to another row (or
+        Series).
+    add_columns : list[str]
+        A list of column names indicating which data from second_row to add
+        to first_row.
+
+    Returns
+    -------
+    new_first : pandas.Series
+        A copy of first_row containing added data.
+
+    """
 
     # Create a copy of the passed first_row
     new_first = first_row.copy()

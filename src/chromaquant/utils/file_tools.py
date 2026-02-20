@@ -10,6 +10,9 @@ write to data files.
 import logging
 import os
 import pandas as pd
+from pandas import DataFrame
+from collections.abc import Callable
+from typing import Any
 from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """
@@ -27,13 +30,15 @@ error_logging = setup_error_logging(logger)
 
 
 # Function to export data to a .csv file
-def export_to_csv(dataframe, parent, name=''):
-    """export_to_csv _summary_
+def export_to_csv(dataframe: DataFrame, parent: str, name: str = ''):
+    """
+    Function that exports data from a pandas DataFrame to a .csv using a
+    passed parent directory and name.
 
     Parameters
     ----------
-    dataframe : dataframe
-        Passed Pandas dataframe.
+    dataframe : pandas.DataFrame
+        Passed Pandas DataFrame.
     parent : string
         Name of parent directory for exported file.
     name : string
@@ -42,6 +47,7 @@ def export_to_csv(dataframe, parent, name=''):
     Returns
     -------
     None
+
     """
 
     # If the name argument is passed...
@@ -61,7 +67,29 @@ def export_to_csv(dataframe, parent, name=''):
 
 
 # Function to try to open a file using a passed function
-def try_open_file(func, path, *args, **kwargs):
+def try_open_file(func: Callable[..., Any], path: str, *args, **kwargs) \
+   -> tuple[bool, Any]:
+    """
+    Function that tries to open a file at path using a function
+    passed as func.
+
+    Parameters
+    ----------
+    func : Callable[..., Any]
+        A function that accepts a path (string) and any additional
+        positional or keyword arguments and returns some data.
+    path : _type_
+        A full path to the data file to be opened.
+
+    Returns
+    -------
+    tf: bool
+        A Boolean indicating whether file could be opened (True) or
+        not (False).
+    data: Any
+        The data read from the file at path.
+
+    """
 
     # Predefine the conditional Boolean result
     tf = False
@@ -72,7 +100,7 @@ def try_open_file(func, path, *args, **kwargs):
         tf = True
 
     # If cannot open file, log and set tf to False
-    except Exception as e:
+    except Exception:
         # logger.info(f'Could not open {path}, got {e}')
         data = []
         tf = False
@@ -81,6 +109,26 @@ def try_open_file(func, path, *args, **kwargs):
 
 
 # Function to try to open a file with pandas.read_csv
-def try_open_csv(path, *args, **kwargs):
+def try_open_csv(path: str, *args, **kwargs) -> tuple[bool, Any]:
+    """
+    Function to try opening a file with pandas.read_csv, passing
+    the path and any additional positional or keyword arguments.
+
+    Parameters
+    ----------
+    path : str
+        Path to .csv file.
+
+    Returns
+    -------
+    tf: bool
+        A Boolean indicating whether file could be opened (True) or
+        not (False).
+    data: Any
+        The data read from the file at path.
+
+    """
+
     tf, data = try_open_file(pd.read_csv, path, *args, **kwargs)
+
     return tf, data

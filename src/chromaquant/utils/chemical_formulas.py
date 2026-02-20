@@ -13,7 +13,25 @@ from chemformula import ChemFormula
 
 # Function to get the number of atoms of a given element from a formula
 def get_number_element_atoms(formula: str | list[str],
-                             element: str) -> list[int] | int:
+                             element: str) -> int | list[int]:
+    """
+    Function that returns the number of atoms of a given element present
+    in a molecule based on a passed molecular formula.
+
+    Parameters
+    ----------
+    formula : str | list[str]
+        A single chemical formula or list of formulas.
+    element : str
+        An element to search for (e.g., 'C' for carbon).
+
+    Returns
+    -------
+    int | list[int]
+        A number of atoms of interest in the formula or list of numbers
+        if function is passed a list of formulas.
+
+    """
 
     # Try...
     try:
@@ -57,6 +75,20 @@ def get_number_element_atoms(formula: str | list[str],
 
 # Function to get the molecular weight from a chemical formula
 def get_molecular_weight(formula: str | list[str]) -> float | list[float]:
+    """
+    Function that returns the molecular weight of a passed chemical formula.
+
+    Parameters
+    ----------
+    formula : str | list[str]
+        A single chemical formula or list of formulas.
+
+    Returns
+    -------
+    float | list[float]
+        A molecular weight or list of molecular weights.
+
+    """
 
     # Try...
     try:
