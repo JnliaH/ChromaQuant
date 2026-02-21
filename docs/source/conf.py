@@ -19,9 +19,7 @@ root_doc = 'index'
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'sphinx.ext.doctest',
-              'sphinx_rtd_theme',
-              'IPython.sphinxext.ipython_console_highlighting',
-              'IPython.sphinxext.ipython_directive']
+              'sphinx_rtd_theme']
 autosummary_generate = False
 autodoc_default_options = {'members': True,
                            'undoc-members': False}

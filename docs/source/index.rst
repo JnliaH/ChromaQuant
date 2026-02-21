@@ -5,6 +5,7 @@ Welcome to the ChromaQuant documentation home page. Please visit any of the foll
 
 .. toctree::
    :maxdepth: 1
+   :titlesonly:
 
    intro
    getting-started/index
