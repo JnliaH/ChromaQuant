@@ -41,6 +41,9 @@ Repository = "https://github.com/JnliaH/ChromaQuant"
 [tool.hatch.build.targets.wheel]
 packages = ["src/chromaquant"]
 
+[tool.git-changelog]
+filter-commits = "v0.5.0..."
+
 [pytest]
 addopts = ["--import-mode=importlib"]
 testpaths = ["tests"]
