@@ -42,7 +42,10 @@ Repository = "https://github.com/JnliaH/ChromaQuant"
 packages = ["src/chromaquant"]
 
 [tool.git-changelog]
+bump = "patch"
+convention = "basic"
 filter-commits = "v0.5.0..."
+include_all = "true"
 
 [pytest]
 addopts = ["--import-mode=importlib"]
