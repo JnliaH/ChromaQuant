@@ -4,7 +4,7 @@ What can ChromaQuant do for me?
 ===============================
 .. testsetup:: *
 
-    import chromaquant
+    import chromaquant as cq
     import pandas
 
 ChromaQuant is designed to enable users to create custom analysis recipes for complex
@@ -30,7 +30,7 @@ For example, we can create a Table and assign it a DataFrame with some data:
 
     my_dictionary = {'Column A': [1, 2, 3], 'Column B': [4, 5, 6]}
     my_dataframe = pandas.DataFrame(my_dictionary)
-    my_table = chromaquant.Table(data=my_dataframe)
+    my_table = cq.Table(data=my_dataframe)
 
 We can then access a value directly using the :code:`pandas.DataFrame.at` method on the Table's :code:`data` attribute:
 
