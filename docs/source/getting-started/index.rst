@@ -13,5 +13,6 @@ This guide covers the installation and basic usage of ChromaQuant and its submod
     pages/installation
     pages/importing
     pages/what-can-cq
+    pages/starting-with-example
     pages/working-with-data
     pages/results-getting-started
