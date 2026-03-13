@@ -83,6 +83,15 @@ As with Values, we can also get or delete data from Tables:
     # Delete the current data
     del my_table.data
 
+Something else we can do with Tables is read our data directly from .csv files:
+
+.. code-block:: python
+
+    # Create a new table
+    my_table = cq.Table()
+    # Import the data from a .csv file
+    my_table.import_csv_data('my_data.csv')
+
 Back to our Example
 -------------------------------
 
@@ -158,6 +167,38 @@ Peak Number Retention Time (min) Area
 29          38.51                66953.91378
 30          54.47                1183.234388
 =========== ==================== ===========
+
+Let's start with the integration table. We can create a Table instance in Python by first adding our data to a DataFrame:
+
+.. code-block:: python
+
+    # Define a dictionary with our data as tabulated above
+    fid_dictionary = {'Peak Number': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+                                     16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+                     'Retention Time': [18.24, 18.79, 19.30, 20.10, 20.36, 21.71, 21.90, 22.48, 
+                                        22.61, 23.22, 23.27, 24.04, 24.23, 24.88, 25.02, 25.10,
+                                        25.33, 25.48, 25.97, 26.85, 27.11, 27.76, 28.41, 29.15,
+                                        29.39, 29.71, 29.83, 30.01, 38.51, 54.47],
+                     'Area': [9.642202419, 721.0011595, 2626.975549, 80.28715918, 13.20155492, 2599.987859
+                              16464.64891, 9.540131909, 2383.918994, 67.72271269, 84.84936771, 11.54458953,
+                              381.0284691, 954.0299001, 79746.12728, 32.72194488, 92.3024417, 8.178220039,
+                              476.8954081, 17449.17202, 94.59826749, 20.20661954, 746.6239539, 23250.14097
+                              79.28369498, 7.280006075, 3.327113495, 22.03782356, 66953.91378, 1183.234388]}
+
+    # Create a DataFrame from the dictionary
+    fid_dataframe = pandas.DataFrame(my_dictionary)
+
+    # Create a Table with the data set to the DataFrame
+    fid_table = cq.Table(data=fid_dataframe)
+
+Alternatively, we could read the data directly from a .csv file if it is in that format. Let's do that with our MS data:
+
+.. code-block:: python
+
+    # Create a new table
+    ms_table = cq.Table()
+    # Import the data from a .csv file
+    ms_table.import_csv_data('ms_data.csv')
 
 Adding Complexity
 -------------------------------
