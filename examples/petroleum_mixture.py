@@ -95,7 +95,7 @@ match_config_lq_FIDpMS = cq.MatchConfig()
 # Add a match condition
 match_config_lq_FIDpMS.add_match_condition(condition=cq.MatchConfig.IS_EQUAL,
                                            comparison=['RT', 'Component RT'],
-                                           error=0.05)
+                                           kwargs={'error':0.05})
 
 # Add columns to include from second DataFrame
 match_config_lq_FIDpMS.import_include_col = ['Component RT',

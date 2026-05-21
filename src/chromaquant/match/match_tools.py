@@ -78,21 +78,7 @@ def match_dataframes(main_DF: DataFrame,
             match_condition['condition'](row_value,
                                          DF,
                                          match_condition['second_DF_column'],
-                                         error=match_condition['error'],
-                                         or_equal=match_condition['or_equal'])
-
-        # Try...
-        try:
-            # Add a column to the slice containing the error
-            # between the actual and expected values
-            DF_slice[f'{match_condition['second_DF_column']} Error'] = \
-                [abs(DF_slice.at[i, match_condition['second_DF_column']])
-                 - row_value for i, row_i in DF_slice.iterrows()]
-
-        # If a TypeError occurs, add an empty column
-        except TypeError:
-            DF_slice[f'{match_condition['second_DF_column']} Error'] = \
-                [0 for i, row_i in DF_slice.iterrows()]
+                                         **match_condition['kwargs'])
 
         return DF_slice
 

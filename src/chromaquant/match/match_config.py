@@ -97,8 +97,11 @@ class MatchConfig:
             'condition': cq.MatchConfig.IS_EQUAL,
             'first_DF_column': str,
             'second_DF_column': str,
-            'error': float,
-            'or_equal': bool
+            'kwargs': {
+                'error': float (optional),
+                'or_equal': bool (optional),
+                'value_function': Callable (optional)
+                }
             },
         ...]
 
@@ -158,8 +161,7 @@ class MatchConfig:
                             condition: Callable[[pd.DataFrame, str],
                                                 pd.Series],
                             comparison: str | list[str],
-                            error: int | float = 0,
-                            or_equal: bool = False):
+                            kwargs: dict[str, Any] = {}):
         """
         Adds a new match condition to the MatchConfig instance.
 
@@ -177,13 +179,9 @@ class MatchConfig:
             name of the column is the same for both) or a list of two column
             names to compare (if the column names are different).
 
-        error : float | int, optional
-            A value by which one DataFrame's data can vary but still be matched
-            to another DataFrame's data.
-
-        or_equal : bool, optional
-            True if inclusive inequalities can be used (e.g., >= or <=) and
-            False if they cannot be used (e.g., > or <).
+        kwargs : dict[str, Any]
+            A dictionary of additional keyword arguments to pass to the match
+            condition. See each match condition option for applicable keywords.
 
         Returns
         -------
@@ -214,29 +212,29 @@ class MatchConfig:
             else:
                 raise ValueError('Unexpected value passed for comparison.')
 
-        # Append new match condition to list of conditions
-        self.match_conditions.append(
-            {
+        # Create new match condition dictionary
+        match_condition = {
                 'condition': condition,
                 'first_DF_column': first_comparison,
                 'second_DF_column': second_comparison,
-                'error': error,
-                'or_equal': or_equal
+                'kwargs': kwargs
             }
-        )
+
+        # Append new match condition to list of conditions
+        self.match_conditions.append(match_condition)
 
         return None
 
     """ STATIC METHODS """
 
+    """ CONDITIONS """
     # Method to get a slice of a DataFrame where one of its
     # column's values are equal to some value
     @staticmethod
     def IS_EQUAL(value: Any,
                  DF: pd.DataFrame,
                  DF_column_name: str,
-                 error: float | int = 0,
-                 or_equal: bool = False) -> pd.DataFrame:
+                 error: float | int = 0) -> pd.DataFrame:
         """
         Returns slice of a Dataframe where one of its column's
         values are equal to some value.
@@ -256,11 +254,6 @@ class MatchConfig:
         error : float | int, optional
             A float or integer defining acceptable error for float or
             integer value, by default 0.
-
-        or_equal : bool, optional
-            True if value can be equal to values in DataFrame column
-            (NOT USED BY THIS METHOD BUT KEPT FOR PARALLELISM WITH
-            ALTERNATIVE MATCH CONDITIONS), by default False.
 
         Returns
         -------
@@ -286,11 +279,19 @@ class MatchConfig:
                 DF.loc[(DF[DF_column_name] >= series_value_min) &
                        (DF[DF_column_name] <= series_value_max)].copy()
 
+            # Add a column to the slice containing the error
+            # between the actual and expected values
+            DF_slice[f'{DF_column_name} Error'] = \
+                [abs(DF_slice.at[i, DF_column_name]
+                 - value) for i, row_i in DF_slice.iterrows()]
+
         # If an error occurs when trying to get such a slice, pass
         # NOTE: This is intended to catch cases where comparison
         # values are non-numbers
-        except Exception:
-            pass
+        # Also, add an empty error column
+        except TypeError:
+            DF_slice['Value Function Error'] = \
+                [0 for i, row_i in DF_slice.iterrows()]
 
         return DF_slice
 
@@ -301,7 +302,6 @@ class MatchConfig:
     def GREATER_THAN(value: Any,
                      DF: pd.DataFrame,
                      DF_column_name: str,
-                     error: float | int = 0,
                      or_equal: bool = False) -> pd.DataFrame:
         """
         Returns slice of a Dataframe where a passed value is greater
@@ -318,10 +318,6 @@ class MatchConfig:
         DF_column_name : str
             The name of the column in the DataFrame whose values
             are compared against value.
-
-        error : float | int, optional
-            A float or integer defining acceptable error for float or
-            integer value (NOT USED BY THIS METHOD), by default 0.
 
         or_equal : bool, optional
             True if value can be equal to values in DataFrame column,
@@ -367,7 +363,6 @@ class MatchConfig:
     def LESS_THAN(value: Any,
                   DF: pd.DataFrame,
                   DF_column_name: str,
-                  error: float | int = 0,
                   or_equal: bool = False) -> pd.DataFrame:
         """
         Returns slice of a Dataframe where a passed value is less
@@ -384,10 +379,6 @@ class MatchConfig:
         DF_column_name : str
             The name of the column in the DataFrame whose values
             are compared against value.
-
-        error : float | int, optional
-            A float or integer defining acceptable error for float or
-            integer value (NOT USED BY THIS METHOD), by default 0.
 
         or_equal : bool, optional
             True if value can be equal to values in DataFrame column,
@@ -426,6 +417,89 @@ class MatchConfig:
 
         return DF_slice
 
+    # Method to get a slice of a DataFrame where one of its
+    # column's values passed through a function are equal to some value
+    # (i.e., column_value = f(some_value))
+    @staticmethod
+    def FUNCTION_OF(value: Any,
+                    DF: pd.DataFrame,
+                    DF_column_name: str,
+                    value_function: Callable[[Any], Any],
+                    error: float | int = 0) -> pd.DataFrame:
+        """
+        Returns slice of a DataFrame where a passed value is a function
+        of one of its column's values.
+
+        Parameters
+        ----------
+        value : Any
+            A value of any type, checked if a function of a DataFrame's
+            values.
+
+        DF : Pandas DataFrame
+            A Pandas DataFrame to compare against value.
+
+        DF_column_name : str
+            The name of the column in the DataFrame whose values
+            are compared against value.
+
+        value_function : Callable[[Any], Any]
+            A function that accepts a DataFrame's value and returns a value
+            that should be equal to some passed value.
+
+        error : float | int, optional
+            A float or integer defining acceptable error for float or
+            integer value, by default 0.
+
+        Returns
+        -------
+        pd.DataFrame
+            Slice of DataFrame where some value in a given column passed
+            through a function is equal to a passed value.
+
+        """
+
+        # Get a copy of the passed DataFrame
+        DF_copy = DF.copy()
+
+        # Add a column to the DataFrame where each value is a function
+        # of the corresponding row under DF_column_name
+        DF_copy['value_function'] = \
+            DF_copy[DF_column_name].apply(value_function)
+
+        # Get a slice where the comparisons are exactly equal
+        DF_slice = DF.loc[DF['value_function'] == value].copy()
+
+        # Try to get a slice where the comparison is
+        # within specified error margins
+        try:
+
+            # Define upper and lower limits
+            series_value_max = value + error
+            series_value_min = value - error
+
+            # Get a slice
+            DF_slice = \
+                DF.loc[(DF['value_function'] >= series_value_min) &
+                       (DF['value_function'] <= series_value_max)].copy()
+
+            # Add a column to the slice containing the error
+            # between the actual and expected values
+            DF_slice['Value Function Error'] = \
+                [abs(DF_slice.at[i, 'value_function']
+                 - value) for i, row_i in DF_slice.iterrows()]
+
+        # If an error occurs when trying to get such a slice, pass
+        # NOTE: This is intended to catch cases where comparison
+        # values are non-numbers
+        # Also, add an empty error column
+        except TypeError:
+            DF_slice['Value Function Error'] = \
+                [0 for i, row_i in DF_slice.iterrows()]
+
+        return DF_slice
+
+    """ MULTIPLE HITS RULES """
     # Method that gets the first row of a slice, used as the default
     # method of selecting one row of a slice that meets match conditions
     @staticmethod
