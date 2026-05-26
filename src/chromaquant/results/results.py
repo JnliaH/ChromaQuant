@@ -97,7 +97,8 @@ class Results():
         ----------
         formula : Formula
             A Formula instance to add to Results. It is expected that this
-            instance contains a pointer to a DataSet for foroutput resulting formulas to
+            instance contains a pointer to a DataSet for outputting resulting
+            formulas.
 
         Returns
         -------
