@@ -300,8 +300,13 @@ class Breakdown(DataSet):
                              table.data[group_by_column].unique()
                              if group is not None]
 
-            # Sort the list of unique groups
-            unique_groups.sort()
+            # Try to sort the list
+            try:
+                unique_groups.sort()
+
+            # If a type error occurs, pass
+            except TypeError:
+                pass
 
         # Create an empty 1D DataFrame using the unique groups
         self._data = DataFrame({group: [None] for group in unique_groups})
