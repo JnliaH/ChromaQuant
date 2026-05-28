@@ -444,8 +444,13 @@ class Breakdown(DataSet):
                                             table.data[group_col].unique()
                                             if group is not None]
 
-                # Sort the list
-                unique_groups[group_col].sort()
+                # Try to sort the list
+                try:
+                    unique_groups[group_col].sort()
+
+                # If a type error occurs, pass
+                except TypeError:
+                    pass
 
         # Create a new column for group_2 (row headers)
         self._data[group_by_col_2] = \
