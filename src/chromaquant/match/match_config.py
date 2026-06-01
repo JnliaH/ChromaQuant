@@ -579,7 +579,7 @@ class MatchConfig:
 
             # Log a warning
             logger.warning(
-                'Highest value could not be selected due to a '
+                'Lowest value could not be selected due to a '
                 'KeyError, likely because all top matches had NaN '
                 'under the multiple hits column'
                 )
