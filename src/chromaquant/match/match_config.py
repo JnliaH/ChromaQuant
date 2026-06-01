@@ -12,9 +12,22 @@ the match function from match.py or Table.match from a Table object.
 
 """
 
+import logging
 import pandas as pd
 from typing import Any
 from collections.abc import Callable
+from ..logging_and_handling import setup_logger, setup_error_logging
+
+""" LOGGING AND HANDLING """
+
+# Create a logger
+logger = logging.getLogger(__name__)
+
+# Format the logger
+logger = setup_logger(logger)
+
+# Get an error logging decorator
+error_logging = setup_error_logging(logger)
 
 """ CLASS """
 
@@ -530,6 +543,8 @@ class MatchConfig:
     # Method that selects the row with the smallest value in a given column
     # NOTE: will return the first occurrence of the smallest value if multiple
     # values share the same minimum
+    # NOTE: will default to selecting the first row if DF contains all nan
+    # under column_name
     @staticmethod
     def SELECT_LOWEST_VALUE(DF: pd.DataFrame,
                             column_name: str) -> pd.Series:
@@ -551,17 +566,34 @@ class MatchConfig:
 
         """
 
-        # Get the minimum value
-        min_value_index = DF[column_name].idxmin()
+        # Try...
+        try:
+            # To get the minimum value
+            min_value_index = DF[column_name].idxmin()
 
-        # Get the row with the smallest value
-        min_value_row = DF.loc[min_value_index]
+            # Get the row with the smallest value
+            min_value_row = DF.loc[min_value_index]
+
+        # If a KeyError is raised...
+        except KeyError:
+
+            # Log a warning
+            logger.warning(
+                'Highest value could not be selected due to a '
+                'KeyError, likely because all top matches had NaN '
+                'under the multiple hits column'
+                )
+
+            # Get the first row of the DataFrame
+            min_value_row = DF.loc[DF.index.min()]
 
         return min_value_row
 
     # Method that selects the row with the largest value in a given column
     # NOTE: will return the first occurrence of the largest value if multiple
     # values share the same maximum
+    # NOTE: will default to selecting the first row if DF contains all nan
+    # under column_name
     @staticmethod
     def SELECT_HIGHEST_VALUE(DF: pd.DataFrame,
                              column_name: str) -> pd.Series:
@@ -583,10 +615,25 @@ class MatchConfig:
 
         """
 
-        # Get the maximum value
-        max_value_index = DF[column_name].idxmax()
+        # Try...
+        try:
+            # To get the maximum value
+            max_value_index = DF[column_name].idxmax()
 
-        # Get the row with the largest value
-        max_value_row = DF.loc[max_value_index]
+            # Get the row with the largest value
+            max_value_row = DF.loc[max_value_index]
+
+        # If a KeyError is raised...
+        except KeyError:
+
+            # Log a warning
+            logger.warning(
+                'Highest value could not be selected due to a '
+                'KeyError, likely because all top matches had NaN '
+                'under the multiple hits column'
+                )
+
+            # Get the first row of the DataFrame
+            max_value_row = DF.loc[DF.index.min()]
 
         return max_value_row

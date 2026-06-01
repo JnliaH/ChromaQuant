@@ -40,7 +40,8 @@ def setup_logger(logger: logging.Logger) -> logging.Logger:
 
     # Create a formatter object
     formatter = logging.Formatter(
-                "{asctime} - [{name:^8s}][{levelname:^8s}] {message}",
+                "{asctime} - [{name:^8s}: {lineno}][{levelname:^8s}]"
+                " {message}",
                 style='{',
                 datefmt='%Y-%m-%d %H:%M')
 
@@ -48,7 +49,7 @@ def setup_logger(logger: logging.Logger) -> logging.Logger:
     console_handler.setFormatter(formatter)
 
     # Set logger level - NOTE: Change before commit if debugging
-    logger.setLevel(logging.INFO)
+    logger.setLevel(logging.WARNING)
 
     return logger
 
@@ -103,7 +104,7 @@ def setup_error_logging(logger: logging.Logger) -> \
 
             # Log errors if they occur
             except Exception as e:
-                logger.error(e)
+                logger.error(e, stacklevel=2)
                 raise
 
         return decorated_func
