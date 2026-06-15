@@ -10,6 +10,7 @@ like a Results instance.
 
 """
 
+from __future__ import annotations
 import logging
 from openpyxl.utils.cell import coordinate_from_string, \
                                 column_index_from_string
