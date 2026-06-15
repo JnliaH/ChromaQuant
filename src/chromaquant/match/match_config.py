@@ -303,7 +303,7 @@ class MatchConfig:
         # values are non-numbers
         # Also, add an empty error column
         except TypeError:
-            DF_slice['Value Function Error'] = \
+            DF_slice[f'{DF_column_name} Error'] = \
                 [0 for i, row_i in DF_slice.iterrows()]
 
         return DF_slice
@@ -432,7 +432,7 @@ class MatchConfig:
 
     # Method to get a slice of a DataFrame where one of its
     # column's values passed through a function are equal to some value
-    # (i.e., column_value = f(some_value))
+    # (i.e., value = f(column_value))
     @staticmethod
     def FUNCTION_OF(value: Any,
                     DF: pd.DataFrame,
@@ -446,8 +446,8 @@ class MatchConfig:
         Parameters
         ----------
         value : Any
-            A value of any type, checked if a function of a DataFrame's
-            values.
+            A value of any type, checked against the output of a function of
+            a DataFrame's values.
 
         DF : Pandas DataFrame
             A Pandas DataFrame to compare against value.
@@ -481,7 +481,7 @@ class MatchConfig:
             DF_copy[DF_column_name].apply(value_function)
 
         # Get a slice where the comparisons are exactly equal
-        DF_slice = DF.loc[DF['value_function'] == value].copy()
+        DF_slice = DF_copy.loc[DF_copy['value_function'] == value].copy()
 
         # Try to get a slice where the comparison is
         # within specified error margins
@@ -493,14 +493,95 @@ class MatchConfig:
 
             # Get a slice
             DF_slice = \
-                DF.loc[(DF['value_function'] >= series_value_min) &
-                       (DF['value_function'] <= series_value_max)].copy()
+                DF_copy.loc[
+                    (DF_copy['value_function'] >= series_value_min) &
+                    (DF_copy['value_function'] <= series_value_max)
+                    ].copy()
 
             # Add a column to the slice containing the error
             # between the actual and expected values
             DF_slice['Value Function Error'] = \
                 [abs(DF_slice.at[i, 'value_function']
                  - value) for i, row_i in DF_slice.iterrows()]
+
+        # If an error occurs when trying to get such a slice, pass
+        # NOTE: This is intended to catch cases where comparison
+        # values are non-numbers
+        # Also, add an empty error column
+        except TypeError:
+            DF_slice['Value Function Error'] = \
+                [0 for i, row_i in DF_slice.iterrows()]
+
+        return DF_slice
+
+    # Method to get a slice of a DataFrame where one of its
+    # column's values is equal to the function of some value
+    # (i.e., column_value = f(some_value))
+    @staticmethod
+    def INVERSE_FUNCTION_OF(value: Any,
+                            DF: pd.DataFrame,
+                            DF_column_name: str,
+                            value_function: Callable[[Any], Any],
+                            error: float | int = 0) -> pd.DataFrame:
+        """
+        Returns slice of a DataFrame where one of its column's values
+        are a function of some passed value.
+
+        Parameters
+        ----------
+        value : Any
+            A value of any type, checked if a function of a DataFrame's
+            values.
+
+        DF : Pandas DataFrame
+            A Pandas DataFrame to compare against value.
+
+        DF_column_name : str
+            The name of the column in the DataFrame whose values
+            are compared against value.
+
+        value_function : Callable[[Any], Any]
+            A function that accepts some value and returns an output
+            that should be equal to a DataFrame's column values.
+
+        error : float | int, optional
+            A float or integer defining acceptable error for float or
+            integer value, by default 0.
+
+        Returns
+        -------
+        pd.DataFrame
+            Slice of DataFrame where some value passed through a function
+            is equal to values in a given column.
+
+        """
+
+        # Get the result of passing the value through the value_function
+        function_output = value_function(value)
+
+        # Get a slice where the comparisons are exactly equal
+        DF_slice = DF.loc[DF[DF_column_name] == function_output].copy()
+
+        # Try to get a slice where the comparison is
+        # within specified error margins
+        try:
+
+            # Define upper and lower limits
+            series_value_max = function_output + error
+            series_value_min = function_output - error
+
+            # Get a slice
+            DF_slice = \
+                DF.loc[
+                    (DF[DF_column_name] >= series_value_min) &
+                    (DF[DF_column_name] <= series_value_max)
+                    ].copy()
+
+            # Add a column to the slice containing the error
+            # between the actual and expected values
+            DF_slice['Value Function Error'] = \
+                [abs(DF_slice.at[i, DF_column_name]
+                 - function_output) for i, row_i in DF_slice.iterrows()]
 
         # If an error occurs when trying to get such a slice, pass
         # NOTE: This is intended to catch cases where comparison
