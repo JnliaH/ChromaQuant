@@ -3,5 +3,3 @@ molmass~=2025.12.12
 chemformula~=1.5.1
 XlsxWriter~=3.2.9
 openpyxl~=3.1.5
-pytest~=9.0.2
-pre-commit~=4.5.1
