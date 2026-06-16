@@ -238,7 +238,7 @@ class Breakdown(DataSet):
         # Otherwise, if summarize column is not empty...
         elif summarize_column != '':
             # Create an inner formula template
-            formula_template = f'{table.reference[summarize_column]['range']}'
+            formula_template = f"{table.reference[summarize_column]['range']}"
 
         # Otherwise, raise an error
         else:
