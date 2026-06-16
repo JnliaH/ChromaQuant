@@ -1,6 +1,6 @@
 <h1>ChromaQuant</h1>
 
-[![Static Badge](https://img.shields.io/badge/Rorrer-Lab-Blue?labelColor=32006e&color=85754d&link=https%3A%2F%2Fwww.rorrerlab.com%2F)](https://www.rorrerlab.com/)   ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/JnliaH/chromaquant)   ![PyPI - Downloads](https://img.shields.io/pypi/dm/chromaquant)
+[![Static Badge](https://img.shields.io/badge/Rorrer-Lab-Blue?labelColor=32006e&color=85754d&link=https%3A%2F%2Fwww.rorrerlab.com%2F)](https://www.rorrerlab.com/)   ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/JnliaH/chromaquant)   [![CQ Testing](https://github.com/JnliaH/ChromaQuant/actions/workflows/cq-test.yaml/badge.svg)](https://github.com/JnliaH/ChromaQuant/actions/workflows/cq-test.yaml)
 
 <i>A solution for automated chromatography data analysis and reporting.</i>
 
