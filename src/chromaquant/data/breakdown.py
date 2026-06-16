@@ -8,6 +8,8 @@ that can then be used in reporting or as desired.
 
 """
 
+from __future__ import annotations
+
 import logging
 from openpyxl.utils import get_column_letter
 from pandas import DataFrame

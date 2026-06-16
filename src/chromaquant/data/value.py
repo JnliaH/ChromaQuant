@@ -7,6 +7,8 @@ data (e.g., floats, integers, strings).
 
 """
 
+from __future__ import annotations
+
 import logging
 from openpyxl.utils import get_column_letter
 from typing import Any, TYPE_CHECKING

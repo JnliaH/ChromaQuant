@@ -10,6 +10,8 @@ user definition or by operating on an extant column.
 
 """
 
+from __future__ import annotations
+
 from collections.abc import Callable
 import logging
 import pandas as pd
