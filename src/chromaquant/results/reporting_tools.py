@@ -10,11 +10,25 @@ by the Results class (see Results).
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.worksheet import Worksheet
 from pandas import ExcelWriter
 from ..data import Breakdown, Table, Value
 from ..data.dataset import DataSet
+from .theme import Theme
 
 """ FUNCTIONS """
+
+
+# Function to format a given cell
+def format_cell(sheet: Worksheet,
+                cell_coords: str,
+                theme: Theme):
+
+    # Get the cell
+    cell = sheet[cell_coords]
+
+    # Change the font
+    return None
 
 
 # Function to write a Breakdown to Excel
@@ -50,7 +64,8 @@ def report_breakdown(breakdown: Breakdown,
 
 # Function to write a header to Excel
 def report_header(dataset: DataSet,
-                  workbook: Workbook):
+                  workbook: Workbook,
+                  theme: Theme):
     """
     Writes a DataSet's header to Excel.
 
@@ -60,6 +75,8 @@ def report_header(dataset: DataSet,
         Dataset to export the header of.
     workbook : Workbook
         Active openpyxl workbook.
+    theme : Theme
+        Theme to use in formatting header.
 
     Returns
     -------
@@ -80,13 +97,14 @@ def report_header(dataset: DataSet,
     # Open the dataset's sheet
     sheet = workbook[dataset.sheet]
 
+    # Get the header's start cell
+    cell = get_column_letter(dataset.start_column) + str(dataset.start_row)
+
     # Write the header to the start cell (adjusted from absolute)
-    cell = sheet.cell(dataset.start_row + 1,
-                      dataset.start_column + 1,
-                      value=dataset.header)
+    sheet[cell] = dataset.header
 
     # Center the header cell
-    cell.alignment = Alignment(horizontal='center')
+    sheet[cell].alignment = Alignment(horizontal='center')
 
     # Try to get the number of columns in the DataSet's data,
     # only working for Table, Breakdown
@@ -143,7 +161,8 @@ def report_table(table: Table,
 
 # Function to write a Value to Excel
 def report_value(value: Value,
-                 workbook: Workbook):
+                 workbook: Workbook,
+                 theme: Theme):
     """
     Writes a Value to Excel.
 
@@ -153,6 +172,8 @@ def report_value(value: Value,
         Value to export.
     workbook : Workbook
         Active openpyxl workbook.
+    theme : Theme
+        Theme to use in formatting value.
 
     Returns
     -------
@@ -173,10 +194,11 @@ def report_value(value: Value,
         value.start_row + 1 if value.header == '' \
         else value.start_row + 2
 
-    # Write the Value's data to the cell below, adjusting from absolute
-    sheet.cell(start_row,
-               value.start_column + 1,
-               value=value.data)
+    # Get the Value's cell string
+    cell = value.reference['column_letter'] + str(start_row)
+
+    # Write to the cell
+    sheet[cell] = value.data
 
     return None
 

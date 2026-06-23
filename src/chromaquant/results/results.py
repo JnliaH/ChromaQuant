@@ -16,6 +16,7 @@ from .reporting_tools import report_breakdown, report_header, \
                              set_default_format
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
+from .theme import Theme
 
 """ LOGGING AND HANDLING """
 
@@ -55,6 +56,9 @@ class Results():
 
         # Create an empty cache for added formulas
         self._formula_cache = []
+
+        # Load a default theme
+        self.theme = Theme()
 
     """ METHODS """
     # Method to add a new Breakdown to the results
@@ -243,19 +247,19 @@ class Results():
         # For every Value in Results...
         for value in self.values:
             # Write the Value to Excel
-            report_value(value, workbook)
+            report_value(value, workbook, self.theme)
             # Write the Value header
-            report_header(value, workbook)
+            report_header(value, workbook, self.theme)
 
         # For every Table in Results...
         for table in self.tables:
             # Write the Table header
-            report_header(table, workbook)
+            report_header(table, workbook, self.theme)
 
         # For every Breakdown in Results...
         for breakdown in self.breakdowns:
             # Write the Breakdown header
-            report_header(breakdown, workbook)
+            report_header(breakdown, workbook, self.theme)
 
         # Set the default format for all cells
         set_default_format(workbook)

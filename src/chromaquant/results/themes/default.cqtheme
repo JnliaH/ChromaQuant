@@ -1,0 +1,283 @@
+{
+    "header":
+        {
+            "font": 
+            {
+                "name": "Calibri",
+                "size": 11,
+                "bold": true,
+                "italic": false,
+                "vert_align": null,
+                "underline": "null",
+                "strike": false,
+                "color": "000000"
+            },
+
+            "pattern_fill":
+            {
+                "fill_type": "solid",
+                "start_color": "A6C9EC",
+                "end_color": "A6C9EC"
+            },
+
+            "border":
+            {
+                "left":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "right":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "top":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "bottom":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "diagonal":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "outline":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "vertical":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "horizontal":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "diagonal_direction": 0
+            },
+
+            "alignment":
+            {
+                "horizontal": "center",
+                "vertical": "center",
+                "text_rotation": 0,
+                "wrap_text": false,
+                "shrink_to_fit": false,
+                "indent": 0
+
+            },
+
+            "protection":
+            {
+                "locked": false,
+                "hidden": false
+            },
+
+            "number_format": "General"
+        },
+
+    "subheader":
+        {
+            "font": 
+            {
+                "name": "Calibri",
+                "size": 11,
+                "bold": true,
+                "italic": false,
+                "vert_align": null,
+                "underline": "null",
+                "strike": false,
+                "color": "000000"
+            },
+
+            "pattern_fill":
+            {
+                "fill_type": "solid",
+                "start_color": "DAE9F8",
+                "end_color": "DAE9F8"
+            },
+
+            "border":
+            {
+                "left":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "right":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "top":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "bottom":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "diagonal":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "outline":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "vertical":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "horizontal":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "diagonal_direction": 0
+            },
+
+            "alignment":
+            {
+                "horizontal": "center",
+                "vertical": "center",
+                "text_rotation": 0,
+                "wrap_text": false,
+                "shrink_to_fit": false,
+                "indent": 0
+
+            },
+
+            "protection":
+            {
+                "locked": false,
+                "hidden": false
+            },
+
+            "number_format": "General"
+        },
+
+    "body":
+        {
+            "font": 
+            {
+                "name": "Calibri",
+                "size": 11,
+                "bold": true,
+                "italic": false,
+                "vert_align": null,
+                "underline": "null",
+                "strike": false,
+                "color": "000000"
+            },
+
+            "pattern_fill":
+            {
+                "fill_type": "solid",
+                "start_color": "FFFFFF",
+                "end_color": "FFFFFF"
+            },
+
+            "border":
+            {
+                "left":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "right":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "top":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "bottom":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "diagonal":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "outline":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "vertical":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "horizontal":
+                {
+                    "border_style": null,
+                    "color": "000000"
+                },
+
+                "diagonal_direction": 0
+            },
+
+            "alignment":
+            {
+                "horizontal": "left",
+                "vertical": "top",
+                "text_rotation": 0,
+                "wrap_text": false,
+                "shrink_to_fit": false,
+                "indent": 0
+
+            },
+
+            "protection":
+            {
+                "locked": false,
+                "hidden": false
+            },
+
+            "number_format": "General"
+        }
+}
