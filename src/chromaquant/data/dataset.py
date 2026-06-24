@@ -18,6 +18,7 @@ from typing import Any, TYPE_CHECKING
 if TYPE_CHECKING:
     from ..results import Results
 import uuid
+from ..results import Theme
 from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """
@@ -102,6 +103,9 @@ class DataSet:
 
         # Add a mediator attribute
         self._mediator = results
+
+        # Create default theme
+        self._theme = Theme()
 
     # Define the object representation by including its data
     def __repr__(self):
@@ -225,6 +229,20 @@ class DataSet:
     @mediator.setter
     def mediator(self, mediator: Results):
         self._mediator = mediator
+
+    # Theme property
+    # Only allow getting and setting
+    # Getter
+    @property
+    def theme(self):
+        return self._theme
+
+    # Setter
+    @theme.setter
+    def theme(self, value: Theme):
+        self._theme = value
+
+        return None
 
     """ STATIC METHODS """
 

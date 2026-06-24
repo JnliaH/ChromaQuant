@@ -8,26 +8,51 @@ by the Results class (see Results).
 """
 
 from openpyxl import Workbook
-from openpyxl.styles import Alignment
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
+from openpyxl.cell.cell import Cell
 from pandas import ExcelWriter
 from ..data import Breakdown, Table, Value
 from ..data.dataset import DataSet
-from .theme import Theme
+from .theme import Theme, StyleGroup
 
 """ FUNCTIONS """
 
 
-# Function to format a given cell
+# Function to format a given cell using a passed StyleGroup
 def format_cell(sheet: Worksheet,
-                cell_coords: str,
-                theme: Theme):
+                cell: Cell,
+                group: StyleGroup):
 
-    # Get the cell
-    cell = sheet[cell_coords]
+    # Change all settings
+    cell.font = group.font
+    cell.fill = group.fill
+    cell.border = group.border
+    cell.alignment = group.alignment
+    cell.protection = group.protection
+    cell.number_format = group.number_format
 
-    # Change the font
+    return None
+
+
+# Function to format a range of cells
+def format_range(sheet: Worksheet,
+                 start_cell: Cell,
+                 stop_cell: Cell,
+                 group: StyleGroup):
+
+    # Get the cell range string
+    cell_range = f"{start_cell.coordinate}:{stop_cell.coordinate}"
+
+    # For every row in the range...
+    for row in sheet[cell_range]:
+
+        # For every cell in the row...
+        for cell in row:
+
+            # Format the cell
+            format_cell(sheet, cell, group)
+
     return None
 
 
@@ -103,8 +128,8 @@ def report_header(dataset: DataSet,
     # Write the header to the start cell (adjusted from absolute)
     sheet[cell] = dataset.header
 
-    # Center the header cell
-    sheet[cell].alignment = Alignment(horizontal='center')
+    # Format the cell using the dataset's theme attribute's header style
+    format_cell(sheet, sheet[cell], dataset.theme.header)
 
     # Try to get the number of columns in the DataSet's data,
     # only working for Table, Breakdown
@@ -200,6 +225,9 @@ def report_value(value: Value,
     # Write to the cell
     sheet[cell] = value.data
 
+    # Format the cell using the value's theme attribute's body style
+    format_cell(sheet, sheet[cell], value.theme.body)
+
     return None
 
 
@@ -251,10 +279,10 @@ def remove_borders(table_or_breakdown: Table | Breakdown,
     return None
 
 
-# Function to set all cells in a workbook to a default format
-def set_default_format(workbook: Workbook):
+# Function to set all columns to a default width
+def set_default_col_widths(workbook: Workbook):
     """
-    Sets all cells in an active openpyxl workbook to a default format.
+    Sets all columns in an active openpyxl workbook to a default width.
 
     Parameters
     ----------

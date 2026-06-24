@@ -130,6 +130,54 @@ class Table(DataSet):
         self._data = pd.DataFrame()
         self._update_table()
 
+    # Footprint
+    # Only getter
+    @property
+    def footprint(self):
+
+        # Create a default footprint
+        self._footprint = {'header': '',
+                           'subheader': '',
+                           'body': {}}
+
+        # For every column in the reference...
+        for column, column_dict in self.reference.items():
+            # Add the column range to the body dictionary in footprint
+            self._footprint['body'][column] = column_dict['range']
+
+        # Get the starting row and column indices
+        start_row, start_column_index = self.get_cell_indices(self.start_cell)
+
+        # Get the starting column's letter
+        start_column = get_column_letter(start_column_index + 1)
+
+        # Find the final column index by adding the length of the columns
+        # attribute
+        end_column_index = start_column_index + len(self.columns)
+
+        # Get the final column letter
+        end_column = get_column_letter(end_column_index + 1)
+
+        # If there is a header...
+        if self.header:
+
+            # Add the header range
+            self._footprint['header'] = \
+                f'${start_column}${start_row+1}:${end_column}${start_row+1}'
+
+            # Add the subheader range
+            self._footprint['subheader'] = \
+                f'${start_column}${start_row+2}:${end_column}${start_row+2}'
+
+        # Otherwise...
+        else:
+
+            # Add the subheader range
+            self._footprint['subheader'] = \
+                f'${start_column}${start_row+1}:${end_column}${start_row+1}'
+
+        return self._footprint
+
     # Sheet properties
     # Getter
     @property

@@ -13,5 +13,5 @@ Reporting Tools
       report_header
       report_table
       report_value
-      set_default_format
+      set_default_col_widths
    

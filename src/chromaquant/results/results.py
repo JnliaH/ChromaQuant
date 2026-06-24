@@ -13,10 +13,9 @@ from pandas.io.formats import excel
 from ..data import Table, Value, Breakdown
 from .reporting_tools import report_breakdown, report_header, \
                              report_table, report_value, \
-                             set_default_format
+                             set_default_col_widths
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
-from .theme import Theme
 
 """ LOGGING AND HANDLING """
 
@@ -43,22 +42,19 @@ class Results():
     def __init__(self):
 
         # Initialize the tables list
-        self.tables: list[Table] = []
+        self._tables: list[Table] = []
 
         # Initialize the values list
-        self.values: list[Value] = []
+        self._values: list[Value] = []
 
         # Initialize the breakdowns list
-        self.breakdowns: list[Breakdown] = []
+        self._breakdowns: list[Breakdown] = []
 
         # Initialize the DataSet references dictionary
-        self.dataset_references = {}
+        self._dataset_references = {}
 
         # Create an empty cache for added formulas
         self._formula_cache = []
-
-        # Load a default theme
-        self.theme = Theme()
 
     """ METHODS """
     # Method to add a new Breakdown to the results
@@ -79,8 +75,9 @@ class Results():
 
         # Set the breakdown's mediator to the current object
         breakdown.mediator = self
+
         # Add the breakdown to the breakdowns list
-        self.breakdowns.append(breakdown)
+        self._breakdowns.append(breakdown)
 
         return None
 
@@ -116,19 +113,19 @@ class Results():
         self._formula_cache.append(formula)
 
         # Get the new formulas
-        formula.insert_references(self.dataset_references)
+        formula.insert_references(self._dataset_references)
 
         # If there is a 'table' and 'key' in the formula's attributes...
         if formula.table_pointer != '' and formula.key_pointer != '':
 
             # For every table...
-            for i in range(len(self.tables)):
+            for i in range(len(self._tables)):
 
                 # If the table id is equal to the formula's...
-                if self.tables[i].id == formula.table_pointer:
+                if self._tables[i].id == formula.table_pointer:
 
                     # Add the new formulas to the pointed column
-                    self.tables[i].data[formula.key_pointer] = \
+                    self._tables[i].data[formula.key_pointer] = \
                         formula.referenced_formulas
 
                 # Otherwise, pass
@@ -139,13 +136,13 @@ class Results():
         elif formula.key_pointer != '':
 
             # For every key...
-            for i in range(len(self.values)):
+            for i in range(len(self._values)):
 
                 # If the table id is equal to the formula's...
-                if self.values[i].id == formula.key_pointer:
+                if self._values[i].id == formula.key_pointer:
 
                     # Add the new formulas to the pointed column
-                    self.values[i].data = \
+                    self._values[i].data = \
                         formula.referenced_formulas
 
                 # Otherwise, pass
@@ -178,7 +175,7 @@ class Results():
         table.mediator = self
 
         # Add the table to the tables list
-        self.tables.append(table)
+        self._tables.append(table)
 
         return None
 
@@ -201,7 +198,7 @@ class Results():
         value.mediator = self
 
         # Add the value to the values list
-        self.values.append(value)
+        self._values.append(value)
 
         return None
 
@@ -230,12 +227,12 @@ class Results():
         with pd.ExcelWriter(path, engine='xlsxwriter') as writer:
 
             # For every Table in Results...
-            for table in self.tables:
+            for table in self._tables:
                 # Write the Table to Excel
                 report_table(table, writer)
 
             # For every Breakdown in Results...
-            for breakdown in self.breakdowns:
+            for breakdown in self._breakdowns:
                 # Write the Breakdown to Excel
                 report_breakdown(breakdown, writer)
 
@@ -245,24 +242,24 @@ class Results():
         workbook = openpyxl.load_workbook(filename=path)
 
         # For every Value in Results...
-        for value in self.values:
+        for value in self._values:
             # Write the Value to Excel
-            report_value(value, workbook, self.theme)
+            report_value(value, workbook)
             # Write the Value header
-            report_header(value, workbook, self.theme)
+            report_header(value, workbook)
 
         # For every Table in Results...
-        for table in self.tables:
+        for table in self._tables:
             # Write the Table header
-            report_header(table, workbook, self.theme)
+            report_header(table, workbook)
 
         # For every Breakdown in Results...
-        for breakdown in self.breakdowns:
+        for breakdown in self._breakdowns:
             # Write the Breakdown header
-            report_header(breakdown, workbook, self.theme)
+            report_header(breakdown, workbook)
 
-        # Set the default format for all cells
-        set_default_format(workbook)
+        # Set the default format for all columns
+        set_default_col_widths(workbook)
 
         # Save and close the Excel workbook
         workbook.save(path)
@@ -292,7 +289,7 @@ class Results():
             self.add_formula(formula)
 
         # For every breakdown...
-        for breakdown in self.breakdowns:
+        for breakdown in self._breakdowns:
             # Get the method used to construct the breakdown
             breakdown_constructor = breakdown._breakdown_cache['function']
             # Reformulate the breakdown based on its cache
@@ -304,7 +301,7 @@ class Results():
     @error_logging
     def update_references(self):
         """
-        Update Value and Table references, used before formula creation.
+        Update Value and Table references.
 
         Returns
         -------
@@ -312,11 +309,11 @@ class Results():
         """
 
         # Add table references for each table
-        for table in self.tables:
-            self.dataset_references[table.id] = table.reference
+        for table in self._tables:
+            self._dataset_references[table.id] = table.reference
 
         # Add value references for each value
-        for value in self.values:
-            self.dataset_references[value.id] = value.reference
+        for value in self._values:
+            self._dataset_references[value.id] = value.reference
 
         return None
