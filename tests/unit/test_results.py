@@ -41,7 +41,7 @@ class TestResults:
         SomeResults.add_table(SomeTable)
 
         # Check if the Table in Results is the same as original Table
-        for table in SomeResults.tables:
+        for table in SomeResults._tables:
             if table.id == SomeTable.id:
                 if table == SomeTable:
                     test_result = True
@@ -70,7 +70,7 @@ class TestResults:
         SomeResults.add_value(SomeValue)
 
         # Check if the Value in Results is the same as original Value
-        for value in SomeResults.values:
+        for value in SomeResults._values:
             if value.id == SomeValue.id:
                 if value == SomeValue:
                     test_result = True
@@ -126,7 +126,7 @@ class TestResults:
         SomeResults.add_formula(SomeFormula)
 
         # If the expected formula matches the new Results formula...
-        for table in SomeResults.tables:
+        for table in SomeResults._tables:
             if table.id == SomeTable.id:
 
                 if table.data.at[0, 'C'] == expected_formula:

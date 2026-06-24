@@ -33,4 +33,4 @@ class TestTheme:
         # Create a new theme
         new_theme = cq.Theme()
 
-        assert new_theme.header.alignment['horizontal'] == 'center'
+        assert new_theme.header._alignment['horizontal'] == 'center'
