@@ -13,17 +13,29 @@ from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.cell.cell import Cell
 from pandas import ExcelWriter
 from ..data import Breakdown, Table, Value
-from ..data.dataset import DataSet
-from .theme import Theme, StyleGroup
+from ..theme.theme import StyleGroup
 
 """ FUNCTIONS """
 
 
 # Function to format a given cell using a passed StyleGroup
-def format_cell(sheet: Worksheet,
-                cell: Cell,
+def format_cell(cell: Cell,
                 group: StyleGroup):
+    """
+    Format a cell in Excel.
 
+    Parameters
+    ----------
+    cell : Cell
+        Cell to format.
+    group : StyleGroup
+        Style to format the cell by.
+
+    Returns
+    -------
+    None
+
+    """
     # Change all settings
     cell.font = group.font
     cell.fill = group.fill
@@ -35,14 +47,78 @@ def format_cell(sheet: Worksheet,
     return None
 
 
+# Function to format a table or breakdown
+def format_multicell_dataset(dataset: Table | Breakdown,
+                             workbook: Workbook):
+    """
+    Format a Table or Breakdown in Excel.
+
+    Parameters
+    ----------
+    dataset : Table | Breakdown
+        Dataset to format.
+    workbook : Workbook
+        Active openpyxl workbook.
+
+    Returns
+    -------
+    None
+
+    """
+
+    # Get the dataset's footprint
+    footprint = dataset.footprint
+
+    # If dataset's sheet does not exist in workbook...
+    if dataset.sheet not in workbook.sheetnames:
+        # Create it
+        workbook.create_sheet(dataset.sheet)
+
+    # Open the dataset's sheet
+    sheet = workbook[dataset.sheet]
+
+    # If the dataset has a header...
+    if dataset.header != '':
+
+        # For every cell in the header footprint...
+        # NOTE: assumes header footprint covers only one row
+        for cell in sheet[footprint['header']][0]:
+            # Write the header value to cell
+            cell.value = dataset.header
+
+        # Format the header range using the dataset's theme attribute's header
+        # style
+        format_range(sheet, footprint['header'], dataset.theme.header)
+
+        # Get the number of columns in the DataSet's data
+        num_cols = dataset.data.shape[1]
+
+        # Merge the header cell with adjacent cells
+        # to center the header across the DataFrame
+        sheet.merge_cells(start_row=dataset.start_row + 1,
+                          start_column=dataset.start_column + 1,
+                          end_row=dataset.start_row + 1,
+                          end_column=dataset.start_column + num_cols)
+
+    # Otherwise, pass
+    else:
+        pass
+
+    # Format the subheader range using the subheader style
+    format_range(sheet, footprint['subheader'], dataset.theme.subheader)
+
+    # For every column in the body footprint...
+    for column, range in footprint['body'].items():
+        # Format the column range using the subheader body
+        format_range(sheet, range, dataset.theme.body)
+
+    return None
+
+
 # Function to format a range of cells
 def format_range(sheet: Worksheet,
-                 start_cell: Cell,
-                 stop_cell: Cell,
+                 cell_range: str,
                  group: StyleGroup):
-
-    # Get the cell range string
-    cell_range = f"{start_cell.coordinate}:{stop_cell.coordinate}"
 
     # For every row in the range...
     for row in sheet[cell_range]:
@@ -51,7 +127,7 @@ def format_range(sheet: Worksheet,
         for cell in row:
 
             # Format the cell
-            format_cell(sheet, cell, group)
+            format_cell(cell, group)
 
     return None
 
@@ -85,67 +161,6 @@ def report_breakdown(breakdown: Breakdown,
                             startcol=breakdown.start_column,
                             startrow=start_row,
                             index=False)
-
-
-# Function to write a header to Excel
-def report_header(dataset: DataSet,
-                  workbook: Workbook,
-                  theme: Theme):
-    """
-    Writes a DataSet's header to Excel.
-
-    Parameters
-    ----------
-    dataset : DataSet
-        Dataset to export the header of.
-    workbook : Workbook
-        Active openpyxl workbook.
-    theme : Theme
-        Theme to use in formatting header.
-
-    Returns
-    -------
-    None
-
-    """
-
-    # If the dataset has a blank header...
-    if dataset.header == '':
-        # Don't report header
-        return None
-
-    # If dataset's sheet does not exist in workbook...
-    if dataset.sheet not in workbook.sheetnames:
-        # Create it
-        workbook.create_sheet(dataset.sheet)
-
-    # Open the dataset's sheet
-    sheet = workbook[dataset.sheet]
-
-    # Get the header's start cell
-    cell = get_column_letter(dataset.start_column) + str(dataset.start_row)
-
-    # Write the header to the start cell (adjusted from absolute)
-    sheet[cell] = dataset.header
-
-    # Format the cell using the dataset's theme attribute's header style
-    format_cell(sheet, sheet[cell], dataset.theme.header)
-
-    # Try to get the number of columns in the DataSet's data,
-    # only working for Table, Breakdown
-    try:
-        num_cols = dataset.data.shape[1]
-
-        # If this works, merge the header cell with adjacent cells
-        # to center the header across the DataFrame
-        sheet.merge_cells(start_row=dataset.start_row + 1,
-                          start_column=dataset.start_column + 1,
-                          end_row=dataset.start_row + 1,
-                          end_column=dataset.start_column + num_cols)
-
-    # If this does not work, pass
-    except AttributeError:
-        pass
 
     return None
 
@@ -186,8 +201,7 @@ def report_table(table: Table,
 
 # Function to write a Value to Excel
 def report_value(value: Value,
-                 workbook: Workbook,
-                 theme: Theme):
+                 workbook: Workbook):
     """
     Writes a Value to Excel.
 
@@ -197,8 +211,6 @@ def report_value(value: Value,
         Value to export.
     workbook : Workbook
         Active openpyxl workbook.
-    theme : Theme
-        Theme to use in formatting value.
 
     Returns
     -------
@@ -214,67 +226,31 @@ def report_value(value: Value,
     # Open the Value's sheet
     sheet = workbook[value.sheet]
 
-    # Get the start row based on whether there is a header or not
-    start_row = \
-        value.start_row + 1 if value.header == '' \
-        else value.start_row + 2
+    # Get the start cell
+    start_cell = \
+        get_column_letter(value.start_column) + str(value.start_row)
 
-    # Get the Value's cell string
-    cell = value.reference['column_letter'] + str(start_row)
+    # Get the cell after
+    second_cell = \
+        get_column_letter(value.start_column) + str(value.start_row + 1)
 
-    # Write to the cell
-    sheet[cell] = value.data
+    # If there is a header...
+    if value.header != '':
+        # Write the header to the start cell
+        sheet[start_cell] = value.header
+        # Format the cell using the value's theme's header style
+        format_cell(sheet[start_cell], value.theme.header)
+        # Write the value to the second cell
+        sheet[second_cell] = value.data
+        # Format the cell using the value's theme's body style
+        format_cell(sheet[second_cell], value.theme.body)
 
-    # Format the cell using the value's theme attribute's body style
-    format_cell(sheet, sheet[cell], value.theme.body)
-
-    return None
-
-
-# Function to remove a Table or Breakdown's column header borders
-def remove_borders(table_or_breakdown: Table | Breakdown,
-                   workbook: Workbook):
-    """
-    Removes borders around a Table or Breakdown's column headers.
-
-    Parameters
-    ----------
-    table_or_breakdown : Table | Breakdown
-        Table or Breakdown instance.
-    workbook : Workbook
-        Active openpyxl workbook.
-
-    Returns
-    -------
-    None
-
-    """
-
-    # Open the dataset's sheet
-    sheet = workbook[table_or_breakdown.sheet]
-
-    # If the dataset has a header...
-    if table_or_breakdown.header != '':
-
-        # Set the starting row to the start_row plus 2
-        start_row = table_or_breakdown.start_row + 2
-
-    # Otherwise, set the starting row to the start_row plus 1
+    # Otherwise...
     else:
-        start_row = table_or_breakdown.start_row + 1
-
-    # For every column in the index...
-    for column_index in range(
-       table_or_breakdown.start_column,
-       table_or_breakdown.start_column +
-       len(table_or_breakdown.data.columns) + 1):
-
-        # Get the current cell
-        cell = sheet.cell(start_row,
-                          column_index + 1)
-
-        # Set the cell's border to None
-        cell.border = None
+        # Write the value to the start cell
+        sheet[start_cell] = value.data
+        # Format the cell using the value's theme's body style
+        format_cell(sheet[start_cell], value.theme.body)
 
     return None
 

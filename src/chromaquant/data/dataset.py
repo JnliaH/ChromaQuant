@@ -18,8 +18,8 @@ from typing import Any, TYPE_CHECKING
 if TYPE_CHECKING:
     from ..results import Results
 import uuid
-from ..results import Theme
 from ..logging_and_handling import setup_logger, setup_error_logging
+from ..theme import Theme
 
 """ LOGGING AND HANDLING """
 

@@ -135,6 +135,93 @@ class Breakdown(DataSet):
         del self._data
         self._data = DataFrame()
 
+    # Footprint
+    # Only getter
+    @property
+    def footprint(self):
+
+        # Create a default footprint
+        self._footprint = {'header': '',
+                           'subheader': '',
+                           'body': {}}
+
+        # Update the length header
+        self.length: int = \
+            len(self._data)
+
+        # Update the column header
+        self.columns: list[str] = \
+            self._data.columns.tolist()
+
+        # For every column in columns...
+        for column in self.columns:
+
+            # Get the start cell's column letter, adjusting from absolute
+            col_letter = \
+                get_column_letter(self.start_column + 1 +
+                                  self._data.columns.get_loc(column))
+
+            # If there is a header...
+            if self.header != '':
+
+                # Get a start row, adjusting from absolute
+                start_row = self.start_row + 3
+
+                # Get an end row, adjusting from absolute
+                end_row = self.start_row + 2 + self.length
+
+                # Get a range reference, adjusting from absolute
+                column_range = (f"${col_letter}${start_row}:"
+                                f"${col_letter}${end_row}")
+
+            # If there isn't a header...
+            else:
+                # Get a start row, adjusting from absolute
+                start_row = self.start_row + 2
+
+                # Get an end row, adjusting from absolute
+                end_row = self.start_row + 1 + self.length
+
+                # Get a range reference, adjusting from absolute
+                column_range = (f"${col_letter}${start_row}:"
+                                f"${col_letter}${end_row}")
+
+            # Add the column range to the body dictionary in footprint
+            self._footprint['body'][column] = column_range
+
+        # Get the starting row and column indices
+        start_column_index, start_row = self.get_cell_indices(self.start_cell)
+
+        # Get the starting column's letter
+        start_column = get_column_letter(start_column_index + 1)
+
+        # Find the final column index by adding the length of the columns
+        # attribute
+        end_column_index = start_column_index + len(self.columns)
+
+        # Get the final column letter
+        end_column = get_column_letter(end_column_index)
+
+        # If there is a header...
+        if self.header:
+
+            # Add the header range
+            self._footprint['header'] = \
+                f'${start_column}${start_row+1}:${end_column}${start_row+1}'
+
+            # Add the subheader range
+            self._footprint['subheader'] = \
+                f'${start_column}${start_row+2}:${end_column}${start_row+2}'
+
+        # Otherwise...
+        else:
+
+            # Add the subheader range
+            self._footprint['subheader'] = \
+                f'${start_column}${start_row+1}:${end_column}${start_row+1}'
+
+        return self._footprint
+
     # Sheet properties
     # Getter
     @property

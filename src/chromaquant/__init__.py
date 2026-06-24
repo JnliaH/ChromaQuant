@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from .results import Results
-from .results import Theme
+from .theme import Theme
 from .formula import Formula
 from .match import MatchConfig
 from .data import Table

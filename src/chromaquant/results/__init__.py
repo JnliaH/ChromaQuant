@@ -10,4 +10,3 @@ and reporting to Excel.
 """
 
 from .results import Results
-from .theme import Theme

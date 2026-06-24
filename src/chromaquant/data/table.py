@@ -143,10 +143,10 @@ class Table(DataSet):
         # For every column in the reference...
         for column, column_dict in self.reference.items():
             # Add the column range to the body dictionary in footprint
-            self._footprint['body'][column] = column_dict['range']
+            self._footprint['body'][column] = column_dict['plain_range']
 
         # Get the starting row and column indices
-        start_row, start_column_index = self.get_cell_indices(self.start_cell)
+        start_column_index, start_row = self.get_cell_indices(self.start_cell)
 
         # Get the starting column's letter
         start_column = get_column_letter(start_column_index + 1)
@@ -156,7 +156,7 @@ class Table(DataSet):
         end_column_index = start_column_index + len(self.columns)
 
         # Get the final column letter
-        end_column = get_column_letter(end_column_index + 1)
+        end_column = get_column_letter(end_column_index)
 
         # If there is a header...
         if self.header:
@@ -546,6 +546,10 @@ class Table(DataSet):
                                 f"${col_letter}${start_row}:"
                                 f"${col_letter}${end_row}")
 
+                # Get a plain range reference
+                plain_range = (f"${col_letter}${start_row}:"
+                               f"${col_letter}${end_row}")
+
             # If there isn't a header...
             else:
                 # Get a start row, adjusting from absolute
@@ -559,6 +563,10 @@ class Table(DataSet):
                                 f"${col_letter}${start_row}:"
                                 f"${col_letter}${end_row}")
 
+                # Get a plain range reference
+                plain_range = (f"${col_letter}${start_row}:"
+                               f"${col_letter}${end_row}")
+
             # Update the reference object
             self._reference[column] = \
                 {'column_letter': col_letter,
@@ -566,7 +574,8 @@ class Table(DataSet):
                  'end_row': end_row,
                  'sheet': self._sheet,
                  'length': self.length,
-                 'range': column_range}
+                 'range': column_range,
+                 'plain_range': plain_range}
 
         return None
 
@@ -583,12 +592,13 @@ class Table(DataSet):
         """
 
         # Update the length header
-        self.length = \
+        self.length: int = \
             len(self._data)
 
         # Update the column header
         self.columns: list[str] = \
             self._data.columns.tolist()
+
         # Initialize the reference object
         self._reference = {}
 

@@ -11,9 +11,9 @@ import openpyxl
 import pandas as pd
 from pandas.io.formats import excel
 from ..data import Table, Value, Breakdown
-from .reporting_tools import report_breakdown, report_header, \
-                             report_table, report_value, \
-                             set_default_col_widths
+from .reporting_tools import report_breakdown, report_table, report_value, \
+                             set_default_col_widths, \
+                             format_multicell_dataset
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
 
@@ -245,20 +245,18 @@ class Results():
         for value in self._values:
             # Write the Value to Excel
             report_value(value, workbook)
-            # Write the Value header
-            report_header(value, workbook)
 
         # For every Table in Results...
         for table in self._tables:
-            # Write the Table header
-            report_header(table, workbook)
+            # Format the Table
+            format_multicell_dataset(table, workbook)
 
         # For every Breakdown in Results...
         for breakdown in self._breakdowns:
-            # Write the Breakdown header
-            report_header(breakdown, workbook)
+            # Format the Breakdown
+            format_multicell_dataset(breakdown, workbook)
 
-        # Set the default format for all columns
+        # Set the default width for all columns
         set_default_col_widths(workbook)
 
         # Save and close the Excel workbook

@@ -70,40 +70,40 @@ class StyleGroup:
         fill_end_color : str, optional
             The ending color for the cell background, by default 'FFFFFF'
 
-        border_left : list[str  |  None], optional
-            Style and color of the left cell border as [style, color].
-            Style must be one of {'mediumDashed', 'mediumDashDotDot',
-            'dashDot', 'dashed', 'slantDashDot', 'dashDotDot', 'thick',
-            'thin', 'dotted', 'double', 'medium', 'hair', 'mediumDashDot'}.
-            By default [None, '000000']
+        border_left : dict[str, str | None], optional
+            Style and color of the vertical cell border. Style must be one of
+            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+            'medium', 'hair', 'mediumDashDot'}. By default
+            {'border_style': None, 'color': '000000'}
 
-        border_right : list[str  |  None], optional
-            Style and color of the right cell border as [style, color].
-            Style must be one of {'mediumDashed', 'mediumDashDotDot',
-            'dashDot', 'dashed', 'slantDashDot', 'dashDotDot', 'thick',
-            'thin', 'dotted', 'double', 'medium', 'hair', 'mediumDashDot'}.
-            By default [None, '000000']
+        border_right : dict[str, str | None], optional
+            Style and color of the vertical cell border. Style must be one of
+            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+            'medium', 'hair', 'mediumDashDot'}. By default
+            {'border_style': None, 'color': '000000'}
 
-        border_top : list[str  |  None], optional
-            Style and color of the top cell border as [style, color].
-            Style must be one of {'mediumDashed', 'mediumDashDotDot',
-            'dashDot', 'dashed', 'slantDashDot', 'dashDotDot', 'thick',
-            'thin', 'dotted', 'double', 'medium', 'hair', 'mediumDashDot'}.
-            By default [None, '000000']
+        border_top : dict[str, str | None], optional
+            Style and color of the vertical cell border. Style must be one of
+            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+            'medium', 'hair', 'mediumDashDot'}. By default
+            {'border_style': None, 'color': '000000'}
 
-        border_bottom : list[str  |  None], optional
-            Style and color of the bottom cell border as [style, color].
-            Style must be one of {'mediumDashed', 'mediumDashDotDot',
-            'dashDot', 'dashed', 'slantDashDot', 'dashDotDot', 'thick',
-            'thin', 'dotted', 'double', 'medium', 'hair', 'mediumDashDot'}.
-            By default [None, '000000']
+        border_bottom : dict[str, str | None], optional
+            Style and color of the vertical cell border. Style must be one of
+            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+            'medium', 'hair', 'mediumDashDot'}. By default
+            {'border_style': None, 'color': '000000'}
 
-        border_diagonal : list[str  |  None], optional
-            Style and color of the diagonal cell border as [style, color]
-            Style must be one of {'mediumDashed', 'mediumDashDotDot',
-            'dashDot', 'dashed', 'slantDashDot', 'dashDotDot', 'thick',
-            'thin', 'dotted', 'double', 'medium', 'hair', 'mediumDashDot'}.
-            By default [None, '000000']
+        border_diagonal : dict[str, str | None], optional
+            Style and color of the vertical cell border. Style must be one of
+            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+            'medium', 'hair', 'mediumDashDot'}. By default
+            {'border_style': None, 'color': '000000'}
 
         border_diagonal_up : bool, optional
             Whether to draw the diagonal from bottom-left to top-right,
@@ -113,26 +113,22 @@ class StyleGroup:
             Whether to draw the diagonal from top-left to bottom-right,
             by default False
 
-        border_outline : list[str  |  None], optional
-            Style and color of the outline cell border as [style, color].
-            Style must be one of {'mediumDashed', 'mediumDashDotDot',
-            'dashDot', 'dashed', 'slantDashDot', 'dashDotDot', 'thick',
-            'thin', 'dotted', 'double', 'medium', 'hair', 'mediumDashDot'}.
-            By default [None, '000000']
+        border_outline : bool, optional
+            Whether to draw the cell outline, by default False
 
-        border_vertical : list[str  |  None], optional
-            Style and color of the vertical cell border as [style, color].
-            Style must be one of {'mediumDashed', 'mediumDashDotDot',
-            'dashDot', 'dashed', 'slantDashDot', 'dashDotDot', 'thick',
-            'thin', 'dotted', 'double', 'medium', 'hair', 'mediumDashDot'}.
-            By default [None, '000000']
+        border_vertical : dict[str, str | None], optional
+            Style and color of the vertical cell border. Style must be one of
+            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+            'medium', 'hair', 'mediumDashDot'}. By default
+            {'border_style': None, 'color': '000000'}
 
-        border_horizontal : list[str  |  None], optional
-            Style and color of the horizontal cell border as [style, color].
-            Style must be one of {'mediumDashed', 'mediumDashDotDot',
-            'dashDot', 'dashed', 'slantDashDot', 'dashDotDot', 'thick',
-            'thin', 'dotted', 'double', 'medium', 'hair', 'mediumDashDot'}.
-            By default [None, '000000']
+        border_horizontal : dict[str, str | None], optional
+            Style and color of the vertical cell border. Style must be one of
+            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+            'medium', 'hair', 'mediumDashDot'}. By default
+            {'border_style': None, 'color': '000000'}
 
         alignment_horizontal : {'left', 'center', 'right', 'general', 'fill', 'justify', 'centerContinuous', 'distributed'}, optional
             The horizontal alignment setting, by default 'general'
@@ -179,16 +175,30 @@ class StyleGroup:
                  fill_type: str | None = None,
                  fill_start_color: str = 'FFFFFF',
                  fill_end_color: str = 'FFFFFF',
-                 border_left: list[str | None] = [None, '000000'],
-                 border_right: list[str | None] = [None, '000000'],
-                 border_top: list[str | None] = [None, '000000'],
-                 border_bottom: list[str | None] = [None, '000000'],
-                 border_diagonal: list[str | None] = [None, '000000'],
+                 border_left:
+                 dict[str, str | None] =
+                 {'border_style': None, 'color': '000000'},
+                 border_right:
+                 dict[str, str | None] =
+                 {'border_style': None, 'color': '000000'},
+                 border_top:
+                 dict[str, str | None] =
+                 {'border_style': None, 'color': '000000'},
+                 border_bottom:
+                 dict[str, str | None] =
+                 {'border_style': None, 'color': '000000'},
+                 border_diagonal:
+                 dict[str, str | None] =
+                 {'border_style': None, 'color': '000000'},
                  border_diagonal_up: bool = False,
                  border_diagonal_down: bool = False,
-                 border_outline: list[str | None] = [None, '000000'],
-                 border_vertical: list[str | None] = [None, '000000'],
-                 border_horizontal: list[str | None] = [None, '000000'],
+                 border_outline: bool = False,
+                 border_vertical:
+                 dict[str, str | None] =
+                 {'border_style': None, 'color': '000000'},
+                 border_horizontal:
+                 dict[str, str | None] =
+                 {'border_style': None, 'color': '000000'},
                  alignment_horizontal: str = 'general',
                  alignment_vertical: str = 'bottom',
                  alignment_text_rotation: int = 0,
@@ -219,25 +229,25 @@ class StyleGroup:
 
         # Default Border values
         self._border = {'left':
-                        Side(border_left[0], border_left[1]),
+                        border_left,
                         'right':
-                        Side(border_right[0], border_right[1]),
+                        border_right,
                         'top':
-                        Side(border_top[0], border_top[1]),
+                        border_top,
                         'bottom':
-                        Side(border_bottom[0], border_bottom[1]),
+                        border_bottom,
                         'diagonal':
-                        Side(border_diagonal[0], border_diagonal[1]),
-                        'diagonal_up':
+                        border_diagonal,
+                        'diagonalUp':
                         border_diagonal_up,
-                        'diagonal_down':
+                        'diagonalDown':
                         border_diagonal_down,
                         'outline':
-                        Side(border_outline[0], border_outline[1]),
+                        border_outline,
                         'vertical':
-                        Side(border_vertical[0], border_vertical[1]),
+                        border_vertical,
                         'horizontal':
-                        Side(border_horizontal[0], border_horizontal[1])
+                        border_horizontal,
                         }
 
         # Default Alignment values
@@ -259,6 +269,10 @@ class StyleGroup:
 
         # Create empty column pointer
         self.column_pointer = ''
+
+        # Get a list of acceptable border sides
+        self.border_side_list = ['left', 'right', 'top', 'bottom', 'diagonal',
+                                 'vertical', 'horizontal']
 
     # Method to add a pointer to the StyleGroup
     @error_logging
@@ -299,8 +313,22 @@ class StyleGroup:
     # Getter
     @property
     def border(self):
-        # Return the Fill object as evaluated at get
-        return Border(**self._border)
+        # Get a new dictionary for each side with values as Side
+        # with arguments as border dictionary values, checking that
+        # each argument processed is a valid side
+        border_sides = {border_side: Side(**border_side_dict)
+                        for border_side, border_side_dict
+                        in self._border.items()
+                        if border_side in self.border_side_list}
+        # Get a dictionary of non-side arguments
+        border_nonsides = {border_key: border_val
+                           for border_key, border_val
+                           in self._border.items()
+                           if border_key not in self.border_side_list}
+        # Get a merged kwargs dictionary
+        border_kwargs = border_sides | border_nonsides
+        # Return the Border object as evaluated at get
+        return Border(**border_kwargs)
 
     # Setter
     @border.setter
@@ -311,7 +339,7 @@ class StyleGroup:
     # Getter
     @property
     def alignment(self):
-        # Return the Fill object as evaluated at get
+        # Return the Alignment object as evaluated at get
         return Alignment(**self._alignment)
 
     # Setter
@@ -323,7 +351,7 @@ class StyleGroup:
     # Getter
     @property
     def protection(self):
-        # Return the Fill object as evaluated at get
+        # Return the Protection object as evaluated at get
         return Protection(**self._protection)
 
     # Setter

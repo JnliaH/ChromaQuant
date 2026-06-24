@@ -7,13 +7,13 @@
                 "size": 11,
                 "bold": true,
                 "italic": false,
-                "vert_align": null,
-                "underline": "null",
+                "vertAlign": null,
+                "underline": null,
                 "strike": false,
                 "color": "000000"
             },
 
-            "pattern_fill":
+            "fill":
             {
                 "fill_type": "solid",
                 "start_color": "A6C9EC",
@@ -52,12 +52,6 @@
                     "color": "000000"
                 },
 
-                "outline":
-                {
-                    "border_style": null,
-                    "color": "000000"
-                },
-
                 "vertical":
                 {
                     "border_style": null,
@@ -70,7 +64,11 @@
                     "color": "000000"
                 },
 
-                "diagonal_direction": 0
+                "diagonalUp": false,
+
+                "diagonalDown": false,
+
+                "outline": false
             },
 
             "alignment":
@@ -99,15 +97,15 @@
             {
                 "name": "Calibri",
                 "size": 11,
-                "bold": true,
+                "bold": false,
                 "italic": false,
-                "vert_align": null,
-                "underline": "null",
+                "vertAlign": null,
+                "underline": null,
                 "strike": false,
                 "color": "000000"
             },
 
-            "pattern_fill":
+            "fill":
             {
                 "fill_type": "solid",
                 "start_color": "DAE9F8",
@@ -146,12 +144,6 @@
                     "color": "000000"
                 },
 
-                "outline":
-                {
-                    "border_style": null,
-                    "color": "000000"
-                },
-
                 "vertical":
                 {
                     "border_style": null,
@@ -164,7 +156,12 @@
                     "color": "000000"
                 },
 
-                "diagonal_direction": 0
+                "diagonalUp": false,
+
+                "diagonalDown": false,
+
+                "outline": false
+
             },
 
             "alignment":
@@ -193,17 +190,17 @@
             {
                 "name": "Calibri",
                 "size": 11,
-                "bold": true,
+                "bold": false,
                 "italic": false,
-                "vert_align": null,
-                "underline": "null",
+                "vertAlign": null,
+                "underline": null,
                 "strike": false,
                 "color": "000000"
             },
 
-            "pattern_fill":
+            "fill":
             {
-                "fill_type": "solid",
+                "fill_type": null,
                 "start_color": "FFFFFF",
                 "end_color": "FFFFFF"
             },
@@ -240,12 +237,6 @@
                     "color": "000000"
                 },
 
-                "outline":
-                {
-                    "border_style": null,
-                    "color": "000000"
-                },
-
                 "vertical":
                 {
                     "border_style": null,
@@ -258,7 +249,11 @@
                     "color": "000000"
                 },
 
-                "diagonal_direction": 0
+                "diagonalUp": false,
+
+                "diagonalDown": false,
+
+                "outline": false
             },
 
             "alignment":
