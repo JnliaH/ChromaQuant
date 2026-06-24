@@ -228,11 +228,11 @@ def report_value(value: Value,
 
     # Get the start cell
     start_cell = \
-        get_column_letter(value.start_column) + str(value.start_row)
+        get_column_letter(value.start_column + 1) + str(value.start_row + 1)
 
     # Get the cell after
     second_cell = \
-        get_column_letter(value.start_column) + str(value.start_row + 1)
+        get_column_letter(value.start_column + 1) + str(value.start_row + 2)
 
     # If there is a header...
     if value.header != '':
