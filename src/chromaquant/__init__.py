@@ -3,6 +3,7 @@
 
 from .results import Results
 from .theme import Theme
+from .chart import Chart
 from .formula import Formula
 from .match import MatchConfig
 from .data import Table

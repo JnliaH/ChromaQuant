@@ -274,5 +274,93 @@
             },
 
             "number_format": "General"
+        },
+
+    "areaChart":
+        {
+
+        },
+
+    "area3DChart":
+        {
+
+        },
+
+    "barChart":
+        {
+
+        },
+
+    "bar3DChart":
+        {
+
+        },
+
+    "bubbleChart":
+        {
+
+        },
+
+    "lineChart":
+        {
+
+        },
+
+    "line3DChart":
+        {
+
+        },
+
+    "pieChart":
+        {
+
+        },
+
+    "pie3DChart":
+        {
+
+        },
+
+    "doughnutChart":
+        {
+
+        },
+
+    "custSplit":
+        {
+
+        },
+
+    "ofPieChart":
+        {
+
+        },
+
+    "radarChart":
+        {
+
+        },
+
+    "scatterChart": 
+        {
+            "varyColors": false,
+            "title": null,
+            "x_axis_title": null,
+            "y_axis_title": null,
+            "chart_outline": false,
+            "chart_y_major_grid": false,
+            "chart_y_minor_grid": false,
+            "chart_x_major_grid": false,
+            "chart_x_minor_grid": false
+        },
+
+    "stockChart":
+        {
+
+        },
+
+    "surface3DChart":
+        {
+            
         }
 }

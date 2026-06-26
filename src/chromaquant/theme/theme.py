@@ -26,138 +26,138 @@ logger = setup_logger(logger)
 error_logging = setup_error_logging(logger)
 
 
-""" STYLEGROUP CLASS"""
+""" CELLSTYLE CLASS"""
 
 
-# Define the StyleGroup class
-class StyleGroup:
+# Define the CellStyle class
+class CellStyle:
     """
-    StyleGroup objects contain details about how to format each
+    CellStyle objects contain details about how to format each
     cell style.
 
     Parameters
-        ----------
-        font_name : str, optional
-            Name of the font to use, by default 'Calibri'
+    ----------
+    font_name : str, optional
+        Name of the font to use, by default 'Calibri'
 
-        font_size : int, optional
-            Size of the font, by default 11
+    font_size : int, optional
+        Size of the font, by default 11
 
-        font_bold : bool, optional
-            Whether to bold the font, by default False
+    font_bold : bool, optional
+        Whether to bold the font, by default False
 
-        font_italic : bool, optional
-            Whether to italicize the font, by default False
+    font_italic : bool, optional
+        Whether to italicize the font, by default False
 
-        font_vert_align : {'baseline', 'subscript', 'superscript', None}, optional
-            Font alignment, by default None
+    font_vert_align : {'baseline', 'subscript', 'superscript', None}, optional
+        Font alignment, by default None
 
-        font_underline : {'single', 'double', 'singleAccounting', 'doubleAccounting', None}, optional
-            Font underline style, by default None
+    font_underline : {'single', 'double', 'singleAccounting', 'doubleAccounting', None}, optional
+        Font underline style, by default None
 
-        font_strike : bool, optional
-            Whether to strikethrough, by default False
+    font_strike : bool, optional
+        Whether to strikethrough, by default False
 
-        font_color : str, optional
-            The color of the font, by default '000000'
+    font_color : str, optional
+        The color of the font, by default '000000'
 
-        fill_type : {'darkGray', 'darkUp', 'lightDown', 'darkGrid', 'darkHorizontal', 'lightTrellis', 'lightVertical', 'gray0625', 'gray125', 'lightGray', 'lightUp', 'darkDown', 'darkTrellis', 'lightGrid', 'mediumGray', 'solid', 'darkVertical', 'lightHorizontal', 'path', 'linear'}, optional
-            The fill type to use for the cell background, by default None
+    fill_type : {'darkGray', 'darkUp', 'lightDown', 'darkGrid', 'darkHorizontal', 'lightTrellis', 'lightVertical', 'gray0625', 'gray125', 'lightGray', 'lightUp', 'darkDown', 'darkTrellis', 'lightGrid', 'mediumGray', 'solid', 'darkVertical', 'lightHorizontal', 'path', 'linear'}, optional
+        The fill type to use for the cell background, by default None
 
-        fill_start_color : str, optional
-            The starting color for the cell background, by default 'FFFFFF'
+    fill_start_color : str, optional
+        The starting color for the cell background, by default 'FFFFFF'
 
-        fill_end_color : str, optional
-            The ending color for the cell background, by default 'FFFFFF'
+    fill_end_color : str, optional
+        The ending color for the cell background, by default 'FFFFFF'
 
-        border_left : dict[str, str | None], optional
-            Style and color of the vertical cell border. Style must be one of
-            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
-            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
-            'medium', 'hair', 'mediumDashDot'}. By default
-            {'border_style': None, 'color': '000000'}
+    border_left : dict[str, str | None], optional
+        Style and color of the vertical cell border. Style must be one of
+        {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+        'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+        'medium', 'hair', 'mediumDashDot'}. By default
+        {'border_style': None, 'color': '000000'}
 
-        border_right : dict[str, str | None], optional
-            Style and color of the vertical cell border. Style must be one of
-            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
-            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
-            'medium', 'hair', 'mediumDashDot'}. By default
-            {'border_style': None, 'color': '000000'}
+    border_right : dict[str, str | None], optional
+        Style and color of the vertical cell border. Style must be one of
+        {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+        'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+        'medium', 'hair', 'mediumDashDot'}. By default
+        {'border_style': None, 'color': '000000'}
 
-        border_top : dict[str, str | None], optional
-            Style and color of the vertical cell border. Style must be one of
-            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
-            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
-            'medium', 'hair', 'mediumDashDot'}. By default
-            {'border_style': None, 'color': '000000'}
+    border_top : dict[str, str | None], optional
+        Style and color of the vertical cell border. Style must be one of
+        {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+        'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+        'medium', 'hair', 'mediumDashDot'}. By default
+        {'border_style': None, 'color': '000000'}
 
-        border_bottom : dict[str, str | None], optional
-            Style and color of the vertical cell border. Style must be one of
-            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
-            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
-            'medium', 'hair', 'mediumDashDot'}. By default
-            {'border_style': None, 'color': '000000'}
+    border_bottom : dict[str, str | None], optional
+        Style and color of the vertical cell border. Style must be one of
+        {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+        'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+        'medium', 'hair', 'mediumDashDot'}. By default
+        {'border_style': None, 'color': '000000'}
 
-        border_diagonal : dict[str, str | None], optional
-            Style and color of the vertical cell border. Style must be one of
-            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
-            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
-            'medium', 'hair', 'mediumDashDot'}. By default
-            {'border_style': None, 'color': '000000'}
+    border_diagonal : dict[str, str | None], optional
+        Style and color of the vertical cell border. Style must be one of
+        {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+        'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+        'medium', 'hair', 'mediumDashDot'}. By default
+        {'border_style': None, 'color': '000000'}
 
-        border_diagonal_up : bool, optional
-            Whether to draw the diagonal from bottom-left to top-right,
-            by default False
+    border_diagonal_up : bool, optional
+        Whether to draw the diagonal from bottom-left to top-right,
+        by default False
 
-        border_diagonal_down : bool, optional
-            Whether to draw the diagonal from top-left to bottom-right,
-            by default False
+    border_diagonal_down : bool, optional
+        Whether to draw the diagonal from top-left to bottom-right,
+        by default False
 
-        border_outline : bool, optional
-            Whether to draw the cell outline, by default False
+    border_outline : bool, optional
+        Whether to draw the cell outline, by default False
 
-        border_vertical : dict[str, str | None], optional
-            Style and color of the vertical cell border. Style must be one of
-            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
-            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
-            'medium', 'hair', 'mediumDashDot'}. By default
-            {'border_style': None, 'color': '000000'}
+    border_vertical : dict[str, str | None], optional
+        Style and color of the vertical cell border. Style must be one of
+        {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+        'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+        'medium', 'hair', 'mediumDashDot'}. By default
+        {'border_style': None, 'color': '000000'}
 
-        border_horizontal : dict[str, str | None], optional
-            Style and color of the vertical cell border. Style must be one of
-            {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
-            'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
-            'medium', 'hair', 'mediumDashDot'}. By default
-            {'border_style': None, 'color': '000000'}
+    border_horizontal : dict[str, str | None], optional
+        Style and color of the vertical cell border. Style must be one of
+        {'mediumDashed', 'mediumDashDotDot', 'dashDot', 'dashed',
+        'slantDashDot', 'dashDotDot', 'thick', 'thin', 'dotted', 'double',
+        'medium', 'hair', 'mediumDashDot'}. By default
+        {'border_style': None, 'color': '000000'}
 
-        alignment_horizontal : {'left', 'center', 'right', 'general', 'fill', 'justify', 'centerContinuous', 'distributed'}, optional
-            The horizontal alignment setting, by default 'general'
+    alignment_horizontal : {'left', 'center', 'right', 'general', 'fill', 'justify', 'centerContinuous', 'distributed'}, optional
+        The horizontal alignment setting, by default 'general'
 
-        alignment_vertical : {'top', 'center', 'bottom', 'justify', 'distributed'}, optional
-            The vertical alignment setting, by default 'bottom'
+    alignment_vertical : {'top', 'center', 'bottom', 'justify', 'distributed'}, optional
+        The vertical alignment setting, by default 'bottom'
 
-        alignment_text_rotation : int, optional
-            The angle, in degrees, by which to rotate text.
-            Can only be integers from 0-180, by default 0
+    alignment_text_rotation : int, optional
+        The angle, in degrees, by which to rotate text.
+        Can only be integers from 0-180, by default 0
 
-        alignment_wrap_text : bool, optional
-            Whether to wrap text, by default False
+    alignment_wrap_text : bool, optional
+        Whether to wrap text, by default False
 
-        alignment_shrink_to_fit : bool, optional
-            Whether to shrink the text to fit cells, by default False
+    alignment_shrink_to_fit : bool, optional
+        Whether to shrink the text to fit cells, by default False
 
-        alignment_indent : float, optional
-            Indent of the text in cells, by default 0
+    alignment_indent : float, optional
+        Indent of the text in cells, by default 0
 
-        protection_locked : bool, optional
-            Whether to lock cells, by default False
+    protection_locked : bool, optional
+        Whether to lock cells, by default False
 
-        protection_hidden : bool, optional
-            Whether to hide cells, by default False
+    protection_hidden : bool, optional
+        Whether to hide cells, by default False
 
-        number_format : str, optional
-            The formatting code to use in number formatting,
-            by default 'General'
+    number_format : str, optional
+        The formatting code to use in number formatting,
+        by default 'General'
 
     """
 
@@ -274,7 +274,7 @@ class StyleGroup:
         self.border_side_list = ['left', 'right', 'top', 'bottom', 'diagonal',
                                  'vertical', 'horizontal']
 
-    # Method to add a pointer to the StyleGroup
+    # Method to add a pointer to the CellStyle
     @error_logging
     def point_to(self,
                  column_id: str):
@@ -371,6 +371,19 @@ class StyleGroup:
         self._number_format = value
 
 
+""" CHARTSTYLE CLASS """
+
+
+# Define the ChartStyle class
+class ChartStyle:
+    """
+    """
+
+    # Initialize method
+    def __init__(self):
+        pass
+
+
 """ THEME CLASS """
 
 
@@ -384,13 +397,31 @@ class Theme:
     # Initialize method
     def __init__(self):
 
-        # Create style groups
-        self.header = StyleGroup()
-        self.subheader = StyleGroup()
-        self.body = StyleGroup()
+        # Define a list of cell styles
+        self.cell_styles = ['header', 'subheader', 'body']
+
+        # Define a list of chart styles
+        self.chart_styles = \
+            ['areaChart', 'area3DChart', 'barChart', 'bar3DChart',
+                'bubbleChart', 'lineChart', 'line3DChart', 'pieChart',
+                'pie3DChart', 'doughnutChart', 'custSplit', 'ofPieChart',
+                'radarChart', 'scatterChart', 'stockChart', 'surface3DChart']
+
+        # For every cell style...
+        for style in self.cell_styles:
+            # Create a style group
+            setattr(self, style, CellStyle())
+
+        # For every chart style...
+        for style in self.chart_styles:
+            # Create a style group
+            setattr(self, style, ChartStyle())
 
         # Create a dictionary for custom column style groups
         self.columns = {}
+
+        # Create a dictionary for chart styles
+        self.chart_styles = {}
 
         # Get the current script path
         script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -406,7 +437,7 @@ class Theme:
     def add_column_style_group(self,
                                group_name: str,
                                column_id: str = '',
-                               style_group: StyleGroup = StyleGroup(),
+                               style_group: CellStyle = CellStyle(),
                                ):
 
         # Add the style_group as an attribute to the columns attribute
@@ -434,19 +465,23 @@ class Theme:
         # For every group in the theme...
         for group, group_dict in theme_dict.items():
 
-            # If the group is a default group...
-            if group in ['header', 'subheader', 'body']:
+            # If the group is a cell group...
+            if group in self.cell_styles:
 
                 # Set each style_property to the default attribute
                 for style_property, property_val in group_dict.items():
                     setattr(getattr(self, group), style_property, property_val)
 
-            # Otherwise...
-            else:
-
-                # Set each style_property to the group's value in the custom
-                # attribute
+            # Otherwise, if the group is a chart group...
+            elif group in self.chart_styles:
+                # Set each style_property to the group's value in the
+                # chart_styles attribute
                 for style_property, property_val in group_dict.items():
-                    setattr(self.custom[group], style_property, property_val)
+                    setattr(self.chart_styles[group],
+                            style_property,
+                            property_val)
 
+            # Otherwise, pass
+            else:
+                pass
         return None

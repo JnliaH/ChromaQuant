@@ -13,14 +13,14 @@ from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.cell.cell import Cell
 from pandas import ExcelWriter
 from ..data import Breakdown, Table, Value
-from ..theme.theme import StyleGroup
+from ..theme.theme import CellStyle
 
 """ FUNCTIONS """
 
 
-# Function to format a given cell using a passed StyleGroup
+# Function to format a given cell using a passed CellStyle
 def format_cell(cell: Cell,
-                group: StyleGroup):
+                group: CellStyle):
     """
     Format a cell in Excel.
 
@@ -28,7 +28,7 @@ def format_cell(cell: Cell,
     ----------
     cell : Cell
         Cell to format.
-    group : StyleGroup
+    group : CellStyle
         Style to format the cell by.
 
     Returns
@@ -118,7 +118,7 @@ def format_multicell_dataset(dataset: Table | Breakdown,
 # Function to format a range of cells
 def format_range(sheet: Worksheet,
                  cell_range: str,
-                 group: StyleGroup):
+                 group: CellStyle):
 
     # For every row in the range...
     for row in sheet[cell_range]:
