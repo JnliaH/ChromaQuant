@@ -26,12 +26,12 @@ class TestChart:
 
         # Define some default data
         rows = [
-            ['X', 'Y'],
-            [1, 10],
-            [2, 20],
-            [3, 35],
-            [4, 28],
-            [5, 46]
+            ['X', 'Y', 'Z'],
+            [1, 10, 8],
+            [2, 20, 2],
+            [3, 35, 14],
+            [4, 28, 26],
+            [5, 46, 52]
         ]
 
         # Add the data to the worksheet
@@ -40,10 +40,10 @@ class TestChart:
 
         # Create a new Chart
         new_chart = \
-            cq.Chart(ws, ScatterChart(), "'Sheet'!A2:A6", "'Sheet'!B2:B6")
+            cq.Chart(ws, BarChart(), "'Sheet'!A2:A6", "'Sheet'!B2:C6")
 
         # Add a theme to the Chart
-        new_chart.theme = cq.Theme()
+        #new_chart.theme = cq.Theme()
 
         # Change properties
         ws.add_chart(new_chart.base, 'C5')

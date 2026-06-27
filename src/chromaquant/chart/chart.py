@@ -53,7 +53,8 @@ class Chart:
                  chart: ChartBase = ChartBase(),
                  indep_range: str = '',
                  data_range: str = '',
-                 theme: Theme | None = None
+                 theme: Theme | None = None,
+                 titles_from_data: bool = True
                  ):
 
         # Set the worksheet
@@ -68,6 +69,9 @@ class Chart:
 
         # Set the theme if not None, otherwise set to None
         self.theme = theme if theme is not None else None
+
+        # Set the titles_from_data attribute
+        self._titles_from_data = titles_from_data
 
         # Update the chart
         self._update_series()
@@ -186,6 +190,17 @@ class Chart:
         else:
             pass
 
+    # Titles from data
+    # Getter
+    @property
+    def titles_from_data(self):
+        return self._titles_from_data
+
+    # Setter
+    @titles_from_data.setter
+    def titles_from_data(self, value):
+        self._titles_from_data = value
+
     """ METHODS """
     # Method to create the chart object
     def _create_chart(self):
@@ -202,7 +217,7 @@ class Chart:
     def _update_series(self):
 
         # Clear all existing series
-        # self._base.series.clear()
+        self._base.series.clear()
 
         # If the ranges are not blank...
         if self._indep_range and self._data_range:
@@ -211,17 +226,31 @@ class Chart:
             indep_reference = self.indep_reference
             data_reference = self.data_reference
 
-            # For every column in the data range...
-            for column_reference in data_reference.cols:
+            # If the chart is a ScatterChart...
+            if self._base.tagname == "scatterChart":
 
-                # Create a Series
-                series = \
-                    SeriesFactory(column_reference,
-                                  indep_reference)
+                # For every column in the data range...
+                for column_reference in data_reference.cols:
 
-                # Chart
-                # Add the Series to the chart
-                self._base.series.append(series)
+                    # Create a Series
+                    series = \
+                        SeriesFactory(column_reference,
+                                      indep_reference,
+                                      title_from_data=self._titles_from_data)
+
+                    # Chart
+                    # Add the Series to the chart
+                    self._base.series.append(series)
+
+            # Otherwise...
+            else:
+
+                # Add the data
+                self._base.add_data(data=data_reference,
+                                    titles_from_data=self._titles_from_data)
+
+                # Add the categories
+                self._base.set_categories(labels=indep_reference)
 
         # Otherwise, pass
         else:
