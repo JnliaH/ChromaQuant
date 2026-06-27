@@ -343,15 +343,66 @@
 
     "scatterChart": 
         {
-            "varyColors": false,
-            "title": null,
-            "x_axis_title": null,
-            "y_axis_title": null,
-            "chart_outline": false,
-            "chart_y_major_grid": false,
-            "chart_y_minor_grid": false,
-            "chart_x_major_grid": false,
-            "chart_x_minor_grid": false
+            "chart":
+                {
+                    "chart_outline": false,
+                    "vary_colors": false,
+                    "rounded_corners": false
+                },
+
+            "plot_area":
+                {
+                    "draw_outline": true,
+                    "outline_width": 1.5,
+                    "outline_style": "sng",
+                    "outline_color": "000000"
+                },
+            
+            "legend":
+                {
+                    "position": "r",
+                    "overlay": false
+                },
+            
+            "title":
+                {
+                    "title": "Chart",
+                    "overlay": false,
+                    "font_name": "Calibri",
+                    "font_size": 12
+                },
+
+            "x_axis":
+                {
+                    "title": "x",
+                    "overlay": false,
+                    "font_name": "Calibri",
+                    "font_size": 12,
+                    "draw_major_grid": false,
+                    "draw_minor_grid": false,
+                    "show_numbers": true,
+                    "draw_tick_marks": true,
+                    "tick_major_style": "out",
+                    "tick_minor_style": "out",
+                    "tick_major_unit": null,
+                    "tick_minor_unit": null
+                },
+
+            "y_axis":
+                {
+                    "title": "y",
+                    "overlay": false,
+                    "font_name": "Calibri",
+                    "font_size": 12,
+                    "draw_major_grid": false,
+                    "draw_minor_grid": false,
+                    "show_numbers": true,
+                    "draw_tick_marks": true,
+                    "tick_major_style": "out",
+                    "tick_minor_style": "out",
+                    "tick_major_unit": null,
+                    "tick_minor_unit": null
+                }
         },
 
     "stockChart":

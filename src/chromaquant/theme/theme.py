@@ -210,7 +210,7 @@ class CellStyle:
                  number_format: str = 'General'):
 
         # Define dictionaries for each style property
-        # Default Font values
+        # Set Font values
         self._font = {'name': font_name,
                       'size': font_size,
                       'bold': font_bold,
@@ -221,13 +221,13 @@ class CellStyle:
                       'color': font_color
                       }
 
-        # Default PatternFill values
+        # Set PatternFill values
         self._fill = {'fill_type': fill_type,
                       'start_color': fill_start_color,
                       'end_color': fill_end_color
                       }
 
-        # Default Border values
+        # Set Border values
         self._border = {'left':
                         border_left,
                         'right':
@@ -250,7 +250,7 @@ class CellStyle:
                         border_horizontal,
                         }
 
-        # Default Alignment values
+        # Set Alignment values
         self._alignment = {'horizontal': alignment_horizontal,
                            'vertical': alignment_vertical,
                            'text_rotation': alignment_text_rotation,
@@ -259,12 +259,12 @@ class CellStyle:
                            'indent': alignment_indent
                            }
 
-        # Default Protection values
+        # Set Protection values
         self._protection = {'locked': protection_locked,
                             'hidden': protection_hidden
                             }
 
-        # Default Number format
+        # Set Number format
         self._number_format = number_format
 
         # Create empty column pointer
@@ -377,11 +377,297 @@ class CellStyle:
 # Define the ChartStyle class
 class ChartStyle:
     """
+    ChartStyle objects contain details about how to format charts.
+
+    Parameters
+    ----------
+    chart_outline : bool, optional
+        Whether to draw an outline around the chart, by default True
+
+    chart_vary_colors : bool, optional
+        Whether to vary colors in individual series, by default True
+
+    chart_rounded_corners : bool, optional
+        Whether to round outer chart corners, by default True
+
+    plot_area_draw_outline : bool, optional
+        Whether to draw an outline around the plot area, by default False
+
+    plot_area_outline_width : float | None, optional
+        The width of the plot area outline in points, by default None
+
+    plot_area_outline_style : {'thinThick', 'tri', 'sng', 'thickThin', 'dbl', None}, optional
+        The plot area outline style, by default None
+
+    plot_area_outline_color : str | None, optional
+        The plot area outline color, by default None
+
+    legend_position : {'r', 'l', 't', 'b', 'tr', None}, optional
+        The legend position, by default None
+
+    legend_overlay : bool, optional
+        Whether to overlay the legend, by default True
+
+    title : str | None, optional
+        The chart title, by default None
+
+    title_overlay : bool, optional
+        Whether to overlay the chart title, by default True
+
+    title_font_name : str | None, optional
+        The latin font to use for the chart title, by default None
+
+    title_font_size : float | int | None, optional
+        The chart title font size, by default None
+
+    x_title : str | None, optional
+        The x-axis title, by default None
+
+    x_overlay : bool, optional
+        Whether to overlay the x-axis title, by default True
+
+    x_font_name : str | None, optional
+        The latin font to use for the x-axis title, by default None
+
+    x_font_size : float | int | None, optional
+        The x-axis title font size, by default None
+
+    x_draw_major_grid : bool, optional
+        Whether to draw major x-axis gridlines, by default True
+
+    x_draw_minor_grid : bool, optional
+        Whether to draw minor x-axis gridlines, by default False
+
+    x_show_numbers : bool, optional
+        Whether to show x-axis numbers, by default False
+
+    x_draw_tick_marks : bool, optional
+        Whether to draw the x-axis tick marks, by default False
+
+    x_tick_major_style : {'in', 'out', 'cross', None}, optional
+        The x-axis major tick mark style, by default None
+
+    x_tick_minor_style : {'in', 'out', 'cross', None}, optional
+        The x-axis minor tick mark style, by default None
+
+    x_tick_major_unit : float | None, optional
+        The x-axis major unit, by default None
+
+    x_tick_minor_unit : float | None, optional
+        The x-axis minor unit, by default None
+
+    y_title : str | None, optional
+        The y-axis title, by default None
+
+    y_overlay : bool, optional
+        Whether to overlay the y-axis title, by default True
+
+    y_font_name : str | None, optional
+        The latin font to use for the y-axis title, by default None
+
+    y_font_size : float | int | None, optional
+        The y-axis title font size, by default None
+
+    y_draw_major_grid : bool, optional
+        Whether to draw major y-axis gridlines, by default True
+
+    y_draw_minor_grid : bool, optional
+        Whether to draw minor y-axis gridlines, by default False
+
+    y_show_numbers : bool, optional
+        Whether to show y-axis numbers, by default False
+
+    y_draw_tick_marks : bool, optional
+        Whether to draw the y-axis tick marks, by default False
+
+    y_tick_major_style : {'in', 'out', 'cross', None}, optional
+        The y-axis major tick mark style, by default None
+
+    y_tick_minor_style : {'in', 'out', 'cross', None}, optional
+        The y-axis minor tick mark style, by default None
+
+    y_tick_major_unit : float | None, optional
+        The y-axis major unit, by default None
+
+    y_tick_minor_unit : float | None, optional
+        The y-axis minor unit, by default None
+
     """
 
     # Initialize method
-    def __init__(self):
-        pass
+    def __init__(self,
+                 chart_outline: bool = True,
+                 chart_vary_colors: bool = True,
+                 chart_rounded_corners: bool = True,
+                 plot_area_draw_outline: bool = False,
+                 plot_area_outline_width: float | None = None,
+                 plot_area_outline_style: str | None = None,
+                 plot_area_outline_color: str | None = None,
+                 legend_position: str | None = None,
+                 legend_overlay: bool = True,
+                 title: str | None = None,
+                 title_overlay: bool = True,
+                 title_font_name: str | None = None,
+                 title_font_size: float | int | None = None,
+                 x_title: str | None = None,
+                 x_overlay: bool = True,
+                 x_font_name: str | None = None,
+                 x_font_size: float | int | None = None,
+                 x_draw_major_grid: bool = True,
+                 x_draw_minor_grid: bool = False,
+                 x_show_numbers: bool = False,
+                 x_draw_tick_marks: bool = False,
+                 x_tick_major_style: str | None = None,
+                 x_tick_minor_style: str | None = None,
+                 x_tick_major_unit: float | None = None,
+                 x_tick_minor_unit: float | None = None,
+                 y_title: str | None = None,
+                 y_overlay: bool = True,
+                 y_font_name: str | None = None,
+                 y_font_size: float | int | None = None,
+                 y_draw_major_grid: bool = True,
+                 y_draw_minor_grid: bool = False,
+                 y_show_numbers: bool = False,
+                 y_draw_tick_marks: bool = False,
+                 y_tick_major_style: str | None = None,
+                 y_tick_minor_style: str | None = None,
+                 y_tick_major_unit: float | None = None,
+                 y_tick_minor_unit: float | None = None
+                 ):
+
+        # Set chart format
+        self._chart = \
+            {
+                'chart_outline': chart_outline,
+                'vary_colors': chart_vary_colors,
+                'rounded_corners': chart_rounded_corners
+            }
+
+        # Set plot area format
+        self._plot_area = \
+            {
+                'draw_outline': plot_area_draw_outline,
+                'outline_width': plot_area_outline_width,
+                'outline_style': plot_area_outline_style,
+                'outline_color': plot_area_outline_color
+            }
+
+        # Set legend format
+        self._legend = \
+            {
+                'position': legend_position,
+                'overlay': legend_overlay
+            }
+
+        # Set title format
+        self._title = \
+            {
+                'title': title,
+                'overlay': title_overlay,
+                'font_name': title_font_name,
+                'font_size': title_font_size
+            }
+
+        # Set x-axis format
+        self._x_axis = \
+            {
+                'title': x_title,
+                'overlay': x_overlay,
+                'font_name': x_font_name,
+                'font_size': x_font_size,
+                'draw_major_grid': x_draw_major_grid,
+                'draw_minor_grid': x_draw_minor_grid,
+                'show_numbers': x_show_numbers,
+                'draw_tick_marks': x_draw_tick_marks,
+                'tick_major_style': x_tick_major_style,
+                'tick_minor_style': x_tick_minor_style,
+                'tick_major_unit': x_tick_major_unit,
+                'tick_minor_unit': x_tick_minor_unit
+            }
+
+        # Set y-axis format
+        self._y_axis = \
+            {
+                'title': y_title,
+                'overlay': y_overlay,
+                'font_name': y_font_name,
+                'font_size': y_font_size,
+                'draw_major_grid': y_draw_major_grid,
+                'draw_minor_grid': y_draw_minor_grid,
+                'show_numbers': y_show_numbers,
+                'draw_tick_marks': y_draw_tick_marks,
+                'tick_major_style': y_tick_major_style,
+                'tick_minor_style': y_tick_minor_style,
+                'tick_major_unit': y_tick_major_unit,
+                'tick_minor_unit': y_tick_minor_unit
+            }
+
+        """ PROPERTIES """
+        # Chart
+        # Getter
+        @property
+        def chart(self):
+            return self._chart
+
+        # Setter
+        @chart.setter
+        def chart(self, value):
+            self._chart = value
+
+        # Plot area
+        # Getter
+        @property
+        def plot_area(self):
+            return self._plot_area
+
+        # Setter
+        @plot_area.setter
+        def plot_area(self, value):
+            self._plot_area = value
+
+        # Legend
+        # Getter
+        @property
+        def legend(self):
+            return self._legend
+
+        # Setter
+        @legend.setter
+        def legend(self, value):
+            self._legend = value
+
+        # Title
+        # Getter
+        @property
+        def title(self):
+            return self._title
+
+        # Setter
+        @title.setter
+        def title(self, value):
+            self._title = value
+
+        # X-axis
+        # Getter
+        @property
+        def x_axis(self):
+            return self._x_axis
+
+        # Setter
+        @x_axis.setter
+        def x_axis(self, value):
+            self._x_axis = value
+
+        # Y-axis
+        # Getter
+        @property
+        def y_axis(self):
+            return self._y_axis
+
+        # Setter
+        @y_axis.setter
+        def y_axis(self, value):
+            self._y_axis = value
 
 
 """ THEME CLASS """
@@ -403,9 +689,9 @@ class Theme:
         # Define a list of chart styles
         self.chart_styles = \
             ['areaChart', 'area3DChart', 'barChart', 'bar3DChart',
-                'bubbleChart', 'lineChart', 'line3DChart', 'pieChart',
-                'pie3DChart', 'doughnutChart', 'custSplit', 'ofPieChart',
-                'radarChart', 'scatterChart', 'stockChart', 'surface3DChart']
+             'bubbleChart', 'lineChart', 'line3DChart', 'pieChart',
+             'pie3DChart', 'doughnutChart', 'custSplit', 'ofPieChart',
+             'radarChart', 'scatterChart', 'stockChart', 'surface3DChart']
 
         # For every cell style...
         for style in self.cell_styles:
@@ -419,9 +705,6 @@ class Theme:
 
         # Create a dictionary for custom column style groups
         self.columns = {}
-
-        # Create a dictionary for chart styles
-        self.chart_styles = {}
 
         # Get the current script path
         script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -465,23 +748,15 @@ class Theme:
         # For every group in the theme...
         for group, group_dict in theme_dict.items():
 
-            # If the group is a cell group...
-            if group in self.cell_styles:
+            # If the group is a cell or chart group...
+            if group in self.cell_styles or group in self.chart_styles:
 
-                # Set each style_property to the default attribute
+                # Add each style property to the style group
                 for style_property, property_val in group_dict.items():
                     setattr(getattr(self, group), style_property, property_val)
-
-            # Otherwise, if the group is a chart group...
-            elif group in self.chart_styles:
-                # Set each style_property to the group's value in the
-                # chart_styles attribute
-                for style_property, property_val in group_dict.items():
-                    setattr(self.chart_styles[group],
-                            style_property,
-                            property_val)
 
             # Otherwise, pass
             else:
                 pass
+
         return None

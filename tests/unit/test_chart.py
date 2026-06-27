@@ -8,8 +8,7 @@ UNIT TESTING FOR CHART
 
 import chromaquant as cq
 from openpyxl import Workbook
-from openpyxl.chart import ScatterChart
-from openpyxl.chart.shapes import GraphicalProperties
+from openpyxl.chart import ScatterChart, BarChart
 
 """ TEST CLASS """
 
@@ -43,19 +42,10 @@ class TestChart:
         new_chart = \
             cq.Chart(ws, ScatterChart(), "'Sheet'!A2:A6", "'Sheet'!B2:B6")
 
+        # Add a theme to the Chart
+        new_chart.theme = cq.Theme()
+
         # Change properties
-        cq.Theme()
-        new_chart.base.varyColors = False
-        new_chart.base.title = 'Chromatogram'
-        new_chart.base.x_axis.title = 'RT (min)'
-        new_chart.base.y_axis.title = 'Signal (a.u.)'
-        new_chart.base.graphical_properties = GraphicalProperties()
-        new_chart.base.graphical_properties.line.noFill = True
-        new_chart.base.x_axis.majorGridlines = None
-        new_chart.base.y_axis.majorGridlines = None
-        new_chart.base.x_axis.minorGridlines = None
-        new_chart.base.y_axis.minorGridlines = None
-        # Add the chart to the worksheet
         ws.add_chart(new_chart.base, 'C5')
 
         # Save the workbook
