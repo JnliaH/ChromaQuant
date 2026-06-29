@@ -12,6 +12,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.cell.cell import Cell
 from pandas import ExcelWriter
+from ..chart import Chart
 from ..data import Breakdown, Table, Value
 from ..theme.theme import CellStyle
 
@@ -161,6 +162,43 @@ def report_breakdown(breakdown: Breakdown,
                             startcol=breakdown.start_column,
                             startrow=start_row,
                             index=False)
+
+    return None
+
+
+# Function to report a Chart to Excel
+def report_chart(chart: Chart,
+                 workbook: Workbook):
+    """
+    Writes a Chart to Excel.
+
+    Parameters
+    ----------
+    chart : Chart
+        Chart to report.
+    workbook : Workbook
+        Active openpyxl workbook.
+
+    Returns
+    -------
+    None
+
+    """
+
+    # If Chart's sheet does not exist in workbook...
+    if chart.sheet not in workbook.sheetnames:
+        # Create it
+        workbook.create_sheet(chart.sheet)
+
+    # Get the anchor cell
+    anchor = \
+        get_column_letter(chart.start_column + 1) + str(chart.start_row + 1)
+
+    # Get the Chart's worksheet
+    ws = workbook[chart.sheet]
+
+    # Add the Chart to its worksheet
+    ws.add_chart(chart.base, anchor)
 
     return None
 

@@ -13,10 +13,12 @@ from __future__ import annotations
 import logging
 from openpyxl.utils import get_column_letter
 from pandas import DataFrame
+import pandas as pd
 from typing import Any, TYPE_CHECKING
 if TYPE_CHECKING:
     from ..results import Results
 from .dataset import DataSet
+from ._column_id import _ColumnID
 from .table import Table
 from ..logging_and_handling import setup_logger, setup_error_logging
 
@@ -103,6 +105,7 @@ class Breakdown(DataSet):
                                                'MAXIFS']
         self._breakdown_cache = {}
         self.length = len(self._data)
+        self.columns: list[str] = []
 
         # If the conditional aggregate is not equal to an expected value...
         if conditional_aggregate not in self.allowed_conditional_aggregates:
@@ -112,6 +115,9 @@ class Breakdown(DataSet):
         # Otherwise, assign to an attribute
         else:
             self.conditional_aggregate = conditional_aggregate
+
+        # Update the Breakdown
+        self._update_breakdown()
 
     """ PROPERTIES """
     # Data properties - GETTER ONLY
@@ -145,13 +151,8 @@ class Breakdown(DataSet):
                            'subheader': '',
                            'body': {}}
 
-        # Update the length header
-        self.length: int = \
-            len(self._data)
-
-        # Update the column header
-        self.columns: list[str] = \
-            self._data.columns.tolist()
+        # Update the breakdown
+        self._update_breakdown()
 
         # For every column in columns...
         for column in self.columns:
@@ -237,6 +238,7 @@ class Breakdown(DataSet):
         if value == '':
             raise ValueError('Breakdown sheet cannot be an empty string.')
         self._sheet = value
+        self._update_breakdown()
         if self._mediator is not None:
             self._mediator.update_datasets()
 
@@ -244,13 +246,14 @@ class Breakdown(DataSet):
     @sheet.deleter
     def sheet(self):
         del self._sheet
+        self._update_breakdown()
 
     # Start cell properties
     # Getter
     @property
     def start_cell(self) -> str:
         """
-        Get, set, or delete the Excel reference where data will be reported.
+        Get or set the Excel reference where data will be reported.
         """
         return self._start_cell
 
@@ -266,16 +269,33 @@ class Breakdown(DataSet):
         # If an exception occurs...
         except Exception as e:
             raise ValueError(f'Passed start cell is not valid: {e}')
+        self._update_breakdown()
         if self._mediator is not None:
             self._mediator.update_datasets()
 
-    # Deleter
-    @start_cell.deleter
-    def start_cell(self):
-        del self._start_cell
-        del self.start_row, self.start_column
-
     """ METHODS """
+    # Method to get a given column's id
+    @error_logging
+    def column_id(self, column_name: str):
+        """
+        Method that returns a column's ID dictionary.
+
+        Parameters
+        ----------
+        column_name : str
+            Name of a column of interest.
+
+        Returns
+        -------
+        new_column_id : dict[str, str]
+            ColumnID of interest.
+        """
+
+        # Create a ColumnID
+        new_column_id = _ColumnID(self, column_name)
+
+        return new_column_id
+
     # Method to create a conditional aggregate formula based on criteria
     def _create_conditional_aggregate_formula(self,
                                               table: Table,
@@ -632,7 +652,121 @@ class Breakdown(DataSet):
 
         return None
 
+    # Method to update column references
+    @error_logging
+    def _update_reference(self):
+        """
+        Method that updates the Breakdown's reference dictionary.
+
+        Returns
+        -------
+        None
+
+        """
+
+        # For every column in columns...
+        for column in self.columns:
+
+            # Get the start cell's column letter, adjusting from absolute
+            col_letter = \
+                self._get_column_letter_wrt_start_cell(column,
+                                                       self._data,
+                                                       self.start_column + 1)
+
+            # Get a start row, adjusting from absolute
+            start_row = self.start_row + 3
+
+            # Get an end row, adjusting from absolute
+            end_row = self.start_row + 2 + self.length
+
+            # Get a range reference, adjusting from absolute
+            column_range = (f"'{self._sheet}'!"
+                            f"${col_letter}${start_row}:"
+                            f"${col_letter}${end_row}")
+
+            # Get a plain range reference
+            plain_range = (f"${col_letter}${start_row}:"
+                           f"${col_letter}${end_row}")
+
+            # Update the reference object
+            self._reference[column] = \
+                {'column_letter': col_letter,
+                 'start_row': start_row,
+                 'end_row': end_row,
+                 'sheet': self._sheet,
+                 'length': self.length,
+                 'range': column_range,
+                 'plain_range': plain_range}
+
+        return None
+
+    # Method for updating otherwise static Breakdown attributes
+    @error_logging
+    def _update_breakdown(self):
+        """
+        Method that updates the current Breakdown.
+
+        Returns
+        -------
+        None
+
+        """
+
+        # Update the length header
+        self.length: int = \
+            len(self._data)
+
+        # Update the column header
+        self.columns: list[str] = \
+            self._data.columns.tolist()
+
+        # Initialize the reference object
+        self._reference = {}
+
+        # Try to update the reference
+        # NOTE: will not work if there is no valid sheet or start_cell
+        try:
+            self._update_reference()
+
+        except Exception:
+            # logger.info('Failed to update reference.')
+            pass
+
+        return None
+
     """ STATIC METHODS """
+    # Static method to get the letter coordinate of a column in a DataFrame
+    # with respect to a starting column index
+    @staticmethod
+    def _get_column_letter_wrt_start_cell(column_name: str,
+                                          df: pd.DataFrame,
+                                          start_col_index: int) -> str:
+        """
+        Static method that returns the column letter of a column with respect
+        to that column's location within a DataFrame.
+
+        Parameters
+        ----------
+        column_name : str
+            The name of the column to get the index of.
+        df : pd.DataFrame
+            The DataFrame containing the column of interest.
+        start_col_index : int
+            The index within the Excel report where the top left of the
+            DataFrame will be located.
+
+        Returns
+        -------
+        column_letter: str
+            The letter of the column of interest.
+        """
+
+        # Get the current column's letter
+        column_letter = \
+            get_column_letter(start_col_index +
+                              df.columns.get_loc(column_name))
+
+        return column_letter
 
     # Base conditional aggregate method
     @staticmethod

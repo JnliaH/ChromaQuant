@@ -16,7 +16,10 @@ from openpyxl.drawing.line import LineProperties
 from openpyxl.drawing.text import ParagraphProperties, \
                                   CharacterProperties, \
                                   Font
-from openpyxl.worksheet.worksheet import Worksheet
+from openpyxl.utils.cell import coordinate_from_string, \
+                                column_index_from_string
+from openpyxl import Workbook
+from ..data._column_id import _ColumnID
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..theme import Theme
 
@@ -49,23 +52,21 @@ class Chart:
 
     # Init method
     def __init__(self,
-                 worksheet: Worksheet = None,
                  chart: ChartBase = ChartBase(),
-                 indep_range: str = '',
-                 data_range: str = '',
+                 indep_column: _ColumnID = None,
+                 data_columns: list[_ColumnID] = [],
                  theme: Theme | None = None,
-                 titles_from_data: bool = True
+                 titles_from_data: bool = True,
+                 anchor: str = '',
+                 sheet: str = ''
                  ):
-
-        # Set the worksheet
-        self._worksheet = worksheet
 
         # Set the base chart
         self._base = chart
 
         # Set the range attributes
-        self._indep_range = indep_range
-        self._data_range = data_range
+        self._indep_column = indep_column
+        self._data_columns = data_columns
 
         # Set the theme if not None, otherwise set to None
         self.theme = theme if theme is not None else None
@@ -73,10 +74,45 @@ class Chart:
         # Set the titles_from_data attribute
         self._titles_from_data = titles_from_data
 
+        # Set the anchor cell
+        self._anchor = anchor if anchor != '' else 'C15'
+
+        # Get the anchor cell's start column and row
+        self.start_column, self.start_row = \
+            self.get_cell_indices(self._anchor)
+
+        # Set the sheet
+        self._sheet = sheet if sheet != '' else 'Sheet1'
+
+        # Set the default workbook
+        self._workbook: Workbook = None
+
         # Update the chart
         self._update_series()
 
     """ PROPERTIES """
+    # Anchor
+    # Getter
+    @property
+    def anchor(self):
+        """
+        Get or set the anchor cell to report to.
+        """
+        return self._anchor
+
+    # Setter
+    @anchor.setter
+    def anchor(self, value: str):
+        # Try...
+        try:
+            # Get the cell's absolute indices
+            self.start_column, self.start_row = self.get_cell_indices(value)
+            # Set the starting cell
+            self._anchor = value
+        # If an exception occurs...
+        except Exception as e:
+            raise ValueError(f'Passed start cell is not valid: {e}')
+
     # Base chart
     # Getter
     @property
@@ -91,21 +127,21 @@ class Chart:
     # Independent range
     # Getter
     @property
-    def indep_range(self):
-        return self._indep_range
+    def indep_column(self):
+        return self._indep_column
 
     # Setter
-    @indep_range.setter
-    def indep_range(self, value: str):
+    @indep_column.setter
+    def indep_column(self, value: str):
         # Set the independent range
-        self._indep_range = value
+        self._indep_column = value
         # Update the chart
         self._update_series()
 
     # Deleter
-    @indep_range.deleter
-    def indep_range(self):
-        self._indep_range = ''
+    @indep_column.deleter
+    def indep_column(self):
+        self._indep_column = None
         # Update the chart
         self._update_series()
 
@@ -113,55 +149,70 @@ class Chart:
     # Getter
     @property
     def indep_reference(self):
-        return Reference(worksheet=self._worksheet,
-                         range_string=self._indep_range)
+        # Get a range string
+        range_string = \
+            self._indep_column.multicell_dataset._reference[
+                self._indep_column.column_name
+                ]['range']
+        # Get the worksheet
+        worksheet = \
+            self._indep_column.multicell_dataset._reference[
+                self._indep_column.column_name
+                ]['sheet']
+        return Reference(worksheet=worksheet,
+                         range_string=range_string)
 
-    # Data range
+    # Data ranges
     # Getter
     @property
-    def data_range(self):
-        return self._data_range
+    def data_columns(self):
+        return self._data_columns
 
     # Setter
-    @data_range.setter
-    def data_range(self, value: str):
-        self._data_range = value
+    @data_columns.setter
+    def data_columns(self, value):
+        self._data_columns = value
         # Update the chart
         self._update_series()
 
     # Deleter
-    @data_range.deleter
-    def data_range(self):
-        self._data_range = ''
+    @data_columns.deleter
+    def data_columns(self):
+        self._data_columns = []
         # Update the chart
         self._update_series()
 
-    # Data reference
+    # Data references
     # Getter
     @property
-    def data_reference(self):
-        return Reference(worksheet=self._worksheet,
-                         range_string=self._data_range)
+    def data_references(self):
+        # Get a list of range strings and worksheets
+        reference_data = \
+            [{'range_string': data_column.multicell_dataset._reference[
+                data_column.column_name]['range'],
+              'worksheet': data_column.multicell_dataset._reference[
+                data_column.column_name]['sheet']}
+             for data_column in self._data_columns]
+        # Return a list of references
+        return [Reference(worksheet=dict['worksheet'],
+                          range_string=dict['range_string'])
+                for dict in reference_data]
 
-    # Worksheet
+    # Sheet properties
     # Getter
     @property
-    def worksheet(self):
-        return self._worksheet
+    def sheet(self) -> str:
+        """
+        Get or set the name of the Excel worksheet to report to.
+        """
+        return self._sheet
 
     # Setter
-    @worksheet.setter
-    def worksheet(self, value):
-        self._worksheet = value
-        # Update the chart
-        self._update_series()
-
-    # Deleter
-    @worksheet.deleter
-    def worksheet(self):
-        self._worksheet = None
-        # Update the chart
-        self._update_series()
+    @sheet.setter
+    def sheet(self, value: str):
+        if value == '':
+            raise ValueError('Chart sheet cannot be an empty string.')
+        self._sheet = value
 
     # Theme
     # Getter
@@ -198,10 +249,18 @@ class Chart:
 
     # Setter
     @titles_from_data.setter
-    def titles_from_data(self, value):
+    def titles_from_data(self, value: bool):
         self._titles_from_data = value
 
     """ METHODS """
+    # Method to add a data column
+    def add_data_column(self, column):
+
+        # Append the column to the data columns list
+        self._data_columns.append(column)
+
+        return None
+
     # Method to create the chart object
     def _create_chart(self):
 
@@ -219,38 +278,49 @@ class Chart:
         # Clear all existing series
         self._base.series.clear()
 
-        # If the ranges are not blank...
-        if self._indep_range and self._data_range:
+        # If both ranges are not blank...
+        if self._indep_column and self._data_columns:
 
-            # Get the independent and data references
-            indep_reference = self.indep_reference
-            data_reference = self.data_reference
+            # Get every column id's parent object's reference attribute
+            all_references = [column.multicell_dataset.reference
+                              for sublist in ((self._indep_column,),
+                                              self._data_columns)
+                              for column in sublist]
 
-            # If the chart is a ScatterChart...
-            if self._base.tagname == "scatterChart":
+            # If all references are not empty...
+            if all(all_references):
 
-                # For every column in the data range...
-                for column_reference in data_reference.cols:
+                # For every data column...
+                for column_reference in self.data_references:
 
-                    # Create a Series
-                    series = \
-                        SeriesFactory(column_reference,
-                                      indep_reference,
-                                      title_from_data=self._titles_from_data)
+                    # If the chart is a ScatterChart...
+                    if self._base.tagname == 'scatterChart':
 
-                    # Chart
-                    # Add the Series to the chart
-                    self._base.series.append(series)
+                        # Create a Series
+                        series = \
+                            SeriesFactory(
+                                column_reference,
+                                self.indep_reference,
+                                title_from_data=self._titles_from_data)
 
-            # Otherwise...
+                        # Add the Series to the chart
+                        self._base.series.append(series)
+
+                    # Otherwise...
+                    else:
+
+                        # Add the data
+                        self._base.add_data(
+                            data=column_reference,
+                            titles_from_data=self._titles_from_data
+                            )
+
+                        # Add the categories
+                        self._base.set_categories(labels=self.indep_reference)
+
+            # Otherwise, pass
             else:
-
-                # Add the data
-                self._base.add_data(data=data_reference,
-                                    titles_from_data=self._titles_from_data)
-
-                # Add the categories
-                self._base.set_categories(labels=indep_reference)
+                pass
 
         # Otherwise, pass
         else:
@@ -337,24 +407,24 @@ class Chart:
             else self._base.x_axis.title
         # Set the title font and overlay
         set_font_and_overlay('x_axis', self._base.x_axis.title)
-        # Set major x ticks
+        # Set x tick styles
+        # NOTE: A None value results in no tick marks
         self._base.x_axis.majorTickMark = \
-            self._chart_style.x_axis['tick_major_style'] \
-            if self._chart_style.x_axis['tick_major_style'] is not None \
-            else self._base.x_axis.majorTickMark
-        self._base.x_axis.majorUnit = \
-            self._chart_style.x_axis['tick_major_unit'] \
-            if self._chart_style.x_axis['tick_major_unit'] is not None \
-            else self._base.x_axis.majorUnit
-        # Set minor x ticks
+            self._chart_style.x_axis['tick_major_style']
         self._base.x_axis.minorTickMark = \
-            self._chart_style.x_axis['tick_minor_style'] \
-            if self._chart_style.x_axis['tick_minor_style'] is not None \
-            else self._base.x_axis.minorTickMark
-        self._base.x_axis.minorUnit = \
-            self._chart_style.x_axis['tick_minor_unit'] \
-            if self._chart_style.x_axis['tick_minor_unit'] is not None \
-            else self._base.x_axis.minorUnit
+            self._chart_style.x_axis['tick_minor_style']
+        # Set x tick units if not a TextAxis, otherwise pass
+        try:
+            self._base.x_axis.majorUnit = \
+                self._chart_style.x_axis['tick_major_unit'] \
+                if self._chart_style.x_axis['tick_major_unit'] is not None \
+                else self._base.x_axis.majorUnit
+            self._base.x_axis.minorUnit = \
+                self._chart_style.x_axis['tick_minor_unit'] \
+                if self._chart_style.x_axis['tick_minor_unit'] is not None \
+                else self._base.x_axis.minorUnit
+        except AttributeError:
+            pass
 
         # Y-AXIS
         # Set the gridlines to None if drawing is set to False
@@ -371,24 +441,24 @@ class Chart:
             else self._base.y_axis.title
         # Set the title font and overlay
         set_font_and_overlay('y_axis', self._base.y_axis.title)
-        # Set major y ticks
+        # Set y tick styles
+        # NOTE: A None value results in no tick marks
         self._base.y_axis.majorTickMark = \
-            self._chart_style.y_axis['tick_major_style'] \
-            if self._chart_style.y_axis['tick_major_style'] is not None \
-            else self._base.y_axis.majorTickMark
-        self._base.y_axis.majorUnit = \
-            self._chart_style.y_axis['tick_major_unit'] \
-            if self._chart_style.y_axis['tick_major_unit'] is not None \
-            else self._base.y_axis.majorUnit
-        # Set minor y ticks
+            self._chart_style.y_axis['tick_major_style']
         self._base.y_axis.minorTickMark = \
-            self._chart_style.y_axis['tick_minor_style'] \
-            if self._chart_style.y_axis['tick_minor_style'] is not None \
-            else self._base.y_axis.minorTickMark
-        self._base.y_axis.minorUnit = \
-            self._chart_style.y_axis['tick_minor_unit'] \
-            if self._chart_style.y_axis['tick_minor_unit'] is not None \
-            else self._base.y_axis.minorUnit
+            self._chart_style.y_axis['tick_minor_style']
+        # Set y tick units if not a TextAxis, otherwise pass
+        try:
+            self._base.y_axis.majorUnit = \
+                self._chart_style.y_axis['tick_major_unit'] \
+                if self._chart_style.y_axis['tick_major_unit'] is not None \
+                else self._base.y_axis.majorUnit
+            self._base.y_axis.minorUnit = \
+                self._chart_style.y_axis['tick_minor_unit'] \
+                if self._chart_style.y_axis['tick_minor_unit'] is not None \
+                else self._base.y_axis.minorUnit
+        except AttributeError:
+            pass
 
         # PLOT AREA
         # If draw_outline is true...
@@ -429,3 +499,37 @@ class Chart:
             else self._base.legend.overlay
 
         return None
+
+    """ STATIC METHODS """
+    # Static method to get the absolute indices of a cell
+    @staticmethod
+    def get_cell_indices(cell: str) -> tuple[int, int]:
+        """
+        Static method that returns the absolute indices of a cell.
+
+        Parameters
+        ----------
+        cell : str
+            Cell reference (e.g., 'A1', '$B$2').
+
+        Returns
+        -------
+        column_index: int
+            Absolute index of the reference column (e.g., 2 for 'C1').
+        row_index: int
+            Absolute index of the reference row (e.g., 0 for 'C1').
+
+        """
+
+        # Split the coordinate
+        column_index, row_index = \
+            coordinate_from_string(cell)
+
+        # Get the absolute row by subtracting one
+        row_index = row_index - 1
+
+        # Get the column index from the string, adjusting to get absolute
+        column_index = \
+            column_index_from_string(column_index) - 1
+
+        return column_index, row_index

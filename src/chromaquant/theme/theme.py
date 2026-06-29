@@ -441,9 +441,6 @@ class ChartStyle:
     x_show_numbers : bool, optional
         Whether to show x-axis numbers, by default False
 
-    x_draw_tick_marks : bool, optional
-        Whether to draw the x-axis tick marks, by default False
-
     x_tick_major_style : {'in', 'out', 'cross', None}, optional
         The x-axis major tick mark style, by default None
 
@@ -476,9 +473,6 @@ class ChartStyle:
 
     y_show_numbers : bool, optional
         Whether to show y-axis numbers, by default False
-
-    y_draw_tick_marks : bool, optional
-        Whether to draw the y-axis tick marks, by default False
 
     y_tick_major_style : {'in', 'out', 'cross', None}, optional
         The y-axis major tick mark style, by default None
@@ -516,7 +510,6 @@ class ChartStyle:
                  x_draw_major_grid: bool = True,
                  x_draw_minor_grid: bool = False,
                  x_show_numbers: bool = False,
-                 x_draw_tick_marks: bool = False,
                  x_tick_major_style: str | None = None,
                  x_tick_minor_style: str | None = None,
                  x_tick_major_unit: float | None = None,
@@ -528,7 +521,6 @@ class ChartStyle:
                  y_draw_major_grid: bool = True,
                  y_draw_minor_grid: bool = False,
                  y_show_numbers: bool = False,
-                 y_draw_tick_marks: bool = False,
                  y_tick_major_style: str | None = None,
                  y_tick_minor_style: str | None = None,
                  y_tick_major_unit: float | None = None,
@@ -578,7 +570,6 @@ class ChartStyle:
                 'draw_major_grid': x_draw_major_grid,
                 'draw_minor_grid': x_draw_minor_grid,
                 'show_numbers': x_show_numbers,
-                'draw_tick_marks': x_draw_tick_marks,
                 'tick_major_style': x_tick_major_style,
                 'tick_minor_style': x_tick_minor_style,
                 'tick_major_unit': x_tick_major_unit,
@@ -595,7 +586,6 @@ class ChartStyle:
                 'draw_major_grid': y_draw_major_grid,
                 'draw_minor_grid': y_draw_minor_grid,
                 'show_numbers': y_show_numbers,
-                'draw_tick_marks': y_draw_tick_marks,
                 'tick_major_style': y_tick_major_style,
                 'tick_minor_style': y_tick_minor_style,
                 'tick_major_unit': y_tick_major_unit,

@@ -11,9 +11,10 @@ import openpyxl
 import pandas as pd
 from pandas.io.formats import excel
 from ..data import Table, Value, Breakdown
-from .reporting_tools import report_breakdown, report_table, report_value, \
-                             set_default_col_widths, \
+from .reporting_tools import report_breakdown, report_chart, report_table, \
+                             report_value, set_default_col_widths, \
                              format_multicell_dataset
+from ..chart import Chart
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..formula import Formula
 
@@ -50,6 +51,9 @@ class Results():
         # Initialize the breakdowns list
         self._breakdowns: list[Breakdown] = []
 
+        # Initialize the charts list
+        self._charts: list[Chart] = []
+
         # Initialize the DataSet references dictionary
         self._dataset_references = {}
 
@@ -78,6 +82,27 @@ class Results():
 
         # Add the breakdown to the breakdowns list
         self._breakdowns.append(breakdown)
+
+        return None
+
+    # Method to add a new Chart to the results
+    @error_logging
+    def add_chart(self, chart: Chart):
+        """_summary_
+
+        Parameters
+        ----------
+        chart : Chart
+            The Chart to add to the results.
+
+        Returns
+        -------
+        None
+
+        """
+
+        # Add the Chart
+        self._charts.append(chart)
 
         return None
 
@@ -256,6 +281,11 @@ class Results():
             # Format the Breakdown
             format_multicell_dataset(breakdown, workbook)
 
+        # For every Chart in Results...
+        for chart in self._charts:
+            # Report the Chart
+            report_chart(chart, workbook)
+
         # Set the default width for all columns
         set_default_col_widths(workbook)
 
@@ -313,5 +343,9 @@ class Results():
         # Add value references for each value
         for value in self._values:
             self._dataset_references[value.id] = value.reference
+
+        # Add breakdown references for each breakdown
+        for breakdown in self._breakdowns:
+            self._dataset_references[breakdown.id] = breakdown.reference
 
         return None

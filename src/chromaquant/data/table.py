@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from ..results import Results
 from openpyxl.utils.cell import get_column_letter
 from .dataset import DataSet
+from ._column_id import _ColumnID
 from ..formula import Formula
 from ..logging_and_handling import setup_logger, setup_error_logging
 from ..match import match, MatchConfig
@@ -95,17 +96,6 @@ class Table(DataSet):
         self._update_table()
 
     """ PROPERTIES """
-    # Define the reference property
-    # Only give reference a getter
-    @property
-    def reference(self):
-        """
-        Get the current reference object for the DataSet. Unable to set
-        or delete this value as it is managed internally.
-        """
-        self._update_table()
-        return self._reference
-
     # Redefining properties to include update_table
     # Data properties
     # Getter
@@ -178,6 +168,17 @@ class Table(DataSet):
 
         return self._footprint
 
+    # Define the reference property
+    # Only give reference a getter
+    @property
+    def reference(self):
+        """
+        Get the current reference object for the DataSet. Unable to set
+        or delete this value as it is managed internally.
+        """
+        self._update_table()
+        return self._reference
+
     # Sheet properties
     # Getter
     @property
@@ -197,20 +198,12 @@ class Table(DataSet):
         if self._mediator is not None:
             self._mediator.update_datasets()
 
-    # Deleter
-    @sheet.deleter
-    def sheet(self):
-        del self._sheet
-        self._update_table()
-        if self._mediator is not None:
-            self._mediator.update_datasets()
-
     # Start cell properties
     # Getter
     @property
     def start_cell(self) -> str:
         """
-        Get, set, or delete the Excel reference where data will be reported.
+        Get or set the Excel reference where data will be reported.
         """
         return self._start_cell
 
@@ -226,15 +219,6 @@ class Table(DataSet):
         # If an exception occurs...
         except Exception as e:
             raise ValueError(f'Passed start cell is not valid: {e}')
-        self._update_table()
-        if self._mediator is not None:
-            self._mediator.update_datasets()
-
-    # Deleter
-    @start_cell.deleter
-    def start_cell(self):
-        del self._start_cell
-        del self.start_row, self.start_column
         self._update_table()
         if self._mediator is not None:
             self._mediator.update_datasets()
@@ -428,6 +412,28 @@ class Table(DataSet):
 
         return None
 
+    # Method to get a given column's id
+    @error_logging
+    def column_id(self, column_name: str):
+        """
+        Method that returns a column's ID dictionary.
+
+        Parameters
+        ----------
+        column_name : str
+            Name of a column of interest.
+
+        Returns
+        -------
+        new_column_id : dict[str, str]
+            ColumnID of interest.
+        """
+
+        # Create a ColumnID
+        new_column_id = _ColumnID(self, column_name)
+
+        return new_column_id
+
     # Method to get the insert string for a given column
     @error_logging
     def insert(self, column: str, range: bool = False) -> str:
@@ -564,8 +570,7 @@ class Table(DataSet):
                                 f"${col_letter}${end_row}")
 
                 # Get a plain range reference
-                plain_range = (f"${col_letter}${start_row}:"
-                               f"${col_letter}${end_row}")
+                plain_range = column_range.split('!')[-1]
 
             # Update the reference object
             self._reference[column] = \
