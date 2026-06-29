@@ -92,7 +92,3 @@ class TestChart:
 
         # Report the results
         results.report_results('./tests/unit/test_table_chart.xlsx')
-
-
-test_chart = TestChart()
-test_chart.test_table_chart()

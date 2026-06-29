@@ -645,10 +645,101 @@ class Breakdown(DataSet):
 
         return None
 
-    def merge_datasets(self,
-                       breakdown_list: list[DataSet]):
+    # Method to create a Breakdown by merging passed Breakdowns
+    @error_logging
+    def merge_breakdowns(self,
+                         breakdown_list: list[DataSet]):
 
-        # Verify that each DataSet is of the same dimensions
+        # Get a set of all DataSet shapes
+        shapes = {dataset.data.shape for dataset in breakdown_list}
+
+        # If all DataSets are of the same dimension...
+        if len(shapes) == 1:
+
+            # Create an empty DataFrame using the shape of the first Breakdown
+            self._data = \
+                pd.DataFrame().reindex_like(
+                    breakdown_list[0]._data
+                    ).replace({float('nan'): None})
+
+            # Set the first column values to the first column of the first
+            # passed DataFrame
+            self._data[breakdown_list[0]._data.columns[0]] = \
+                breakdown_list[0]._data[breakdown_list[0]._data.columns[0]]
+
+            # Get an initial row index
+            row_index = 3 if not self._header else 4
+
+            # For every cell in the DataFrame...
+            for index, row in self._data.iterrows():
+                # Get an initial column index
+                column_index = 2
+                for column in self._data.columns[1:]:
+
+                    # Get a dictionary of indices for every breakdown
+                    breakdown_dict = \
+                        {breakdown.id:
+                         {'row': row_index,
+                          'column': column_index,
+                          'start_row': breakdown.start_row,
+                          'start_column': breakdown.start_column,
+                          'sheet': breakdown.sheet}
+                         for breakdown in breakdown_list}
+
+                    # Get a looping index
+                    i = 0
+                    # Get a cell value
+                    cell_value = '='
+
+                    # For every Breakdown in the list...
+                    for key, value in breakdown_dict.items():
+                        # Get the cell's column letter, adjusting from
+                        # absolute
+                        column_string = \
+                            get_column_letter(
+                                value['start_column'] + value['column']
+                                )
+                        # Get the cell's row, adjusting from absolute
+                        row_string = str(value['start_row'] + value['row'])
+                        # Get the cell string
+                        cell_string = \
+                            (f"'{value['sheet']}'!"
+                             f"${column_string}"
+                             f"${row_string}")
+
+                        # If the index is 0...
+                        if i == 0:
+                            # Add the cell_string to the cell_value
+                            cell_value += cell_string
+                        # Otherwise...
+                        else:
+                            # Add the cell_string and a '+'
+                            cell_value += '+' + cell_string
+                        # Iterate the looping index
+                        i += 1
+
+                    # Set the cell value
+                    self._data.at[index, column] = cell_value
+
+                    # Get the new column index
+                    column_index += 1
+
+                # Get the new row index
+                row_index += 1
+
+        # Otherwise, raise error
+        else:
+            raise ValueError(
+                'One or more passed breakdowns are of uneven dimensions.'
+                )
+
+        # Set the data length
+        self.length = len(self._data)
+
+        # Set the breakdown cache
+        self._breakdown_cache = {'function': self.merge_breakdowns,
+                                 'arguments': {'breakdown_list':
+                                               breakdown_list}}
 
         return None
 
@@ -673,20 +764,42 @@ class Breakdown(DataSet):
                                                        self._data,
                                                        self.start_column + 1)
 
-            # Get a start row, adjusting from absolute
-            start_row = self.start_row + 3
+            # Get a Boolean indicating whether the Table has a header
+            has_header = False if self.header == '' else True
 
-            # Get an end row, adjusting from absolute
-            end_row = self.start_row + 2 + self.length
+            # If there is a header...
+            if has_header:
 
-            # Get a range reference, adjusting from absolute
-            column_range = (f"'{self._sheet}'!"
-                            f"${col_letter}${start_row}:"
-                            f"${col_letter}${end_row}")
+                # Get a start row, adjusting from absolute
+                start_row = self.start_row + 3
 
-            # Get a plain range reference
-            plain_range = (f"${col_letter}${start_row}:"
-                           f"${col_letter}${end_row}")
+                # Get an end row, adjusting from absolute
+                end_row = self.start_row + 2 + self.length
+
+                # Get a range reference, adjusting from absolute
+                column_range = (f"'{self._sheet}'!"
+                                f"${col_letter}${start_row}:"
+                                f"${col_letter}${end_row}")
+
+                # Get a plain range reference
+                plain_range = (f"${col_letter}${start_row}:"
+                               f"${col_letter}${end_row}")
+
+            # If there isn't a header...
+            else:
+                # Get a start row, adjusting from absolute
+                start_row = self.start_row + 2
+
+                # Get an end row, adjusting from absolute
+                end_row = self.start_row + 1 + self.length
+
+                # Get a range reference, adjusting from absolute
+                column_range = (f"'{self._sheet}'!"
+                                f"${col_letter}${start_row}:"
+                                f"${col_letter}${end_row}")
+
+                # Get a plain range reference
+                plain_range = column_range.split('!')[-1]
 
             # Update the reference object
             self._reference[column] = \
