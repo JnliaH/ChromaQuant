@@ -150,7 +150,7 @@ class CellStyle:
         Indent of the text in cells, by default 0
 
     protection_locked : bool, optional
-        Whether to lock cells, by default False
+        Whether to lock cells, by default True
 
     protection_hidden : bool, optional
         Whether to hide cells, by default False
@@ -205,7 +205,7 @@ class CellStyle:
                  alignment_wrap_text: bool = False,
                  alignment_shrink_to_fit: bool = False,
                  alignment_indent: float = 0,
-                 protection_locked: bool = False,
+                 protection_locked: bool = True,
                  protection_hidden: bool = False,
                  number_format: str = 'General'):
 

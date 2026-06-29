@@ -84,7 +84,7 @@
 
             "protection":
             {
-                "locked": false,
+                "locked": true,
                 "hidden": false
             },
 
@@ -177,7 +177,7 @@
 
             "protection":
             {
-                "locked": false,
+                "locked": true,
                 "hidden": false
             },
 
@@ -269,7 +269,7 @@
 
             "protection":
             {
-                "locked": false,
+                "locked": true,
                 "hidden": false
             },
 

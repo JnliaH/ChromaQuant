@@ -668,7 +668,7 @@ class Breakdown(DataSet):
                 breakdown_list[0]._data[breakdown_list[0]._data.columns[0]]
 
             # Get an initial row index
-            row_index = 3 if not self._header else 4
+            row_index = 2 if not self._header else 3
 
             # For every cell in the DataFrame...
             for index, row in self._data.iterrows():
