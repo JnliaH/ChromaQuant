@@ -44,9 +44,32 @@ class Chart:
 
     Parameters
     ----------
+    chart : ChartBase, optional
+        The openpyxl chart (e.g., ScatterChart) to base this Chart off of,
+        by default ChartBase()
+    indep_column : _ColumnID, optional
+        The ColumnID referencing a column in a Table or Breakdown to use for
+        independent variable data (e.g., categories for BarChart), by default
+        None
+    data_columns : list[_ColumnID], optional
+        A list of ColumnID's, each referencing a column in a Table or
+        Breakdown to use for dependent variable data, by default []
+    theme : Theme | None, optional
+        The Theme to use in formatting the Chart, by default None
+    titles_from_data : bool, optional
+        Whether to use the first row in data ranges as Series titles, by
+        default True
+    anchor : str, optional
+        The cell to anchor the chart to, by default 'C15'
+    sheet : str, optional
+        The worksheet to place the chart in, by default 'Sheet1'
 
     Raises
     ------
+    ValueError:
+        If passed anchor cell is not valid.
+    ValueError:
+        If sheet is set to a blank string.
 
     """
 
@@ -117,6 +140,9 @@ class Chart:
     # Getter
     @property
     def base(self):
+        """
+        Get or set the base openpyxl Chart object.
+        """
         return self._base
 
     # Setter
@@ -128,6 +154,9 @@ class Chart:
     # Getter
     @property
     def indep_column(self):
+        """
+        Get, set, or delete the ColumnID for the independent axis.
+        """
         return self._indep_column
 
     # Setter
@@ -149,6 +178,9 @@ class Chart:
     # Getter
     @property
     def indep_reference(self):
+        """
+        Get the Reference for the current independent ColumnID.
+        """
         # Get a range string
         range_string = \
             self._indep_column.multicell_dataset._reference[
@@ -166,6 +198,9 @@ class Chart:
     # Getter
     @property
     def data_columns(self):
+        """
+        Get, set, or delete the ColumnID's for the data series.
+        """
         return self._data_columns
 
     # Setter
@@ -186,6 +221,9 @@ class Chart:
     # Getter
     @property
     def data_references(self):
+        """
+        Get the References for the current data ColumnID's.
+        """
         # Get a list of range strings and worksheets
         reference_data = \
             [{'range_string': data_column.multicell_dataset._reference[
@@ -218,6 +256,9 @@ class Chart:
     # Getter
     @property
     def theme(self):
+        """
+        Get or set the Theme to use for this Chart.
+        """
         return self._theme
 
     # Setter
@@ -245,6 +286,10 @@ class Chart:
     # Getter
     @property
     def titles_from_data(self):
+        """
+        Get or set a boolean determining whether to get Series titles from
+        data ranges.
+        """
         return self._titles_from_data
 
     # Setter
@@ -255,26 +300,34 @@ class Chart:
     """ METHODS """
     # Method to add a data column
     def add_data_column(self, column):
+        """
+        Method to add a data ColumnID to the list of data columns.
 
+        Parameters
+        ----------
+        column : ColumnID
+            Column to add to the current list of column data.
+
+        Returns
+        -------
+        None
+
+        """
         # Append the column to the data columns list
         self._data_columns.append(column)
 
         return None
 
-    # Method to create the chart object
-    def _create_chart(self):
-
-        # Create the chart object
-        self.chart = self.chart_types[self.type]['obj']()
-
-        # Define the chart axis type
-        self.axis_type = self.chart_types[self.type]['axis_type']
-
-        return None
-
     # Method to update the chart
     def _update_series(self):
+        """
+        Method to update the Series plotted in the Chart.
 
+        Returns
+        -------
+        None
+
+        """
         # Clear all existing series
         self._base.series.clear()
 
@@ -330,7 +383,14 @@ class Chart:
 
     # Method to update the theme
     def _update_theme(self):
+        """
+        Method to update the Chart Theme.
 
+        Returns
+        -------
+        None
+
+        """
         # Function to set the font and overlay of a title
         def set_font_and_overlay(title_type: str,
                                  title: TitleDescriptor):

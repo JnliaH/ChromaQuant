@@ -9,3 +9,5 @@ API Reference
     chromaquant.match
     chromaquant.results
     chromaquant.utils
+    chromaquant.chart
+    chromaquant.theme

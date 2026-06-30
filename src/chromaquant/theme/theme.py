@@ -211,78 +211,68 @@ class CellStyle:
 
         # Define dictionaries for each style property
         # Set Font values
-        self._font = {'name': font_name,
-                      'size': font_size,
-                      'bold': font_bold,
-                      'italic': font_italic,
-                      'vertAlign': font_vert_align,
-                      'underline': font_underline,
-                      'strike': font_strike,
-                      'color': font_color
-                      }
-
-        # Set PatternFill values
-        self._fill = {'fill_type': fill_type,
-                      'start_color': fill_start_color,
-                      'end_color': fill_end_color
-                      }
-
-        # Set Border values
-        self._border = {'left':
-                        border_left,
-                        'right':
-                        border_right,
-                        'top':
-                        border_top,
-                        'bottom':
-                        border_bottom,
-                        'diagonal':
-                        border_diagonal,
-                        'diagonalUp':
-                        border_diagonal_up,
-                        'diagonalDown':
-                        border_diagonal_down,
-                        'outline':
-                        border_outline,
-                        'vertical':
-                        border_vertical,
-                        'horizontal':
-                        border_horizontal,
-                        }
-
-        # Set Alignment values
-        self._alignment = {'horizontal': alignment_horizontal,
-                           'vertical': alignment_vertical,
-                           'text_rotation': alignment_text_rotation,
-                           'wrap_text': alignment_wrap_text,
-                           'shrink_to_fit': alignment_shrink_to_fit,
-                           'indent': alignment_indent
-                           }
-
-        # Set Protection values
-        self._protection = {'locked': protection_locked,
-                            'hidden': protection_hidden
+        self._font: dict = {'name': font_name,
+                            'size': font_size,
+                            'bold': font_bold,
+                            'italic': font_italic,
+                            'vertAlign': font_vert_align,
+                            'underline': font_underline,
+                            'strike': font_strike,
+                            'color': font_color
                             }
 
+        # Set PatternFill values
+        self._fill: dict = {'fill_type': fill_type,
+                            'start_color': fill_start_color,
+                            'end_color': fill_end_color
+                            }
+
+        # Set Border values
+        self._border: dict = {'left':
+                              border_left,
+                              'right':
+                              border_right,
+                              'top':
+                              border_top,
+                              'bottom':
+                              border_bottom,
+                              'diagonal':
+                              border_diagonal,
+                              'diagonalUp':
+                              border_diagonal_up,
+                              'diagonalDown':
+                              border_diagonal_down,
+                              'outline':
+                              border_outline,
+                              'vertical':
+                              border_vertical,
+                              'horizontal':
+                              border_horizontal,
+                              }
+
+        # Set Alignment values
+        self._alignment: dict = {'horizontal': alignment_horizontal,
+                                 'vertical': alignment_vertical,
+                                 'text_rotation': alignment_text_rotation,
+                                 'wrap_text': alignment_wrap_text,
+                                 'shrink_to_fit': alignment_shrink_to_fit,
+                                 'indent': alignment_indent
+                                 }
+
+        # Set Protection values
+        self._protection: dict = {'locked': protection_locked,
+                                  'hidden': protection_hidden
+                                  }
+
         # Set Number format
-        self._number_format = number_format
+        self._number_format: str = number_format
 
         # Create empty column pointer
-        self.column_pointer = ''
+        self.column_pointer: str = ''
 
         # Get a list of acceptable border sides
-        self.border_side_list = ['left', 'right', 'top', 'bottom', 'diagonal',
-                                 'vertical', 'horizontal']
-
-    # Method to add a pointer to the CellStyle
-    @error_logging
-    def point_to(self,
-                 column_id: str):
-
-        # Set the column pointer
-        self.column_pointer = column_id
-
-        return None
+        self.border_side_list: list = ['left', 'right', 'top', 'bottom',
+                                       'diagonal', 'vertical', 'horizontal']
 
     """ PROPERTIES """
     # Font
@@ -369,6 +359,17 @@ class CellStyle:
     @number_format.setter
     def number_format(self, value):
         self._number_format = value
+
+    """ METHODS """
+    # Method to add a pointer to the CellStyle
+    @error_logging
+    def point_to(self,
+                 column_id: str):
+
+        # Set the column pointer
+        self.column_pointer = column_id
+
+        return None
 
 
 """ CHARTSTYLE CLASS """
@@ -528,7 +529,7 @@ class ChartStyle:
                  ):
 
         # Set chart format
-        self._chart = \
+        self._chart: dict = \
             {
                 'chart_outline': chart_outline,
                 'vary_colors': chart_vary_colors,
@@ -536,7 +537,7 @@ class ChartStyle:
             }
 
         # Set plot area format
-        self._plot_area = \
+        self._plot_area: dict = \
             {
                 'draw_outline': plot_area_draw_outline,
                 'outline_width': plot_area_outline_width,
@@ -545,14 +546,14 @@ class ChartStyle:
             }
 
         # Set legend format
-        self._legend = \
+        self._legend: dict = \
             {
                 'position': legend_position,
                 'overlay': legend_overlay
             }
 
         # Set title format
-        self._title = \
+        self._title: dict = \
             {
                 'title': title,
                 'overlay': title_overlay,
@@ -561,7 +562,7 @@ class ChartStyle:
             }
 
         # Set x-axis format
-        self._x_axis = \
+        self._x_axis: dict = \
             {
                 'title': x_title,
                 'overlay': x_overlay,
@@ -577,7 +578,7 @@ class ChartStyle:
             }
 
         # Set y-axis format
-        self._y_axis = \
+        self._y_axis: dict = \
             {
                 'title': y_title,
                 'overlay': y_overlay,
@@ -597,6 +598,9 @@ class ChartStyle:
         # Getter
         @property
         def chart(self):
+            """
+            Get or set the chart properties.
+            """
             return self._chart
 
         # Setter
@@ -608,6 +612,9 @@ class ChartStyle:
         # Getter
         @property
         def plot_area(self):
+            """
+            Get or set the plot area properties.
+            """
             return self._plot_area
 
         # Setter
@@ -619,6 +626,9 @@ class ChartStyle:
         # Getter
         @property
         def legend(self):
+            """
+            Get or set the legend properties.
+            """
             return self._legend
 
         # Setter
@@ -630,6 +640,9 @@ class ChartStyle:
         # Getter
         @property
         def title(self):
+            """
+            Get or set the title properties.
+            """
             return self._title
 
         # Setter
@@ -641,6 +654,9 @@ class ChartStyle:
         # Getter
         @property
         def x_axis(self):
+            """
+            Get or set the x-axis properties.
+            """
             return self._x_axis
 
         # Setter
@@ -652,6 +668,9 @@ class ChartStyle:
         # Getter
         @property
         def y_axis(self):
+            """
+            Get or set the y-axis properties.
+            """
             return self._y_axis
 
         # Setter
