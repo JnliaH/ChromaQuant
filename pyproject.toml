@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "chromaquant"
-version = "0.5.1"
+version = "0.6.0"
 description = "Analytical platform for chromatography data"
 readme = "README.md"
 license = {file = "LICENSE.txt"}
@@ -44,7 +44,7 @@ packages = ["src/chromaquant"]
 [tool.git-changelog]
 bump = "patch"
 convention = "basic"
-filter-commits = "v0.5.0..."
+filter-commits = "v0.5.1..."
 include_all = "true"
 
 [pytest]
