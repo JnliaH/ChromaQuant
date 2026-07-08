@@ -198,6 +198,12 @@ class Table(DataSet):
         if self._mediator is not None:
             self._mediator.update_datasets()
 
+    # Deleter
+    @sheet.deleter
+    def sheet(self):
+        self._sheet = 'Sheet1'
+        self._update_table()
+
     # Start cell properties
     # Getter
     @property
@@ -222,6 +228,12 @@ class Table(DataSet):
         self._update_table()
         if self._mediator is not None:
             self._mediator.update_datasets()
+
+    # Deleter
+    @start_cell.deleter
+    def start_cell(self):
+        self._start_cell = '$A$1'
+        self._update_table()
 
     """ METHODS """
     # Method to add a new column to a table

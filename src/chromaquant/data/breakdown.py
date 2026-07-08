@@ -245,7 +245,7 @@ class Breakdown(DataSet):
     # Deleter
     @sheet.deleter
     def sheet(self):
-        del self._sheet
+        self._sheet = 'Sheet1'
         self._update_breakdown()
 
     # Start cell properties
@@ -272,6 +272,12 @@ class Breakdown(DataSet):
         self._update_breakdown()
         if self._mediator is not None:
             self._mediator.update_datasets()
+
+    # Deleter
+    @start_cell.deleter
+    def start_cell(self):
+        self._start_cell = '$A$1'
+        self._update_breakdown()
 
     """ METHODS """
     # Method to get a given column's id

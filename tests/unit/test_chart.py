@@ -7,7 +7,7 @@ UNIT TESTING FOR CHART
 """
 
 import chromaquant as cq
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 from openpyxl.chart import ScatterChart, BarChart
 
 """ TEST CLASS """
@@ -24,29 +24,11 @@ class TestChart:
         # Get the default sheet
         ws = wb['Sheet']
 
-        # Define some default data
-        rows = [
-            ['x', 'A', 'B', 'C'],
-            [1, 10, 8, 80],
-            [2, 20, 2, 72],
-            [3, 35, 14, 64],
-            [4, 28, 26, 31],
-            [5, 46, 52, 25]
-        ]
-
-        # Add the data to the worksheet
-        for row in rows:
-            ws.append(row)
-
         # Create a new Chart
         new_chart = \
             cq.Chart(
-                ws,
                 ScatterChart(),
-                "'Sheet'!A1:A6",
-                ["'Sheet'!B1:B6",
-                 "'Sheet'!C1:C6",
-                 "'Sheet'!D1:D6"])
+                )
 
         # Add a theme to the Chart
         new_chart.theme = cq.Theme()
@@ -56,6 +38,15 @@ class TestChart:
 
         # Save the workbook
         wb.save('./tests/unit/test_chart.xlsx')
+
+        # Read the workbook
+        wb = load_workbook('./tests/unit/test_chart.xlsx')
+
+        # Get the default sheet
+        ws = wb['Sheet']
+
+        # Assert that the workbook contains at least one chart
+        assert ws._charts
 
     # Test Chart creation using Table data
     def test_table_chart(self):
