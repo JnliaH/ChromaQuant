@@ -43,7 +43,7 @@ packages = ["src/chromaquant"]
 
 [tool.git-changelog]
 bump = "patch"
-convention = "basic"
+convention = "angular"
 filter-commits = "v0.5.1..."
 include_all = "true"
 
