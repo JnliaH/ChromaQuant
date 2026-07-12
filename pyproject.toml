@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
 name = "chromaquant"
-version = "0.6.0"
+dynamic = ["version"]
 description = "Analytical platform for chromatography data"
 readme = "README.md"
 license = {file = "LICENSE.txt"}
@@ -29,14 +29,17 @@ dependencies = [
 	"molmass~=2025.12.12",
 	"chemformula~=1.5.1",
 	"XlsxWriter~=3.2.9",
-	"openpyxl~=3.1.5",
-	"pytest~=9.0.2",
-	"pre-commit~=4.5.1"
-
+	"openpyxl~=3.1.5"
 ]
 
 [project.urls]
 Repository = "https://github.com/JnliaH/ChromaQuant"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "_version.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/chromaquant"]
