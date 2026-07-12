@@ -647,26 +647,38 @@ class MatchConfig:
 
         """
 
-        # Try...
-        try:
-            # To get the minimum value
-            min_value_index = DF[column_name].idxmin()
-
-            # Get the row with the smallest value
-            min_value_row = DF.loc[min_value_index]
-
-        # If a KeyError is raised...
-        except KeyError:
-
+        # If every value in the column is NaN...
+        if DF[column_name].isna().all():
             # Log a warning
             logger.warning(
-                'Lowest value could not be selected due to a '
-                'KeyError, likely because all top matches had NaN '
+                'Lowest value could not be selected '
+                'because all top matches had NaN '
                 'under the multiple hits column'
                 )
-
             # Get the first row of the DataFrame
             min_value_row = DF.loc[DF.index.min()]
+
+        # Otherwise...
+        else:
+            # Try...
+            try:
+                # To get the minimum value
+                min_value_index = DF[column_name].idxmin()
+
+                # Get the row with the smallest value
+                min_value_row = DF.loc[min_value_index]
+
+            # If a KeyError is raised...
+            except KeyError:
+
+                # Log a warning
+                logger.warning(
+                    'Lowest value could not be selected due to a '
+                    'KeyError, likely because all top matches had NaN '
+                    'under the multiple hits column'
+                    )
+                # Get the first row of the DataFrame
+                min_value_row = DF.loc[DF.index.min()]
 
         return min_value_row
 
@@ -696,25 +708,37 @@ class MatchConfig:
 
         """
 
-        # Try...
-        try:
-            # To get the maximum value
-            max_value_index = DF[column_name].idxmax()
-
-            # Get the row with the largest value
-            max_value_row = DF.loc[max_value_index]
-
-        # If a KeyError is raised...
-        except KeyError:
-
+        # If every value in the column is NaN...
+        if DF[column_name].isna().all():
             # Log a warning
             logger.warning(
-                'Highest value could not be selected due to a '
-                'KeyError, likely because all top matches had NaN '
+                'Highest value could not be selected '
+                'because all top matches had NaN '
                 'under the multiple hits column'
                 )
-
             # Get the first row of the DataFrame
             max_value_row = DF.loc[DF.index.min()]
+
+        # Otherwise...
+        else:
+            # Try...
+            try:
+                # To get the maximum value
+                max_value_index = DF[column_name].idxmax()
+
+                # Get the row with the largest value
+                max_value_row = DF.loc[max_value_index]
+
+            # If a KeyError is raised...
+            except KeyError:
+
+                # Log a warning
+                logger.warning(
+                    'Highest value could not be selected due to a '
+                    'KeyError, likely because all top matches had NaN '
+                    'under the multiple hits column'
+                    )
+                # Get the first row of the DataFrame
+                max_value_row = DF.loc[DF.index.min()]
 
         return max_value_row

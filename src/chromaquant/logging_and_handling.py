@@ -49,7 +49,7 @@ def setup_logger(logger: logging.Logger) -> logging.Logger:
     console_handler.setFormatter(formatter)
 
     # Set logger level - NOTE: Change before commit if debugging
-    logger.setLevel(logging.WARNING)
+    logger.setLevel(logging.ERROR)
 
     return logger
 
