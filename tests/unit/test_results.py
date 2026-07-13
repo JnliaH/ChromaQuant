@@ -188,3 +188,6 @@ class TestResults:
             raise Exception(f'A test report could not be generated: {e}')
 
         assert test_result
+
+
+TestResults().test_report_results()

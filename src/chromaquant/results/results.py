@@ -248,7 +248,7 @@ class Results():
 
         # Write Tables and Breakdowns
         # Open a new workbook with constant memory option
-        workbook = xlsxwriter.Workbook(path, options={'constant_memory': True})
+        workbook = xlsxwriter.Workbook(path)
 
         # For every Table in Results...
         for table in self._tables:
