@@ -93,6 +93,7 @@ class Breakdown(DataSet):
         super().__init__(data=DataFrame(),
                          start_cell=start_cell,
                          sheet=sheet,
+                         type='Breakdown',
                          header=header,
                          results=results)
 

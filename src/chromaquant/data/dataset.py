@@ -102,7 +102,7 @@ class DataSet:
         self.id = str(uuid.uuid4())
 
         # Add a mediator attribute
-        self._mediator = results
+        self.mediator = results
 
         # Create default theme
         self._theme = Theme()
@@ -228,7 +228,14 @@ class DataSet:
     # Setter
     @mediator.setter
     def mediator(self, mediator: Results):
+        # Set the mediator
         self._mediator = mediator
+        # Define a dictionary of mediator methods
+        mediator_dict = {'Value': self._mediator.add_value,
+                         'Table': self._mediator.add_table,
+                         'Breakdown': self._mediator.add_breakdown}
+        # Run the mediator's add_dataset method using the DataSet's type
+        mediator_dict[self.type](self)
 
     # Theme property
     # Only allow getting and setting
