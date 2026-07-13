@@ -110,7 +110,7 @@ def format_multicell_dataset(dataset: Table | Breakdown,
 
     # For every column in the body footprint...
     for column, range in footprint['body'].items():
-        # Format the column range using the subheader body
+        # Format the column range using the body theme
         format_range(sheet, range, dataset.theme.body)
 
     return None
@@ -121,14 +121,20 @@ def format_range(sheet: Worksheet,
                  cell_range: str,
                  group: CellStyle):
 
-    # For every row in the range...
-    for row in sheet[cell_range]:
+    # If the total number of cells exceeds 10000...
+    if len(sheet[cell_range])*len(sheet[cell_range][0]) >= 10000:
+        # Do not format the cells
+        pass
+    # Otherwise...
+    else:
+        # For every row in the range...
+        for row in sheet[cell_range]:
 
-        # For every cell in the row...
-        for cell in row:
+            # For every cell in the row...
+            for cell in row:
 
-            # Format the cell
-            format_cell(cell, group)
+                # Format the cell
+                format_cell(cell, group)
 
     return None
 
