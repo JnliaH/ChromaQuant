@@ -8,8 +8,8 @@ This submodule contains the Results class definition.
 
 import logging
 import openpyxl
-import pandas as pd
 from pandas.io.formats import excel
+import xlsxwriter
 from ..data import Table, Value, Breakdown
 from .reporting_tools import report_breakdown, report_chart, report_table, \
                              report_value, set_default_col_widths, \
@@ -78,7 +78,7 @@ class Results():
         """
 
         # Set the breakdown's mediator to the current object
-        breakdown.mediator = self
+        breakdown._mediator = self
 
         # Add the breakdown to the breakdowns list
         self._breakdowns.append(breakdown)
@@ -197,7 +197,7 @@ class Results():
         """
 
         # Add a self-reference to the table
-        table.mediator = self
+        table._mediator = self
 
         # Add the table to the tables list
         self._tables.append(table)
@@ -220,7 +220,7 @@ class Results():
         """
 
         # Add a self-reference to the value
-        value.mediator = self
+        value._mediator = self
 
         # Add the value to the values list
         self._values.append(value)
@@ -246,20 +246,22 @@ class Results():
         # Set the ExcelFormatter to have no header style for pandas
         excel.ExcelFormatter.header_style = None
 
-        # Write Tables
-        # NOTE: Uses pandas ExcelWriter with xlsxwriter
-        # With the writer open...
-        with pd.ExcelWriter(path, engine='xlsxwriter') as writer:
+        # Write Tables and Breakdowns
+        # Open a new workbook with constant memory option
+        workbook = xlsxwriter.Workbook(path, options={'constant_memory': True})
 
-            # For every Table in Results...
-            for table in self._tables:
-                # Write the Table to Excel
-                report_table(table, writer)
+        # For every Table in Results...
+        for table in self._tables:
+            # Write the Table to Excel
+            report_table(table, workbook)
 
-            # For every Breakdown in Results...
-            for breakdown in self._breakdowns:
-                # Write the Breakdown to Excel
-                report_breakdown(breakdown, writer)
+        # For every Breakdown in Results...
+        for breakdown in self._breakdowns:
+            # Write the Breakdown to Excel
+            report_breakdown(breakdown, workbook)
+
+        # Close the workbook
+        workbook.close()
 
         # Write Values
         # NOTE: Uses custom openpyxl writer

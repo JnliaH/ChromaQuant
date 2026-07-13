@@ -139,7 +139,7 @@ class Value(DataSet):
     # Deleter
     @sheet.deleter
     def sheet(self):
-        del self._sheet
+        self._sheet = 'Sheet1'
         self._update_value()
         if self._mediator is not None:
             self._mediator.update_datasets()
@@ -170,8 +170,10 @@ class Value(DataSet):
     # Deleter
     @start_cell.deleter
     def start_cell(self):
-        del self._start_cell
-        del self.start_row, self.start_column
+        # Reset the starting cell
+        self._start_cell = '$A$1'
+        # Get the cell's absolute indices
+        self.start_column, self.start_row = self.get_cell_indices('$A$1')
         self._update_value()
         if self._mediator is not None:
             self._mediator.update_datasets()

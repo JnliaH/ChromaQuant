@@ -84,7 +84,7 @@ class DataSet:
                  sheet: str = '',
                  type: str = 'DataSet',
                  header: str = '',
-                 results: Results = None):
+                 results: Results | None = None):
 
         # Initialize instance attributes
         self.type = type
@@ -102,6 +102,7 @@ class DataSet:
         self.id = str(uuid.uuid4())
 
         # Add a mediator attribute
+        self._mediator = None
         self.mediator = results
 
         # Create default theme
@@ -162,7 +163,7 @@ class DataSet:
     # Deleter
     @sheet.deleter
     def sheet(self):
-        del self._sheet
+        self._sheet = 'Sheet1'
 
     # Start cell properties
     # Getter
@@ -189,8 +190,10 @@ class DataSet:
     # Deleter
     @start_cell.deleter
     def start_cell(self):
-        del self._start_cell
-        del self.start_row, self.start_column
+        # Reset the starting cell
+        self._start_cell = '$A$1'
+        # Get the cell's absolute indices
+        self.start_column, self.start_row = self.get_cell_indices('$A$1')
 
     # Header properties
     # Getter
@@ -211,7 +214,7 @@ class DataSet:
     # Deleter
     @header.deleter
     def header(self):
-        del self._header
+        self._header = ''
         if self._mediator is not None:
             self._mediator.update_datasets()
 
@@ -228,14 +231,17 @@ class DataSet:
     # Setter
     @mediator.setter
     def mediator(self, mediator: Results):
-        # Set the mediator
-        self._mediator = mediator
-        # Define a dictionary of mediator methods
-        mediator_dict = {'Value': self._mediator.add_value,
-                         'Table': self._mediator.add_table,
-                         'Breakdown': self._mediator.add_breakdown}
-        # Run the mediator's add_dataset method using the DataSet's type
-        mediator_dict[self.type](self)
+        # If the new mediator is not None...
+        if mediator is not None:
+            # Define a dictionary of mediator methods
+            mediator_dict = {'Value': mediator.add_value,
+                             'Table': mediator.add_table,
+                             'Breakdown': mediator.add_breakdown}
+            # Run the mediator's add_dataset method using the DataSet's type
+            mediator_dict[self.type](self)
+        # Otherwise, pass
+        else:
+            pass
 
     # Theme property
     # Only allow getting and setting

@@ -7,11 +7,11 @@ by the Results class (see Results).
 
 """
 
-from openpyxl import Workbook
+from openpyxl import Workbook as openWorkbook
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.cell.cell import Cell
-from pandas import ExcelWriter
+from xlsxwriter import Workbook as xlsxWorkbook
 from ..chart import Chart
 from ..data import Breakdown, Table, Value
 from ..theme.theme import CellStyle
@@ -50,7 +50,7 @@ def format_cell(cell: Cell,
 
 # Function to format a table or breakdown
 def format_multicell_dataset(dataset: Table | Breakdown,
-                             workbook: Workbook):
+                             workbook: openWorkbook):
     """
     Format a Table or Breakdown in Excel.
 
@@ -135,7 +135,7 @@ def format_range(sheet: Worksheet,
 
 # Function to write a Breakdown to Excel
 def report_breakdown(breakdown: Breakdown,
-                     writer: ExcelWriter):
+                     workbook: xlsxWorkbook):
     """
     Writes a Pandas Breakdown to Excel using passed writer.
 
@@ -143,32 +143,47 @@ def report_breakdown(breakdown: Breakdown,
     ----------
     breakdown : Breakdown
         Pandas Breakdown to export.
-    writer : ExcelWriter
-        Pandas ExcelWriter used in exporting.
+    workbook : Workbook
+        Xlsx workbook to export to.
 
     Returns
     ----------
     None
 
     """
+
     # Get the start row based on whether there is a header or not
     start_row = \
         breakdown.start_row if breakdown.header == '' \
         else breakdown.start_row + 1
 
-    # Write the passed DataFrame to passed path
-    breakdown.data.to_excel(writer,
-                            sheet_name=breakdown.sheet,
-                            startcol=breakdown.start_column,
-                            startrow=start_row,
-                            index=False)
+    # If the sheet name is not in the workbook...
+    if breakdown.sheet not in [worksheet.get_name()
+                               for worksheet in workbook.worksheets()]:
+        # Create the worksheet
+        sheet = workbook.add_worksheet(breakdown.sheet)
+    # Otherwise, pass
+    else:
+        pass
+
+    # Get the worksheet
+    sheet = workbook.get_worksheet_by_name(breakdown.sheet)
+
+    # Write the headers
+    sheet.write_row(start_row,
+                    breakdown.start_column,
+                    breakdown.data.columns.tolist())
+
+    # Write the data
+    for i, row in enumerate(breakdown.data.values):
+        sheet.write_row(i + start_row + 1, breakdown.start_column, row)
 
     return None
 
 
 # Function to report a Chart to Excel
 def report_chart(chart: Chart,
-                 workbook: Workbook):
+                 workbook: openWorkbook):
     """
     Writes a Chart to Excel.
 
@@ -205,7 +220,7 @@ def report_chart(chart: Chart,
 
 # Function to write a Table to Excel
 def report_table(table: Table,
-                 writer: ExcelWriter):
+                 workbook: xlsxWorkbook):
     """
     Writes a Table to Excel.
 
@@ -213,8 +228,8 @@ def report_table(table: Table,
     ----------
     table: Table
         Table to export.
-    writer : ExcelWriter
-        Pandas ExcelWriter used in exporting.
+    workbook : Workbook
+        Xlsx workbook to export to.
 
     Returns
     -------
@@ -227,19 +242,33 @@ def report_table(table: Table,
         table.start_row if table.header == '' \
         else table.start_row + 1
 
-    # Write the passed DataFrame to passed path
-    table.data.to_excel(writer,
-                        sheet_name=table.sheet,
-                        startcol=table.start_column,
-                        startrow=start_row,
-                        index=False)
+    # If the sheet name is not in the workbook...
+    if table.sheet not in [worksheet.get_name()
+                           for worksheet in workbook.worksheets()]:
+        # Create the worksheet
+        sheet = workbook.add_worksheet(table.sheet)
+    # Otherwise, pass
+    else:
+        pass
+
+    # Get the worksheet
+    sheet = workbook.get_worksheet_by_name(table.sheet)
+
+    # Write the headers
+    sheet.write_row(start_row,
+                    table.start_column,
+                    table.data.columns.tolist())
+
+    # Write the data
+    for i, row in enumerate(table.data.values):
+        sheet.write_row(i + start_row + 1, table.start_column, row)
 
     return None
 
 
 # Function to write a Value to Excel
 def report_value(value: Value,
-                 workbook: Workbook):
+                 workbook: openWorkbook):
     """
     Writes a Value to Excel.
 
@@ -294,7 +323,7 @@ def report_value(value: Value,
 
 
 # Function to set all columns to a default width
-def set_default_col_widths(workbook: Workbook):
+def set_default_col_widths(workbook: openWorkbook):
     """
     Sets all columns in an active openpyxl workbook to a default width.
 

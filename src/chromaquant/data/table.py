@@ -232,7 +232,10 @@ class Table(DataSet):
     # Deleter
     @start_cell.deleter
     def start_cell(self):
+        # Reset the starting cell
         self._start_cell = '$A$1'
+        # Get the cell's absolute indices
+        self.start_column, self.start_row = self.get_cell_indices('$A$1')
         self._update_table()
 
     """ METHODS """
