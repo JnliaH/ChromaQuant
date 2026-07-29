@@ -164,7 +164,7 @@ class Breakdown(DataSet):
                                   self._data.columns.get_loc(column))
 
             # If there is a header...
-            if self.header != '':
+            if self._header != '':
 
                 # Get a start row, adjusting from absolute
                 start_row = self.start_row + 3
@@ -205,7 +205,7 @@ class Breakdown(DataSet):
         end_column = get_column_letter(end_column_index)
 
         # If there is a header...
-        if self.header:
+        if self._header:
 
             # Add the header range
             self._footprint['header'] = \
@@ -444,7 +444,8 @@ class Breakdown(DataSet):
             start_col = \
                 get_column_letter(absolute_start_col + 1 + header_cell_index)
             start_row = \
-                absolute_start_row + 1
+                absolute_start_row + 2 if self._header \
+                else absolute_start_row + 1
 
             # Get the current header cell
             header_cell = f'{start_col}${start_row}'
@@ -595,7 +596,8 @@ class Breakdown(DataSet):
                 get_column_letter(absolute_start_col + 2 +
                                   column_index)
             column_start_row = \
-                absolute_start_row + 2
+                absolute_start_row + 2 if self._header \
+                else absolute_start_row + 1
 
             # Get the current column header cell
             column_header_cell = f'{column_start_col}${column_start_row}'
@@ -610,7 +612,7 @@ class Breakdown(DataSet):
                 row_start_col = \
                     get_column_letter(absolute_start_col + 1)
                 row_start_row = \
-                    absolute_start_row + 3 + row_index
+                    column_start_row + 1 + row_index
 
                 # Get the current row header cell
                 row_header_cell = f'${row_start_col}{row_start_row}'
@@ -774,11 +776,8 @@ class Breakdown(DataSet):
                                                        self._data,
                                                        self.start_column + 1)
 
-            # Get a Boolean indicating whether the Table has a header
-            has_header = False if self.header == '' else True
-
             # If there is a header...
-            if has_header:
+            if self._header:
 
                 # Get a start row, adjusting from absolute
                 start_row = self.start_row + 3
