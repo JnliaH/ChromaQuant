@@ -138,7 +138,6 @@ def format_range(sheet: Worksheet,
 
     return None
 
-
 # Function to write a Breakdown to Excel
 def report_breakdown(breakdown: Breakdown,
                      workbook: xlsxWorkbook):
@@ -313,6 +312,10 @@ def report_value(value: Value,
         sheet[start_cell] = value.header
         # Format the cell using the value's theme's header style
         format_cell(sheet[start_cell], value.theme.header)
+        # If the value is NaN (i.e., not equal to itself)...
+        if value != value:
+            # Set the value to None
+            value = None
         # Write the value to the second cell
         sheet[second_cell] = value.data
         # Format the cell using the value's theme's body style

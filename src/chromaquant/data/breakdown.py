@@ -107,6 +107,7 @@ class Breakdown(DataSet):
         self._breakdown_cache = {}
         self.length = len(self._data)
         self.columns: list[str] = []
+        self._column_ids: list[_ColumnID] = {}
 
         # If the conditional aggregate is not equal to an expected value...
         if conditional_aggregate not in self.allowed_conditional_aggregates:
@@ -164,7 +165,7 @@ class Breakdown(DataSet):
                                   self._data.columns.get_loc(column))
 
             # If there is a header...
-            if self._header != '':
+            if self.header != '':
 
                 # Get a start row, adjusting from absolute
                 start_row = self.start_row + 3
@@ -205,7 +206,7 @@ class Breakdown(DataSet):
         end_column = get_column_letter(end_column_index)
 
         # If there is a header...
-        if self._header:
+        if self.header:
 
             # Add the header range
             self._footprint['header'] = \
@@ -297,14 +298,11 @@ class Breakdown(DataSet):
 
         Returns
         -------
-        new_column_id : dict[str, str]
+        column_id : dict[str, str]
             ColumnID of interest.
         """
 
-        # Create a ColumnID
-        new_column_id = _ColumnID(self, column_name)
-
-        return new_column_id
+        return self._column_ids[column_name]
 
     # Method to create a conditional aggregate formula based on criteria
     def _create_conditional_aggregate_formula(self,
@@ -444,8 +442,7 @@ class Breakdown(DataSet):
             start_col = \
                 get_column_letter(absolute_start_col + 1 + header_cell_index)
             start_row = \
-                absolute_start_row + 2 if self._header \
-                else absolute_start_row + 1
+                absolute_start_row + 1
 
             # Get the current header cell
             header_cell = f'{start_col}${start_row}'
@@ -479,6 +476,8 @@ class Breakdown(DataSet):
                                                summarize_column,
                                                'groups_to_summarize':
                                                groups_to_summarize}}
+
+        self._update_breakdown()
 
         return None
 
@@ -596,8 +595,7 @@ class Breakdown(DataSet):
                 get_column_letter(absolute_start_col + 2 +
                                   column_index)
             column_start_row = \
-                absolute_start_row + 2 if self._header \
-                else absolute_start_row + 1
+                absolute_start_row + 2
 
             # Get the current column header cell
             column_header_cell = f'{column_start_col}${column_start_row}'
@@ -612,7 +610,7 @@ class Breakdown(DataSet):
                 row_start_col = \
                     get_column_letter(absolute_start_col + 1)
                 row_start_row = \
-                    column_start_row + 1 + row_index
+                    absolute_start_row + 3 + row_index
 
                 # Get the current row header cell
                 row_header_cell = f'${row_start_col}{row_start_row}'
@@ -654,6 +652,8 @@ class Breakdown(DataSet):
                                                summarize_column,
                                                'groups_to_summarize':
                                                groups_to_summarize}}
+
+        self._update_breakdown()
 
         return None
 
@@ -753,6 +753,8 @@ class Breakdown(DataSet):
                                  'arguments': {'breakdown_list':
                                                breakdown_list}}
 
+        self._update_breakdown()
+
         return None
 
     # Method to update column references
@@ -777,7 +779,7 @@ class Breakdown(DataSet):
                                                        self.start_column + 1)
 
             # If there is a header...
-            if self._header:
+            if self.header != '':
 
                 # Get a start row, adjusting from absolute
                 start_row = self.start_row + 3
@@ -819,6 +821,9 @@ class Breakdown(DataSet):
                  'length': self.length,
                  'range': column_range,
                  'plain_range': plain_range}
+
+            # Update the column id
+            self._column_ids[column] = _ColumnID(self, column)
 
         return None
 

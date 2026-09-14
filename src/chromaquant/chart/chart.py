@@ -161,7 +161,7 @@ class Chart:
 
     # Setter
     @indep_column.setter
-    def indep_column(self, value: str):
+    def indep_column(self, value: _ColumnID):
         # Set the independent range
         self._indep_column = value
         # Update the chart
@@ -181,18 +181,9 @@ class Chart:
         """
         Get the Reference for the current independent ColumnID.
         """
-        # Get a range string
-        range_string = \
-            self._indep_column.multicell_dataset._reference[
-                self._indep_column.column_name
-                ]['range']
-        # Get the worksheet
-        worksheet = \
-            self._indep_column.multicell_dataset._reference[
-                self._indep_column.column_name
-                ]['sheet']
-        return Reference(worksheet=worksheet,
-                         range_string=range_string)
+        # Return the Reference
+        return Reference(worksheet=self._indep_column.sheet,
+                         range_string=self._indep_column.range)
 
     # Data ranges
     # Getter
@@ -205,7 +196,7 @@ class Chart:
 
     # Setter
     @data_columns.setter
-    def data_columns(self, value):
+    def data_columns(self, value: list):
         self._data_columns = value
         # Update the chart
         self._update_series()
@@ -224,17 +215,10 @@ class Chart:
         """
         Get the References for the current data ColumnID's.
         """
-        # Get a list of range strings and worksheets
-        reference_data = \
-            [{'range_string': data_column.multicell_dataset._reference[
-                data_column.column_name]['range'],
-              'worksheet': data_column.multicell_dataset._reference[
-                data_column.column_name]['sheet']}
-             for data_column in self._data_columns]
         # Return a list of references
-        return [Reference(worksheet=dict['worksheet'],
-                          range_string=dict['range_string'])
-                for dict in reference_data]
+        return [Reference(worksheet=column.sheet,
+                          range_string=column.range)
+                for column in self._data_columns]
 
     # Sheet properties
     # Getter
@@ -335,7 +319,7 @@ class Chart:
         if self._indep_column and self._data_columns:
 
             # Get every column id's parent object's reference attribute
-            all_references = [column.multicell_dataset.reference
+            all_references = [column.range
                               for sublist in ((self._indep_column,),
                                               self._data_columns)
                               for column in sublist]

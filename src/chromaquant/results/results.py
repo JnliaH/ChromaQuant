@@ -7,8 +7,8 @@ This submodule contains the Results class definition.
 """
 
 import logging
+import numpy as np
 import openpyxl
-from pandas.io.formats import excel
 import xlsxwriter
 from ..data import Table, Value, Breakdown
 from .reporting_tools import report_breakdown, report_chart, report_table, \
@@ -243,20 +243,22 @@ class Results():
         -------
         None
         """
-        # Set the ExcelFormatter to have no header style for pandas
-        excel.ExcelFormatter.header_style = None
 
-        # Write Tables and Breakdowns
+        # Write Tables and Breakdowns using plain XlsxWriter
         # Open a new workbook with constant memory option
         workbook = xlsxwriter.Workbook(path)
 
         # For every Table in Results...
         for table in self._tables:
+            # Replace any NaN or inf values with None
+            table.data = table.data.replace([np.inf, -np.inf, np.nan], None)
             # Write the Table to Excel
             report_table(table, workbook)
 
         # For every Breakdown in Results...
         for breakdown in self._breakdowns:
+            # Replace any NaN or inf values with None
+            breakdown.data = breakdown.data.replace([np.inf, -np.inf, np.nan], None)
             # Write the Breakdown to Excel
             report_breakdown(breakdown, workbook)
 
