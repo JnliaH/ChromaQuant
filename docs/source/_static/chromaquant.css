@@ -2,6 +2,24 @@
     background: #4b2e83
 }
 
+.wy-nav-side {
+    background-color: #f8f9fa
+}
+.wy-menu-vertical li.toctree-l1 > a:hover,
+.wy-menu-vertical li.toctree-l1.current a:hover > button {
+    background-color: #8b8b8b;
+    color: #f8f9fa;
+    font-weight: bold;
+}
+
+.wy-menu-vertical a {
+    color: #404040
+}
+
 span.caption-text {
     color: #b7a57a
+}
+
+:root {
+    --sd-color-primary: #f8f9fa
 }

@@ -1,4 +1,8 @@
 Examples
 =========================
 
-Please check back later for example usage!
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+
+    pages/petroleum-mixture.rst
