@@ -6,11 +6,14 @@ compound best hits sorted by retention time.
 """
 
 import re
+from typing import TYPE_CHECKING
 
 import numpy as np
 import pandas as pd
 
-from ..data.table import Table
+if TYPE_CHECKING:
+    from ..data.table import Table
+
 from .element import Element
 
 """ CLASS """
