@@ -14,7 +14,8 @@ refer to any combination of individual cells or ranges of cells.
 import logging
 import re
 from typing import Any
-from ..logging_and_handling import setup_logger, setup_error_logging
+
+from ..logging_and_handling import setup_error_logging, setup_logger
 
 """ LOGGING AND HANDLING """
 

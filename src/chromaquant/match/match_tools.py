@@ -8,8 +8,10 @@ to match two DataFrames by comparing values from columns for each
 
 """
 
-from pandas import DataFrame, Series
 from typing import Any
+
+from pandas import DataFrame, Series
+
 from .match_config import MatchConfig
 
 """ FUNCTIONS """

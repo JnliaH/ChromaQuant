@@ -11,10 +11,12 @@ from __future__ import annotations
 
 import logging
 from typing import TYPE_CHECKING
+
 if TYPE_CHECKING:
     from .table import Table
     from .breakdown import Breakdown
-from ..logging_and_handling import setup_logger, setup_error_logging
+
+from ..logging_and_handling import setup_error_logging, setup_logger
 
 """ LOGGING AND HANDLING """
 

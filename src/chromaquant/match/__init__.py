@@ -7,6 +7,6 @@ and a class for defining the parameters by which to match (MatchConfig).
 
 """
 
+from .match import match
 from .match_config import MatchConfig
 from .match_tools import match_dataframes
-from .match import match

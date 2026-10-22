@@ -10,6 +10,6 @@ and more.
 
 """
 
+from .breakdown import Breakdown
 from .table import Table
 from .value import Value
-from .breakdown import Breakdown

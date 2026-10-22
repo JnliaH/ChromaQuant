@@ -9,11 +9,13 @@ write to data files.
 
 import logging
 import os
-import pandas as pd
-from pandas import DataFrame
 from collections.abc import Callable
 from typing import Any
-from ..logging_and_handling import setup_logger, setup_error_logging
+
+import pandas as pd
+from pandas import DataFrame
+
+from ..logging_and_handling import setup_error_logging, setup_logger
 
 """ LOGGING AND HANDLING """
 

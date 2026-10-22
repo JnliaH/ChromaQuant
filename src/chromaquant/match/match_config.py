@@ -13,10 +13,12 @@ the match function from match.py or Table.match from a Table object.
 """
 
 import logging
-import pandas as pd
-from typing import Any
 from collections.abc import Callable
-from ..logging_and_handling import setup_logger, setup_error_logging
+from typing import Any
+
+import pandas as pd
+
+from ..logging_and_handling import setup_error_logging, setup_logger
 
 """ LOGGING AND HANDLING """
 

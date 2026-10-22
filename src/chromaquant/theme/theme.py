@@ -6,13 +6,15 @@ This submodule contains the Theme class definition.
 
 """
 
-import logging
 import json
-from openpyxl.styles import PatternFill, Border, Side, \
-                            Alignment, Protection, Font
+import logging
 import os
-from ..logging_and_handling import setup_logger, setup_error_logging
 from typing import Literal
+
+from openpyxl.styles import (Alignment, Border, Font, PatternFill, Protection,
+                             Side)
+
+from ..logging_and_handling import setup_error_logging, setup_logger
 
 """ LOGGING AND HANDLING """
 

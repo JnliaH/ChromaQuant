@@ -11,14 +11,19 @@ like a Results instance.
 """
 
 from __future__ import annotations
+
 import logging
-from openpyxl.utils.cell import coordinate_from_string, \
-                                column_index_from_string
-from typing import Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
+
+from openpyxl.utils.cell import (column_index_from_string,
+                                 coordinate_from_string)
+
 if TYPE_CHECKING:
     from ..results import Results
+
 import uuid
-from ..logging_and_handling import setup_logger, setup_error_logging
+
+from ..logging_and_handling import setup_error_logging, setup_logger
 from ..theme import Theme
 
 """ LOGGING AND HANDLING """

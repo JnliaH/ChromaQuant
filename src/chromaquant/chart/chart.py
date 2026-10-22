@@ -7,20 +7,21 @@ This submodule contains the Chart class definition.
 """
 
 import logging
-from openpyxl.chart._chart import ChartBase
+
+from openpyxl import Workbook
 from openpyxl.chart import Reference
+from openpyxl.chart._chart import ChartBase
 from openpyxl.chart.series_factory import SeriesFactory
 from openpyxl.chart.shapes import GraphicalProperties
 from openpyxl.chart.title import TitleDescriptor
 from openpyxl.drawing.line import LineProperties
-from openpyxl.drawing.text import ParagraphProperties, \
-                                  CharacterProperties, \
-                                  Font
-from openpyxl.utils.cell import coordinate_from_string, \
-                                column_index_from_string
-from openpyxl import Workbook
+from openpyxl.drawing.text import (CharacterProperties, Font,
+                                   ParagraphProperties)
+from openpyxl.utils.cell import (column_index_from_string,
+                                 coordinate_from_string)
+
 from ..data._column_id import _ColumnID
-from ..logging_and_handling import setup_logger, setup_error_logging
+from ..logging_and_handling import setup_error_logging, setup_logger
 from ..theme import Theme
 
 """ LOGGING AND HANDLING """

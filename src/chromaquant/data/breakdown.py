@@ -11,16 +11,19 @@ that can then be used in reporting or as desired.
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING, Any
+
+import pandas as pd
 from openpyxl.utils import get_column_letter
 from pandas import DataFrame
-import pandas as pd
-from typing import Any, TYPE_CHECKING
+
 if TYPE_CHECKING:
     from ..results import Results
-from .dataset import DataSet
+
+from ..logging_and_handling import setup_error_logging, setup_logger
 from ._column_id import _ColumnID
+from .dataset import DataSet
 from .table import Table
-from ..logging_and_handling import setup_logger, setup_error_logging
 
 """ LOGGING AND HANDLING """
 

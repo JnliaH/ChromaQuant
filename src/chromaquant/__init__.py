@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from .results import Results
-from .theme import Theme
 from .chart import Chart
+from .data import Breakdown, Table, Value
 from .formula import Formula
 from .match import MatchConfig
-from .data import Table
-from .data import Value
-from .data import Breakdown
-from .utils import Categories
+from .results import Results
+from .theme import Theme
+from .utils import Categories, Element, HitFilter

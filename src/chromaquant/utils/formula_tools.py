@@ -8,8 +8,9 @@ by the Formula class.
 """
 
 import re
-from openpyxl.utils import get_column_letter, coordinate_to_tuple
 from typing import Any
+
+from openpyxl.utils import coordinate_to_tuple, get_column_letter
 
 """ FUNCTIONS """
 

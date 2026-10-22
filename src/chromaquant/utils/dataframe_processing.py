@@ -8,6 +8,7 @@ Pandas DataFrames like adding new columns or filtering rows by some value.
 """
 
 from typing import Any
+
 from pandas import DataFrame, Series
 
 """ FUNCTIONS """

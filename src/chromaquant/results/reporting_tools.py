@@ -8,10 +8,11 @@ by the Results class (see Results).
 """
 
 from openpyxl import Workbook as openWorkbook
+from openpyxl.cell.cell import Cell
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
-from openpyxl.cell.cell import Cell
 from xlsxwriter import Workbook as xlsxWorkbook
+
 from ..chart import Chart
 from ..data import Breakdown, Table, Value
 from ..theme.theme import CellStyle

@@ -12,19 +12,23 @@ user definition or by operating on an extant column.
 
 from __future__ import annotations
 
-from collections.abc import Callable
 import logging
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Any
+
 import pandas as pd
-from typing import Any, TYPE_CHECKING
+
 if TYPE_CHECKING:
     from ..results import Results
+
 from openpyxl.utils.cell import get_column_letter
-from .dataset import DataSet
-from ._column_id import _ColumnID
+
 from ..formula import Formula
-from ..logging_and_handling import setup_logger, setup_error_logging
-from ..match import match, MatchConfig
-from ..utils import get_molecular_weight, get_number_element_atoms, Categories
+from ..logging_and_handling import setup_error_logging, setup_logger
+from ..match import MatchConfig, match
+from ..utils import Categories, get_molecular_weight, get_number_element_atoms
+from ._column_id import _ColumnID
+from .dataset import DataSet
 
 """ LOGGING AND HANDLING """
 

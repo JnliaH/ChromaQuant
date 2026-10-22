@@ -7,16 +7,18 @@ This submodule contains the Results class definition.
 """
 
 import logging
+
 import numpy as np
 import openpyxl
 import xlsxwriter
-from ..data import Table, Value, Breakdown
-from .reporting_tools import report_breakdown, report_chart, report_table, \
-                             report_value, set_default_col_widths, \
-                             format_multicell_dataset
+
 from ..chart import Chart
-from ..logging_and_handling import setup_logger, setup_error_logging
+from ..data import Breakdown, Table, Value
 from ..formula import Formula
+from ..logging_and_handling import setup_error_logging, setup_logger
+from .reporting_tools import (format_multicell_dataset, report_breakdown,
+                              report_chart, report_table, report_value,
+                              set_default_col_widths)
 
 """ LOGGING AND HANDLING """
 

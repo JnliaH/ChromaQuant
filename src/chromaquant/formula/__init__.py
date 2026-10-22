@@ -8,5 +8,5 @@ patterns for use in Excel report formula creation.
 
 """
 
-from .formula import Formula
 from .base_formulas import *
+from .formula import Formula
