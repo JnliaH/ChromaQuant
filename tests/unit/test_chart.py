@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 
+Copyright (c) 2026, by Julia Hancock
+License: BSD 3-Clause License
+
 UNIT TESTING FOR CHART
 
 """

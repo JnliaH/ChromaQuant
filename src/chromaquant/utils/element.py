@@ -16,4 +16,4 @@ class Element:
         self.symbol = symbol
 
         # Set priority
-        self._priority = priority
+        self.priority = priority

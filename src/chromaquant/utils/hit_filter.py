@@ -15,6 +15,7 @@ import pandas as pd
 
 if TYPE_CHECKING:
     from ..data import Table
+    from ..data._column_id import _ColumnID
 
 from .element import Element
 
@@ -115,7 +116,11 @@ class HitFilter:
 
     # Method to add match data to dataframe
     @staticmethod
-    def _concat_df(data_slice: pd.Series, df_in: pd.DataFrame):
+    def _concat_df(
+            data_slice: pd.Series,
+            df_in: pd.DataFrame,
+            out_columns: list[_ColumnID]
+            ):
         """
         Method that adds best hit match data to the best hit DataFrame
 
@@ -125,6 +130,8 @@ class HitFilter:
             Series containing best hit match data for one retention time.
         df_in : pandas.DataFrame
             DataFrame containing prior best hit match data or no match data.
+        out_columns: list of _ColumnID
+            List of columns to include in df_out.
 
         Returns
         -------
@@ -133,27 +140,11 @@ class HitFilter:
 
         """
 
-        # Assumes a dataframe provided with these columns:
-        # ['Component RT', 'Compound Name', 'Formula', 'Match Factor']
-        # Also assumes dataSlice will contain at least these same columns
-        col = [
-            "Component RT",
-            "Compound Name",
-            "Formula",
-            "Match Factor",
-            "Previous Best Compound Name",
-            "Previous Best Formula",
-            "Previous Best Match Factor",
-            "Previous Worst Compound Name",
-            "Previous Worst Formula",
-            "Previous Worst Match Factor",
-        ]
-
         # Get a list of data slice values
-        list_out = [data_slice[col[i]] for i in range(len(col))]
+        list_out = [data_slice[out_columns[i]] for i in range(len(out_columns))]
 
         # Make a data slice dataframe and reindex it
-        data_slice_df = pd.DataFrame([list_out], columns=col)
+        data_slice_df = pd.DataFrame([list_out], columns=out_columns)
 
         # Get the output dataframe
         df_out = pd.concat(
@@ -166,7 +157,10 @@ class HitFilter:
     # selected match series
     @staticmethod
     def _concat_series(
-        data_slice: pd.Series, best_slice: pd.Series, worst_slice: pd.Series
+        data_slice: pd.Series,
+        best_slice: pd.Series,
+        worst_slice: pd.Series,
+        columns: list[_ColumnID]
     ):
         """
         Method that records previous best and worst hits by concatenating them to the
@@ -180,6 +174,8 @@ class HitFilter:
             Previous best hit Series.
         worst_slice : pandas.Series
             Previous worst hit Series.
+        columns : list of _ColumnID
+            List of columns to include in return_slice.
 
         Returns
         -------
@@ -188,39 +184,29 @@ class HitFilter:
             retention time.
 
         """
-        # Assumes all Series have these columns:
-        # ['Component RT','Compound Name','Formula','Match Factor']
 
         # Define dictionaries of new index names for bestSlice and worstSlice
-        b_index = {
-            "Component RT": "Previous Best Component RT",
-            "Compound Name": "Previous Best Compound Name",
-            "Formula": "Previous Best Formula",
-            "Match Factor": "Previous Best Match Factor",
-        }
-        w_index = {
-            "Component RT": "Previous Worst Component RT",
-            "Compound Name": "Previous Worst Compound Name",
-            "Formula": "Previous Worst Formula",
-            "Match Factor": "Previous Worst Match Factor",
-        }
+        best_index = {
+            f"{column.column_name}": f"Previous Best {column.column_name}"
+            for column in columns
+            }
+        worst_index = {
+            f"{column.column_name}": f"Previous Worst {column.column_name}"
+            for column in columns
+            }
 
         # Rename bestSlice and worstSlice indices
         best_slice = best_slice.copy()
         worst_slice = worst_slice.copy()
-        best_slice.rename(index=b_index, inplace=True)
-        worst_slice.rename(index=w_index, inplace=True)
+        best_slice.rename(index=best_index, inplace=True)
+        worst_slice.rename(index=worst_index, inplace=True)
 
         # Lists of indices from best/worst slices we want to add to dataSlice
         b_index_list = [
-            "Previous Best Compound Name",
-            "Previous Best Formula",
-            "Previous Best Match Factor",
+            f"Previous Best {column.column_name}" for column in columns[1:]
         ]
         w_index_list = [
-            "Previous Worst Compound Name",
-            "Previous Worst Formula",
-            "Previous Worst Match Factor",
+            f"Previous Worst {column.column_name}" for column in columns[1:]
         ]
 
         # Define return_slice
@@ -232,12 +218,134 @@ class HitFilter:
         return return_slice
 
     """ METHODS """
+    # Method that loops through a slice of possible best hits, finding the best
+    # one using the given constraints
+    def _constrain_loop(
+            self,
+            const_df: pd.DataFrame,
+            RT_i: int | float,
+            test_slice: pd.DataFrame,
+            prior_list: list[int | float],
+            in_columns: list[_ColumnID],
+            out_columns: list[_ColumnID]
+            ):
+        """
+        Method that loops through a slice of possible best hits, finding the best
+        one using the given constraints.
+
+        Parameters
+        ----------
+        const_df : pandas.DataFrame
+            The DataFrame containing best hits by retention time,
+            with each row being the result of selection by this looping filter.
+        RT_i : int | float
+            The retention time of the test_slice.
+        test_slice : pandas.DataFrame
+            The slice containing all compounds assigned to RT_i.
+        prior_list : list[int | float]
+            A list of unique priorities across all soft_bar elements.
+        in_columns : list[_ColumnID]
+            A list of columns defining the test_slice.
+        out_columns : list[_ColumnID]
+            A list of columns to export to const_df.
+
+        Returns
+        -------
+        _type_
+            _description_
+        """
+
+        # Get the passed columns
+        rt_column, compound_column, formula_column, ranking_column = in_columns
+
+        # Find rows with best and worst rankings
+        best_match = test_slice.iloc[0, :]
+        worst_match = test_slice.iloc[-1, :]
+
+        # Set counted_loops to 0
+        counted_loops = 0
+
+        # While loop to continue search function until match is either found
+        # or not. Checks if counted_loops is greater than the length of priorities list
+        while counted_loops <= len(prior_list) + 1:
+
+            # For every row in the slice sorted by match factor..
+            for index, row in test_slice.iterrows():
+
+                # If the formula meets the no_bar criteria, choose row and return
+                if self._filter_no_bar(
+                   row[formula_column.column_name]
+                   ) and counted_loops == 0:
+
+                    # Create a Series to append
+                    const_series = self._concat_series(
+                        row,
+                        best_match,
+                        worst_match,
+                        in_columns
+                        )
+
+                    # Add the row to the DataFrame
+                    const_df = self._concat_df(const_series, const_df, out_columns)
+
+                    return const_df
+
+                # Otherwise if the formula meets the soft_bar criteria and the number
+                # of counted_loops is greater than zero
+                elif counted_loops > 0 \
+                    and counted_loops <= len(prior_list) \
+                    and self._filter_soft_bar(
+                        row[formula_column.column_name],
+                        prior_list[counted_loops - 1]
+                        ):
+
+                    # Create a Series to append
+                    const_series = self._concat_series(
+                        row,
+                        best_match,
+                        worst_match,
+                        in_columns
+                        )
+
+                    # Add the row to the DataFrame
+                    const_df = self._concat_df(const_series, const_df, out_columns)
+
+                    return const_df
+
+                # Otherwise if the loop number is greater than the number of
+                # listed priorities, add row with "No Match" and formula NaN
+                elif counted_loops > len(prior_list):
+
+                    # Create a Series to append
+                    const_series = self._concat_series(
+                        pd.Series(
+                            {
+                                rt_column.column_name: RT_i,
+                                compound_column.column_name: "No Match",
+                                formula_column.column_name: float("nan"),
+                                ranking_column.column_name: float("nan")
+                            }
+                        ),
+                        best_match,
+                        worst_match,
+                        in_columns
+                        )
+
+                    # Add the row to the DataFrame
+                    const_df = self._concat_df(const_series, const_df, out_columns)
+
+                    return const_df
+
+            # Count one while loop
+            counted_loops += 1
+
+        return const_df
 
     # Method to return True if formula only contains no_bar restrictions
     def _filter_no_bar(
-        self,
-        formula: str,
-    ):
+            self,
+            formula: str,
+            ):
         """
         Method to return True if formula only contains no_bar restrictions
 
@@ -253,53 +361,74 @@ class HitFilter:
 
         """
 
-        # Find all Elements present in formula
-        elements = re.findall("[A-Z][a-z]?", formula)
-        # Get list of allowed Elements from no_bar dataframe
-        allowed_elements = [self.no_bar[i].symbol for i in range(len(self.no_bar))]
+        # Try...
+        try:
+            # Find all Elements present in formula
+            elements = re.findall("[A-Z][a-z]?", formula)
+            # Get list of allowed Elements from no_bar dataframe
+            allowed_elements = [self.no_bar[i].symbol for i in range(len(self.no_bar))]
 
-        # If a set of the difference between the lists is not empty (there are
-        # formula Elements besides allowed ones), return False
-        if set(elements).difference(set(allowed_elements)):
+            # If a set of the difference between the lists is not empty (there are
+            # formula Elements besides allowed ones), return False
+            if set(elements).difference(set(allowed_elements)):
+                tf = False
+            # Otherwise, return True
+            else:
+                tf = True
+
+        # If TypeError, return False
+        except TypeError:
             tf = False
-        # Otherwise, return True
-        else:
-            tf = True
 
         return tf
 
     # Method to return True if formula only contains soft_bar restrictions of
-    # given priority
-    def _filter_soft_bar(self, formula: str, priority: int):
+    # given priority or greater
+    def _filter_soft_bar(
+            self,
+            formula: str,
+            priority: int
+            ):
 
-        # Find all Elements present in formula
-        Elements = re.findall("[A-Z][a-z]?", formula)
-        # Get dataframe of Elements and priority from soft_bar
-        ePDF = pd.DataFrame.from_dict(
-            {
-                "Symbol": [obj.symbol for obj in self.soft_bar],
-                "Priority": [obj.priority for obj in self.soft_bar],
-            }
-        )
-        # Get list of symbols with provided priority or lower, add Elements from
-        # no_bar
-        allowed_Elements = ePDF.loc[ePDF["Priority"] <= priority, "Symbol"].to_list()
-        allowed_Elements.extend(
-            [self.no_bar[i].symbol for i in range(len(self.no_bar))]
-        )
+        # Try...
+        try:
+            # Find all Elements present in formula
+            formula_elements = re.findall("[A-Z][a-z]?", formula)
+            # Get dataframe of Elements and priority from soft_bar
+            elements_df = pd.DataFrame.from_dict(
+                {
+                    "Symbol": [obj.symbol for obj in self.soft_bar],
+                    "Priority": [obj.priority for obj in self.soft_bar],
+                }
+            )
+            # Get list of symbols with provided priority or greater, add Elements from
+            # no_bar
+            allowed_elements = elements_df.loc[
+                elements_df["Priority"] >= priority, "Symbol"
+                ].to_list()
+            allowed_elements.extend(
+                [self.no_bar[i].symbol for i in range(len(self.no_bar))]
+            )
+            # If a set of the difference between the lists is not empty (there are
+            # formula Elements besides allowed ones), return False
+            if set(formula_elements).difference(set(allowed_elements)):
+                tf = False
+            # Otherwise, return True
+            else:
+                tf = True
 
-        # If a set of the difference between the lists is not empty (there are
-        # formula Elements besides allowed ones), return False
-        if set(Elements).difference(set(allowed_Elements)):
+        # If TypeError, return False
+        except TypeError:
             tf = False
-        # Otherwise, return True
-        else:
-            tf = True
 
         return tf
 
     # Method to group retention times, taking median to be value of grouped peaks
-    def _group_rt(self, raw_df: pd.DataFrame):
+    def _group_rt(
+            self,
+            raw_df: pd.DataFrame,
+            rt_column_name: str
+            ):
         """
 
         Parameters
@@ -307,6 +436,8 @@ class HitFilter:
         raw_df : pandas.DataFrame
             DataFrame containing all possible hits, including hits of identical
             retention time.
+        rt_column_name: str
+            Name of the column containing retention times.
 
         Returns
         -------
@@ -323,14 +454,14 @@ class HitFilter:
         # (original) RT's (rt_temp) with only the first original RT, and the
         # median of that list
         rt_permF = []
-        rt_temp = [raw_df["Component RT"][0]]
+        rt_temp = [raw_df[rt_column_name][0]]
         rt_temp_median = rt_temp[0]
 
         # For all raw retention times, group times within the PeakRTLim of each
         # other.
-        for i in range(1, len(raw_df["Component RT"])):
+        for i in range(1, len(raw_df[rt_column_name])):
             # Current retention time
-            rt_current = raw_df["Component RT"][i]
+            rt_current = raw_df[rt_column_name][i]
 
             # If current retention time within the median plus the peak limits,
             # redefine median
@@ -344,7 +475,7 @@ class HitFilter:
                 # Recalculate median, rounding to 4 decimal places
                 rt_temp_median = round(np.median(rt_temp), 4)
                 # If it's reached the end of the dataframe, append what's left
-                if i == len(raw_df["Component RT"]) - 1:
+                if i == len(raw_df[rt_column_name]) - 1:
                     rt_permF.extend(np.full(len(rt_temp), rt_temp_median))
                     rt_temp_median = rt_current
                     rt_temp = [rt_current]
@@ -353,7 +484,7 @@ class HitFilter:
             # redefine rt_temp and rt_temp_median
             else:
                 # Set old retention times to median
-                filter_df.loc[i - len(rt_temp) : i, ("Component RT")] = rt_temp_median
+                filter_df.loc[i - len(rt_temp) : i, (rt_column_name)] = rt_temp_median
                 rt_permF.extend(np.full(len(rt_temp), rt_temp_median))
                 rt_temp_median = rt_current
                 rt_temp = [rt_current]
@@ -363,7 +494,11 @@ class HitFilter:
     # Method to choose best matches according to compound constraints
     def constrain(
             self,
-            table: Table
+            table: Table,
+            rt_column: _ColumnID,
+            compound_column: _ColumnID,
+            formula_column: _ColumnID,
+            ranking_column: _ColumnID
             ):
         """
         This method loops through the dataframe, selecting the best match out of
@@ -377,8 +512,7 @@ class HitFilter:
         For selecting the best match:
 
         1) If first formula of sorted slice contains only no_bar, add to constrained
-           dataframe
-        2) Otherwise, test next formula
+           dataframe. Otherwise, repeat test until entire slice is passed.
         3) If all other formulas have Elements besides no_bar, go back to first value
            and allow its formula if it contains only highest priority Elements
         4) If it contains lower priority/blocklist Elements, repeat down slice
@@ -389,8 +523,22 @@ class HitFilter:
 
         Parameters
         ----------
-        table : table
+        table : Table
             The Table to be filtered
+
+        rt_column: _ColumnID
+            The ColumnID corresponding to the Table column containing retention times.
+
+        compound_column: _ColumnID
+            The ColumnID corresponding to the Table column containing compound names.
+
+        formula_column: _ColumnID
+            The ColumnID corresponding to the Table column containing compound formulas.
+
+        ranking_column: _ColumnID
+            The ColumnID corresponding to the Table column containing hit rankings.
+            'Rankings' here refers to any measure of compound hit accuracy (e.g.,
+            'Match Factor').
 
         Returns
         -------
@@ -400,119 +548,74 @@ class HitFilter:
 
         # Get the Pandas DataFrame contained in the Table
         raw_df = table.data.copy()
+
         # Group the compounds by retention time
-        filter_df = self._group_rt(raw_df)
+        filter_df = self._group_rt(raw_df, rt_column.column_name)
+
         # Get list of written priorities from soft_bar and sort them by descending
-        priorList = sorted(list(set([x.Priority for x in self.soft_bar])))
+        prior_list = sorted(
+            list(set([x.priority for x in self.soft_bar])),
+            reverse=True
+            )
+
         # Get list of all retention times
-        arrayRF = filter_df["Component RT"].unique()
-        # Create dictionary for outputted data
-        constDF = pd.DataFrame(
-            columns=[
-                "Component RT",
-                "Compound Name",
-                "Formula",
-                "Match Factor",
-                "Previous Best Compound Name",
-                "Previous Best Formula",
-                "Previous Best Match Factor",
-                "Previous Worst Compound Name",
-                "Previous Worst Formula",
-                "Previous Worst Match Factor",
-            ]
-        )
+        arrayRF = filter_df[rt_column.column_name].unique()
+
+        # Create a list of new columns
+        # If showing previous matches...
+        if self.do_show_previous_matches:
+            # Include previous matches in the list
+            columns = [
+                rt_column.column_name,
+                compound_column.column_name,
+                formula_column.column_name,
+                ranking_column.column_name,
+                f"Previous Best {compound_column.column_name}",
+                f"Previous Best {formula_column.column_name}",
+                f"Previous Best {ranking_column.column_name}",
+                f"Previous Worst {compound_column.column_name}",
+                f"Previous Worst {formula_column.column_name}",
+                f"Previous Worst {ranking_column.column_name}"
+                ]
+        # Otherwise...
+        else:
+            # Only include filtered matches
+            columns = [
+                rt_column.column_name,
+                compound_column.column_name,
+                formula_column.column_name,
+                ranking_column.column_name
+                ]
+
+        # Create dictionary for output data
+        const_df = pd.DataFrame(columns=columns)
 
         # For every listed retention time, select best match
-        for RTi in arrayRF:
+        for RT_i in arrayRF:
 
             # Get a slice containing all possible compounds at given RT
-            compound_slice = filter_df.loc[(filter_df["Component RT"] == RTi)]
-            # Remove Unknowns from slice, if slice is empty then skip one loop
-            compound_slice = compound_slice.loc[
-                ~compound_slice["Compound Name"].str.contains("Unknown")
-            ]
-            # Sort slice by match factor, reset indices
+            compound_slice = filter_df.loc[(filter_df[rt_column.column_name] == RT_i)]
+
+            # Sort slice by ranking, reset indices
             test_slice = compound_slice.sort_values(
-                by=["Match Factor"], ascending=False
-            ).reset_index(drop=True)
+                by=[ranking_column.column_name], ascending=False
+                ).reset_index(drop=True)
 
-            # Find rows with best and worst match factors
-            try:
-                best_match = test_slice.iloc[0, :]
-                worst_match = test_slice.iloc[len(test_slice) - 1, :]
-
-            except Exception:
-                best_match = pd.Series(
-                    dtype="float64",
-                    index=["Component RT", "Compound Name", "Formula", "Match Factor"],
-                )
-                worst_match = pd.Series(
-                    dtype="float64",
-                    index=["Component RT", "Compound Name", "Formula", "Match Factor"],
-                )
-
-            # Set search True/False Boolean to True
-            search_tf = True
-            # Set counted_loops to 0
-            counted_loops = 0
-            # While loop to continue search function until match is either found
-            # or not
-            while search_tf is True and counted_loops < 100:
-
-                # For every row in the slice sorted by match factor..
-                for index, row in test_slice.iterrows():
-                    # If the formula meets the no_bar criteria, choose row and
-                    # break formula
-                    if self._filter_no_bar(row["Formula"]) and counted_loops == 0:
-                        constSeries = self._concat_series(row, best_match, worst_match)
-                        constDF = self.concat_DF(constSeries, constDF)
-                        search_tf = False
-                        break
-                    # Otherwise if the loop number is greater than 0 and less than
-                    # the number of unique soft_bar priorities, determine if
-                    # formula meets soft_bar criteria
-                    elif counted_loops > 0 and counted_loops < len(priorList):
-                        # Try/except in case the counted loops goes higher than the
-                        # priority list
-                        try:
-                            if self._filter_soft_bar(
-                                row["Formula"], priorList[counted_loops - 1]
-                            ):
-                                constSeries = self._concat_series(
-                                    row, best_match, worst_match
-                                )
-                                constDF = self._concat_df(constSeries, constDF)
-                                search_tf = False
-                                break
-                            else:
-                                pass
-                        except Exception:
-                            pass
-                    # Otherwise if the loop number is greater than the number of
-                    # listed priorities, add row with "No Match" and formula NaN
-                    elif counted_loops > len(priorList):
-                        constSeries = self._concat_series(
-                            pd.Series(
-                                {
-                                    "Component RT": RTi,
-                                    "Compound Name": "No Match",
-                                    "Match Factor": float("nan"),
-                                    "Formula": float("nan"),
-                                }
-                            ),
-                            best_match,
-                            worst_match,
-                        )
-                        constDF = self._concat_df(constSeries, constDF)
-                        search_tf = False
-                        break
-                    else:
-                        pass
-
-                # Count one while loop
-                counted_loops += 1
+            # Apply constraints
+            const_df = self._constrain_loop(
+                const_df,
+                RT_i,
+                test_slice,
+                prior_list,
+                [rt_column, compound_column, formula_column, ranking_column],
+                columns
+            )
 
         # Set the Table's data attribute to the newly-constrained DataFrame
-        table.data = constDF
+        table.data = const_df.sort_values(
+            by=rt_column.column_name,
+            ascending=True,
+            ignore_index=True
+            )
 
         return None
