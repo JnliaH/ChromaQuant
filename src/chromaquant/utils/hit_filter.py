@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 if TYPE_CHECKING:
-    from ..data.table import Table
+    from ..data import Table
 
 from .element import Element
 
