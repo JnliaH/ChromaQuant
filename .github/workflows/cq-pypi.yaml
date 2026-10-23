@@ -13,7 +13,7 @@ jobs:
     name: "Build version distribution"
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
+    - name: "Checkout repository"
       uses: actions/checkout@v6
     - name: Set up Python 3.14
       uses: actions/setup-python@v6
@@ -48,3 +48,29 @@ jobs:
         path: dist/
     - name: "Publish distributions"
       uses: pypa/gh-action-pypi-publish@release/v1
+  release:
+    name: "Add release to GitHub"
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+    - name: Set up Python 3.14
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.14'
+    - name: "Install dependencies"
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install git-cliff
+    - name: "Checkout repository"
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+    - name: "Create release draft"
+      uses: softprops/action-gh-release@v3
+      with:
+        draft: true
+        generate_release_notes: true
+        prerelease: ${{ contains(github.ref_name, '-') }}
+        name: "Release ${{ github.ref_name }}"
