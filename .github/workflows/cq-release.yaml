@@ -12,11 +12,6 @@ on:
         required: true
         type: boolean
         default: true
-      do_release_notes:
-        description: 'Whether to generate release notes'
-        required: true
-        type: boolean
-        default: true
 
   workflow_call:
     inputs:
@@ -27,11 +22,6 @@ on:
         default: github.ref_name
       do_draft:
         description: 'Whether to publish as a draft'
-        required: true
-        type: boolean
-        default: true
-      do_release_notes:
-        description: 'Whether to generate release notes'
         required: true
         type: boolean
         default: true
@@ -68,4 +58,3 @@ jobs:
         tag_name: ${{ inputs.tag_name }}
         body: ${{ steps.git-cliff.outputs.content }}
         draft: ${{ inputs.do_draft }}
-        generate_release_notes: ${{ inputs.do_release_notes }}
