@@ -1,4 +1,4 @@
-name: Publishing CQ to PyPI
+name: Publish ChromaQuant to PyPI
 run-name: "Deploying ChromaQuant version ${{ github.ref_name }} by ${{ github.actor }}"
 on:
   push:
