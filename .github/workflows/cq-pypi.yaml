@@ -49,6 +49,9 @@ jobs:
     - name: "Publish distributions"
       uses: pypa/gh-action-pypi-publish@release/v1
   release:
+    permissions:
+      id-token: write
+      contents: write
     uses: ./.github/workflows/cq-release.yaml
     with:
       tag_name: ${{ github.ref_name }}
