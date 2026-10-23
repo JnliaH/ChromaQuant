@@ -50,3 +50,7 @@ jobs:
       uses: pypa/gh-action-pypi-publish@release/v1
   release:
     uses: ./.github/workflows/cq-release.yaml
+    with:
+      tag_name: ${{ github.ref_name }}
+      do_draft: true
+      do_release_notes: true

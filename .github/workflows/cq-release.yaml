@@ -1,8 +1,40 @@
 name: "Publishing GitHub Release"
 run-name: "Publishing release ${{ github.ref_name }} on GitHub"
 on:
-  - workflow_dispatch
-  - workflow_call
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'The release tag version'
+        required: true
+        type: string
+      do_draft:
+        description: 'Whether to publish as a draft'
+        required: true
+        type: boolean
+        default: true
+      do_release_notes:
+        description: 'Whether to generate release notes'
+        required: true
+        type: boolean
+        default: true
+
+  workflow_call:
+    inputs:
+      tag_name:
+        description: 'The release tag version'
+        required: true
+        type: string
+        default: github.ref_name
+      do_draft:
+        description: 'Whether to publish as a draft'
+        required: true
+        type: boolean
+        default: true
+      do_release_notes:
+        description: 'Whether to generate release notes'
+        required: true
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -29,6 +61,7 @@ jobs:
     - name: "Create release draft"
       uses: softprops/action-gh-release@v3
       with:
-        draft: true
-        generate_release_notes: true
-        name: "Release ${{ github.ref_name }}"
+        tag_name: ${{ inputs.tag_name }}
+        draft: ${{ inputs.do_draft }}
+        generate_release_notes: ${{ inputs.do_release_notes }}
+        name: "Release ${{ inputs.tag_name }}"
