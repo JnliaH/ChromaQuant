@@ -1,5 +1,5 @@
 name: "Publishing GitHub Release"
-run-name: "Publishing release ${{ github.ref_name }} on GitHub"
+run-name: "Publishing release on GitHub"
 on:
   workflow_dispatch:
     inputs:
