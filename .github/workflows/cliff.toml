@@ -21,9 +21,9 @@ The most up-to-date release of `chromaquant`.
     {% endfor %}
 {% endfor %}
 
-<h2></h2>
-Best wishes,<br>
-<b>The </b>`chromaquant`<b> team</b><br>
+##
+Best wishes,
+**The `chromaquant` Team**
 """
 # Remove leading and trailing whitespaces from the changelog's body.
 trim = true
@@ -33,7 +33,7 @@ render_always = true
 postprocessors = [
     # Replace the placeholder <REPO> with a URL.
     #{ pattern = '<REPO>', replace = "https://github.com/orhun/git-cliff" },
-]
+]   
 # render body even when there are no releases to process
 # render_always = true
 # output file path
