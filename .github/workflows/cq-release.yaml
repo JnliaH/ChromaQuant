@@ -61,12 +61,12 @@ jobs:
         fetch-depth: 0
     - name: Generate changelog
       run: |
-        echo git-cliff -o CHANGELOG.md
+        echo git-cliff -o $${{ github.workspace }}/CHANGELOG.txt
     - name: Create release
       uses: softprops/action-gh-release@v3
       with:
         name: "Release ${{ inputs.tag_name }}"
         tag_name: ${{ inputs.tag_name }}
-        body_path: $${{ github.workspace }}-CHANGELOG.txt
+        body_path: $${{ github.workspace }}/CHANGELOG.txt
         draft: ${{ inputs.do_draft }}
         generate_release_notes: ${{ inputs.do_release_notes }}
