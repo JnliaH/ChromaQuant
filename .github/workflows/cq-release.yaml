@@ -41,7 +41,7 @@ permissions:
 
 jobs:
   release:
-    name: "Add release to GitHub"
+    name: Add release to GitHub
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -51,17 +51,22 @@ jobs:
       uses: actions/setup-python@v6
       with:
         python-version: '3.14'
-    - name: "Install dependencies"
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-    - name: "Checkout repository"
+        python -m pip install git-cliff
+    - name: Checkout repository
       uses: actions/checkout@v6
       with:
         fetch-depth: 0
-    - name: "Create release draft"
+    - name: Generate changelog
+      run: |
+        echo git-cliff -o CHANGELOG.md
+    - name: Create release
       uses: softprops/action-gh-release@v3
       with:
+        name: "Release ${{ inputs.tag_name }}"
         tag_name: ${{ inputs.tag_name }}
+        body_path: $${{ github.workspace }}-CHANGELOG.txt
         draft: ${{ inputs.do_draft }}
         generate_release_notes: ${{ inputs.do_release_notes }}
-        name: "Release ${{ inputs.tag_name }}"
