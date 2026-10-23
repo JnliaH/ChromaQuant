@@ -1,7 +1,8 @@
 name: "Publishing GitHub Release"
 run-name: "Publishing release ${{ github.ref_name }} on GitHub"
 on:
-  workflow_call
+  - workflow_dispatch
+  - workflow_call
 
 permissions:
   contents: read
