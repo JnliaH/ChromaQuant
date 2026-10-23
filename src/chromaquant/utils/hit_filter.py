@@ -611,7 +611,7 @@ class HitFilter:
                 columns
             )
 
-        # Set the Table's data attribute to the newly-constrained DataFrame
+        # Set the Table's data attribute to the newly constrained DataFrame
         table.data = const_df.sort_values(
             by=rt_column.column_name,
             ascending=True,
