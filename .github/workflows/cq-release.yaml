@@ -1,0 +1,33 @@
+name: "Publishing GitHub Release"
+run-name: "Publishing release ${{ github.ref_name }} on GitHub"
+on:
+  workflow_call
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    name: "Add release to GitHub"
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+    - name: Set up Python 3.14
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.14'
+    - name: "Install dependencies"
+      run: |
+        python -m pip install --upgrade pip
+    - name: "Checkout repository"
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+    - name: "Create release draft"
+      uses: softprops/action-gh-release@v3
+      with:
+        draft: true
+        generate_release_notes: true
+        name: "Release ${{ github.ref_name }}"
