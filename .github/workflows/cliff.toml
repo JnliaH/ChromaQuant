@@ -23,7 +23,7 @@ The most up-to-date release of `chromaquant`.
 
 <h2></h2>
 Best wishes,<br>
-**The `chromaquant` team**<br>
+<b>The </b>`chromaquant`<b> team</b><br>
 """
 # Remove leading and trailing whitespaces from the changelog's body.
 trim = true
